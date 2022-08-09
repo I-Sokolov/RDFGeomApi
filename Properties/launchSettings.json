@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "RDFWrappers": {
+      "commandName": "Project",
+      "commandLineArgs": "--model CustomModel.bin",
+      "nativeDebugging": true
+    }
+  }
+}
