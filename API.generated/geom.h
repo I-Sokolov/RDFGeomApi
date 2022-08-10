@@ -297,6 +297,34 @@ namespace GEOM
         }
     };
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TList"></typeparam>
+    /// <typeparam name="TElem"></typeparam>
+    /// <param name="values"></param>
+    /// <param name="arr"></param>
+    /// <param name="count"></param>
+    template <typename TList, typename TElem> void ListToArray(const TList& values, TElem** arr, int64_t* count)
+    {
+        *count = 0;
+        for (const TElem v : values) {
+            (*count)++;
+        }
+
+        if (*count) {
+            *arr = new TElem[*count];
+            int64_t i = 0;
+            for (const TElem v : values) {
+                (*arr)[i++] = v;
+            }
+        }
+        else {
+            *arr = NULL;
+        }
+    }
+
+
 
     /// <summary>
     /// Provides utility methods to interact with an instance of OWL class GeometricItem
@@ -692,6 +720,8 @@ namespace GEOM
         const Curve* get_segment() { return GetObjectProperty<Curve>("segment", NULL); }
         ///<summary>Sets values of tangentDirectionStart. OWL cardinality 3..3</summary>
         bool set_tangentDirectionStart(const double* values, int64_t count) { return SetDatatypeProperty ("tangentDirectionStart", values, count); }
+        ///<summary>Sets values of tangentDirectionStart from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 3..3</summary>
+        template <typename TList> bool set_tangentDirectionStart(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_tangentDirectionStart(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of tangentDirectionStart. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_tangentDirectionStart(int64_t* pCount) { return GetDatatypeProperty<double>("tangentDirectionStart", pCount); }
     };
@@ -1819,6 +1849,8 @@ namespace GEOM
         const int64_t* get_faces_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("faces", pCount); }
         ///<summary>Sets values of flags. OWL cardinality 0..-1</summary>
         bool set_flags(const int64_t* values, int64_t count) { return SetDatatypeProperty ("flags", values, count); }
+        ///<summary>Sets values of flags from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_flags(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_flags(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of flags. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_flags(int64_t* pCount) { return GetDatatypeProperty<int64_t>("flags", pCount); }
         ///<summary>Sets value of fraction</summary>
@@ -1827,14 +1859,20 @@ namespace GEOM
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
         bool set_indices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("indices", values, count); }
+        ///<summary>Sets values of indices from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_indices(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_indices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of indices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_indices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("indices", pCount); }
         ///<summary>Sets values of normalCoordinates. OWL cardinality 0..-1</summary>
         bool set_normalCoordinates(const double* values, int64_t count) { return SetDatatypeProperty ("normalCoordinates", values, count); }
+        ///<summary>Sets values of normalCoordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_normalCoordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_normalCoordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of normalCoordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_normalCoordinates(int64_t* pCount) { return GetDatatypeProperty<double>("normalCoordinates", pCount); }
         ///<summary>Sets values of normalIndices. OWL cardinality 0..-1</summary>
         bool set_normalIndices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("normalIndices", values, count); }
+        ///<summary>Sets values of normalIndices from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_normalIndices(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_normalIndices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of normalIndices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_normalIndices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("normalIndices", pCount); }
         ///<summary>Sets value of relativeEpsilon</summary>
@@ -1843,14 +1881,20 @@ namespace GEOM
         const double* get_relativeEpsilon() { return GetDatatypeProperty<double>("relativeEpsilon", NULL); }
         ///<summary>Sets values of textureCoordinates. OWL cardinality 0..-1</summary>
         bool set_textureCoordinates(const double* values, int64_t count) { return SetDatatypeProperty ("textureCoordinates", values, count); }
+        ///<summary>Sets values of textureCoordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_textureCoordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_textureCoordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of textureCoordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_textureCoordinates(int64_t* pCount) { return GetDatatypeProperty<double>("textureCoordinates", pCount); }
         ///<summary>Sets values of textureIndices. OWL cardinality 0..-1</summary>
         bool set_textureIndices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("textureIndices", values, count); }
+        ///<summary>Sets values of textureIndices from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_textureIndices(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_textureIndices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of textureIndices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_textureIndices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("textureIndices", pCount); }
         ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
         bool set_vertices(const double* values, int64_t count) { return SetDatatypeProperty ("vertices", values, count); }
+        ///<summary>Sets values of vertices from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_vertices(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_vertices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of vertices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vertices(int64_t* pCount) { return GetDatatypeProperty<double>("vertices", pCount); }
     };
@@ -1957,10 +2001,14 @@ namespace GEOM
 
         ///<summary>Sets values of knotMultiplicities. OWL cardinality 0..-1</summary>
         bool set_knotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("knotMultiplicities", values, count); }
+        ///<summary>Sets values of knotMultiplicities from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_knotMultiplicities(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_knotMultiplicities(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of knotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_knotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("knotMultiplicities", pCount); }
         ///<summary>Sets values of knots. OWL cardinality 2..-1</summary>
         bool set_knots(const double* values, int64_t count) { return SetDatatypeProperty ("knots", values, count); }
+        ///<summary>Sets values of knots from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 2..-1</summary>
+        template <typename TList> bool set_knots(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_knots(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of knots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_knots(int64_t* pCount) { return GetDatatypeProperty<double>("knots", pCount); }
         ///<summary>Sets value of setting</summary>
@@ -2018,18 +2066,26 @@ namespace GEOM
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
         ///<summary>Sets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
         bool set_uKnotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("uKnotMultiplicities", values, count); }
+        ///<summary>Sets values of uKnotMultiplicities from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_uKnotMultiplicities(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_uKnotMultiplicities(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of uKnotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_uKnotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("uKnotMultiplicities", pCount); }
         ///<summary>Sets values of uKnots. OWL cardinality 2..-1</summary>
         bool set_uKnots(const double* values, int64_t count) { return SetDatatypeProperty ("uKnots", values, count); }
+        ///<summary>Sets values of uKnots from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 2..-1</summary>
+        template <typename TList> bool set_uKnots(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_uKnots(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of uKnots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_uKnots(int64_t* pCount) { return GetDatatypeProperty<double>("uKnots", pCount); }
         ///<summary>Sets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
         bool set_vKnotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("vKnotMultiplicities", values, count); }
+        ///<summary>Sets values of vKnotMultiplicities from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_vKnotMultiplicities(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_vKnotMultiplicities(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of vKnotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_vKnotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("vKnotMultiplicities", pCount); }
         ///<summary>Sets values of vKnots. OWL cardinality 2..-1</summary>
         bool set_vKnots(const double* values, int64_t count) { return SetDatatypeProperty ("vKnots", values, count); }
+        ///<summary>Sets values of vKnots from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 2..-1</summary>
+        template <typename TList> bool set_vKnots(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_vKnots(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of vKnots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vKnots(int64_t* pCount) { return GetDatatypeProperty<double>("vKnots", pCount); }
     };
@@ -2232,10 +2288,14 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 12..12</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 12..12</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 12..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..12</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..12</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -3591,18 +3651,26 @@ namespace GEOM
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
         bool set_openingPoints(const double* values, int64_t count) { return SetDatatypeProperty ("openingPoints", values, count); }
+        ///<summary>Sets values of openingPoints from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingPoints(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingPoints(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingPoints. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPoints(int64_t* pCount) { return GetDatatypeProperty<double>("openingPoints", pCount); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
         bool set_openingSizes(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizes", values, count); }
+        ///<summary>Sets values of openingSizes from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingSizes(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingSizes(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingSizes. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizes(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizes", pCount); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 6..-1</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
         bool set_polygonDirection(const double* values, int64_t count) { return SetDatatypeProperty ("polygonDirection", values, count); }
+        ///<summary>Sets values of polygonDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_polygonDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_polygonDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of polygonDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_polygonDirection(int64_t* pCount) { return GetDatatypeProperty<double>("polygonDirection", pCount); }
     };
@@ -3660,30 +3728,44 @@ namespace GEOM
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
         bool set_openingPoints(const double* values, int64_t count) { return SetDatatypeProperty ("openingPoints", values, count); }
+        ///<summary>Sets values of openingPoints from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingPoints(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingPoints(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingPoints. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPoints(int64_t* pCount) { return GetDatatypeProperty<double>("openingPoints", pCount); }
         ///<summary>Sets values of openingPointsEnd. OWL cardinality 0..-1</summary>
         bool set_openingPointsEnd(const double* values, int64_t count) { return SetDatatypeProperty ("openingPointsEnd", values, count); }
+        ///<summary>Sets values of openingPointsEnd from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingPointsEnd(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingPointsEnd(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingPointsEnd. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPointsEnd(int64_t* pCount) { return GetDatatypeProperty<double>("openingPointsEnd", pCount); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
         bool set_openingSizes(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizes", values, count); }
+        ///<summary>Sets values of openingSizes from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingSizes(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingSizes(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingSizes. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizes(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizes", pCount); }
         ///<summary>Sets values of openingSizesEnd. OWL cardinality 0..-1</summary>
         bool set_openingSizesEnd(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizesEnd", values, count); }
+        ///<summary>Sets values of openingSizesEnd from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_openingSizesEnd(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_openingSizesEnd(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of openingSizesEnd. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizesEnd(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizesEnd", pCount); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 6..-1</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of pointsEnd. OWL cardinality 6..-1</summary>
         bool set_pointsEnd(const double* values, int64_t count) { return SetDatatypeProperty ("pointsEnd", values, count); }
+        ///<summary>Sets values of pointsEnd from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 6..-1</summary>
+        template <typename TList> bool set_pointsEnd(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_pointsEnd(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of pointsEnd. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_pointsEnd(int64_t* pCount) { return GetDatatypeProperty<double>("pointsEnd", pCount); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
         bool set_polygonDirection(const double* values, int64_t count) { return SetDatatypeProperty ("polygonDirection", values, count); }
+        ///<summary>Sets values of polygonDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_polygonDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_polygonDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of polygonDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_polygonDirection(int64_t* pCount) { return GetDatatypeProperty<double>("polygonDirection", pCount); }
     };
@@ -3745,6 +3827,8 @@ namespace GEOM
         const int64_t* get_extrusionAreaOpenings_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("extrusionAreaOpenings", pCount); }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
         bool set_extrusionDirection(const double* values, int64_t count) { return SetDatatypeProperty ("extrusionDirection", values, count); }
+        ///<summary>Sets values of extrusionDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_extrusionDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_extrusionDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of extrusionDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionDirection(int64_t* pCount) { return GetDatatypeProperty<double>("extrusionDirection", pCount); }
         ///<summary>Sets value of extrusionLength</summary>
@@ -3810,6 +3894,8 @@ namespace GEOM
         const int64_t* get_extrusionAreaSet_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("extrusionAreaSet", pCount); }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
         bool set_extrusionDirection(const double* values, int64_t count) { return SetDatatypeProperty ("extrusionDirection", values, count); }
+        ///<summary>Sets values of extrusionDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_extrusionDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_extrusionDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of extrusionDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionDirection(int64_t* pCount) { return GetDatatypeProperty<double>("extrusionDirection", pCount); }
         ///<summary>Sets value of extrusionLength</summary>
@@ -4423,6 +4509,8 @@ namespace GEOM
         const double* get__43() { return GetDatatypeProperty<double>("_43", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..12</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..12</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
     };
@@ -4623,6 +4711,8 @@ namespace GEOM
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of points. OWL cardinality 6..6</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 6..6</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 6..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -4676,14 +4766,20 @@ namespace GEOM
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of endDirection. OWL cardinality 0..3</summary>
         bool set_endDirection(const double* values, int64_t count) { return SetDatatypeProperty ("endDirection", values, count); }
+        ///<summary>Sets values of endDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_endDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_endDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of endDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_endDirection(int64_t* pCount) { return GetDatatypeProperty<double>("endDirection", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..6</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..6</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of startDirection. OWL cardinality 0..3</summary>
         bool set_startDirection(const double* values, int64_t count) { return SetDatatypeProperty ("startDirection", values, count); }
+        ///<summary>Sets values of startDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_startDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_startDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of startDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_startDirection(int64_t* pCount) { return GetDatatypeProperty<double>("startDirection", pCount); }
         ///<summary>Sets value of x0</summary>
@@ -4761,6 +4857,8 @@ namespace GEOM
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -5022,6 +5120,8 @@ namespace GEOM
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
         bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
+        ///<summary>Sets values of weights from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 2..-1</summary>
+        template <typename TList> bool set_weights(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_weights(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of weights. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -5071,6 +5171,8 @@ namespace GEOM
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
         bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
+        ///<summary>Sets values of weights from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 4..-1</summary>
+        template <typename TList> bool set_weights(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_weights(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of weights. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -5312,10 +5414,14 @@ namespace GEOM
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..3</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets value of x</summary>
@@ -5381,10 +5487,14 @@ namespace GEOM
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -5532,6 +5642,8 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of x</summary>
@@ -5699,6 +5811,8 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..-1</summary>
@@ -5711,10 +5825,14 @@ namespace GEOM
         const int64_t* get_pointReferences_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("pointReferences", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
         bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
+        ///<summary>Sets values of points from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_points(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_points(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of tangent. OWL cardinality 0..-1</summary>
         bool set_tangent(const double* values, int64_t count) { return SetDatatypeProperty ("tangent", values, count); }
+        ///<summary>Sets values of tangent from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_tangent(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_tangent(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of tangent. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_tangent(int64_t* pCount) { return GetDatatypeProperty<double>("tangent", pCount); }
     };
@@ -5980,6 +6098,8 @@ namespace GEOM
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
         bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
+        ///<summary>Sets values of weights from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 2..-1</summary>
+        template <typename TList> bool set_weights(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_weights(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of weights. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -6029,6 +6149,8 @@ namespace GEOM
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
         bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
+        ///<summary>Sets values of weights from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 4..-1</summary>
+        template <typename TList> bool set_weights(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_weights(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of weights. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -6534,6 +6656,8 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..6</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..6</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of segmentationParts</summary>
@@ -7230,10 +7354,14 @@ namespace GEOM
         const Curve* get_bottomPolygon() { return GetObjectProperty<Curve>("bottomPolygon", NULL); }
         ///<summary>Sets values of connectionMap. OWL cardinality 0..-1</summary>
         bool set_connectionMap(const int64_t* values, int64_t count) { return SetDatatypeProperty ("connectionMap", values, count); }
+        ///<summary>Sets values of connectionMap from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_connectionMap(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_connectionMap(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of connectionMap. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_connectionMap(int64_t* pCount) { return GetDatatypeProperty<int64_t>("connectionMap", pCount); }
         ///<summary>Sets values of forcedStaticDirection. OWL cardinality 0..3</summary>
         bool set_forcedStaticDirection(const double* values, int64_t count) { return SetDatatypeProperty ("forcedStaticDirection", values, count); }
+        ///<summary>Sets values of forcedStaticDirection from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_forcedStaticDirection(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_forcedStaticDirection(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of forcedStaticDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_forcedStaticDirection(int64_t* pCount) { return GetDatatypeProperty<double>("forcedStaticDirection", pCount); }
         ///<summary>Sets value of forceSolid</summary>
@@ -7323,6 +7451,8 @@ namespace GEOM
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets values of origin. OWL cardinality 0..3</summary>
         bool set_origin(const double* values, int64_t count) { return SetDatatypeProperty ("origin", values, count); }
+        ///<summary>Sets values of origin from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_origin(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_origin(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of origin. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_origin(int64_t* pCount) { return GetDatatypeProperty<double>("origin", pCount); }
         ///<summary>Sets value of rotation</summary>
@@ -7498,6 +7628,8 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..9</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..9</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..9. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of offsetX</summary>
@@ -7624,10 +7756,14 @@ namespace GEOM
 
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
         bool set_indices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("indices", values, count); }
+        ///<summary>Sets values of indices from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 0..-1</summary>
+        template <typename TList> bool set_indices(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_indices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of indices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_indices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("indices", pCount); }
         ///<summary>Sets values of vertices. OWL cardinality 3..-1</summary>
         bool set_vertices(const double* values, int64_t count) { return SetDatatypeProperty ("vertices", values, count); }
+        ///<summary>Sets values of vertices from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 3..-1</summary>
+        template <typename TList> bool set_vertices(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_vertices(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of vertices. OWL cardinality 3..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vertices(int64_t* pCount) { return GetDatatypeProperty<double>("vertices", pCount); }
     };
@@ -7716,6 +7852,8 @@ namespace GEOM
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
         bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
+        ///<summary>Sets values of coordinates from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 0..3</summary>
+        template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of x</summary>

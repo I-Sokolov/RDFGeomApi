@@ -164,6 +164,34 @@ namespace NAMESPACE_NAME
         }
     };
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TList"></typeparam>
+    /// <typeparam name="TElem"></typeparam>
+    /// <param name="values"></param>
+    /// <param name="arr"></param>
+    /// <param name="count"></param>
+    template <typename TList, typename TElem> void ListToArray(const TList& values, TElem** arr, int64_t* count)
+    {
+        *count = 0;
+        for (const TElem v : values) {
+            (*count)++;
+        }
+
+        if (*count) {
+            *arr = new TElem[*count];
+            int64_t i = 0;
+            for (const TElem v : values) {
+                (*arr)[i++] = v;
+            }
+        }
+        else {
+            *arr = NULL;
+        }
+    }
+
+
 //## TEMPLATE: BeginWrapperClass
 
     /// <summary>
@@ -216,6 +244,8 @@ namespace NAMESPACE_NAME
 //## TEMPLATE SetDataArrayProperty
         ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         bool set_PROPERTY_NAME(const double* values, int64_t count) { return SetDatatypeProperty ("PROPERTY_NAME", values, count); }
+        ///<summary>Sets values of PROPERTY_NAME from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
+        template <typename TList> bool set_PROPERTY_NAME(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_PROPERTY_NAME(arr, count); if (arr) delete[] arr; return ok; }
 //## TEMPLATE GetDataProperty
         ///<summary>Gets a value of PROPERTY_NAME, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_PROPERTY_NAME() { return GetDatatypeProperty<double>("PROPERTY_NAME", NULL); }

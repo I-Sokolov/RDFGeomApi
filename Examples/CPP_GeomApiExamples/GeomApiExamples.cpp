@@ -5,7 +5,7 @@
 #include <math.h>
 #include <string.h>
 #include <assert.h>
-
+#include <list>
 
 #include "engine.h"
 #include "geom.h"
@@ -142,6 +142,20 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 	org = texture.get_origin(&cnt);
 	ASSERT(cnt == 3);
 	ASSERT_ARR_EQ(org, orgset, cnt);
+
+	//enumerable templates
+	std::list<int> coords;
+	coords.push_back(1);
+	coords.push_back(3);
+	coords.push_back(7);
+
+	auto pointSet = Point3DSet::Create(model);
+	pointSet.set_coordinates(coords);
+
+	cnt = 0;
+	const double* rd = pointSet.get_coordinates(&cnt);
+	ASSERT(cnt = 3 && rd[0] == 1 && rd[1] == 3 && rd[2] == 7);
+
 
 	//there is ability to identity property by name
 	orgset[1] = 10;
