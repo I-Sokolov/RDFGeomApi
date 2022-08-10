@@ -160,26 +160,31 @@ namespace GEOM
         /// </summary>
         int64_t m_instance;
 
-    public:
+    protected:
         /// <summary>
-        /// Create an instance of specified class
+        /// 
         /// </summary>
-        static int64_t Create(int64_t model, const char* className, const char* instanseName)
+        /// <param name="model"></param>
+        /// <param name="className"></param>
+        /// <param name="instanceName"></param>
+        /// <param name="instanceNameW"></param>
+        /// <returns></returns>
+        static int64_t Create(int64_t model, const char* className, const char* instanceName, const wchar_t* instanceNameW)
         {
             int64_t clsid = GetClassByName(model, className);
             assert(clsid != 0);
 
-            int64_t instance = CreateInstance(clsid, instanseName);
-            assert(instance != 0);
+            int64_t instance = 0;
+            if (instanceNameW) {
+                instance = CreateInstanceW(clsid, instanceNameW);
+            }
+            else {
+                instance = CreateInstance(clsid, instanceName);
+            }
 
             return instance;
         }
-
-        /// <summary>
-        /// Create an instance of specified class
-        /// </summary>
-        static int64_t Create(int64_t model, const char* className) { return Create(model, className, NULL); }
-
+        
         /// <summary>
         /// Constructs object that wraps existing OWL instance
         /// </summary>
@@ -193,7 +198,7 @@ namespace GEOM
             }
         }
 
-
+    public:
         /// <summary>
         /// Conversion to instance handle, so the object of the class can be used anywhere where a handle required
         /// </summary>
@@ -306,17 +311,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static GeometricItem Create(int64_t model, const char* name=NULL) { return GeometricItem(Instance::Create(model, "GeometricItem", name), "GeometricItem");}
-        
+        static GeometricItem Create(int64_t model, const char* name=NULL) { return GeometricItem(Instance::Create(model, "GeometricItem", name, NULL), "GeometricItem");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static GeometricItem CreateW(int64_t model, const wchar_t* name = NULL) { return GeometricItem(Instance::Create(model, "GeometricItem", NULL, name), "GeometricItem"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        GeometricItem(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Instance(instance, (checkClassName != NULL) ? checkClassName : "GeometricItem")
+        ///
+        GeometricItem(int64_t instance = NULL)
+            : Instance(instance, "GeometricItem")
         {}
 
+    protected:
+        GeometricItem(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to GeometricItem
        //
@@ -340,17 +360,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AdvancedFace Create(int64_t model, const char* name=NULL) { return AdvancedFace(Instance::Create(model, "AdvancedFace", name), "AdvancedFace");}
-        
+        static AdvancedFace Create(int64_t model, const char* name=NULL) { return AdvancedFace(Instance::Create(model, "AdvancedFace", name, NULL), "AdvancedFace");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AdvancedFace CreateW(int64_t model, const wchar_t* name = NULL) { return AdvancedFace(Instance::Create(model, "AdvancedFace", NULL, name), "AdvancedFace"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AdvancedFace(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "AdvancedFace")
+        ///
+        AdvancedFace(int64_t instance = NULL)
+            : GeometricItem(instance, "AdvancedFace")
         {}
 
+    protected:
+        AdvancedFace(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to AdvancedFace
        //
@@ -382,15 +417,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Face Create(int64_t model, const char* name=NULL) { return Face(Instance::Create(model, "Face", name), "Face");}
-        
+        static Face Create(int64_t model, const char* name=NULL) { return Face(Instance::Create(model, "Face", name, NULL), "Face");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Face CreateW(int64_t model, const wchar_t* name = NULL) { return Face(Instance::Create(model, "Face", NULL, name), "Face"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Face(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Face")
+        ///
+        Face(int64_t instance = NULL)
+            : GeometricItem(instance, "Face")
+        {}
+
+    protected:
+        Face(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -407,17 +456,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AdvancedFace2D Create(int64_t model, const char* name=NULL) { return AdvancedFace2D(Instance::Create(model, "AdvancedFace2D", name), "AdvancedFace2D");}
-        
+        static AdvancedFace2D Create(int64_t model, const char* name=NULL) { return AdvancedFace2D(Instance::Create(model, "AdvancedFace2D", name, NULL), "AdvancedFace2D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AdvancedFace2D CreateW(int64_t model, const wchar_t* name = NULL) { return AdvancedFace2D(Instance::Create(model, "AdvancedFace2D", NULL, name), "AdvancedFace2D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AdvancedFace2D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : AdvancedFace(instance, (checkClassName != NULL) ? checkClassName : "AdvancedFace2D")
+        ///
+        AdvancedFace2D(int64_t instance = NULL)
+            : AdvancedFace(instance, "AdvancedFace2D")
         {}
 
+    protected:
+        AdvancedFace2D(int64_t instance, const char* checkClassName)
+            : AdvancedFace(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to AdvancedFace2D
        //
@@ -449,15 +513,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AdvancedFace3D Create(int64_t model, const char* name=NULL) { return AdvancedFace3D(Instance::Create(model, "AdvancedFace3D", name), "AdvancedFace3D");}
-        
+        static AdvancedFace3D Create(int64_t model, const char* name=NULL) { return AdvancedFace3D(Instance::Create(model, "AdvancedFace3D", name, NULL), "AdvancedFace3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AdvancedFace3D CreateW(int64_t model, const wchar_t* name = NULL) { return AdvancedFace3D(Instance::Create(model, "AdvancedFace3D", NULL, name), "AdvancedFace3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AdvancedFace3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : AdvancedFace(instance, (checkClassName != NULL) ? checkClassName : "AdvancedFace3D")
+        ///
+        AdvancedFace3D(int64_t instance = NULL)
+            : AdvancedFace(instance, "AdvancedFace3D")
+        {}
+
+    protected:
+        AdvancedFace3D(int64_t instance, const char* checkClassName)
+            : AdvancedFace(instance, checkClassName)
         {}
     };
 
@@ -474,15 +552,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Curve Create(int64_t model, const char* name=NULL) { return Curve(Instance::Create(model, "Curve", name), "Curve");}
-        
+        static Curve Create(int64_t model, const char* name=NULL) { return Curve(Instance::Create(model, "Curve", name, NULL), "Curve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Curve CreateW(int64_t model, const wchar_t* name = NULL) { return Curve(Instance::Create(model, "Curve", NULL, name), "Curve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Curve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Curve")
+        ///
+        Curve(int64_t instance = NULL)
+            : GeometricItem(instance, "Curve")
+        {}
+
+    protected:
+        Curve(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -499,17 +591,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AdvancedFaceMapped Create(int64_t model, const char* name=NULL) { return AdvancedFaceMapped(Instance::Create(model, "AdvancedFaceMapped", name), "AdvancedFaceMapped");}
-        
+        static AdvancedFaceMapped Create(int64_t model, const char* name=NULL) { return AdvancedFaceMapped(Instance::Create(model, "AdvancedFaceMapped", name, NULL), "AdvancedFaceMapped");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AdvancedFaceMapped CreateW(int64_t model, const wchar_t* name = NULL) { return AdvancedFaceMapped(Instance::Create(model, "AdvancedFaceMapped", NULL, name), "AdvancedFaceMapped"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AdvancedFaceMapped(int64_t instance = NULL, const char* checkClassName = NULL)
-            : AdvancedFace(instance, (checkClassName != NULL) ? checkClassName : "AdvancedFaceMapped")
+        ///
+        AdvancedFaceMapped(int64_t instance = NULL)
+            : AdvancedFace(instance, "AdvancedFaceMapped")
         {}
 
+    protected:
+        AdvancedFaceMapped(int64_t instance, const char* checkClassName)
+            : AdvancedFace(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to AdvancedFaceMapped
        //
@@ -537,17 +644,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AlignedSegment Create(int64_t model, const char* name=NULL) { return AlignedSegment(Instance::Create(model, "AlignedSegment", name), "AlignedSegment");}
-        
+        static AlignedSegment Create(int64_t model, const char* name=NULL) { return AlignedSegment(Instance::Create(model, "AlignedSegment", name, NULL), "AlignedSegment");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AlignedSegment CreateW(int64_t model, const wchar_t* name = NULL) { return AlignedSegment(Instance::Create(model, "AlignedSegment", NULL, name), "AlignedSegment"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AlignedSegment(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "AlignedSegment")
+        ///
+        AlignedSegment(int64_t instance = NULL)
+            : Curve(instance, "AlignedSegment")
         {}
 
+    protected:
+        AlignedSegment(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to AlignedSegment
        //
@@ -587,17 +709,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AlignedSegments Create(int64_t model, const char* name=NULL) { return AlignedSegments(Instance::Create(model, "AlignedSegments", name), "AlignedSegments");}
-        
+        static AlignedSegments Create(int64_t model, const char* name=NULL) { return AlignedSegments(Instance::Create(model, "AlignedSegments", name, NULL), "AlignedSegments");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AlignedSegments CreateW(int64_t model, const wchar_t* name = NULL) { return AlignedSegments(Instance::Create(model, "AlignedSegments", NULL, name), "AlignedSegments"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AlignedSegments(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "AlignedSegments")
+        ///
+        AlignedSegments(int64_t instance = NULL)
+            : Curve(instance, "AlignedSegments")
         {}
 
+    protected:
+        AlignedSegments(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to AlignedSegments
        //
@@ -625,17 +762,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Alignment Create(int64_t model, const char* name=NULL) { return Alignment(Instance::Create(model, "Alignment", name), "Alignment");}
-        
+        static Alignment Create(int64_t model, const char* name=NULL) { return Alignment(Instance::Create(model, "Alignment", name, NULL), "Alignment");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Alignment CreateW(int64_t model, const wchar_t* name = NULL) { return Alignment(Instance::Create(model, "Alignment", NULL, name), "Alignment"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Alignment(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Alignment")
+        ///
+        Alignment(int64_t instance = NULL)
+            : Curve(instance, "Alignment")
         {}
 
+    protected:
+        Alignment(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Alignment
        //
@@ -671,15 +823,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Environment Create(int64_t model, const char* name=NULL) { return Environment(Instance::Create(model, "Environment", name), "Environment");}
-        
+        static Environment Create(int64_t model, const char* name=NULL) { return Environment(Instance::Create(model, "Environment", name, NULL), "Environment");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Environment CreateW(int64_t model, const wchar_t* name = NULL) { return Environment(Instance::Create(model, "Environment", NULL, name), "Environment"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Environment(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Instance(instance, (checkClassName != NULL) ? checkClassName : "Environment")
+        ///
+        Environment(int64_t instance = NULL)
+            : Instance(instance, "Environment")
+        {}
+
+    protected:
+        Environment(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
         {}
     };
 
@@ -696,17 +862,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Light Create(int64_t model, const char* name=NULL) { return Light(Instance::Create(model, "Light", name), "Light");}
-        
+        static Light Create(int64_t model, const char* name=NULL) { return Light(Instance::Create(model, "Light", name, NULL), "Light");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Light CreateW(int64_t model, const wchar_t* name = NULL) { return Light(Instance::Create(model, "Light", NULL, name), "Light"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Light(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Environment(instance, (checkClassName != NULL) ? checkClassName : "Light")
+        ///
+        Light(int64_t instance = NULL)
+            : Environment(instance, "Light")
         {}
 
+    protected:
+        Light(int64_t instance, const char* checkClassName)
+            : Environment(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Light
        //
@@ -730,15 +911,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static AmbientLight Create(int64_t model, const char* name=NULL) { return AmbientLight(Instance::Create(model, "AmbientLight", name), "AmbientLight");}
-        
+        static AmbientLight Create(int64_t model, const char* name=NULL) { return AmbientLight(Instance::Create(model, "AmbientLight", name, NULL), "AmbientLight");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static AmbientLight CreateW(int64_t model, const wchar_t* name = NULL) { return AmbientLight(Instance::Create(model, "AmbientLight", NULL, name), "AmbientLight"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        AmbientLight(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Light(instance, (checkClassName != NULL) ? checkClassName : "AmbientLight")
+        ///
+        AmbientLight(int64_t instance = NULL)
+            : Light(instance, "AmbientLight")
+        {}
+
+    protected:
+        AmbientLight(int64_t instance, const char* checkClassName)
+            : Light(instance, checkClassName)
         {}
     };
 
@@ -755,15 +950,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Appearance Create(int64_t model, const char* name=NULL) { return Appearance(Instance::Create(model, "Appearance", name), "Appearance");}
-        
+        static Appearance Create(int64_t model, const char* name=NULL) { return Appearance(Instance::Create(model, "Appearance", name, NULL), "Appearance");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Appearance CreateW(int64_t model, const wchar_t* name = NULL) { return Appearance(Instance::Create(model, "Appearance", NULL, name), "Appearance"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Appearance(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Instance(instance, (checkClassName != NULL) ? checkClassName : "Appearance")
+        ///
+        Appearance(int64_t instance = NULL)
+            : Instance(instance, "Appearance")
+        {}
+
+    protected:
+        Appearance(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
         {}
     };
 
@@ -780,17 +989,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Arc3D Create(int64_t model, const char* name=NULL) { return Arc3D(Instance::Create(model, "Arc3D", name), "Arc3D");}
-        
+        static Arc3D Create(int64_t model, const char* name=NULL) { return Arc3D(Instance::Create(model, "Arc3D", name, NULL), "Arc3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Arc3D CreateW(int64_t model, const wchar_t* name = NULL) { return Arc3D(Instance::Create(model, "Arc3D", NULL, name), "Arc3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Arc3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Arc3D")
+        ///
+        Arc3D(int64_t instance = NULL)
+            : Curve(instance, "Arc3D")
         {}
 
+    protected:
+        Arc3D(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Arc3D
        //
@@ -830,17 +1054,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SplineCurve Create(int64_t model, const char* name=NULL) { return SplineCurve(Instance::Create(model, "SplineCurve", name), "SplineCurve");}
-        
+        static SplineCurve Create(int64_t model, const char* name=NULL) { return SplineCurve(Instance::Create(model, "SplineCurve", name, NULL), "SplineCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SplineCurve CreateW(int64_t model, const wchar_t* name = NULL) { return SplineCurve(Instance::Create(model, "SplineCurve", NULL, name), "SplineCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SplineCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "SplineCurve")
+        ///
+        SplineCurve(int64_t instance = NULL)
+            : Curve(instance, "SplineCurve")
         {}
 
+    protected:
+        SplineCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SplineCurve
        //
@@ -888,15 +1127,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BezierCurve Create(int64_t model, const char* name=NULL) { return BezierCurve(Instance::Create(model, "BezierCurve", name), "BezierCurve");}
-        
+        static BezierCurve Create(int64_t model, const char* name=NULL) { return BezierCurve(Instance::Create(model, "BezierCurve", name, NULL), "BezierCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BezierCurve CreateW(int64_t model, const wchar_t* name = NULL) { return BezierCurve(Instance::Create(model, "BezierCurve", NULL, name), "BezierCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BezierCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : SplineCurve(instance, (checkClassName != NULL) ? checkClassName : "BezierCurve")
+        ///
+        BezierCurve(int64_t instance = NULL)
+            : SplineCurve(instance, "BezierCurve")
+        {}
+
+    protected:
+        BezierCurve(int64_t instance, const char* checkClassName)
+            : SplineCurve(instance, checkClassName)
         {}
     };
 
@@ -913,15 +1166,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Surface Create(int64_t model, const char* name=NULL) { return Surface(Instance::Create(model, "Surface", name), "Surface");}
-        
+        static Surface Create(int64_t model, const char* name=NULL) { return Surface(Instance::Create(model, "Surface", name, NULL), "Surface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Surface CreateW(int64_t model, const wchar_t* name = NULL) { return Surface(Instance::Create(model, "Surface", NULL, name), "Surface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Surface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "Surface")
+        ///
+        Surface(int64_t instance = NULL)
+            : Face(instance, "Surface")
+        {}
+
+    protected:
+        Surface(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
         {}
     };
 
@@ -938,15 +1205,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static FiniteSurface Create(int64_t model, const char* name=NULL) { return FiniteSurface(Instance::Create(model, "FiniteSurface", name), "FiniteSurface");}
-        
+        static FiniteSurface Create(int64_t model, const char* name=NULL) { return FiniteSurface(Instance::Create(model, "FiniteSurface", name, NULL), "FiniteSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static FiniteSurface CreateW(int64_t model, const wchar_t* name = NULL) { return FiniteSurface(Instance::Create(model, "FiniteSurface", NULL, name), "FiniteSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        FiniteSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Surface(instance, (checkClassName != NULL) ? checkClassName : "FiniteSurface")
+        ///
+        FiniteSurface(int64_t instance = NULL)
+            : Surface(instance, "FiniteSurface")
+        {}
+
+    protected:
+        FiniteSurface(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
         {}
     };
 
@@ -963,17 +1244,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SplineSurface Create(int64_t model, const char* name=NULL) { return SplineSurface(Instance::Create(model, "SplineSurface", name), "SplineSurface");}
-        
+        static SplineSurface Create(int64_t model, const char* name=NULL) { return SplineSurface(Instance::Create(model, "SplineSurface", name, NULL), "SplineSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SplineSurface CreateW(int64_t model, const wchar_t* name = NULL) { return SplineSurface(Instance::Create(model, "SplineSurface", NULL, name), "SplineSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SplineSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "SplineSurface")
+        ///
+        SplineSurface(int64_t instance = NULL)
+            : FiniteSurface(instance, "SplineSurface")
         {}
 
+    protected:
+        SplineSurface(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SplineSurface
        //
@@ -1041,17 +1337,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BezierSurface Create(int64_t model, const char* name=NULL) { return BezierSurface(Instance::Create(model, "BezierSurface", name), "BezierSurface");}
-        
+        static BezierSurface Create(int64_t model, const char* name=NULL) { return BezierSurface(Instance::Create(model, "BezierSurface", name, NULL), "BezierSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BezierSurface CreateW(int64_t model, const wchar_t* name = NULL) { return BezierSurface(Instance::Create(model, "BezierSurface", NULL, name), "BezierSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BezierSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : SplineSurface(instance, (checkClassName != NULL) ? checkClassName : "BezierSurface")
+        ///
+        BezierSurface(int64_t instance = NULL)
+            : SplineSurface(instance, "BezierSurface")
         {}
 
+    protected:
+        BezierSurface(int64_t instance, const char* checkClassName)
+            : SplineSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BezierSurface
        //
@@ -1075,17 +1386,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static TransitionalCurve Create(int64_t model, const char* name=NULL) { return TransitionalCurve(Instance::Create(model, "TransitionalCurve", name), "TransitionalCurve");}
-        
+        static TransitionalCurve Create(int64_t model, const char* name=NULL) { return TransitionalCurve(Instance::Create(model, "TransitionalCurve", name, NULL), "TransitionalCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static TransitionalCurve CreateW(int64_t model, const wchar_t* name = NULL) { return TransitionalCurve(Instance::Create(model, "TransitionalCurve", NULL, name), "TransitionalCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        TransitionalCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "TransitionalCurve")
+        ///
+        TransitionalCurve(int64_t instance = NULL)
+            : Curve(instance, "TransitionalCurve")
         {}
 
+    protected:
+        TransitionalCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to TransitionalCurve
        //
@@ -1129,15 +1455,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BiQuadraticParabola Create(int64_t model, const char* name=NULL) { return BiQuadraticParabola(Instance::Create(model, "BiQuadraticParabola", name), "BiQuadraticParabola");}
-        
+        static BiQuadraticParabola Create(int64_t model, const char* name=NULL) { return BiQuadraticParabola(Instance::Create(model, "BiQuadraticParabola", name, NULL), "BiQuadraticParabola");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BiQuadraticParabola CreateW(int64_t model, const wchar_t* name = NULL) { return BiQuadraticParabola(Instance::Create(model, "BiQuadraticParabola", NULL, name), "BiQuadraticParabola"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BiQuadraticParabola(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "BiQuadraticParabola")
+        ///
+        BiQuadraticParabola(int64_t instance = NULL)
+            : TransitionalCurve(instance, "BiQuadraticParabola")
+        {}
+
+    protected:
+        BiQuadraticParabola(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -1154,15 +1494,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Solid Create(int64_t model, const char* name=NULL) { return Solid(Instance::Create(model, "Solid", name), "Solid");}
-        
+        static Solid Create(int64_t model, const char* name=NULL) { return Solid(Instance::Create(model, "Solid", name, NULL), "Solid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Solid CreateW(int64_t model, const wchar_t* name = NULL) { return Solid(Instance::Create(model, "Solid", NULL, name), "Solid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Solid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Solid")
+        ///
+        Solid(int64_t instance = NULL)
+            : GeometricItem(instance, "Solid")
+        {}
+
+    protected:
+        Solid(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -1179,17 +1533,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Blend Create(int64_t model, const char* name=NULL) { return Blend(Instance::Create(model, "Blend", name), "Blend");}
-        
+        static Blend Create(int64_t model, const char* name=NULL) { return Blend(Instance::Create(model, "Blend", name, NULL), "Blend");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Blend CreateW(int64_t model, const wchar_t* name = NULL) { return Blend(Instance::Create(model, "Blend", NULL, name), "Blend"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Blend(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Blend")
+        ///
+        Blend(int64_t instance = NULL)
+            : Solid(instance, "Blend")
         {}
 
+    protected:
+        Blend(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Blend
        //
@@ -1237,15 +1606,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BlossCurve Create(int64_t model, const char* name=NULL) { return BlossCurve(Instance::Create(model, "BlossCurve", name), "BlossCurve");}
-        
+        static BlossCurve Create(int64_t model, const char* name=NULL) { return BlossCurve(Instance::Create(model, "BlossCurve", name, NULL), "BlossCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BlossCurve CreateW(int64_t model, const wchar_t* name = NULL) { return BlossCurve(Instance::Create(model, "BlossCurve", NULL, name), "BlossCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BlossCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "BlossCurve")
+        ///
+        BlossCurve(int64_t instance = NULL)
+            : TransitionalCurve(instance, "BlossCurve")
+        {}
+
+    protected:
+        BlossCurve(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -1262,17 +1645,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BooleanOperation Create(int64_t model, const char* name=NULL) { return BooleanOperation(Instance::Create(model, "BooleanOperation", name), "BooleanOperation");}
-        
+        static BooleanOperation Create(int64_t model, const char* name=NULL) { return BooleanOperation(Instance::Create(model, "BooleanOperation", name, NULL), "BooleanOperation");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BooleanOperation CreateW(int64_t model, const wchar_t* name = NULL) { return BooleanOperation(Instance::Create(model, "BooleanOperation", NULL, name), "BooleanOperation"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BooleanOperation(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "BooleanOperation")
+        ///
+        BooleanOperation(int64_t instance = NULL)
+            : Solid(instance, "BooleanOperation")
         {}
 
+    protected:
+        BooleanOperation(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BooleanOperation
        //
@@ -1312,17 +1710,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BooleanOperation2D Create(int64_t model, const char* name=NULL) { return BooleanOperation2D(Instance::Create(model, "BooleanOperation2D", name), "BooleanOperation2D");}
-        
+        static BooleanOperation2D Create(int64_t model, const char* name=NULL) { return BooleanOperation2D(Instance::Create(model, "BooleanOperation2D", name, NULL), "BooleanOperation2D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BooleanOperation2D CreateW(int64_t model, const wchar_t* name = NULL) { return BooleanOperation2D(Instance::Create(model, "BooleanOperation2D", NULL, name), "BooleanOperation2D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BooleanOperation2D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "BooleanOperation2D")
+        ///
+        BooleanOperation2D(int64_t instance = NULL)
+            : Face(instance, "BooleanOperation2D")
         {}
 
+    protected:
+        BooleanOperation2D(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BooleanOperation2D
        //
@@ -1358,17 +1771,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BoundaryRepresentation Create(int64_t model, const char* name=NULL) { return BoundaryRepresentation(Instance::Create(model, "BoundaryRepresentation", name), "BoundaryRepresentation");}
-        
+        static BoundaryRepresentation Create(int64_t model, const char* name=NULL) { return BoundaryRepresentation(Instance::Create(model, "BoundaryRepresentation", name, NULL), "BoundaryRepresentation");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BoundaryRepresentation CreateW(int64_t model, const wchar_t* name = NULL) { return BoundaryRepresentation(Instance::Create(model, "BoundaryRepresentation", NULL, name), "BoundaryRepresentation"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BoundaryRepresentation(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "BoundaryRepresentation")
+        ///
+        BoundaryRepresentation(int64_t instance = NULL)
+            : Solid(instance, "BoundaryRepresentation")
         {}
 
+    protected:
+        BoundaryRepresentation(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BoundaryRepresentation
        //
@@ -1440,17 +1868,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Box Create(int64_t model, const char* name=NULL) { return Box(Instance::Create(model, "Box", name), "Box");}
-        
+        static Box Create(int64_t model, const char* name=NULL) { return Box(Instance::Create(model, "Box", name, NULL), "Box");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Box CreateW(int64_t model, const wchar_t* name = NULL) { return Box(Instance::Create(model, "Box", NULL, name), "Box"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Box(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Box")
+        ///
+        Box(int64_t instance = NULL)
+            : Solid(instance, "Box")
         {}
 
+    protected:
+        Box(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Box
        //
@@ -1482,17 +1925,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BSplineCurve Create(int64_t model, const char* name=NULL) { return BSplineCurve(Instance::Create(model, "BSplineCurve", name), "BSplineCurve");}
-        
+        static BSplineCurve Create(int64_t model, const char* name=NULL) { return BSplineCurve(Instance::Create(model, "BSplineCurve", name, NULL), "BSplineCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BSplineCurve CreateW(int64_t model, const wchar_t* name = NULL) { return BSplineCurve(Instance::Create(model, "BSplineCurve", NULL, name), "BSplineCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BSplineCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : SplineCurve(instance, (checkClassName != NULL) ? checkClassName : "BSplineCurve")
+        ///
+        BSplineCurve(int64_t instance = NULL)
+            : SplineCurve(instance, "BSplineCurve")
         {}
 
+    protected:
+        BSplineCurve(int64_t instance, const char* checkClassName)
+            : SplineCurve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BSplineCurve
        //
@@ -1524,17 +1982,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static BSplineSurface Create(int64_t model, const char* name=NULL) { return BSplineSurface(Instance::Create(model, "BSplineSurface", name), "BSplineSurface");}
-        
+        static BSplineSurface Create(int64_t model, const char* name=NULL) { return BSplineSurface(Instance::Create(model, "BSplineSurface", name, NULL), "BSplineSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BSplineSurface CreateW(int64_t model, const wchar_t* name = NULL) { return BSplineSurface(Instance::Create(model, "BSplineSurface", NULL, name), "BSplineSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        BSplineSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : SplineSurface(instance, (checkClassName != NULL) ? checkClassName : "BSplineSurface")
+        ///
+        BSplineSurface(int64_t instance = NULL)
+            : SplineSurface(instance, "BSplineSurface")
         {}
 
+    protected:
+        BSplineSurface(int64_t instance, const char* checkClassName)
+            : SplineSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to BSplineSurface
        //
@@ -1574,17 +2047,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ConicalCurve Create(int64_t model, const char* name=NULL) { return ConicalCurve(Instance::Create(model, "ConicalCurve", name), "ConicalCurve");}
-        
+        static ConicalCurve Create(int64_t model, const char* name=NULL) { return ConicalCurve(Instance::Create(model, "ConicalCurve", name, NULL), "ConicalCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ConicalCurve CreateW(int64_t model, const wchar_t* name = NULL) { return ConicalCurve(Instance::Create(model, "ConicalCurve", NULL, name), "ConicalCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ConicalCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "ConicalCurve")
+        ///
+        ConicalCurve(int64_t instance = NULL)
+            : Curve(instance, "ConicalCurve")
         {}
 
+    protected:
+        ConicalCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ConicalCurve
        //
@@ -1620,15 +2108,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Circle Create(int64_t model, const char* name=NULL) { return Circle(Instance::Create(model, "Circle", name), "Circle");}
-        
+        static Circle Create(int64_t model, const char* name=NULL) { return Circle(Instance::Create(model, "Circle", name, NULL), "Circle");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Circle CreateW(int64_t model, const wchar_t* name = NULL) { return Circle(Instance::Create(model, "Circle", NULL, name), "Circle"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Circle(int64_t instance = NULL, const char* checkClassName = NULL)
-            : ConicalCurve(instance, (checkClassName != NULL) ? checkClassName : "Circle")
+        ///
+        Circle(int64_t instance = NULL)
+            : ConicalCurve(instance, "Circle")
+        {}
+
+    protected:
+        Circle(int64_t instance, const char* checkClassName)
+            : ConicalCurve(instance, checkClassName)
         {}
     };
 
@@ -1645,17 +2147,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CircleByPoints Create(int64_t model, const char* name=NULL) { return CircleByPoints(Instance::Create(model, "CircleByPoints", name), "CircleByPoints");}
-        
+        static CircleByPoints Create(int64_t model, const char* name=NULL) { return CircleByPoints(Instance::Create(model, "CircleByPoints", name, NULL), "CircleByPoints");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CircleByPoints CreateW(int64_t model, const wchar_t* name = NULL) { return CircleByPoints(Instance::Create(model, "CircleByPoints", NULL, name), "CircleByPoints"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CircleByPoints(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Circle(instance, (checkClassName != NULL) ? checkClassName : "CircleByPoints")
+        ///
+        CircleByPoints(int64_t instance = NULL)
+            : Circle(instance, "CircleByPoints")
         {}
 
+    protected:
+        CircleByPoints(int64_t instance, const char* checkClassName)
+            : Circle(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to CircleByPoints
        //
@@ -1683,17 +2200,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ClippedPyramid Create(int64_t model, const char* name=NULL) { return ClippedPyramid(Instance::Create(model, "ClippedPyramid", name), "ClippedPyramid");}
-        
+        static ClippedPyramid Create(int64_t model, const char* name=NULL) { return ClippedPyramid(Instance::Create(model, "ClippedPyramid", name, NULL), "ClippedPyramid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ClippedPyramid CreateW(int64_t model, const wchar_t* name = NULL) { return ClippedPyramid(Instance::Create(model, "ClippedPyramid", NULL, name), "ClippedPyramid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ClippedPyramid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "ClippedPyramid")
+        ///
+        ClippedPyramid(int64_t instance = NULL)
+            : Solid(instance, "ClippedPyramid")
         {}
 
+    protected:
+        ClippedPyramid(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ClippedPyramid
        //
@@ -1721,17 +2253,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Clipping Create(int64_t model, const char* name=NULL) { return Clipping(Instance::Create(model, "Clipping", name), "Clipping");}
-        
+        static Clipping Create(int64_t model, const char* name=NULL) { return Clipping(Instance::Create(model, "Clipping", name, NULL), "Clipping");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Clipping CreateW(int64_t model, const wchar_t* name = NULL) { return Clipping(Instance::Create(model, "Clipping", NULL, name), "Clipping"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Clipping(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Clipping")
+        ///
+        Clipping(int64_t instance = NULL)
+            : Solid(instance, "Clipping")
         {}
 
+    protected:
+        Clipping(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Clipping
        //
@@ -1767,17 +2314,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Clothoid Create(int64_t model, const char* name=NULL) { return Clothoid(Instance::Create(model, "Clothoid", name), "Clothoid");}
-        
+        static Clothoid Create(int64_t model, const char* name=NULL) { return Clothoid(Instance::Create(model, "Clothoid", name, NULL), "Clothoid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Clothoid CreateW(int64_t model, const wchar_t* name = NULL) { return Clothoid(Instance::Create(model, "Clothoid", NULL, name), "Clothoid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Clothoid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Clothoid")
+        ///
+        Clothoid(int64_t instance = NULL)
+            : Curve(instance, "Clothoid")
         {}
 
+    protected:
+        Clothoid(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Clothoid
        //
@@ -1821,15 +2383,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ClothoidCurve Create(int64_t model, const char* name=NULL) { return ClothoidCurve(Instance::Create(model, "ClothoidCurve", name), "ClothoidCurve");}
-        
+        static ClothoidCurve Create(int64_t model, const char* name=NULL) { return ClothoidCurve(Instance::Create(model, "ClothoidCurve", name, NULL), "ClothoidCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ClothoidCurve CreateW(int64_t model, const wchar_t* name = NULL) { return ClothoidCurve(Instance::Create(model, "ClothoidCurve", NULL, name), "ClothoidCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ClothoidCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "ClothoidCurve")
+        ///
+        ClothoidCurve(int64_t instance = NULL)
+            : TransitionalCurve(instance, "ClothoidCurve")
+        {}
+
+    protected:
+        ClothoidCurve(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -1846,17 +2422,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Collection Create(int64_t model, const char* name=NULL) { return Collection(Instance::Create(model, "Collection", name), "Collection");}
-        
+        static Collection Create(int64_t model, const char* name=NULL) { return Collection(Instance::Create(model, "Collection", name, NULL), "Collection");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Collection CreateW(int64_t model, const wchar_t* name = NULL) { return Collection(Instance::Create(model, "Collection", NULL, name), "Collection"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Collection(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Collection")
+        ///
+        Collection(int64_t instance = NULL)
+            : GeometricItem(instance, "Collection")
         {}
 
+    protected:
+        Collection(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Collection
        //
@@ -1908,17 +2499,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Color Create(int64_t model, const char* name=NULL) { return Color(Instance::Create(model, "Color", name), "Color");}
-        
+        static Color Create(int64_t model, const char* name=NULL) { return Color(Instance::Create(model, "Color", name, NULL), "Color");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Color CreateW(int64_t model, const wchar_t* name = NULL) { return Color(Instance::Create(model, "Color", NULL, name), "Color"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Color(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Appearance(instance, (checkClassName != NULL) ? checkClassName : "Color")
+        ///
+        Color(int64_t instance = NULL)
+            : Appearance(instance, "Color")
         {}
 
+    protected:
+        Color(int64_t instance, const char* checkClassName)
+            : Appearance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Color
        //
@@ -1962,17 +2568,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ColorComponent Create(int64_t model, const char* name=NULL) { return ColorComponent(Instance::Create(model, "ColorComponent", name), "ColorComponent");}
-        
+        static ColorComponent Create(int64_t model, const char* name=NULL) { return ColorComponent(Instance::Create(model, "ColorComponent", name, NULL), "ColorComponent");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ColorComponent CreateW(int64_t model, const wchar_t* name = NULL) { return ColorComponent(Instance::Create(model, "ColorComponent", NULL, name), "ColorComponent"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ColorComponent(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Appearance(instance, (checkClassName != NULL) ? checkClassName : "ColorComponent")
+        ///
+        ColorComponent(int64_t instance = NULL)
+            : Appearance(instance, "ColorComponent")
         {}
 
+    protected:
+        ColorComponent(int64_t instance, const char* checkClassName)
+            : Appearance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ColorComponent
        //
@@ -2008,17 +2629,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Cone Create(int64_t model, const char* name=NULL) { return Cone(Instance::Create(model, "Cone", name), "Cone");}
-        
+        static Cone Create(int64_t model, const char* name=NULL) { return Cone(Instance::Create(model, "Cone", name, NULL), "Cone");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Cone CreateW(int64_t model, const wchar_t* name = NULL) { return Cone(Instance::Create(model, "Cone", NULL, name), "Cone"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Cone(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Cone")
+        ///
+        Cone(int64_t instance = NULL)
+            : Solid(instance, "Cone")
         {}
 
+    protected:
+        Cone(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Cone
        //
@@ -2050,15 +2686,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static InfiniteSurface Create(int64_t model, const char* name=NULL) { return InfiniteSurface(Instance::Create(model, "InfiniteSurface", name), "InfiniteSurface");}
-        
+        static InfiniteSurface Create(int64_t model, const char* name=NULL) { return InfiniteSurface(Instance::Create(model, "InfiniteSurface", name, NULL), "InfiniteSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static InfiniteSurface CreateW(int64_t model, const wchar_t* name = NULL) { return InfiniteSurface(Instance::Create(model, "InfiniteSurface", NULL, name), "InfiniteSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        InfiniteSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Surface(instance, (checkClassName != NULL) ? checkClassName : "InfiniteSurface")
+        ///
+        InfiniteSurface(int64_t instance = NULL)
+            : Surface(instance, "InfiniteSurface")
+        {}
+
+    protected:
+        InfiniteSurface(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
         {}
     };
 
@@ -2075,17 +2725,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ConicalSurface Create(int64_t model, const char* name=NULL) { return ConicalSurface(Instance::Create(model, "ConicalSurface", name), "ConicalSurface");}
-        
+        static ConicalSurface Create(int64_t model, const char* name=NULL) { return ConicalSurface(Instance::Create(model, "ConicalSurface", name, NULL), "ConicalSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ConicalSurface CreateW(int64_t model, const wchar_t* name = NULL) { return ConicalSurface(Instance::Create(model, "ConicalSurface", NULL, name), "ConicalSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ConicalSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : InfiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "ConicalSurface")
+        ///
+        ConicalSurface(int64_t instance = NULL)
+            : InfiniteSurface(instance, "ConicalSurface")
         {}
 
+    protected:
+        ConicalSurface(int64_t instance, const char* checkClassName)
+            : InfiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ConicalSurface
        //
@@ -2121,17 +2786,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Copy Create(int64_t model, const char* name=NULL) { return Copy(Instance::Create(model, "Copy", name), "Copy");}
-        
+        static Copy Create(int64_t model, const char* name=NULL) { return Copy(Instance::Create(model, "Copy", name, NULL), "Copy");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Copy CreateW(int64_t model, const wchar_t* name = NULL) { return Copy(Instance::Create(model, "Copy", NULL, name), "Copy"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Copy(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Copy")
+        ///
+        Copy(int64_t instance = NULL)
+            : GeometricItem(instance, "Copy")
         {}
 
+    protected:
+        Copy(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Copy
        //
@@ -2155,15 +2835,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CosineCurve Create(int64_t model, const char* name=NULL) { return CosineCurve(Instance::Create(model, "CosineCurve", name), "CosineCurve");}
-        
+        static CosineCurve Create(int64_t model, const char* name=NULL) { return CosineCurve(Instance::Create(model, "CosineCurve", name, NULL), "CosineCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CosineCurve CreateW(int64_t model, const wchar_t* name = NULL) { return CosineCurve(Instance::Create(model, "CosineCurve", NULL, name), "CosineCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CosineCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "CosineCurve")
+        ///
+        CosineCurve(int64_t instance = NULL)
+            : TransitionalCurve(instance, "CosineCurve")
+        {}
+
+    protected:
+        CosineCurve(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -2180,17 +2874,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Cube Create(int64_t model, const char* name=NULL) { return Cube(Instance::Create(model, "Cube", name), "Cube");}
-        
+        static Cube Create(int64_t model, const char* name=NULL) { return Cube(Instance::Create(model, "Cube", name, NULL), "Cube");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Cube CreateW(int64_t model, const wchar_t* name = NULL) { return Cube(Instance::Create(model, "Cube", NULL, name), "Cube"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Cube(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Cube")
+        ///
+        Cube(int64_t instance = NULL)
+            : Solid(instance, "Cube")
         {}
 
+    protected:
+        Cube(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Cube
        //
@@ -2214,15 +2923,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CubicParabola Create(int64_t model, const char* name=NULL) { return CubicParabola(Instance::Create(model, "CubicParabola", name), "CubicParabola");}
-        
+        static CubicParabola Create(int64_t model, const char* name=NULL) { return CubicParabola(Instance::Create(model, "CubicParabola", name, NULL), "CubicParabola");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CubicParabola CreateW(int64_t model, const wchar_t* name = NULL) { return CubicParabola(Instance::Create(model, "CubicParabola", NULL, name), "CubicParabola"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CubicParabola(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "CubicParabola")
+        ///
+        CubicParabola(int64_t instance = NULL)
+            : TransitionalCurve(instance, "CubicParabola")
+        {}
+
+    protected:
+        CubicParabola(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -2239,17 +2962,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Cuboid Create(int64_t model, const char* name=NULL) { return Cuboid(Instance::Create(model, "Cuboid", name), "Cuboid");}
-        
+        static Cuboid Create(int64_t model, const char* name=NULL) { return Cuboid(Instance::Create(model, "Cuboid", name, NULL), "Cuboid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Cuboid CreateW(int64_t model, const wchar_t* name = NULL) { return Cuboid(Instance::Create(model, "Cuboid", NULL, name), "Cuboid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Cuboid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Cuboid")
+        ///
+        Cuboid(int64_t instance = NULL)
+            : Solid(instance, "Cuboid")
         {}
 
+    protected:
+        Cuboid(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Cuboid
        //
@@ -2281,17 +3019,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CurvesFromSurface Create(int64_t model, const char* name=NULL) { return CurvesFromSurface(Instance::Create(model, "CurvesFromSurface", name), "CurvesFromSurface");}
-        
+        static CurvesFromSurface Create(int64_t model, const char* name=NULL) { return CurvesFromSurface(Instance::Create(model, "CurvesFromSurface", name, NULL), "CurvesFromSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CurvesFromSurface CreateW(int64_t model, const wchar_t* name = NULL) { return CurvesFromSurface(Instance::Create(model, "CurvesFromSurface", NULL, name), "CurvesFromSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CurvesFromSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "CurvesFromSurface")
+        ///
+        CurvesFromSurface(int64_t instance = NULL)
+            : Curve(instance, "CurvesFromSurface")
         {}
 
+    protected:
+        CurvesFromSurface(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to CurvesFromSurface
        //
@@ -2319,17 +3072,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Cylinder Create(int64_t model, const char* name=NULL) { return Cylinder(Instance::Create(model, "Cylinder", name), "Cylinder");}
-        
+        static Cylinder Create(int64_t model, const char* name=NULL) { return Cylinder(Instance::Create(model, "Cylinder", name, NULL), "Cylinder");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Cylinder CreateW(int64_t model, const wchar_t* name = NULL) { return Cylinder(Instance::Create(model, "Cylinder", NULL, name), "Cylinder"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Cylinder(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Cylinder")
+        ///
+        Cylinder(int64_t instance = NULL)
+            : Solid(instance, "Cylinder")
         {}
 
+    protected:
+        Cylinder(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Cylinder
        //
@@ -2361,17 +3129,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CylindricalSurface Create(int64_t model, const char* name=NULL) { return CylindricalSurface(Instance::Create(model, "CylindricalSurface", name), "CylindricalSurface");}
-        
+        static CylindricalSurface Create(int64_t model, const char* name=NULL) { return CylindricalSurface(Instance::Create(model, "CylindricalSurface", name, NULL), "CylindricalSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CylindricalSurface CreateW(int64_t model, const wchar_t* name = NULL) { return CylindricalSurface(Instance::Create(model, "CylindricalSurface", NULL, name), "CylindricalSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CylindricalSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : InfiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "CylindricalSurface")
+        ///
+        CylindricalSurface(int64_t instance = NULL)
+            : InfiniteSurface(instance, "CylindricalSurface")
         {}
 
+    protected:
+        CylindricalSurface(int64_t instance, const char* checkClassName)
+            : InfiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to CylindricalSurface
        //
@@ -2399,17 +3182,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static DegenerateToroidalSurface Create(int64_t model, const char* name=NULL) { return DegenerateToroidalSurface(Instance::Create(model, "DegenerateToroidalSurface", name), "DegenerateToroidalSurface");}
-        
+        static DegenerateToroidalSurface Create(int64_t model, const char* name=NULL) { return DegenerateToroidalSurface(Instance::Create(model, "DegenerateToroidalSurface", name, NULL), "DegenerateToroidalSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static DegenerateToroidalSurface CreateW(int64_t model, const wchar_t* name = NULL) { return DegenerateToroidalSurface(Instance::Create(model, "DegenerateToroidalSurface", NULL, name), "DegenerateToroidalSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        DegenerateToroidalSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "DegenerateToroidalSurface")
+        ///
+        DegenerateToroidalSurface(int64_t instance = NULL)
+            : FiniteSurface(instance, "DegenerateToroidalSurface")
         {}
 
+    protected:
+        DegenerateToroidalSurface(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to DegenerateToroidalSurface
        //
@@ -2441,17 +3239,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Deviation Create(int64_t model, const char* name=NULL) { return Deviation(Instance::Create(model, "Deviation", name), "Deviation");}
-        
+        static Deviation Create(int64_t model, const char* name=NULL) { return Deviation(Instance::Create(model, "Deviation", name, NULL), "Deviation");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Deviation CreateW(int64_t model, const wchar_t* name = NULL) { return Deviation(Instance::Create(model, "Deviation", NULL, name), "Deviation"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Deviation(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Instance(instance, (checkClassName != NULL) ? checkClassName : "Deviation")
+        ///
+        Deviation(int64_t instance = NULL)
+            : Instance(instance, "Deviation")
         {}
 
+    protected:
+        Deviation(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Deviation
        //
@@ -2479,17 +3292,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static DirectLight Create(int64_t model, const char* name=NULL) { return DirectLight(Instance::Create(model, "DirectLight", name), "DirectLight");}
-        
+        static DirectLight Create(int64_t model, const char* name=NULL) { return DirectLight(Instance::Create(model, "DirectLight", name, NULL), "DirectLight");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static DirectLight CreateW(int64_t model, const wchar_t* name = NULL) { return DirectLight(Instance::Create(model, "DirectLight", NULL, name), "DirectLight"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        DirectLight(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Light(instance, (checkClassName != NULL) ? checkClassName : "DirectLight")
+        ///
+        DirectLight(int64_t instance = NULL)
+            : Light(instance, "DirectLight")
         {}
 
+    protected:
+        DirectLight(int64_t instance, const char* checkClassName)
+            : Light(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to DirectLight
        //
@@ -2517,17 +3345,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static DirectionalLight Create(int64_t model, const char* name=NULL) { return DirectionalLight(Instance::Create(model, "DirectionalLight", name), "DirectionalLight");}
-        
+        static DirectionalLight Create(int64_t model, const char* name=NULL) { return DirectionalLight(Instance::Create(model, "DirectionalLight", name, NULL), "DirectionalLight");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static DirectionalLight CreateW(int64_t model, const wchar_t* name = NULL) { return DirectionalLight(Instance::Create(model, "DirectionalLight", NULL, name), "DirectionalLight"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        DirectionalLight(int64_t instance = NULL, const char* checkClassName = NULL)
-            : DirectLight(instance, (checkClassName != NULL) ? checkClassName : "DirectionalLight")
+        ///
+        DirectionalLight(int64_t instance = NULL)
+            : DirectLight(instance, "DirectionalLight")
         {}
 
+    protected:
+        DirectionalLight(int64_t instance, const char* checkClassName)
+            : DirectLight(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to DirectionalLight
        //
@@ -2551,15 +3394,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Dummy Create(int64_t model, const char* name=NULL) { return Dummy(Instance::Create(model, "Dummy", name), "Dummy");}
-        
+        static Dummy Create(int64_t model, const char* name=NULL) { return Dummy(Instance::Create(model, "Dummy", name, NULL), "Dummy");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Dummy CreateW(int64_t model, const wchar_t* name = NULL) { return Dummy(Instance::Create(model, "Dummy", NULL, name), "Dummy"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Dummy(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Dummy")
+        ///
+        Dummy(int64_t instance = NULL)
+            : GeometricItem(instance, "Dummy")
+        {}
+
+    protected:
+        Dummy(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -2576,17 +3433,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Ellipse Create(int64_t model, const char* name=NULL) { return Ellipse(Instance::Create(model, "Ellipse", name), "Ellipse");}
-        
+        static Ellipse Create(int64_t model, const char* name=NULL) { return Ellipse(Instance::Create(model, "Ellipse", name, NULL), "Ellipse");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Ellipse CreateW(int64_t model, const wchar_t* name = NULL) { return Ellipse(Instance::Create(model, "Ellipse", NULL, name), "Ellipse"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Ellipse(int64_t instance = NULL, const char* checkClassName = NULL)
-            : ConicalCurve(instance, (checkClassName != NULL) ? checkClassName : "Ellipse")
+        ///
+        Ellipse(int64_t instance = NULL)
+            : ConicalCurve(instance, "Ellipse")
         {}
 
+    protected:
+        Ellipse(int64_t instance, const char* checkClassName)
+            : ConicalCurve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Ellipse
        //
@@ -2618,17 +3490,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static EllipticCone Create(int64_t model, const char* name=NULL) { return EllipticCone(Instance::Create(model, "EllipticCone", name), "EllipticCone");}
-        
+        static EllipticCone Create(int64_t model, const char* name=NULL) { return EllipticCone(Instance::Create(model, "EllipticCone", name, NULL), "EllipticCone");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static EllipticCone CreateW(int64_t model, const wchar_t* name = NULL) { return EllipticCone(Instance::Create(model, "EllipticCone", NULL, name), "EllipticCone"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        EllipticCone(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "EllipticCone")
+        ///
+        EllipticCone(int64_t instance = NULL)
+            : Solid(instance, "EllipticCone")
         {}
 
+    protected:
+        EllipticCone(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to EllipticCone
        //
@@ -2664,17 +3551,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ExtrudedPolygon Create(int64_t model, const char* name=NULL) { return ExtrudedPolygon(Instance::Create(model, "ExtrudedPolygon", name), "ExtrudedPolygon");}
-        
+        static ExtrudedPolygon Create(int64_t model, const char* name=NULL) { return ExtrudedPolygon(Instance::Create(model, "ExtrudedPolygon", name, NULL), "ExtrudedPolygon");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ExtrudedPolygon CreateW(int64_t model, const wchar_t* name = NULL) { return ExtrudedPolygon(Instance::Create(model, "ExtrudedPolygon", NULL, name), "ExtrudedPolygon"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ExtrudedPolygon(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "ExtrudedPolygon")
+        ///
+        ExtrudedPolygon(int64_t instance = NULL)
+            : Solid(instance, "ExtrudedPolygon")
         {}
 
+    protected:
+        ExtrudedPolygon(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ExtrudedPolygon
        //
@@ -2718,17 +3620,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ExtrudedPolygonTapered Create(int64_t model, const char* name=NULL) { return ExtrudedPolygonTapered(Instance::Create(model, "ExtrudedPolygonTapered", name), "ExtrudedPolygonTapered");}
-        
+        static ExtrudedPolygonTapered Create(int64_t model, const char* name=NULL) { return ExtrudedPolygonTapered(Instance::Create(model, "ExtrudedPolygonTapered", name, NULL), "ExtrudedPolygonTapered");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ExtrudedPolygonTapered CreateW(int64_t model, const wchar_t* name = NULL) { return ExtrudedPolygonTapered(Instance::Create(model, "ExtrudedPolygonTapered", NULL, name), "ExtrudedPolygonTapered"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ExtrudedPolygonTapered(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "ExtrudedPolygonTapered")
+        ///
+        ExtrudedPolygonTapered(int64_t instance = NULL)
+            : Solid(instance, "ExtrudedPolygonTapered")
         {}
 
+    protected:
+        ExtrudedPolygonTapered(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ExtrudedPolygonTapered
        //
@@ -2784,17 +3701,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ExtrusionAreaSolid Create(int64_t model, const char* name=NULL) { return ExtrusionAreaSolid(Instance::Create(model, "ExtrusionAreaSolid", name), "ExtrusionAreaSolid");}
-        
+        static ExtrusionAreaSolid Create(int64_t model, const char* name=NULL) { return ExtrusionAreaSolid(Instance::Create(model, "ExtrusionAreaSolid", name, NULL), "ExtrusionAreaSolid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ExtrusionAreaSolid CreateW(int64_t model, const wchar_t* name = NULL) { return ExtrusionAreaSolid(Instance::Create(model, "ExtrusionAreaSolid", NULL, name), "ExtrusionAreaSolid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ExtrusionAreaSolid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "ExtrusionAreaSolid")
+        ///
+        ExtrusionAreaSolid(int64_t instance = NULL)
+            : Solid(instance, "ExtrusionAreaSolid")
         {}
 
+    protected:
+        ExtrusionAreaSolid(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ExtrusionAreaSolid
        //
@@ -2838,17 +3770,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ExtrusionAreaSolidSet Create(int64_t model, const char* name=NULL) { return ExtrusionAreaSolidSet(Instance::Create(model, "ExtrusionAreaSolidSet", name), "ExtrusionAreaSolidSet");}
-        
+        static ExtrusionAreaSolidSet Create(int64_t model, const char* name=NULL) { return ExtrusionAreaSolidSet(Instance::Create(model, "ExtrusionAreaSolidSet", name, NULL), "ExtrusionAreaSolidSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ExtrusionAreaSolidSet CreateW(int64_t model, const wchar_t* name = NULL) { return ExtrusionAreaSolidSet(Instance::Create(model, "ExtrusionAreaSolidSet", NULL, name), "ExtrusionAreaSolidSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ExtrusionAreaSolidSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "ExtrusionAreaSolidSet")
+        ///
+        ExtrusionAreaSolidSet(int64_t instance = NULL)
+            : Solid(instance, "ExtrusionAreaSolidSet")
         {}
 
+    protected:
+        ExtrusionAreaSolidSet(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ExtrusionAreaSolidSet
        //
@@ -2888,17 +3835,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Face2D Create(int64_t model, const char* name=NULL) { return Face2D(Instance::Create(model, "Face2D", name), "Face2D");}
-        
+        static Face2D Create(int64_t model, const char* name=NULL) { return Face2D(Instance::Create(model, "Face2D", name, NULL), "Face2D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Face2D CreateW(int64_t model, const wchar_t* name = NULL) { return Face2D(Instance::Create(model, "Face2D", NULL, name), "Face2D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Face2D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "Face2D")
+        ///
+        Face2D(int64_t instance = NULL)
+            : Face(instance, "Face2D")
         {}
 
+    protected:
+        Face2D(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Face2D
        //
@@ -2934,17 +3896,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Face2DSet Create(int64_t model, const char* name=NULL) { return Face2DSet(Instance::Create(model, "Face2DSet", name), "Face2DSet");}
-        
+        static Face2DSet Create(int64_t model, const char* name=NULL) { return Face2DSet(Instance::Create(model, "Face2DSet", name, NULL), "Face2DSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Face2DSet CreateW(int64_t model, const wchar_t* name = NULL) { return Face2DSet(Instance::Create(model, "Face2DSet", NULL, name), "Face2DSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Face2DSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "Face2DSet")
+        ///
+        Face2DSet(int64_t instance = NULL)
+            : Face(instance, "Face2DSet")
         {}
 
+    protected:
+        Face2DSet(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Face2DSet
        //
@@ -2976,17 +3953,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static FrustumCone Create(int64_t model, const char* name=NULL) { return FrustumCone(Instance::Create(model, "FrustumCone", name), "FrustumCone");}
-        
+        static FrustumCone Create(int64_t model, const char* name=NULL) { return FrustumCone(Instance::Create(model, "FrustumCone", name, NULL), "FrustumCone");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static FrustumCone CreateW(int64_t model, const wchar_t* name = NULL) { return FrustumCone(Instance::Create(model, "FrustumCone", NULL, name), "FrustumCone"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        FrustumCone(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "FrustumCone")
+        ///
+        FrustumCone(int64_t instance = NULL)
+            : Solid(instance, "FrustumCone")
         {}
 
+    protected:
+        FrustumCone(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to FrustumCone
        //
@@ -3022,17 +4014,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Torus Create(int64_t model, const char* name=NULL) { return Torus(Instance::Create(model, "Torus", name), "Torus");}
-        
+        static Torus Create(int64_t model, const char* name=NULL) { return Torus(Instance::Create(model, "Torus", name, NULL), "Torus");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Torus CreateW(int64_t model, const wchar_t* name = NULL) { return Torus(Instance::Create(model, "Torus", NULL, name), "Torus"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Torus(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Torus")
+        ///
+        Torus(int64_t instance = NULL)
+            : Solid(instance, "Torus")
         {}
 
+    protected:
+        Torus(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Torus
        //
@@ -3064,15 +4071,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static HornTorus Create(int64_t model, const char* name=NULL) { return HornTorus(Instance::Create(model, "HornTorus", name), "HornTorus");}
-        
+        static HornTorus Create(int64_t model, const char* name=NULL) { return HornTorus(Instance::Create(model, "HornTorus", name, NULL), "HornTorus");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static HornTorus CreateW(int64_t model, const wchar_t* name = NULL) { return HornTorus(Instance::Create(model, "HornTorus", NULL, name), "HornTorus"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        HornTorus(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Torus(instance, (checkClassName != NULL) ? checkClassName : "HornTorus")
+        ///
+        HornTorus(int64_t instance = NULL)
+            : Torus(instance, "HornTorus")
+        {}
+
+    protected:
+        HornTorus(int64_t instance, const char* checkClassName)
+            : Torus(instance, checkClassName)
         {}
     };
 
@@ -3089,17 +4110,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Hyperbola Create(int64_t model, const char* name=NULL) { return Hyperbola(Instance::Create(model, "Hyperbola", name), "Hyperbola");}
-        
+        static Hyperbola Create(int64_t model, const char* name=NULL) { return Hyperbola(Instance::Create(model, "Hyperbola", name, NULL), "Hyperbola");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Hyperbola CreateW(int64_t model, const wchar_t* name = NULL) { return Hyperbola(Instance::Create(model, "Hyperbola", NULL, name), "Hyperbola"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Hyperbola(int64_t instance = NULL, const char* checkClassName = NULL)
-            : ConicalCurve(instance, (checkClassName != NULL) ? checkClassName : "Hyperbola")
+        ///
+        Hyperbola(int64_t instance = NULL)
+            : ConicalCurve(instance, "Hyperbola")
         {}
 
+    protected:
+        Hyperbola(int64_t instance, const char* checkClassName)
+            : ConicalCurve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Hyperbola
        //
@@ -3123,15 +4159,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Intersection Create(int64_t model, const char* name=NULL) { return Intersection(Instance::Create(model, "Intersection", name), "Intersection");}
-        
+        static Intersection Create(int64_t model, const char* name=NULL) { return Intersection(Instance::Create(model, "Intersection", name, NULL), "Intersection");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Intersection CreateW(int64_t model, const wchar_t* name = NULL) { return Intersection(Instance::Create(model, "Intersection", NULL, name), "Intersection"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Intersection(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Intersection")
+        ///
+        Intersection(int64_t instance = NULL)
+            : GeometricItem(instance, "Intersection")
+        {}
+
+    protected:
+        Intersection(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -3148,17 +4198,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static IntersectionCurve Create(int64_t model, const char* name=NULL) { return IntersectionCurve(Instance::Create(model, "IntersectionCurve", name), "IntersectionCurve");}
-        
+        static IntersectionCurve Create(int64_t model, const char* name=NULL) { return IntersectionCurve(Instance::Create(model, "IntersectionCurve", name, NULL), "IntersectionCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static IntersectionCurve CreateW(int64_t model, const wchar_t* name = NULL) { return IntersectionCurve(Instance::Create(model, "IntersectionCurve", NULL, name), "IntersectionCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        IntersectionCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Intersection(instance, (checkClassName != NULL) ? checkClassName : "IntersectionCurve")
+        ///
+        IntersectionCurve(int64_t instance = NULL)
+            : Intersection(instance, "IntersectionCurve")
         {}
 
+    protected:
+        IntersectionCurve(int64_t instance, const char* checkClassName)
+            : Intersection(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to IntersectionCurve
        //
@@ -3186,17 +4251,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static IntersectionPoint Create(int64_t model, const char* name=NULL) { return IntersectionPoint(Instance::Create(model, "IntersectionPoint", name), "IntersectionPoint");}
-        
+        static IntersectionPoint Create(int64_t model, const char* name=NULL) { return IntersectionPoint(Instance::Create(model, "IntersectionPoint", name, NULL), "IntersectionPoint");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static IntersectionPoint CreateW(int64_t model, const wchar_t* name = NULL) { return IntersectionPoint(Instance::Create(model, "IntersectionPoint", NULL, name), "IntersectionPoint"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        IntersectionPoint(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Intersection(instance, (checkClassName != NULL) ? checkClassName : "IntersectionPoint")
+        ///
+        IntersectionPoint(int64_t instance = NULL)
+            : Intersection(instance, "IntersectionPoint")
         {}
 
+    protected:
+        IntersectionPoint(int64_t instance, const char* checkClassName)
+            : Intersection(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to IntersectionPoint
        //
@@ -3224,15 +4304,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Mathematics Create(int64_t model, const char* name=NULL) { return Mathematics(Instance::Create(model, "Mathematics", name), "Mathematics");}
-        
+        static Mathematics Create(int64_t model, const char* name=NULL) { return Mathematics(Instance::Create(model, "Mathematics", name, NULL), "Mathematics");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Mathematics CreateW(int64_t model, const wchar_t* name = NULL) { return Mathematics(Instance::Create(model, "Mathematics", NULL, name), "Mathematics"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Mathematics(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Instance(instance, (checkClassName != NULL) ? checkClassName : "Mathematics")
+        ///
+        Mathematics(int64_t instance = NULL)
+            : Instance(instance, "Mathematics")
+        {}
+
+    protected:
+        Mathematics(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
         {}
     };
 
@@ -3249,17 +4343,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Matrix Create(int64_t model, const char* name=NULL) { return Matrix(Instance::Create(model, "Matrix", name), "Matrix");}
-        
+        static Matrix Create(int64_t model, const char* name=NULL) { return Matrix(Instance::Create(model, "Matrix", name, NULL), "Matrix");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Matrix CreateW(int64_t model, const wchar_t* name = NULL) { return Matrix(Instance::Create(model, "Matrix", NULL, name), "Matrix"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Matrix(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Mathematics(instance, (checkClassName != NULL) ? checkClassName : "Matrix")
+        ///
+        Matrix(int64_t instance = NULL)
+            : Mathematics(instance, "Matrix")
         {}
 
+    protected:
+        Matrix(int64_t instance, const char* checkClassName)
+            : Mathematics(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Matrix
        //
@@ -3331,17 +4440,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static InverseMatrix Create(int64_t model, const char* name=NULL) { return InverseMatrix(Instance::Create(model, "InverseMatrix", name), "InverseMatrix");}
-        
+        static InverseMatrix Create(int64_t model, const char* name=NULL) { return InverseMatrix(Instance::Create(model, "InverseMatrix", name, NULL), "InverseMatrix");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static InverseMatrix CreateW(int64_t model, const wchar_t* name = NULL) { return InverseMatrix(Instance::Create(model, "InverseMatrix", NULL, name), "InverseMatrix"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        InverseMatrix(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Matrix(instance, (checkClassName != NULL) ? checkClassName : "InverseMatrix")
+        ///
+        InverseMatrix(int64_t instance = NULL)
+            : Matrix(instance, "InverseMatrix")
         {}
 
+    protected:
+        InverseMatrix(int64_t instance, const char* checkClassName)
+            : Matrix(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to InverseMatrix
        //
@@ -3365,17 +4489,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static InvertedCurve Create(int64_t model, const char* name=NULL) { return InvertedCurve(Instance::Create(model, "InvertedCurve", name), "InvertedCurve");}
-        
+        static InvertedCurve Create(int64_t model, const char* name=NULL) { return InvertedCurve(Instance::Create(model, "InvertedCurve", name, NULL), "InvertedCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static InvertedCurve CreateW(int64_t model, const wchar_t* name = NULL) { return InvertedCurve(Instance::Create(model, "InvertedCurve", NULL, name), "InvertedCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        InvertedCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "InvertedCurve")
+        ///
+        InvertedCurve(int64_t instance = NULL)
+            : Curve(instance, "InvertedCurve")
         {}
 
+    protected:
+        InvertedCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to InvertedCurve
        //
@@ -3399,17 +4538,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static InvertedSurface Create(int64_t model, const char* name=NULL) { return InvertedSurface(Instance::Create(model, "InvertedSurface", name), "InvertedSurface");}
-        
+        static InvertedSurface Create(int64_t model, const char* name=NULL) { return InvertedSurface(Instance::Create(model, "InvertedSurface", name, NULL), "InvertedSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static InvertedSurface CreateW(int64_t model, const wchar_t* name = NULL) { return InvertedSurface(Instance::Create(model, "InvertedSurface", NULL, name), "InvertedSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        InvertedSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Surface(instance, (checkClassName != NULL) ? checkClassName : "InvertedSurface")
+        ///
+        InvertedSurface(int64_t instance = NULL)
+            : Surface(instance, "InvertedSurface")
         {}
 
+    protected:
+        InvertedSurface(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to InvertedSurface
        //
@@ -3433,17 +4587,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Line3D Create(int64_t model, const char* name=NULL) { return Line3D(Instance::Create(model, "Line3D", name), "Line3D");}
-        
+        static Line3D Create(int64_t model, const char* name=NULL) { return Line3D(Instance::Create(model, "Line3D", name, NULL), "Line3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Line3D CreateW(int64_t model, const wchar_t* name = NULL) { return Line3D(Instance::Create(model, "Line3D", NULL, name), "Line3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Line3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Line3D")
+        ///
+        Line3D(int64_t instance = NULL)
+            : Curve(instance, "Line3D")
         {}
 
+    protected:
+        Line3D(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Line3D
        //
@@ -3471,17 +4640,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Line3Dn Create(int64_t model, const char* name=NULL) { return Line3Dn(Instance::Create(model, "Line3Dn", name), "Line3Dn");}
-        
+        static Line3Dn Create(int64_t model, const char* name=NULL) { return Line3Dn(Instance::Create(model, "Line3Dn", name, NULL), "Line3Dn");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Line3Dn CreateW(int64_t model, const wchar_t* name = NULL) { return Line3Dn(Instance::Create(model, "Line3Dn", NULL, name), "Line3Dn"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Line3Dn(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Line3Dn")
+        ///
+        Line3Dn(int64_t instance = NULL)
+            : Curve(instance, "Line3Dn")
         {}
 
+    protected:
+        Line3Dn(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Line3Dn
        //
@@ -3541,17 +4725,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Line3DSet Create(int64_t model, const char* name=NULL) { return Line3DSet(Instance::Create(model, "Line3DSet", name), "Line3DSet");}
-        
+        static Line3DSet Create(int64_t model, const char* name=NULL) { return Line3DSet(Instance::Create(model, "Line3DSet", name, NULL), "Line3DSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Line3DSet CreateW(int64_t model, const wchar_t* name = NULL) { return Line3DSet(Instance::Create(model, "Line3DSet", NULL, name), "Line3DSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Line3DSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Line3DSet")
+        ///
+        Line3DSet(int64_t instance = NULL)
+            : Curve(instance, "Line3DSet")
         {}
 
+    protected:
+        Line3DSet(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Line3DSet
        //
@@ -3579,17 +4778,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static LineByFace Create(int64_t model, const char* name=NULL) { return LineByFace(Instance::Create(model, "LineByFace", name), "LineByFace");}
-        
+        static LineByFace Create(int64_t model, const char* name=NULL) { return LineByFace(Instance::Create(model, "LineByFace", name, NULL), "LineByFace");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static LineByFace CreateW(int64_t model, const wchar_t* name = NULL) { return LineByFace(Instance::Create(model, "LineByFace", NULL, name), "LineByFace"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        LineByFace(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "LineByFace")
+        ///
+        LineByFace(int64_t instance = NULL)
+            : Curve(instance, "LineByFace")
         {}
 
+    protected:
+        LineByFace(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to LineByFace
        //
@@ -3617,17 +4831,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Material Create(int64_t model, const char* name=NULL) { return Material(Instance::Create(model, "Material", name), "Material");}
-        
+        static Material Create(int64_t model, const char* name=NULL) { return Material(Instance::Create(model, "Material", name, NULL), "Material");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Material CreateW(int64_t model, const wchar_t* name = NULL) { return Material(Instance::Create(model, "Material", NULL, name), "Material"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Material(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Appearance(instance, (checkClassName != NULL) ? checkClassName : "Material")
+        ///
+        Material(int64_t instance = NULL)
+            : Appearance(instance, "Material")
         {}
 
+    protected:
+        Material(int64_t instance, const char* checkClassName)
+            : Appearance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Material
        //
@@ -3659,17 +4888,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static MatrixMultiplication Create(int64_t model, const char* name=NULL) { return MatrixMultiplication(Instance::Create(model, "MatrixMultiplication", name), "MatrixMultiplication");}
-        
+        static MatrixMultiplication Create(int64_t model, const char* name=NULL) { return MatrixMultiplication(Instance::Create(model, "MatrixMultiplication", name, NULL), "MatrixMultiplication");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static MatrixMultiplication CreateW(int64_t model, const wchar_t* name = NULL) { return MatrixMultiplication(Instance::Create(model, "MatrixMultiplication", NULL, name), "MatrixMultiplication"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        MatrixMultiplication(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Matrix(instance, (checkClassName != NULL) ? checkClassName : "MatrixMultiplication")
+        ///
+        MatrixMultiplication(int64_t instance = NULL)
+            : Matrix(instance, "MatrixMultiplication")
         {}
 
+    protected:
+        MatrixMultiplication(int64_t instance, const char* checkClassName)
+            : Matrix(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to MatrixMultiplication
        //
@@ -3697,17 +4941,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Mesh Create(int64_t model, const char* name=NULL) { return Mesh(Instance::Create(model, "Mesh", name), "Mesh");}
-        
+        static Mesh Create(int64_t model, const char* name=NULL) { return Mesh(Instance::Create(model, "Mesh", name, NULL), "Mesh");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Mesh CreateW(int64_t model, const wchar_t* name = NULL) { return Mesh(Instance::Create(model, "Mesh", NULL, name), "Mesh"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Mesh(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "Mesh")
+        ///
+        Mesh(int64_t instance = NULL)
+            : Face(instance, "Mesh")
         {}
 
+    protected:
+        Mesh(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Mesh
        //
@@ -3731,17 +4990,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static NURBSCurve Create(int64_t model, const char* name=NULL) { return NURBSCurve(Instance::Create(model, "NURBSCurve", name), "NURBSCurve");}
-        
+        static NURBSCurve Create(int64_t model, const char* name=NULL) { return NURBSCurve(Instance::Create(model, "NURBSCurve", name, NULL), "NURBSCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static NURBSCurve CreateW(int64_t model, const wchar_t* name = NULL) { return NURBSCurve(Instance::Create(model, "NURBSCurve", NULL, name), "NURBSCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        NURBSCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : BSplineCurve(instance, (checkClassName != NULL) ? checkClassName : "NURBSCurve")
+        ///
+        NURBSCurve(int64_t instance = NULL)
+            : BSplineCurve(instance, "NURBSCurve")
         {}
 
+    protected:
+        NURBSCurve(int64_t instance, const char* checkClassName)
+            : BSplineCurve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to NURBSCurve
        //
@@ -3765,17 +5039,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static NURBSSurface Create(int64_t model, const char* name=NULL) { return NURBSSurface(Instance::Create(model, "NURBSSurface", name), "NURBSSurface");}
-        
+        static NURBSSurface Create(int64_t model, const char* name=NULL) { return NURBSSurface(Instance::Create(model, "NURBSSurface", name, NULL), "NURBSSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static NURBSSurface CreateW(int64_t model, const wchar_t* name = NULL) { return NURBSSurface(Instance::Create(model, "NURBSSurface", NULL, name), "NURBSSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        NURBSSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : BSplineSurface(instance, (checkClassName != NULL) ? checkClassName : "NURBSSurface")
+        ///
+        NURBSSurface(int64_t instance = NULL)
+            : BSplineSurface(instance, "NURBSSurface")
         {}
 
+    protected:
+        NURBSSurface(int64_t instance, const char* checkClassName)
+            : BSplineSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to NURBSSurface
        //
@@ -3799,15 +5088,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Parabola Create(int64_t model, const char* name=NULL) { return Parabola(Instance::Create(model, "Parabola", name), "Parabola");}
-        
+        static Parabola Create(int64_t model, const char* name=NULL) { return Parabola(Instance::Create(model, "Parabola", name, NULL), "Parabola");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Parabola CreateW(int64_t model, const wchar_t* name = NULL) { return Parabola(Instance::Create(model, "Parabola", NULL, name), "Parabola"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Parabola(int64_t instance = NULL, const char* checkClassName = NULL)
-            : ConicalCurve(instance, (checkClassName != NULL) ? checkClassName : "Parabola")
+        ///
+        Parabola(int64_t instance = NULL)
+            : ConicalCurve(instance, "Parabola")
+        {}
+
+    protected:
+        Parabola(int64_t instance, const char* checkClassName)
+            : ConicalCurve(instance, checkClassName)
         {}
     };
 
@@ -3824,17 +5127,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Plane Create(int64_t model, const char* name=NULL) { return Plane(Instance::Create(model, "Plane", name), "Plane");}
-        
+        static Plane Create(int64_t model, const char* name=NULL) { return Plane(Instance::Create(model, "Plane", name, NULL), "Plane");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Plane CreateW(int64_t model, const wchar_t* name = NULL) { return Plane(Instance::Create(model, "Plane", NULL, name), "Plane"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Plane(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Mathematics(instance, (checkClassName != NULL) ? checkClassName : "Plane")
+        ///
+        Plane(int64_t instance = NULL)
+            : Mathematics(instance, "Plane")
         {}
 
+    protected:
+        Plane(int64_t instance, const char* checkClassName)
+            : Mathematics(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Plane
        //
@@ -3870,17 +5188,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static PlaneSurface Create(int64_t model, const char* name=NULL) { return PlaneSurface(Instance::Create(model, "PlaneSurface", name), "PlaneSurface");}
-        
+        static PlaneSurface Create(int64_t model, const char* name=NULL) { return PlaneSurface(Instance::Create(model, "PlaneSurface", name, NULL), "PlaneSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static PlaneSurface CreateW(int64_t model, const wchar_t* name = NULL) { return PlaneSurface(Instance::Create(model, "PlaneSurface", NULL, name), "PlaneSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        PlaneSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : InfiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "PlaneSurface")
+        ///
+        PlaneSurface(int64_t instance = NULL)
+            : InfiniteSurface(instance, "PlaneSurface")
         {}
 
+    protected:
+        PlaneSurface(int64_t instance, const char* checkClassName)
+            : InfiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to PlaneSurface
        //
@@ -3904,15 +5237,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Point Create(int64_t model, const char* name=NULL) { return Point(Instance::Create(model, "Point", name), "Point");}
-        
+        static Point Create(int64_t model, const char* name=NULL) { return Point(Instance::Create(model, "Point", name, NULL), "Point");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Point CreateW(int64_t model, const wchar_t* name = NULL) { return Point(Instance::Create(model, "Point", NULL, name), "Point"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Point(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Point")
+        ///
+        Point(int64_t instance = NULL)
+            : GeometricItem(instance, "Point")
+        {}
+
+    protected:
+        Point(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
         {}
     };
 
@@ -3929,17 +5276,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Point3D Create(int64_t model, const char* name=NULL) { return Point3D(Instance::Create(model, "Point3D", name), "Point3D");}
-        
+        static Point3D Create(int64_t model, const char* name=NULL) { return Point3D(Instance::Create(model, "Point3D", name, NULL), "Point3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Point3D CreateW(int64_t model, const wchar_t* name = NULL) { return Point3D(Instance::Create(model, "Point3D", NULL, name), "Point3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Point3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Point(instance, (checkClassName != NULL) ? checkClassName : "Point3D")
+        ///
+        Point3D(int64_t instance = NULL)
+            : Point(instance, "Point3D")
         {}
 
+    protected:
+        Point3D(int64_t instance, const char* checkClassName)
+            : Point(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Point3D
        //
@@ -3983,17 +5345,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Point3DSet Create(int64_t model, const char* name=NULL) { return Point3DSet(Instance::Create(model, "Point3DSet", name), "Point3DSet");}
-        
+        static Point3DSet Create(int64_t model, const char* name=NULL) { return Point3DSet(Instance::Create(model, "Point3DSet", name, NULL), "Point3DSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Point3DSet CreateW(int64_t model, const wchar_t* name = NULL) { return Point3DSet(Instance::Create(model, "Point3DSet", NULL, name), "Point3DSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Point3DSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Point(instance, (checkClassName != NULL) ? checkClassName : "Point3DSet")
+        ///
+        Point3DSet(int64_t instance = NULL)
+            : Point(instance, "Point3DSet")
         {}
 
+    protected:
+        Point3DSet(int64_t instance, const char* checkClassName)
+            : Point(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Point3DSet
        //
@@ -4025,17 +5402,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Point3DSetByGeometricItem Create(int64_t model, const char* name=NULL) { return Point3DSetByGeometricItem(Instance::Create(model, "Point3DSetByGeometricItem", name), "Point3DSetByGeometricItem");}
-        
+        static Point3DSetByGeometricItem Create(int64_t model, const char* name=NULL) { return Point3DSetByGeometricItem(Instance::Create(model, "Point3DSetByGeometricItem", name, NULL), "Point3DSetByGeometricItem");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Point3DSetByGeometricItem CreateW(int64_t model, const wchar_t* name = NULL) { return Point3DSetByGeometricItem(Instance::Create(model, "Point3DSetByGeometricItem", NULL, name), "Point3DSetByGeometricItem"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Point3DSetByGeometricItem(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Point3DSet(instance, (checkClassName != NULL) ? checkClassName : "Point3DSetByGeometricItem")
+        ///
+        Point3DSetByGeometricItem(int64_t instance = NULL)
+            : Point3DSet(instance, "Point3DSetByGeometricItem")
         {}
 
+    protected:
+        Point3DSetByGeometricItem(int64_t instance, const char* checkClassName)
+            : Point3DSet(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Point3DSetByGeometricItem
        //
@@ -4059,17 +5451,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static PointLight Create(int64_t model, const char* name=NULL) { return PointLight(Instance::Create(model, "PointLight", name), "PointLight");}
-        
+        static PointLight Create(int64_t model, const char* name=NULL) { return PointLight(Instance::Create(model, "PointLight", name, NULL), "PointLight");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static PointLight CreateW(int64_t model, const wchar_t* name = NULL) { return PointLight(Instance::Create(model, "PointLight", NULL, name), "PointLight"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        PointLight(int64_t instance = NULL, const char* checkClassName = NULL)
-            : DirectLight(instance, (checkClassName != NULL) ? checkClassName : "PointLight")
+        ///
+        PointLight(int64_t instance = NULL)
+            : DirectLight(instance, "PointLight")
         {}
 
+    protected:
+        PointLight(int64_t instance, const char* checkClassName)
+            : DirectLight(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to PointLight
        //
@@ -4093,17 +5500,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static PointLoop Create(int64_t model, const char* name=NULL) { return PointLoop(Instance::Create(model, "PointLoop", name), "PointLoop");}
-        
+        static PointLoop Create(int64_t model, const char* name=NULL) { return PointLoop(Instance::Create(model, "PointLoop", name, NULL), "PointLoop");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static PointLoop CreateW(int64_t model, const wchar_t* name = NULL) { return PointLoop(Instance::Create(model, "PointLoop", NULL, name), "PointLoop"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        PointLoop(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "PointLoop")
+        ///
+        PointLoop(int64_t instance = NULL)
+            : Curve(instance, "PointLoop")
         {}
 
+    protected:
+        PointLoop(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to PointLoop
        //
@@ -4139,17 +5561,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Polygon2D Create(int64_t model, const char* name=NULL) { return Polygon2D(Instance::Create(model, "Polygon2D", name), "Polygon2D");}
-        
+        static Polygon2D Create(int64_t model, const char* name=NULL) { return Polygon2D(Instance::Create(model, "Polygon2D", name, NULL), "Polygon2D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Polygon2D CreateW(int64_t model, const wchar_t* name = NULL) { return Polygon2D(Instance::Create(model, "Polygon2D", NULL, name), "Polygon2D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Polygon2D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Polygon2D")
+        ///
+        Polygon2D(int64_t instance = NULL)
+            : Curve(instance, "Polygon2D")
         {}
 
+    protected:
+        Polygon2D(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Polygon2D
        //
@@ -4177,17 +5614,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Polygon3D Create(int64_t model, const char* name=NULL) { return Polygon3D(Instance::Create(model, "Polygon3D", name), "Polygon3D");}
-        
+        static Polygon3D Create(int64_t model, const char* name=NULL) { return Polygon3D(Instance::Create(model, "Polygon3D", name, NULL), "Polygon3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Polygon3D CreateW(int64_t model, const wchar_t* name = NULL) { return Polygon3D(Instance::Create(model, "Polygon3D", NULL, name), "Polygon3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Polygon3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Polygon3D")
+        ///
+        Polygon3D(int64_t instance = NULL)
+            : Curve(instance, "Polygon3D")
         {}
 
+    protected:
+        Polygon3D(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Polygon3D
        //
@@ -4215,17 +5667,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static PolyLine3D Create(int64_t model, const char* name=NULL) { return PolyLine3D(Instance::Create(model, "PolyLine3D", name), "PolyLine3D");}
-        
+        static PolyLine3D Create(int64_t model, const char* name=NULL) { return PolyLine3D(Instance::Create(model, "PolyLine3D", name, NULL), "PolyLine3D");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static PolyLine3D CreateW(int64_t model, const wchar_t* name = NULL) { return PolyLine3D(Instance::Create(model, "PolyLine3D", NULL, name), "PolyLine3D"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        PolyLine3D(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "PolyLine3D")
+        ///
+        PolyLine3D(int64_t instance = NULL)
+            : Curve(instance, "PolyLine3D")
         {}
 
+    protected:
+        PolyLine3D(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to PolyLine3D
        //
@@ -4265,17 +5732,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Prism Create(int64_t model, const char* name=NULL) { return Prism(Instance::Create(model, "Prism", name), "Prism");}
-        
+        static Prism Create(int64_t model, const char* name=NULL) { return Prism(Instance::Create(model, "Prism", name, NULL), "Prism");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Prism CreateW(int64_t model, const wchar_t* name = NULL) { return Prism(Instance::Create(model, "Prism", NULL, name), "Prism"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Prism(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Prism")
+        ///
+        Prism(int64_t instance = NULL)
+            : Solid(instance, "Prism")
         {}
 
+    protected:
+        Prism(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Prism
        //
@@ -4303,17 +5785,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Profile Create(int64_t model, const char* name=NULL) { return Profile(Instance::Create(model, "Profile", name), "Profile");}
-        
+        static Profile Create(int64_t model, const char* name=NULL) { return Profile(Instance::Create(model, "Profile", name, NULL), "Profile");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Profile CreateW(int64_t model, const wchar_t* name = NULL) { return Profile(Instance::Create(model, "Profile", NULL, name), "Profile"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Profile(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Profile")
+        ///
+        Profile(int64_t instance = NULL)
+            : Curve(instance, "Profile")
         {}
 
+    protected:
+        Profile(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Profile
        //
@@ -4345,17 +5842,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Projection Create(int64_t model, const char* name=NULL) { return Projection(Instance::Create(model, "Projection", name), "Projection");}
-        
+        static Projection Create(int64_t model, const char* name=NULL) { return Projection(Instance::Create(model, "Projection", name, NULL), "Projection");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Projection CreateW(int64_t model, const wchar_t* name = NULL) { return Projection(Instance::Create(model, "Projection", NULL, name), "Projection"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Projection(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Environment(instance, (checkClassName != NULL) ? checkClassName : "Projection")
+        ///
+        Projection(int64_t instance = NULL)
+            : Environment(instance, "Projection")
         {}
 
+    protected:
+        Projection(int64_t instance, const char* checkClassName)
+            : Environment(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Projection
        //
@@ -4379,17 +5891,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Pyramid Create(int64_t model, const char* name=NULL) { return Pyramid(Instance::Create(model, "Pyramid", name), "Pyramid");}
-        
+        static Pyramid Create(int64_t model, const char* name=NULL) { return Pyramid(Instance::Create(model, "Pyramid", name, NULL), "Pyramid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Pyramid CreateW(int64_t model, const wchar_t* name = NULL) { return Pyramid(Instance::Create(model, "Pyramid", NULL, name), "Pyramid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Pyramid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Pyramid")
+        ///
+        Pyramid(int64_t instance = NULL)
+            : Solid(instance, "Pyramid")
         {}
 
+    protected:
+        Pyramid(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Pyramid
        //
@@ -4421,17 +5948,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static RationalBezierCurve Create(int64_t model, const char* name=NULL) { return RationalBezierCurve(Instance::Create(model, "RationalBezierCurve", name), "RationalBezierCurve");}
-        
+        static RationalBezierCurve Create(int64_t model, const char* name=NULL) { return RationalBezierCurve(Instance::Create(model, "RationalBezierCurve", name, NULL), "RationalBezierCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static RationalBezierCurve CreateW(int64_t model, const wchar_t* name = NULL) { return RationalBezierCurve(Instance::Create(model, "RationalBezierCurve", NULL, name), "RationalBezierCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        RationalBezierCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : BezierCurve(instance, (checkClassName != NULL) ? checkClassName : "RationalBezierCurve")
+        ///
+        RationalBezierCurve(int64_t instance = NULL)
+            : BezierCurve(instance, "RationalBezierCurve")
         {}
 
+    protected:
+        RationalBezierCurve(int64_t instance, const char* checkClassName)
+            : BezierCurve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to RationalBezierCurve
        //
@@ -4455,17 +5997,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static RationalBezierSurface Create(int64_t model, const char* name=NULL) { return RationalBezierSurface(Instance::Create(model, "RationalBezierSurface", name), "RationalBezierSurface");}
-        
+        static RationalBezierSurface Create(int64_t model, const char* name=NULL) { return RationalBezierSurface(Instance::Create(model, "RationalBezierSurface", name, NULL), "RationalBezierSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static RationalBezierSurface CreateW(int64_t model, const wchar_t* name = NULL) { return RationalBezierSurface(Instance::Create(model, "RationalBezierSurface", NULL, name), "RationalBezierSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        RationalBezierSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : BezierSurface(instance, (checkClassName != NULL) ? checkClassName : "RationalBezierSurface")
+        ///
+        RationalBezierSurface(int64_t instance = NULL)
+            : BezierSurface(instance, "RationalBezierSurface")
         {}
 
+    protected:
+        RationalBezierSurface(int64_t instance, const char* checkClassName)
+            : BezierSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to RationalBezierSurface
        //
@@ -4489,17 +6046,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static RectangleCurve Create(int64_t model, const char* name=NULL) { return RectangleCurve(Instance::Create(model, "RectangleCurve", name), "RectangleCurve");}
-        
+        static RectangleCurve Create(int64_t model, const char* name=NULL) { return RectangleCurve(Instance::Create(model, "RectangleCurve", name, NULL), "RectangleCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static RectangleCurve CreateW(int64_t model, const wchar_t* name = NULL) { return RectangleCurve(Instance::Create(model, "RectangleCurve", NULL, name), "RectangleCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        RectangleCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "RectangleCurve")
+        ///
+        RectangleCurve(int64_t instance = NULL)
+            : Curve(instance, "RectangleCurve")
         {}
 
+    protected:
+        RectangleCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to RectangleCurve
        //
@@ -4539,17 +6111,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Repetition Create(int64_t model, const char* name=NULL) { return Repetition(Instance::Create(model, "Repetition", name), "Repetition");}
-        
+        static Repetition Create(int64_t model, const char* name=NULL) { return Repetition(Instance::Create(model, "Repetition", name, NULL), "Repetition");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Repetition CreateW(int64_t model, const wchar_t* name = NULL) { return Repetition(Instance::Create(model, "Repetition", NULL, name), "Repetition"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Repetition(int64_t instance = NULL, const char* checkClassName = NULL)
-            : GeometricItem(instance, (checkClassName != NULL) ? checkClassName : "Repetition")
+        ///
+        Repetition(int64_t instance = NULL)
+            : GeometricItem(instance, "Repetition")
         {}
 
+    protected:
+        Repetition(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Repetition
        //
@@ -4581,15 +6168,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static RingTorus Create(int64_t model, const char* name=NULL) { return RingTorus(Instance::Create(model, "RingTorus", name), "RingTorus");}
-        
+        static RingTorus Create(int64_t model, const char* name=NULL) { return RingTorus(Instance::Create(model, "RingTorus", name, NULL), "RingTorus");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static RingTorus CreateW(int64_t model, const wchar_t* name = NULL) { return RingTorus(Instance::Create(model, "RingTorus", NULL, name), "RingTorus"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        RingTorus(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Torus(instance, (checkClassName != NULL) ? checkClassName : "RingTorus")
+        ///
+        RingTorus(int64_t instance = NULL)
+            : Torus(instance, "RingTorus")
+        {}
+
+    protected:
+        RingTorus(int64_t instance, const char* checkClassName)
+            : Torus(instance, checkClassName)
         {}
     };
 
@@ -4606,17 +6207,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Shadow Create(int64_t model, const char* name=NULL) { return Shadow(Instance::Create(model, "Shadow", name), "Shadow");}
-        
+        static Shadow Create(int64_t model, const char* name=NULL) { return Shadow(Instance::Create(model, "Shadow", name, NULL), "Shadow");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Shadow CreateW(int64_t model, const wchar_t* name = NULL) { return Shadow(Instance::Create(model, "Shadow", NULL, name), "Shadow"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Shadow(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Face(instance, (checkClassName != NULL) ? checkClassName : "Shadow")
+        ///
+        Shadow(int64_t instance = NULL)
+            : Face(instance, "Shadow")
         {}
 
+    protected:
+        Shadow(int64_t instance, const char* checkClassName)
+            : Face(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Shadow
        //
@@ -4660,15 +6276,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SineCurve Create(int64_t model, const char* name=NULL) { return SineCurve(Instance::Create(model, "SineCurve", name), "SineCurve");}
-        
+        static SineCurve Create(int64_t model, const char* name=NULL) { return SineCurve(Instance::Create(model, "SineCurve", name, NULL), "SineCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SineCurve CreateW(int64_t model, const wchar_t* name = NULL) { return SineCurve(Instance::Create(model, "SineCurve", NULL, name), "SineCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SineCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : TransitionalCurve(instance, (checkClassName != NULL) ? checkClassName : "SineCurve")
+        ///
+        SineCurve(int64_t instance = NULL)
+            : TransitionalCurve(instance, "SineCurve")
+        {}
+
+    protected:
+        SineCurve(int64_t instance, const char* checkClassName)
+            : TransitionalCurve(instance, checkClassName)
         {}
     };
 
@@ -4685,17 +6315,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SkewedCone Create(int64_t model, const char* name=NULL) { return SkewedCone(Instance::Create(model, "SkewedCone", name), "SkewedCone");}
-        
+        static SkewedCone Create(int64_t model, const char* name=NULL) { return SkewedCone(Instance::Create(model, "SkewedCone", name, NULL), "SkewedCone");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SkewedCone CreateW(int64_t model, const wchar_t* name = NULL) { return SkewedCone(Instance::Create(model, "SkewedCone", NULL, name), "SkewedCone"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SkewedCone(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SkewedCone")
+        ///
+        SkewedCone(int64_t instance = NULL)
+            : Solid(instance, "SkewedCone")
         {}
 
+    protected:
+        SkewedCone(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SkewedCone
        //
@@ -4735,17 +6380,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SkewedFrustumCone Create(int64_t model, const char* name=NULL) { return SkewedFrustumCone(Instance::Create(model, "SkewedFrustumCone", name), "SkewedFrustumCone");}
-        
+        static SkewedFrustumCone Create(int64_t model, const char* name=NULL) { return SkewedFrustumCone(Instance::Create(model, "SkewedFrustumCone", name, NULL), "SkewedFrustumCone");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SkewedFrustumCone CreateW(int64_t model, const wchar_t* name = NULL) { return SkewedFrustumCone(Instance::Create(model, "SkewedFrustumCone", NULL, name), "SkewedFrustumCone"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SkewedFrustumCone(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SkewedFrustumCone")
+        ///
+        SkewedFrustumCone(int64_t instance = NULL)
+            : Solid(instance, "SkewedFrustumCone")
         {}
 
+    protected:
+        SkewedFrustumCone(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SkewedFrustumCone
        //
@@ -4789,17 +6449,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SolidBySurface Create(int64_t model, const char* name=NULL) { return SolidBySurface(Instance::Create(model, "SolidBySurface", name), "SolidBySurface");}
-        
+        static SolidBySurface Create(int64_t model, const char* name=NULL) { return SolidBySurface(Instance::Create(model, "SolidBySurface", name, NULL), "SolidBySurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SolidBySurface CreateW(int64_t model, const wchar_t* name = NULL) { return SolidBySurface(Instance::Create(model, "SolidBySurface", NULL, name), "SolidBySurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SolidBySurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SolidBySurface")
+        ///
+        SolidBySurface(int64_t instance = NULL)
+            : Solid(instance, "SolidBySurface")
         {}
 
+    protected:
+        SolidBySurface(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SolidBySurface
        //
@@ -4827,17 +6502,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SolidLine Create(int64_t model, const char* name=NULL) { return SolidLine(Instance::Create(model, "SolidLine", name), "SolidLine");}
-        
+        static SolidLine Create(int64_t model, const char* name=NULL) { return SolidLine(Instance::Create(model, "SolidLine", name, NULL), "SolidLine");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SolidLine CreateW(int64_t model, const wchar_t* name = NULL) { return SolidLine(Instance::Create(model, "SolidLine", NULL, name), "SolidLine"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SolidLine(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SolidLine")
+        ///
+        SolidLine(int64_t instance = NULL)
+            : Solid(instance, "SolidLine")
         {}
 
+    protected:
+        SolidLine(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SolidLine
        //
@@ -4869,17 +6559,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Sphere Create(int64_t model, const char* name=NULL) { return Sphere(Instance::Create(model, "Sphere", name), "Sphere");}
-        
+        static Sphere Create(int64_t model, const char* name=NULL) { return Sphere(Instance::Create(model, "Sphere", name, NULL), "Sphere");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Sphere CreateW(int64_t model, const wchar_t* name = NULL) { return Sphere(Instance::Create(model, "Sphere", NULL, name), "Sphere"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Sphere(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "Sphere")
+        ///
+        Sphere(int64_t instance = NULL)
+            : Solid(instance, "Sphere")
         {}
 
+    protected:
+        Sphere(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Sphere
        //
@@ -4907,17 +6612,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SphericalSurface Create(int64_t model, const char* name=NULL) { return SphericalSurface(Instance::Create(model, "SphericalSurface", name), "SphericalSurface");}
-        
+        static SphericalSurface Create(int64_t model, const char* name=NULL) { return SphericalSurface(Instance::Create(model, "SphericalSurface", name, NULL), "SphericalSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SphericalSurface CreateW(int64_t model, const wchar_t* name = NULL) { return SphericalSurface(Instance::Create(model, "SphericalSurface", NULL, name), "SphericalSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SphericalSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "SphericalSurface")
+        ///
+        SphericalSurface(int64_t instance = NULL)
+            : FiniteSurface(instance, "SphericalSurface")
         {}
 
+    protected:
+        SphericalSurface(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SphericalSurface
        //
@@ -4945,15 +6665,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SpindleTorus Create(int64_t model, const char* name=NULL) { return SpindleTorus(Instance::Create(model, "SpindleTorus", name), "SpindleTorus");}
-        
+        static SpindleTorus Create(int64_t model, const char* name=NULL) { return SpindleTorus(Instance::Create(model, "SpindleTorus", name, NULL), "SpindleTorus");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SpindleTorus CreateW(int64_t model, const wchar_t* name = NULL) { return SpindleTorus(Instance::Create(model, "SpindleTorus", NULL, name), "SpindleTorus"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SpindleTorus(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Torus(instance, (checkClassName != NULL) ? checkClassName : "SpindleTorus")
+        ///
+        SpindleTorus(int64_t instance = NULL)
+            : Torus(instance, "SpindleTorus")
+        {}
+
+    protected:
+        SpindleTorus(int64_t instance, const char* checkClassName)
+            : Torus(instance, checkClassName)
         {}
     };
 
@@ -4970,17 +6704,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Spiral Create(int64_t model, const char* name=NULL) { return Spiral(Instance::Create(model, "Spiral", name), "Spiral");}
-        
+        static Spiral Create(int64_t model, const char* name=NULL) { return Spiral(Instance::Create(model, "Spiral", name, NULL), "Spiral");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Spiral CreateW(int64_t model, const wchar_t* name = NULL) { return Spiral(Instance::Create(model, "Spiral", NULL, name), "Spiral"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Spiral(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Spiral")
+        ///
+        Spiral(int64_t instance = NULL)
+            : Curve(instance, "Spiral")
         {}
 
+    protected:
+        Spiral(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Spiral
        //
@@ -5024,15 +6773,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SpotLight Create(int64_t model, const char* name=NULL) { return SpotLight(Instance::Create(model, "SpotLight", name), "SpotLight");}
-        
+        static SpotLight Create(int64_t model, const char* name=NULL) { return SpotLight(Instance::Create(model, "SpotLight", name, NULL), "SpotLight");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SpotLight CreateW(int64_t model, const wchar_t* name = NULL) { return SpotLight(Instance::Create(model, "SpotLight", NULL, name), "SpotLight"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SpotLight(int64_t instance = NULL, const char* checkClassName = NULL)
-            : DirectLight(instance, (checkClassName != NULL) ? checkClassName : "SpotLight")
+        ///
+        SpotLight(int64_t instance = NULL)
+            : DirectLight(instance, "SpotLight")
+        {}
+
+    protected:
+        SpotLight(int64_t instance, const char* checkClassName)
+            : DirectLight(instance, checkClassName)
         {}
     };
 
@@ -5049,17 +6812,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SurfaceBySweptCurve Create(int64_t model, const char* name=NULL) { return SurfaceBySweptCurve(Instance::Create(model, "SurfaceBySweptCurve", name), "SurfaceBySweptCurve");}
-        
+        static SurfaceBySweptCurve Create(int64_t model, const char* name=NULL) { return SurfaceBySweptCurve(Instance::Create(model, "SurfaceBySweptCurve", name, NULL), "SurfaceBySweptCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SurfaceBySweptCurve CreateW(int64_t model, const wchar_t* name = NULL) { return SurfaceBySweptCurve(Instance::Create(model, "SurfaceBySweptCurve", NULL, name), "SurfaceBySweptCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SurfaceBySweptCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "SurfaceBySweptCurve")
+        ///
+        SurfaceBySweptCurve(int64_t instance = NULL)
+            : FiniteSurface(instance, "SurfaceBySweptCurve")
         {}
 
+    protected:
+        SurfaceBySweptCurve(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SurfaceBySweptCurve
        //
@@ -5095,17 +6873,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SurfaceOfLinearExtrusion Create(int64_t model, const char* name=NULL) { return SurfaceOfLinearExtrusion(Instance::Create(model, "SurfaceOfLinearExtrusion", name), "SurfaceOfLinearExtrusion");}
-        
+        static SurfaceOfLinearExtrusion Create(int64_t model, const char* name=NULL) { return SurfaceOfLinearExtrusion(Instance::Create(model, "SurfaceOfLinearExtrusion", name, NULL), "SurfaceOfLinearExtrusion");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SurfaceOfLinearExtrusion CreateW(int64_t model, const wchar_t* name = NULL) { return SurfaceOfLinearExtrusion(Instance::Create(model, "SurfaceOfLinearExtrusion", NULL, name), "SurfaceOfLinearExtrusion"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SurfaceOfLinearExtrusion(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "SurfaceOfLinearExtrusion")
+        ///
+        SurfaceOfLinearExtrusion(int64_t instance = NULL)
+            : FiniteSurface(instance, "SurfaceOfLinearExtrusion")
         {}
 
+    protected:
+        SurfaceOfLinearExtrusion(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SurfaceOfLinearExtrusion
        //
@@ -5133,17 +6926,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SurfaceOfRevolution Create(int64_t model, const char* name=NULL) { return SurfaceOfRevolution(Instance::Create(model, "SurfaceOfRevolution", name), "SurfaceOfRevolution");}
-        
+        static SurfaceOfRevolution Create(int64_t model, const char* name=NULL) { return SurfaceOfRevolution(Instance::Create(model, "SurfaceOfRevolution", name, NULL), "SurfaceOfRevolution");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SurfaceOfRevolution CreateW(int64_t model, const wchar_t* name = NULL) { return SurfaceOfRevolution(Instance::Create(model, "SurfaceOfRevolution", NULL, name), "SurfaceOfRevolution"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SurfaceOfRevolution(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Surface(instance, (checkClassName != NULL) ? checkClassName : "SurfaceOfRevolution")
+        ///
+        SurfaceOfRevolution(int64_t instance = NULL)
+            : Surface(instance, "SurfaceOfRevolution")
         {}
 
+    protected:
+        SurfaceOfRevolution(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SurfaceOfRevolution
        //
@@ -5171,17 +6979,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SweptAreaSolid Create(int64_t model, const char* name=NULL) { return SweptAreaSolid(Instance::Create(model, "SweptAreaSolid", name), "SweptAreaSolid");}
-        
+        static SweptAreaSolid Create(int64_t model, const char* name=NULL) { return SweptAreaSolid(Instance::Create(model, "SweptAreaSolid", name, NULL), "SweptAreaSolid");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SweptAreaSolid CreateW(int64_t model, const wchar_t* name = NULL) { return SweptAreaSolid(Instance::Create(model, "SweptAreaSolid", NULL, name), "SweptAreaSolid"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SweptAreaSolid(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SweptAreaSolid")
+        ///
+        SweptAreaSolid(int64_t instance = NULL)
+            : Solid(instance, "SweptAreaSolid")
         {}
 
+    protected:
+        SweptAreaSolid(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SweptAreaSolid
        //
@@ -5225,17 +7048,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SweptAreaSolidSet Create(int64_t model, const char* name=NULL) { return SweptAreaSolidSet(Instance::Create(model, "SweptAreaSolidSet", name), "SweptAreaSolidSet");}
-        
+        static SweptAreaSolidSet Create(int64_t model, const char* name=NULL) { return SweptAreaSolidSet(Instance::Create(model, "SweptAreaSolidSet", name, NULL), "SweptAreaSolidSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SweptAreaSolidSet CreateW(int64_t model, const wchar_t* name = NULL) { return SweptAreaSolidSet(Instance::Create(model, "SweptAreaSolidSet", NULL, name), "SweptAreaSolidSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SweptAreaSolidSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SweptAreaSolidSet")
+        ///
+        SweptAreaSolidSet(int64_t instance = NULL)
+            : Solid(instance, "SweptAreaSolidSet")
         {}
 
+    protected:
+        SweptAreaSolidSet(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SweptAreaSolidSet
        //
@@ -5275,17 +7113,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SweptAreaSolidTapered Create(int64_t model, const char* name=NULL) { return SweptAreaSolidTapered(Instance::Create(model, "SweptAreaSolidTapered", name), "SweptAreaSolidTapered");}
-        
+        static SweptAreaSolidTapered Create(int64_t model, const char* name=NULL) { return SweptAreaSolidTapered(Instance::Create(model, "SweptAreaSolidTapered", name, NULL), "SweptAreaSolidTapered");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SweptAreaSolidTapered CreateW(int64_t model, const wchar_t* name = NULL) { return SweptAreaSolidTapered(Instance::Create(model, "SweptAreaSolidTapered", NULL, name), "SweptAreaSolidTapered"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SweptAreaSolidTapered(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SweptAreaSolidTapered")
+        ///
+        SweptAreaSolidTapered(int64_t instance = NULL)
+            : Solid(instance, "SweptAreaSolidTapered")
         {}
 
+    protected:
+        SweptAreaSolidTapered(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SweptAreaSolidTapered
        //
@@ -5341,17 +7194,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static SweptBlend Create(int64_t model, const char* name=NULL) { return SweptBlend(Instance::Create(model, "SweptBlend", name), "SweptBlend");}
-        
+        static SweptBlend Create(int64_t model, const char* name=NULL) { return SweptBlend(Instance::Create(model, "SweptBlend", name, NULL), "SweptBlend");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SweptBlend CreateW(int64_t model, const wchar_t* name = NULL) { return SweptBlend(Instance::Create(model, "SweptBlend", NULL, name), "SweptBlend"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        SweptBlend(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "SweptBlend")
+        ///
+        SweptBlend(int64_t instance = NULL)
+            : Solid(instance, "SweptBlend")
         {}
 
+    protected:
+        SweptBlend(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to SweptBlend
        //
@@ -5411,17 +7279,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Texture Create(int64_t model, const char* name=NULL) { return Texture(Instance::Create(model, "Texture", name), "Texture");}
-        
+        static Texture Create(int64_t model, const char* name=NULL) { return Texture(Instance::Create(model, "Texture", name, NULL), "Texture");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Texture CreateW(int64_t model, const wchar_t* name = NULL) { return Texture(Instance::Create(model, "Texture", NULL, name), "Texture"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Texture(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Appearance(instance, (checkClassName != NULL) ? checkClassName : "Texture")
+        ///
+        Texture(int64_t instance = NULL)
+            : Appearance(instance, "Texture")
         {}
 
+    protected:
+        Texture(int64_t instance, const char* checkClassName)
+            : Appearance(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Texture
        //
@@ -5473,17 +7356,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static ToroidalSurface Create(int64_t model, const char* name=NULL) { return ToroidalSurface(Instance::Create(model, "ToroidalSurface", name), "ToroidalSurface");}
-        
+        static ToroidalSurface Create(int64_t model, const char* name=NULL) { return ToroidalSurface(Instance::Create(model, "ToroidalSurface", name, NULL), "ToroidalSurface");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static ToroidalSurface CreateW(int64_t model, const wchar_t* name = NULL) { return ToroidalSurface(Instance::Create(model, "ToroidalSurface", NULL, name), "ToroidalSurface"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        ToroidalSurface(int64_t instance = NULL, const char* checkClassName = NULL)
-            : FiniteSurface(instance, (checkClassName != NULL) ? checkClassName : "ToroidalSurface")
+        ///
+        ToroidalSurface(int64_t instance = NULL)
+            : FiniteSurface(instance, "ToroidalSurface")
         {}
 
+    protected:
+        ToroidalSurface(int64_t instance, const char* checkClassName)
+            : FiniteSurface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to ToroidalSurface
        //
@@ -5515,17 +7413,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Transformation Create(int64_t model, const char* name=NULL) { return Transformation(Instance::Create(model, "Transformation", name), "Transformation");}
-        
+        static Transformation Create(int64_t model, const char* name=NULL) { return Transformation(Instance::Create(model, "Transformation", name, NULL), "Transformation");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Transformation CreateW(int64_t model, const wchar_t* name = NULL) { return Transformation(Instance::Create(model, "Transformation", NULL, name), "Transformation"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Transformation(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "Transformation")
+        ///
+        Transformation(int64_t instance = NULL)
+            : Curve(instance, "Transformation")
         {}
 
+    protected:
+        Transformation(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Transformation
        //
@@ -5553,17 +7466,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static TriangleCurve Create(int64_t model, const char* name=NULL) { return TriangleCurve(Instance::Create(model, "TriangleCurve", name), "TriangleCurve");}
-        
+        static TriangleCurve Create(int64_t model, const char* name=NULL) { return TriangleCurve(Instance::Create(model, "TriangleCurve", name, NULL), "TriangleCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static TriangleCurve CreateW(int64_t model, const wchar_t* name = NULL) { return TriangleCurve(Instance::Create(model, "TriangleCurve", NULL, name), "TriangleCurve"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        TriangleCurve(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Curve(instance, (checkClassName != NULL) ? checkClassName : "TriangleCurve")
+        ///
+        TriangleCurve(int64_t instance = NULL)
+            : Curve(instance, "TriangleCurve")
         {}
 
+    protected:
+        TriangleCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to TriangleCurve
        //
@@ -5607,17 +7535,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static TriangleReduction Create(int64_t model, const char* name=NULL) { return TriangleReduction(Instance::Create(model, "TriangleReduction", name), "TriangleReduction");}
-        
+        static TriangleReduction Create(int64_t model, const char* name=NULL) { return TriangleReduction(Instance::Create(model, "TriangleReduction", name, NULL), "TriangleReduction");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static TriangleReduction CreateW(int64_t model, const wchar_t* name = NULL) { return TriangleReduction(Instance::Create(model, "TriangleReduction", NULL, name), "TriangleReduction"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        TriangleReduction(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Solid(instance, (checkClassName != NULL) ? checkClassName : "TriangleReduction")
+        ///
+        TriangleReduction(int64_t instance = NULL)
+            : Solid(instance, "TriangleReduction")
         {}
 
+    protected:
+        TriangleReduction(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to TriangleReduction
        //
@@ -5649,17 +7592,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static TriangleSet Create(int64_t model, const char* name=NULL) { return TriangleSet(Instance::Create(model, "TriangleSet", name), "TriangleSet");}
-        
+        static TriangleSet Create(int64_t model, const char* name=NULL) { return TriangleSet(Instance::Create(model, "TriangleSet", name, NULL), "TriangleSet");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static TriangleSet CreateW(int64_t model, const wchar_t* name = NULL) { return TriangleSet(Instance::Create(model, "TriangleSet", NULL, name), "TriangleSet"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        TriangleSet(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Surface(instance, (checkClassName != NULL) ? checkClassName : "TriangleSet")
+        ///
+        TriangleSet(int64_t instance = NULL)
+            : Surface(instance, "TriangleSet")
         {}
 
+    protected:
+        TriangleSet(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to TriangleSet
        //
@@ -5687,15 +7645,29 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Vector Create(int64_t model, const char* name=NULL) { return Vector(Instance::Create(model, "Vector", name), "Vector");}
-        
+        static Vector Create(int64_t model, const char* name=NULL) { return Vector(Instance::Create(model, "Vector", name, NULL), "Vector");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Vector CreateW(int64_t model, const wchar_t* name = NULL) { return Vector(Instance::Create(model, "Vector", NULL, name), "Vector"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Vector(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Mathematics(instance, (checkClassName != NULL) ? checkClassName : "Vector")
+        ///
+        Vector(int64_t instance = NULL)
+            : Mathematics(instance, "Vector")
+        {}
+
+    protected:
+        Vector(int64_t instance, const char* checkClassName)
+            : Mathematics(instance, checkClassName)
         {}
     };
 
@@ -5712,17 +7684,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static Vector3 Create(int64_t model, const char* name=NULL) { return Vector3(Instance::Create(model, "Vector3", name), "Vector3");}
-        
+        static Vector3 Create(int64_t model, const char* name=NULL) { return Vector3(Instance::Create(model, "Vector3", name, NULL), "Vector3");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Vector3 CreateW(int64_t model, const wchar_t* name = NULL) { return Vector3(Instance::Create(model, "Vector3", NULL, name), "Vector3"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        Vector3(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Vector(instance, (checkClassName != NULL) ? checkClassName : "Vector3")
+        ///
+        Vector3(int64_t instance = NULL)
+            : Vector(instance, "Vector3")
         {}
 
+    protected:
+        Vector3(int64_t instance, const char* checkClassName)
+            : Vector(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to Vector3
        //
@@ -5758,17 +7745,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static View Create(int64_t model, const char* name=NULL) { return View(Instance::Create(model, "View", name), "View");}
-        
+        static View Create(int64_t model, const char* name=NULL) { return View(Instance::Create(model, "View", name, NULL), "View");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static View CreateW(int64_t model, const wchar_t* name = NULL) { return View(Instance::Create(model, "View", NULL, name), "View"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        View(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Environment(instance, (checkClassName != NULL) ? checkClassName : "View")
+        ///
+        View(int64_t instance = NULL)
+            : Environment(instance, "View")
         {}
 
+    protected:
+        View(int64_t instance, const char* checkClassName)
+            : Environment(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to View
        //
@@ -5792,17 +7794,32 @@ namespace GEOM
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static World Create(int64_t model, const char* name=NULL) { return World(Instance::Create(model, "World", name), "World");}
-        
+        static World Create(int64_t model, const char* name=NULL) { return World(Instance::Create(model, "World", name, NULL), "World");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static World CreateW(int64_t model, const wchar_t* name = NULL) { return World(Instance::Create(model, "World", NULL, name), "World"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        World(int64_t instance = NULL, const char* checkClassName = NULL)
-            : Environment(instance, (checkClassName != NULL) ? checkClassName : "World")
+        ///
+        World(int64_t instance = NULL)
+            : Environment(instance, "World")
         {}
 
+    protected:
+        World(int64_t instance, const char* checkClassName)
+            : Environment(instance, checkClassName)
+        {}
+
+    public:
        //
        // Properties with known cardinality restrictions to World
        //

@@ -27,26 +27,31 @@ namespace NAMESPACE_NAME
         /// </summary>
         int64_t m_instance;
 
-    public:
+    protected:
         /// <summary>
-        /// Create an instance of specified class
+        /// 
         /// </summary>
-        static int64_t Create(int64_t model, const char* className, const char* instanseName)
+        /// <param name="model"></param>
+        /// <param name="className"></param>
+        /// <param name="instanceName"></param>
+        /// <param name="instanceNameW"></param>
+        /// <returns></returns>
+        static int64_t Create(int64_t model, const char* className, const char* instanceName, const wchar_t* instanceNameW)
         {
             int64_t clsid = GetClassByName(model, className);
             assert(clsid != 0);
 
-            int64_t instance = CreateInstance(clsid, instanseName);
-            assert(instance != 0);
+            int64_t instance = 0;
+            if (instanceNameW) {
+                instance = CreateInstanceW(clsid, instanceNameW);
+            }
+            else {
+                instance = CreateInstance(clsid, instanceName);
+            }
 
             return instance;
         }
-
-        /// <summary>
-        /// Create an instance of specified class
-        /// </summary>
-        static int64_t Create(int64_t model, const char* className) { return Create(model, className, NULL); }
-
+        
         /// <summary>
         /// Constructs object that wraps existing OWL instance
         /// </summary>
@@ -60,7 +65,7 @@ namespace NAMESPACE_NAME
             }
         }
 
-
+    public:
         /// <summary>
         /// Conversion to instance handle, so the object of the class can be used anywhere where a handle required
         /// </summary>
@@ -174,18 +179,33 @@ namespace NAMESPACE_NAME
         /// <param name="model">The handle to the model</param>
         /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
         /// <returns></returns>
-        static CLASS_NAME Create(int64_t model, const char* name=NULL) { return CLASS_NAME(Instance::Create(model, "CLASS_NAME", name), "CLASS_NAME");}
-        
+        static CLASS_NAME Create(int64_t model, const char* name=NULL) { return CLASS_NAME(Instance::Create(model, "CLASS_NAME", name, NULL), "CLASS_NAME");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CLASS_NAME CreateW(int64_t model, const wchar_t* name = NULL) { return CLASS_NAME(Instance::Create(model, "CLASS_NAME", NULL, name), "CLASS_NAME"); }
+
+    public:
         /// <summary>
         /// Constructs object of this C++ class that wraps existing OWL instance
         /// </summary>
         /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
-        CLASS_NAME(int64_t instance = NULL, const char* checkClassName = NULL)
-            : /*BASE CLASS*/Instance(instance, (checkClassName != NULL) ? checkClassName : "CLASS_NAME")
+        ///
+        CLASS_NAME(int64_t instance = NULL)
+            : /*BASE CLASS*/Instance(instance, "CLASS_NAME")
+        {}
+
+    protected:
+        CLASS_NAME(int64_t instance, const char* checkClassName)
+            : /*BASE CLASS*/Instance(instance, checkClassName)
         {}
 //## TEMPLATE StartPropertiesBlock
 
+    public:
        //
        // Properties with known cardinality restrictions to PROPERTIES_OF_CLASS
        //

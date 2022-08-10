@@ -98,8 +98,14 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 {
 	//teste to set/get different property types
 
-	Texture texture = Texture::Create(model);
-	NURBSCurve curve = NURBSCurve::Create(model);
+	Texture texture = Texture::Create(model, "my texture");
+	NURBSCurve curve = NURBSCurve::CreateW(model, L"my curve");
+
+	//
+	ASSERT(0 == strcmp(GetNameOfInstance(texture), "my texture"));
+	ASSERT(0 == wcscmp(GetNameOfInstanceW(texture), L"my texture"));	
+	ASSERT(0 == strcmp(GetNameOfInstance(curve), "my curve"));
+	ASSERT(0 == wcscmp(GetNameOfInstanceW(curve), L"my curve"));
 
 	//cast check
 	int64_t texture_id = texture;
