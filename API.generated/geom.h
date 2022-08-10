@@ -188,7 +188,9 @@ namespace GEOM
         Instance(int64_t instance, const char* cls)
         {
             m_instance = instance;
-            assert(cls == NULL/*do not check*/ || ::IsInstanceOfClass(instance, cls));
+            if (cls != NULL && !::IsInstanceOfClass(instance, cls)) {
+                m_instance = NULL;
+            }
         }
 
 
@@ -203,32 +205,32 @@ namespace GEOM
         int64_t GetPropertyId(const char* name, int64_t checkCardinality = -1)
         {
             int64_t model = GetModel(m_instance);
-            assert(model != 0);
 
             int64_t propId = GetPropertyByName(model, name);
-            assert(propId != 0);
 
-#ifdef _DEBUG
             if (propId) {
                 int64_t clsId = GetInstanceClass(m_instance);
                 int64_t minCard = 0, maxCard = 0;
                 GetPropertyRestrictionsConsolidated(clsId, propId, &minCard, &maxCard);
-                assert(minCard >= 0); //property assigned to the class
+                if (minCard < 0) {
+                    propId = NULL; //property is not assigned to the class
+                }
                 if (checkCardinality > 0) { //chek cardinatity when set property
-                    assert(checkCardinality >= minCard && (checkCardinality <= maxCard || maxCard < 0)); //cardinality is in range
+                    if (checkCardinality < minCard || (maxCard > 0 && checkCardinality > maxCard)) {
+                        propId = NULL; //cardinality is out of range
+                    }
                 }
             }
-#endif
 
             return propId;
         }
 
         ///<summary></summary>
-        template<typename TElem> void SetDatatypeProperty(const char* name, TElem* values, int64_t count)
+        template<typename TElem> bool SetDatatypeProperty(const char* name, const TElem* values, int64_t count)
         {
             int64_t propId = GetPropertyId(name, count);
             int64_t res = ::SetDatatypeProperty(m_instance, propId, values, count);
-            assert(res == 0);
+            return (res == 0);
         }
 
 
@@ -240,7 +242,9 @@ namespace GEOM
             TElem* values = NULL;
             int64_t count = 0;
             int64_t res = ::GetDatatypeProperty(m_instance, propId, (void**)&values, &count);
-            assert(res == 0);
+            if (res != 0) {
+                count = 0;
+            }
 
             if (pCount) {
                 *pCount = count;
@@ -256,11 +260,11 @@ namespace GEOM
 
 
         ///<summary></summary>
-        template<class TInstance> void SetObjectProperty(const char* name, const TInstance* instances, int64_t count)
+        template<class TInstance> bool SetObjectProperty(const char* name, const TInstance* instances, int64_t count)
         {
             int64_t propId = GetPropertyId(name, count);
             int64_t res = ::SetObjectProperty(m_instance, propId, (int64_t*)instances, count);
-            assert(res == 0);
+            return(res == 0);
         }
 
         ///<summary>The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -271,7 +275,9 @@ namespace GEOM
             int64_t* values = NULL;
             int64_t count = 0;
             int64_t res = ::GetObjectProperty(m_instance, propId, &values, &count);
-            assert(res == 0);
+            if (res != 0) {
+                count = 0;            
+            }
 
             if (pCount) {
                 *pCount = count;
@@ -316,7 +322,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Material</summary>
-        void set_material(const Material& instance) { SetObjectProperty<Material>("material", &instance, 1); }
+        bool set_material(const Material& instance) { return SetObjectProperty<Material>("material", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Material* get_material() { return GetObjectProperty<Material>("material", NULL); }
     };
@@ -350,15 +356,15 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_bounds(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("bounds", instances, count); }
+        bool set_bounds(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("bounds", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_bounds(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("bounds", instances, count); }
+        bool set_bounds(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("bounds", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_bounds(int64_t* pCount) { return GetObjectProperty<Curve>("bounds", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_bounds_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("bounds", pCount); }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        void set_surface(const Surface& instance) { SetObjectProperty<Surface>("surface", &instance, 1); }
+        bool set_surface(const Surface& instance) { return SetObjectProperty<Surface>("surface", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Surface* get_surface() { return GetObjectProperty<Surface>("surface", NULL); }
     };
@@ -417,15 +423,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of clipped</summary>
-        void set_clipped(bool value) { SetDatatypeProperty ("clipped", &value, 1); }
+        bool set_clipped(bool value) { return SetDatatypeProperty ("clipped", &value, 1); }
         ///<summary>Gets a value of clipped, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_clipped() { return GetDatatypeProperty<bool>("clipped", NULL); }
         ///<summary>Sets value of scalingX</summary>
-        void set_scalingX(double value) { SetDatatypeProperty ("scalingX", &value, 1); }
+        bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", &value, 1); }
         ///<summary>Gets a value of scalingX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingX() { return GetDatatypeProperty<double>("scalingX", NULL); }
         ///<summary>Sets value of scalingY</summary>
-        void set_scalingY(double value) { SetDatatypeProperty ("scalingY", &value, 1); }
+        bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", &value, 1); }
         ///<summary>Gets a value of scalingY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingY() { return GetDatatypeProperty<double>("scalingY", NULL); }
     };
@@ -509,11 +515,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of scalingX</summary>
-        void set_scalingX(double value) { SetDatatypeProperty ("scalingX", &value, 1); }
+        bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", &value, 1); }
         ///<summary>Gets a value of scalingX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingX() { return GetDatatypeProperty<double>("scalingX", NULL); }
         ///<summary>Sets value of scalingY</summary>
-        void set_scalingY(double value) { SetDatatypeProperty ("scalingY", &value, 1); }
+        bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", &value, 1); }
         ///<summary>Gets a value of scalingY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingY() { return GetDatatypeProperty<double>("scalingY", NULL); }
     };
@@ -547,23 +553,23 @@ namespace GEOM
        //
 
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_segment(const Curve& instance) { SetObjectProperty<Curve>("segment", &instance, 1); }
+        bool set_segment(const Curve& instance) { return SetObjectProperty<Curve>("segment", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_segment() { return GetObjectProperty<Curve>("segment", NULL); }
         ///<summary>Sets values of tangentDirectionStart. OWL cardinality 3..3</summary>
-        void set_tangentDirectionStart(double* values, int64_t count) { SetDatatypeProperty ("tangentDirectionStart", values, count); }
+        bool set_tangentDirectionStart(const double* values, int64_t count) { return SetDatatypeProperty ("tangentDirectionStart", values, count); }
         ///<summary>Gets values array of tangentDirectionStart. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_tangentDirectionStart(int64_t* pCount) { return GetDatatypeProperty<double>("tangentDirectionStart", pCount); }
     };
@@ -597,9 +603,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of AlignedSegment. OWL cardinality 0..-1</summary>
-        void set_segments(const AlignedSegment* instances, int64_t count) { SetObjectProperty<AlignedSegment>("segments", instances, count); }
+        bool set_segments(const AlignedSegment* instances, int64_t count) { return SetObjectProperty<AlignedSegment>("segments", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_segments(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("segments", instances, count); }
+        bool set_segments(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("segments", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const AlignedSegment* get_segments(int64_t* pCount) { return GetObjectProperty<AlignedSegment>("segments", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -635,19 +641,19 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        void set_horizontal(const AlignedSegments& instance) { SetObjectProperty<AlignedSegments>("horizontal", &instance, 1); }
+        bool set_horizontal(const AlignedSegments& instance) { return SetObjectProperty<AlignedSegments>("horizontal", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const AlignedSegments* get_horizontal() { return GetObjectProperty<AlignedSegments>("horizontal", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        void set_vertical(const AlignedSegments& instance) { SetObjectProperty<AlignedSegments>("vertical", &instance, 1); }
+        bool set_vertical(const AlignedSegments& instance) { return SetObjectProperty<AlignedSegments>("vertical", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const AlignedSegments* get_vertical() { return GetObjectProperty<AlignedSegments>("vertical", NULL); }
     };
@@ -706,7 +712,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        void set_color(const Color& instance) { SetObjectProperty<Color>("color", &instance, 1); }
+        bool set_color(const Color& instance) { return SetObjectProperty<Color>("color", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Color* get_color() { return GetObjectProperty<Color>("color", NULL); }
     };
@@ -790,23 +796,23 @@ namespace GEOM
        //
 
         ///<summary>Sets value of hasNormals</summary>
-        void set_hasNormals(bool value) { SetDatatypeProperty ("hasNormals", &value, 1); }
+        bool set_hasNormals(bool value) { return SetDatatypeProperty ("hasNormals", &value, 1); }
         ///<summary>Gets a value of hasNormals, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_hasNormals() { return GetDatatypeProperty<bool>("hasNormals", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of size</summary>
-        void set_size(double value) { SetDatatypeProperty ("size", &value, 1); }
+        bool set_size(double value) { return SetDatatypeProperty ("size", &value, 1); }
         ///<summary>Gets a value of size, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_size() { return GetDatatypeProperty<double>("size", NULL); }
         ///<summary>Sets value of start</summary>
-        void set_start(double value) { SetDatatypeProperty ("start", &value, 1); }
+        bool set_start(double value) { return SetDatatypeProperty ("start", &value, 1); }
         ///<summary>Gets a value of start, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_start() { return GetDatatypeProperty<double>("start", NULL); }
     };
@@ -840,31 +846,31 @@ namespace GEOM
        //
 
         ///<summary>Sets value of closed</summary>
-        void set_closed(bool value) { SetDatatypeProperty ("closed", &value, 1); }
+        bool set_closed(bool value) { return SetDatatypeProperty ("closed", &value, 1); }
         ///<summary>Gets a value of closed, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_closed() { return GetDatatypeProperty<bool>("closed", NULL); }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 2..-1</summary>
-        void set_controlPoints(const Point3D* instances, int64_t count) { SetObjectProperty<Point3D>("controlPoints", instances, count); }
+        bool set_controlPoints(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("controlPoints", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 2..-1</summary>
-        void set_controlPoints(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("controlPoints", instances, count); }
+        bool set_controlPoints(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("controlPoints", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Point3D* get_controlPoints(int64_t* pCount) { return GetObjectProperty<Point3D>("controlPoints", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_controlPoints_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("controlPoints", pCount); }
         ///<summary>Sets value of count</summary>
-        void set_count(int64_t value) { SetDatatypeProperty ("count", &value, 1); }
+        bool set_count(int64_t value) { return SetDatatypeProperty ("count", &value, 1); }
         ///<summary>Gets a value of count, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_count() { return GetDatatypeProperty<int64_t>("count", NULL); }
         ///<summary>Sets value of degree</summary>
-        void set_degree(int64_t value) { SetDatatypeProperty ("degree", &value, 1); }
+        bool set_degree(int64_t value) { return SetDatatypeProperty ("degree", &value, 1); }
         ///<summary>Gets a value of degree, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_degree() { return GetDatatypeProperty<int64_t>("degree", NULL); }
         ///<summary>Sets value of segmentationLength</summary>
-        void set_segmentationLength(double value) { SetDatatypeProperty ("segmentationLength", &value, 1); }
+        bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", &value, 1); }
         ///<summary>Gets a value of segmentationLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_segmentationLength() { return GetDatatypeProperty<double>("segmentationLength", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -973,51 +979,51 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 4..-1</summary>
-        void set_controlPoints(const Point3D* instances, int64_t count) { SetObjectProperty<Point3D>("controlPoints", instances, count); }
+        bool set_controlPoints(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("controlPoints", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 4..-1</summary>
-        void set_controlPoints(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("controlPoints", instances, count); }
+        bool set_controlPoints(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("controlPoints", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Point3D* get_controlPoints(int64_t* pCount) { return GetObjectProperty<Point3D>("controlPoints", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_controlPoints_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("controlPoints", pCount); }
         ///<summary>Sets value of segmentationLength</summary>
-        void set_segmentationLength(double value) { SetDatatypeProperty ("segmentationLength", &value, 1); }
+        bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", &value, 1); }
         ///<summary>Gets a value of segmentationLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_segmentationLength() { return GetDatatypeProperty<double>("segmentationLength", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of uClosed</summary>
-        void set_uClosed(bool value) { SetDatatypeProperty ("uClosed", &value, 1); }
+        bool set_uClosed(bool value) { return SetDatatypeProperty ("uClosed", &value, 1); }
         ///<summary>Gets a value of uClosed, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_uClosed() { return GetDatatypeProperty<bool>("uClosed", NULL); }
         ///<summary>Sets value of uCount</summary>
-        void set_uCount(int64_t value) { SetDatatypeProperty ("uCount", &value, 1); }
+        bool set_uCount(int64_t value) { return SetDatatypeProperty ("uCount", &value, 1); }
         ///<summary>Gets a value of uCount, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_uCount() { return GetDatatypeProperty<int64_t>("uCount", NULL); }
         ///<summary>Sets value of uDegree</summary>
-        void set_uDegree(int64_t value) { SetDatatypeProperty ("uDegree", &value, 1); }
+        bool set_uDegree(int64_t value) { return SetDatatypeProperty ("uDegree", &value, 1); }
         ///<summary>Gets a value of uDegree, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_uDegree() { return GetDatatypeProperty<int64_t>("uDegree", NULL); }
         ///<summary>Sets value of uSegmentationParts</summary>
-        void set_uSegmentationParts(int64_t value) { SetDatatypeProperty ("uSegmentationParts", &value, 1); }
+        bool set_uSegmentationParts(int64_t value) { return SetDatatypeProperty ("uSegmentationParts", &value, 1); }
         ///<summary>Gets a value of uSegmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_uSegmentationParts() { return GetDatatypeProperty<int64_t>("uSegmentationParts", NULL); }
         ///<summary>Sets value of vClosed</summary>
-        void set_vClosed(bool value) { SetDatatypeProperty ("vClosed", &value, 1); }
+        bool set_vClosed(bool value) { return SetDatatypeProperty ("vClosed", &value, 1); }
         ///<summary>Gets a value of vClosed, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_vClosed() { return GetDatatypeProperty<bool>("vClosed", NULL); }
         ///<summary>Sets value of vCount</summary>
-        void set_vCount(int64_t value) { SetDatatypeProperty ("vCount", &value, 1); }
+        bool set_vCount(int64_t value) { return SetDatatypeProperty ("vCount", &value, 1); }
         ///<summary>Gets a value of vCount, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_vCount() { return GetDatatypeProperty<int64_t>("vCount", NULL); }
         ///<summary>Sets value of vDegree</summary>
-        void set_vDegree(int64_t value) { SetDatatypeProperty ("vDegree", &value, 1); }
+        bool set_vDegree(int64_t value) { return SetDatatypeProperty ("vDegree", &value, 1); }
         ///<summary>Gets a value of vDegree, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_vDegree() { return GetDatatypeProperty<int64_t>("vDegree", NULL); }
         ///<summary>Sets value of vSegmentationParts</summary>
-        void set_vSegmentationParts(int64_t value) { SetDatatypeProperty ("vSegmentationParts", &value, 1); }
+        bool set_vSegmentationParts(int64_t value) { return SetDatatypeProperty ("vSegmentationParts", &value, 1); }
         ///<summary>Gets a value of vSegmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_vSegmentationParts() { return GetDatatypeProperty<int64_t>("vSegmentationParts", NULL); }
     };
@@ -1051,7 +1057,7 @@ namespace GEOM
        //
 
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
     };
@@ -1085,27 +1091,27 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets value of radiusI</summary>
-        void set_radiusI(double value) { SetDatatypeProperty ("radiusI", &value, 1); }
+        bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", &value, 1); }
         ///<summary>Gets a value of radiusI, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusI() { return GetDatatypeProperty<double>("radiusI", NULL); }
         ///<summary>Sets value of radiusII</summary>
-        void set_radiusII(double value) { SetDatatypeProperty ("radiusII", &value, 1); }
+        bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", &value, 1); }
         ///<summary>Gets a value of radiusII, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusII() { return GetDatatypeProperty<double>("radiusII", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -1189,31 +1195,31 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_bottomPolygon(const Curve& instance) { SetObjectProperty<Curve>("bottomPolygon", &instance, 1); }
+        bool set_bottomPolygon(const Curve& instance) { return SetObjectProperty<Curve>("bottomPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_bottomPolygon() { return GetObjectProperty<Curve>("bottomPolygon", NULL); }
         ///<summary>Sets value of forceSolid</summary>
-        void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", &value, 1); }
+        bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", &value, 1); }
         ///<summary>Gets a value of forceSolid, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_forceSolid() { return GetDatatypeProperty<bool>("forceSolid", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets value of hasBottom</summary>
-        void set_hasBottom(bool value) { SetDatatypeProperty ("hasBottom", &value, 1); }
+        bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", &value, 1); }
         ///<summary>Gets a value of hasBottom, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_hasBottom() { return GetDatatypeProperty<bool>("hasBottom", NULL); }
         ///<summary>Sets value of hasTop</summary>
-        void set_hasTop(bool value) { SetDatatypeProperty ("hasTop", &value, 1); }
+        bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", &value, 1); }
         ///<summary>Gets a value of hasTop, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_hasTop() { return GetDatatypeProperty<bool>("hasTop", NULL); }
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_topPolygon(const Curve& instance) { SetObjectProperty<Curve>("topPolygon", &instance, 1); }
+        bool set_topPolygon(const Curve& instance) { return SetObjectProperty<Curve>("topPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_topPolygon() { return GetObjectProperty<Curve>("topPolygon", NULL); }
     };
@@ -1272,23 +1278,23 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        void set_deviation(const Deviation& instance) { SetObjectProperty<Deviation>("deviation", &instance, 1); }
+        bool set_deviation(const Deviation& instance) { return SetObjectProperty<Deviation>("deviation", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Deviation* get_deviation() { return GetObjectProperty<Deviation>("deviation", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_firstObject(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("firstObject", &instance, 1); }
+        bool set_firstObject(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("firstObject", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_firstObject() { return GetObjectProperty<GeometricItem>("firstObject", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_secondObject(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("secondObject", &instance, 1); }
+        bool set_secondObject(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("secondObject", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_secondObject() { return GetObjectProperty<GeometricItem>("secondObject", NULL); }
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
     };
@@ -1322,19 +1328,19 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        void set_deviation(const Deviation& instance) { SetObjectProperty<Deviation>("deviation", &instance, 1); }
+        bool set_deviation(const Deviation& instance) { return SetObjectProperty<Deviation>("deviation", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Deviation* get_deviation() { return GetObjectProperty<Deviation>("deviation", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_firstObject(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("firstObject", &instance, 1); }
+        bool set_firstObject(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("firstObject", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_firstObject() { return GetObjectProperty<GeometricItem>("firstObject", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_secondObject(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("secondObject", &instance, 1); }
+        bool set_secondObject(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("secondObject", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_secondObject() { return GetObjectProperty<GeometricItem>("secondObject", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
     };
@@ -1368,55 +1374,55 @@ namespace GEOM
        //
 
         ///<summary>Sets value of consistencyCheck</summary>
-        void set_consistencyCheck(int64_t value) { SetDatatypeProperty ("consistencyCheck", &value, 1); }
+        bool set_consistencyCheck(int64_t value) { return SetDatatypeProperty ("consistencyCheck", &value, 1); }
         ///<summary>Gets a value of consistencyCheck, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_consistencyCheck() { return GetDatatypeProperty<int64_t>("consistencyCheck", NULL); }
         ///<summary>Sets value of epsilon</summary>
-        void set_epsilon(double value) { SetDatatypeProperty ("epsilon", &value, 1); }
+        bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", &value, 1); }
         ///<summary>Gets a value of epsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_epsilon() { return GetDatatypeProperty<double>("epsilon", NULL); }
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 0..-1</summary>
-        void set_faces(const Face* instances, int64_t count) { SetObjectProperty<Face>("faces", instances, count); }
+        bool set_faces(const Face* instances, int64_t count) { return SetObjectProperty<Face>("faces", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_faces(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("faces", instances, count); }
+        bool set_faces(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("faces", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Face* get_faces(int64_t* pCount) { return GetObjectProperty<Face>("faces", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_faces_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("faces", pCount); }
         ///<summary>Sets values of flags. OWL cardinality 0..-1</summary>
-        void set_flags(int64_t* values, int64_t count) { SetDatatypeProperty ("flags", values, count); }
+        bool set_flags(const int64_t* values, int64_t count) { return SetDatatypeProperty ("flags", values, count); }
         ///<summary>Gets values array of flags. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_flags(int64_t* pCount) { return GetDatatypeProperty<int64_t>("flags", pCount); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        void set_indices(int64_t* values, int64_t count) { SetDatatypeProperty ("indices", values, count); }
+        bool set_indices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("indices", values, count); }
         ///<summary>Gets values array of indices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_indices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("indices", pCount); }
         ///<summary>Sets values of normalCoordinates. OWL cardinality 0..-1</summary>
-        void set_normalCoordinates(double* values, int64_t count) { SetDatatypeProperty ("normalCoordinates", values, count); }
+        bool set_normalCoordinates(const double* values, int64_t count) { return SetDatatypeProperty ("normalCoordinates", values, count); }
         ///<summary>Gets values array of normalCoordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_normalCoordinates(int64_t* pCount) { return GetDatatypeProperty<double>("normalCoordinates", pCount); }
         ///<summary>Sets values of normalIndices. OWL cardinality 0..-1</summary>
-        void set_normalIndices(int64_t* values, int64_t count) { SetDatatypeProperty ("normalIndices", values, count); }
+        bool set_normalIndices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("normalIndices", values, count); }
         ///<summary>Gets values array of normalIndices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_normalIndices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("normalIndices", pCount); }
         ///<summary>Sets value of relativeEpsilon</summary>
-        void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", &value, 1); }
+        bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", &value, 1); }
         ///<summary>Gets a value of relativeEpsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_relativeEpsilon() { return GetDatatypeProperty<double>("relativeEpsilon", NULL); }
         ///<summary>Sets values of textureCoordinates. OWL cardinality 0..-1</summary>
-        void set_textureCoordinates(double* values, int64_t count) { SetDatatypeProperty ("textureCoordinates", values, count); }
+        bool set_textureCoordinates(const double* values, int64_t count) { return SetDatatypeProperty ("textureCoordinates", values, count); }
         ///<summary>Gets values array of textureCoordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_textureCoordinates(int64_t* pCount) { return GetDatatypeProperty<double>("textureCoordinates", pCount); }
         ///<summary>Sets values of textureIndices. OWL cardinality 0..-1</summary>
-        void set_textureIndices(int64_t* values, int64_t count) { SetDatatypeProperty ("textureIndices", values, count); }
+        bool set_textureIndices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("textureIndices", values, count); }
         ///<summary>Gets values array of textureIndices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_textureIndices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("textureIndices", pCount); }
         ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
-        void set_vertices(double* values, int64_t count) { SetDatatypeProperty ("vertices", values, count); }
+        bool set_vertices(const double* values, int64_t count) { return SetDatatypeProperty ("vertices", values, count); }
         ///<summary>Gets values array of vertices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vertices(int64_t* pCount) { return GetDatatypeProperty<double>("vertices", pCount); }
     };
@@ -1450,15 +1456,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of width</summary>
-        void set_width(double value) { SetDatatypeProperty ("width", &value, 1); }
+        bool set_width(double value) { return SetDatatypeProperty ("width", &value, 1); }
         ///<summary>Gets a value of width, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_width() { return GetDatatypeProperty<double>("width", NULL); }
     };
@@ -1492,15 +1498,15 @@ namespace GEOM
        //
 
         ///<summary>Sets values of knotMultiplicities. OWL cardinality 0..-1</summary>
-        void set_knotMultiplicities(int64_t* values, int64_t count) { SetDatatypeProperty ("knotMultiplicities", values, count); }
+        bool set_knotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("knotMultiplicities", values, count); }
         ///<summary>Gets values array of knotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_knotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("knotMultiplicities", pCount); }
         ///<summary>Sets values of knots. OWL cardinality 2..-1</summary>
-        void set_knots(double* values, int64_t count) { SetDatatypeProperty ("knots", values, count); }
+        bool set_knots(const double* values, int64_t count) { return SetDatatypeProperty ("knots", values, count); }
         ///<summary>Gets values array of knots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_knots(int64_t* pCount) { return GetDatatypeProperty<double>("knots", pCount); }
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
     };
@@ -1534,23 +1540,23 @@ namespace GEOM
        //
 
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
         ///<summary>Sets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
-        void set_uKnotMultiplicities(int64_t* values, int64_t count) { SetDatatypeProperty ("uKnotMultiplicities", values, count); }
+        bool set_uKnotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("uKnotMultiplicities", values, count); }
         ///<summary>Gets values array of uKnotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_uKnotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("uKnotMultiplicities", pCount); }
         ///<summary>Sets values of uKnots. OWL cardinality 2..-1</summary>
-        void set_uKnots(double* values, int64_t count) { SetDatatypeProperty ("uKnots", values, count); }
+        bool set_uKnots(const double* values, int64_t count) { return SetDatatypeProperty ("uKnots", values, count); }
         ///<summary>Gets values array of uKnots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_uKnots(int64_t* pCount) { return GetDatatypeProperty<double>("uKnots", pCount); }
         ///<summary>Sets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
-        void set_vKnotMultiplicities(int64_t* values, int64_t count) { SetDatatypeProperty ("vKnotMultiplicities", values, count); }
+        bool set_vKnotMultiplicities(const int64_t* values, int64_t count) { return SetDatatypeProperty ("vKnotMultiplicities", values, count); }
         ///<summary>Gets values array of vKnotMultiplicities. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_vKnotMultiplicities(int64_t* pCount) { return GetDatatypeProperty<int64_t>("vKnotMultiplicities", pCount); }
         ///<summary>Sets values of vKnots. OWL cardinality 2..-1</summary>
-        void set_vKnots(double* values, int64_t count) { SetDatatypeProperty ("vKnots", values, count); }
+        bool set_vKnots(const double* values, int64_t count) { return SetDatatypeProperty ("vKnots", values, count); }
         ///<summary>Gets values array of vKnots. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vKnots(int64_t* pCount) { return GetDatatypeProperty<double>("vKnots", pCount); }
     };
@@ -1584,19 +1590,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of a</summary>
-        void set_a(double value) { SetDatatypeProperty ("a", &value, 1); }
+        bool set_a(double value) { return SetDatatypeProperty ("a", &value, 1); }
         ///<summary>Gets a value of a, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_a() { return GetDatatypeProperty<double>("a", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of size</summary>
-        void set_size(double value) { SetDatatypeProperty ("size", &value, 1); }
+        bool set_size(double value) { return SetDatatypeProperty ("size", &value, 1); }
         ///<summary>Gets a value of size, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_size() { return GetDatatypeProperty<double>("size", NULL); }
         ///<summary>Sets value of start</summary>
-        void set_start(double value) { SetDatatypeProperty ("start", &value, 1); }
+        bool set_start(double value) { return SetDatatypeProperty ("start", &value, 1); }
         ///<summary>Gets a value of start, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_start() { return GetDatatypeProperty<double>("start", NULL); }
     };
@@ -1655,9 +1661,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 3..3</summary>
-        void set_pointReferences(const Point3D* instances, int64_t count) { SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 3..3</summary>
-        void set_pointReferences(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("pointReferences", instances, count); }
+        bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -1693,11 +1699,11 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 12..12</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 12..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..12</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -1731,19 +1737,19 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        void set_deviation(const Deviation& instance) { SetObjectProperty<Deviation>("deviation", &instance, 1); }
+        bool set_deviation(const Deviation& instance) { return SetObjectProperty<Deviation>("deviation", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Deviation* get_deviation() { return GetObjectProperty<Deviation>("deviation", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        void set_plane(const Plane& instance) { SetObjectProperty<Plane>("plane", &instance, 1); }
+        bool set_plane(const Plane& instance) { return SetObjectProperty<Plane>("plane", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Plane* get_plane() { return GetObjectProperty<Plane>("plane", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
     };
@@ -1777,27 +1783,27 @@ namespace GEOM
        //
 
         ///<summary>Sets value of A</summary>
-        void set_A(double value) { SetDatatypeProperty ("A", &value, 1); }
+        bool set_A(double value) { return SetDatatypeProperty ("A", &value, 1); }
         ///<summary>Gets a value of A, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_A() { return GetDatatypeProperty<double>("A", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of orientation</summary>
-        void set_orientation(int64_t value) { SetDatatypeProperty ("orientation", &value, 1); }
+        bool set_orientation(int64_t value) { return SetDatatypeProperty ("orientation", &value, 1); }
         ///<summary>Gets a value of orientation, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_orientation() { return GetDatatypeProperty<int64_t>("orientation", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -1856,35 +1862,35 @@ namespace GEOM
        //
 
         ///<summary>Sets value of consistencyCheck</summary>
-        void set_consistencyCheck(int64_t value) { SetDatatypeProperty ("consistencyCheck", &value, 1); }
+        bool set_consistencyCheck(int64_t value) { return SetDatatypeProperty ("consistencyCheck", &value, 1); }
         ///<summary>Gets a value of consistencyCheck, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_consistencyCheck() { return GetDatatypeProperty<int64_t>("consistencyCheck", NULL); }
         ///<summary>Sets value of epsilon</summary>
-        void set_epsilon(double value) { SetDatatypeProperty ("epsilon", &value, 1); }
+        bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", &value, 1); }
         ///<summary>Gets a value of epsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_epsilon() { return GetDatatypeProperty<double>("epsilon", NULL); }
         ///<summary>Sets value of forceSolid</summary>
-        void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", &value, 1); }
+        bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", &value, 1); }
         ///<summary>Gets a value of forceSolid, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_forceSolid() { return GetDatatypeProperty<bool>("forceSolid", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
-        void set_objects(const GeometricItem* instances, int64_t count) { SetObjectProperty<GeometricItem>("objects", instances, count); }
+        bool set_objects(const GeometricItem* instances, int64_t count) { return SetObjectProperty<GeometricItem>("objects", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_objects(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("objects", instances, count); }
+        bool set_objects(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("objects", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const GeometricItem* get_objects(int64_t* pCount) { return GetObjectProperty<GeometricItem>("objects", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_objects_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("objects", pCount); }
         ///<summary>Sets value of relativeEpsilon</summary>
-        void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", &value, 1); }
+        bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", &value, 1); }
         ///<summary>Gets a value of relativeEpsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_relativeEpsilon() { return GetDatatypeProperty<double>("relativeEpsilon", NULL); }
         ///<summary>Sets value of representsSolid</summary>
-        void set_representsSolid(bool value) { SetDatatypeProperty ("representsSolid", &value, 1); }
+        bool set_representsSolid(bool value) { return SetDatatypeProperty ("representsSolid", &value, 1); }
         ///<summary>Gets a value of representsSolid, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_representsSolid() { return GetDatatypeProperty<bool>("representsSolid", NULL); }
     };
@@ -1918,27 +1924,27 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        void set_ambient(const ColorComponent& instance) { SetObjectProperty<ColorComponent>("ambient", &instance, 1); }
+        bool set_ambient(const ColorComponent& instance) { return SetObjectProperty<ColorComponent>("ambient", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const ColorComponent* get_ambient() { return GetObjectProperty<ColorComponent>("ambient", NULL); }
         ///<summary>Sets value of ambientReflectance</summary>
-        void set_ambientReflectance(double value) { SetDatatypeProperty ("ambientReflectance", &value, 1); }
+        bool set_ambientReflectance(double value) { return SetDatatypeProperty ("ambientReflectance", &value, 1); }
         ///<summary>Gets a value of ambientReflectance, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_ambientReflectance() { return GetDatatypeProperty<double>("ambientReflectance", NULL); }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        void set_diffuse(const ColorComponent& instance) { SetObjectProperty<ColorComponent>("diffuse", &instance, 1); }
+        bool set_diffuse(const ColorComponent& instance) { return SetObjectProperty<ColorComponent>("diffuse", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const ColorComponent* get_diffuse() { return GetObjectProperty<ColorComponent>("diffuse", NULL); }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        void set_emissive(const ColorComponent& instance) { SetObjectProperty<ColorComponent>("emissive", &instance, 1); }
+        bool set_emissive(const ColorComponent& instance) { return SetObjectProperty<ColorComponent>("emissive", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const ColorComponent* get_emissive() { return GetObjectProperty<ColorComponent>("emissive", NULL); }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        void set_specular(const ColorComponent& instance) { SetObjectProperty<ColorComponent>("specular", &instance, 1); }
+        bool set_specular(const ColorComponent& instance) { return SetObjectProperty<ColorComponent>("specular", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const ColorComponent* get_specular() { return GetObjectProperty<ColorComponent>("specular", NULL); }
         ///<summary>Sets value of transparency</summary>
-        void set_transparency(double value) { SetDatatypeProperty ("transparency", &value, 1); }
+        bool set_transparency(double value) { return SetDatatypeProperty ("transparency", &value, 1); }
         ///<summary>Gets a value of transparency, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_transparency() { return GetDatatypeProperty<double>("transparency", NULL); }
     };
@@ -1972,19 +1978,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of B</summary>
-        void set_B(double value) { SetDatatypeProperty ("B", &value, 1); }
+        bool set_B(double value) { return SetDatatypeProperty ("B", &value, 1); }
         ///<summary>Gets a value of B, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_B() { return GetDatatypeProperty<double>("B", NULL); }
         ///<summary>Sets value of G</summary>
-        void set_G(double value) { SetDatatypeProperty ("G", &value, 1); }
+        bool set_G(double value) { return SetDatatypeProperty ("G", &value, 1); }
         ///<summary>Gets a value of G, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_G() { return GetDatatypeProperty<double>("G", NULL); }
         ///<summary>Sets value of R</summary>
-        void set_R(double value) { SetDatatypeProperty ("R", &value, 1); }
+        bool set_R(double value) { return SetDatatypeProperty ("R", &value, 1); }
         ///<summary>Gets a value of R, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_R() { return GetDatatypeProperty<double>("R", NULL); }
         ///<summary>Sets value of W</summary>
-        void set_W(double value) { SetDatatypeProperty ("W", &value, 1); }
+        bool set_W(double value) { return SetDatatypeProperty ("W", &value, 1); }
         ///<summary>Gets a value of W, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_W() { return GetDatatypeProperty<double>("W", NULL); }
     };
@@ -2018,15 +2024,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -2085,19 +2091,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of semiVerticalAngle</summary>
-        void set_semiVerticalAngle(double value) { SetDatatypeProperty ("semiVerticalAngle", &value, 1); }
+        bool set_semiVerticalAngle(double value) { return SetDatatypeProperty ("semiVerticalAngle", &value, 1); }
         ///<summary>Gets a value of semiVerticalAngle, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_semiVerticalAngle() { return GetDatatypeProperty<double>("semiVerticalAngle", NULL); }
     };
@@ -2131,7 +2137,7 @@ namespace GEOM
        //
 
         ///<summary>Sets value of instanceReference</summary>
-        void set_instanceReference(int64_t value) { SetDatatypeProperty ("instanceReference", &value, 1); }
+        bool set_instanceReference(int64_t value) { return SetDatatypeProperty ("instanceReference", &value, 1); }
         ///<summary>Gets a value of instanceReference, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_instanceReference() { return GetDatatypeProperty<int64_t>("instanceReference", NULL); }
     };
@@ -2190,7 +2196,7 @@ namespace GEOM
        //
 
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
     };
@@ -2249,15 +2255,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of width</summary>
-        void set_width(double value) { SetDatatypeProperty ("width", &value, 1); }
+        bool set_width(double value) { return SetDatatypeProperty ("width", &value, 1); }
         ///<summary>Gets a value of width, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_width() { return GetDatatypeProperty<double>("width", NULL); }
     };
@@ -2291,9 +2297,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        void set_faces(const Face* instances, int64_t count) { SetObjectProperty<Face>("faces", instances, count); }
+        bool set_faces(const Face* instances, int64_t count) { return SetObjectProperty<Face>("faces", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_faces(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("faces", instances, count); }
+        bool set_faces(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("faces", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Face* get_faces(int64_t* pCount) { return GetObjectProperty<Face>("faces", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -2329,15 +2335,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -2371,11 +2377,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -2409,15 +2415,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of majorRadius</summary>
-        void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", &value, 1); }
+        bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", &value, 1); }
         ///<summary>Gets a value of majorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_majorRadius() { return GetDatatypeProperty<double>("majorRadius", NULL); }
         ///<summary>Sets value of minorRadius</summary>
-        void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", &value, 1); }
+        bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", &value, 1); }
         ///<summary>Gets a value of minorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_minorRadius() { return GetDatatypeProperty<double>("minorRadius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -2451,11 +2457,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of absoluteEpsilon</summary>
-        void set_absoluteEpsilon(double value) { SetDatatypeProperty ("absoluteEpsilon", &value, 1); }
+        bool set_absoluteEpsilon(double value) { return SetDatatypeProperty ("absoluteEpsilon", &value, 1); }
         ///<summary>Gets a value of absoluteEpsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_absoluteEpsilon() { return GetDatatypeProperty<double>("absoluteEpsilon", NULL); }
         ///<summary>Sets value of relativeEpsilon</summary>
-        void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", &value, 1); }
+        bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", &value, 1); }
         ///<summary>Gets a value of relativeEpsilon, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_relativeEpsilon() { return GetDatatypeProperty<double>("relativeEpsilon", NULL); }
     };
@@ -2489,11 +2495,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of attenuation</summary>
-        void set_attenuation(double value) { SetDatatypeProperty ("attenuation", &value, 1); }
+        bool set_attenuation(double value) { return SetDatatypeProperty ("attenuation", &value, 1); }
         ///<summary>Gets a value of attenuation, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_attenuation() { return GetDatatypeProperty<double>("attenuation", NULL); }
         ///<summary>Sets value of range</summary>
-        void set_range(double value) { SetDatatypeProperty ("range", &value, 1); }
+        bool set_range(double value) { return SetDatatypeProperty ("range", &value, 1); }
         ///<summary>Gets a value of range, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_range() { return GetDatatypeProperty<double>("range", NULL); }
     };
@@ -2527,7 +2533,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
     };
@@ -2586,15 +2592,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of b</summary>
-        void set_b(double value) { SetDatatypeProperty ("b", &value, 1); }
+        bool set_b(double value) { return SetDatatypeProperty ("b", &value, 1); }
         ///<summary>Gets a value of b, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_b() { return GetDatatypeProperty<double>("b", NULL); }
         ///<summary>Sets value of radiusI</summary>
-        void set_radiusI(double value) { SetDatatypeProperty ("radiusI", &value, 1); }
+        bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", &value, 1); }
         ///<summary>Gets a value of radiusI, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusI() { return GetDatatypeProperty<double>("radiusI", NULL); }
         ///<summary>Sets value of radiusII</summary>
-        void set_radiusII(double value) { SetDatatypeProperty ("radiusII", &value, 1); }
+        bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", &value, 1); }
         ///<summary>Gets a value of radiusII, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusII() { return GetDatatypeProperty<double>("radiusII", NULL); }
     };
@@ -2628,19 +2634,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of radiusI</summary>
-        void set_radiusI(double value) { SetDatatypeProperty ("radiusI", &value, 1); }
+        bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", &value, 1); }
         ///<summary>Gets a value of radiusI, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusI() { return GetDatatypeProperty<double>("radiusI", NULL); }
         ///<summary>Sets value of radiusII</summary>
-        void set_radiusII(double value) { SetDatatypeProperty ("radiusII", &value, 1); }
+        bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", &value, 1); }
         ///<summary>Gets a value of radiusII, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radiusII() { return GetDatatypeProperty<double>("radiusII", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -2674,27 +2680,27 @@ namespace GEOM
        //
 
         ///<summary>Sets value of extrusionLength</summary>
-        void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", &value, 1); }
+        bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", &value, 1); }
         ///<summary>Gets a value of extrusionLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionLength() { return GetDatatypeProperty<double>("extrusionLength", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        void set_openingPoints(double* values, int64_t count) { SetDatatypeProperty ("openingPoints", values, count); }
+        bool set_openingPoints(const double* values, int64_t count) { return SetDatatypeProperty ("openingPoints", values, count); }
         ///<summary>Gets values array of openingPoints. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPoints(int64_t* pCount) { return GetDatatypeProperty<double>("openingPoints", pCount); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        void set_openingSizes(int64_t* values, int64_t count) { SetDatatypeProperty ("openingSizes", values, count); }
+        bool set_openingSizes(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizes", values, count); }
         ///<summary>Gets values array of openingSizes. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizes(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizes", pCount); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        void set_polygonDirection(double* values, int64_t count) { SetDatatypeProperty ("polygonDirection", values, count); }
+        bool set_polygonDirection(const double* values, int64_t count) { return SetDatatypeProperty ("polygonDirection", values, count); }
         ///<summary>Gets values array of polygonDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_polygonDirection(int64_t* pCount) { return GetDatatypeProperty<double>("polygonDirection", pCount); }
     };
@@ -2728,39 +2734,39 @@ namespace GEOM
        //
 
         ///<summary>Sets value of extrusionLength</summary>
-        void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", &value, 1); }
+        bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", &value, 1); }
         ///<summary>Gets a value of extrusionLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionLength() { return GetDatatypeProperty<double>("extrusionLength", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        void set_openingPoints(double* values, int64_t count) { SetDatatypeProperty ("openingPoints", values, count); }
+        bool set_openingPoints(const double* values, int64_t count) { return SetDatatypeProperty ("openingPoints", values, count); }
         ///<summary>Gets values array of openingPoints. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPoints(int64_t* pCount) { return GetDatatypeProperty<double>("openingPoints", pCount); }
         ///<summary>Sets values of openingPointsEnd. OWL cardinality 0..-1</summary>
-        void set_openingPointsEnd(double* values, int64_t count) { SetDatatypeProperty ("openingPointsEnd", values, count); }
+        bool set_openingPointsEnd(const double* values, int64_t count) { return SetDatatypeProperty ("openingPointsEnd", values, count); }
         ///<summary>Gets values array of openingPointsEnd. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_openingPointsEnd(int64_t* pCount) { return GetDatatypeProperty<double>("openingPointsEnd", pCount); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        void set_openingSizes(int64_t* values, int64_t count) { SetDatatypeProperty ("openingSizes", values, count); }
+        bool set_openingSizes(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizes", values, count); }
         ///<summary>Gets values array of openingSizes. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizes(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizes", pCount); }
         ///<summary>Sets values of openingSizesEnd. OWL cardinality 0..-1</summary>
-        void set_openingSizesEnd(int64_t* values, int64_t count) { SetDatatypeProperty ("openingSizesEnd", values, count); }
+        bool set_openingSizesEnd(const int64_t* values, int64_t count) { return SetDatatypeProperty ("openingSizesEnd", values, count); }
         ///<summary>Gets values array of openingSizesEnd. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_openingSizesEnd(int64_t* pCount) { return GetDatatypeProperty<int64_t>("openingSizesEnd", pCount); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of pointsEnd. OWL cardinality 6..-1</summary>
-        void set_pointsEnd(double* values, int64_t count) { SetDatatypeProperty ("pointsEnd", values, count); }
+        bool set_pointsEnd(const double* values, int64_t count) { return SetDatatypeProperty ("pointsEnd", values, count); }
         ///<summary>Gets values array of pointsEnd. OWL cardinality 6..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_pointsEnd(int64_t* pCount) { return GetDatatypeProperty<double>("pointsEnd", pCount); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        void set_polygonDirection(double* values, int64_t count) { SetDatatypeProperty ("polygonDirection", values, count); }
+        bool set_polygonDirection(const double* values, int64_t count) { return SetDatatypeProperty ("polygonDirection", values, count); }
         ///<summary>Gets values array of polygonDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_polygonDirection(int64_t* pCount) { return GetDatatypeProperty<double>("polygonDirection", pCount); }
     };
@@ -2794,27 +2800,27 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_extrusionArea(const Curve& instance) { SetObjectProperty<Curve>("extrusionArea", &instance, 1); }
+        bool set_extrusionArea(const Curve& instance) { return SetObjectProperty<Curve>("extrusionArea", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_extrusionArea() { return GetObjectProperty<Curve>("extrusionArea", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_extrusionAreaOpenings(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("extrusionAreaOpenings", instances, count); }
+        bool set_extrusionAreaOpenings(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("extrusionAreaOpenings", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_extrusionAreaOpenings(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("extrusionAreaOpenings", instances, count); }
+        bool set_extrusionAreaOpenings(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("extrusionAreaOpenings", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_extrusionAreaOpenings(int64_t* pCount) { return GetObjectProperty<Curve>("extrusionAreaOpenings", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_extrusionAreaOpenings_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("extrusionAreaOpenings", pCount); }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        void set_extrusionDirection(double* values, int64_t count) { SetDatatypeProperty ("extrusionDirection", values, count); }
+        bool set_extrusionDirection(const double* values, int64_t count) { return SetDatatypeProperty ("extrusionDirection", values, count); }
         ///<summary>Gets values array of extrusionDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionDirection(int64_t* pCount) { return GetDatatypeProperty<double>("extrusionDirection", pCount); }
         ///<summary>Sets value of extrusionLength</summary>
-        void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", &value, 1); }
+        bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", &value, 1); }
         ///<summary>Gets a value of extrusionLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionLength() { return GetDatatypeProperty<double>("extrusionLength", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
     };
@@ -2848,23 +2854,23 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        void set_extrusionAreaSet(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("extrusionAreaSet", instances, count); }
+        bool set_extrusionAreaSet(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("extrusionAreaSet", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_extrusionAreaSet(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("extrusionAreaSet", instances, count); }
+        bool set_extrusionAreaSet(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("extrusionAreaSet", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_extrusionAreaSet(int64_t* pCount) { return GetObjectProperty<Curve>("extrusionAreaSet", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_extrusionAreaSet_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("extrusionAreaSet", pCount); }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        void set_extrusionDirection(double* values, int64_t count) { SetDatatypeProperty ("extrusionDirection", values, count); }
+        bool set_extrusionDirection(const double* values, int64_t count) { return SetDatatypeProperty ("extrusionDirection", values, count); }
         ///<summary>Gets values array of extrusionDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionDirection(int64_t* pCount) { return GetDatatypeProperty<double>("extrusionDirection", pCount); }
         ///<summary>Sets value of extrusionLength</summary>
-        void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", &value, 1); }
+        bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", &value, 1); }
         ///<summary>Gets a value of extrusionLength, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_extrusionLength() { return GetDatatypeProperty<double>("extrusionLength", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
     };
@@ -2898,19 +2904,19 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_innerPolygons(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("innerPolygons", instances, count); }
+        bool set_innerPolygons(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("innerPolygons", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_innerPolygons(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("innerPolygons", instances, count); }
+        bool set_innerPolygons(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("innerPolygons", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_innerPolygons(int64_t* pCount) { return GetObjectProperty<Curve>("innerPolygons", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_innerPolygons_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("innerPolygons", pCount); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_outerPolygon(const Curve& instance) { SetObjectProperty<Curve>("outerPolygon", &instance, 1); }
+        bool set_outerPolygon(const Curve& instance) { return SetObjectProperty<Curve>("outerPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_outerPolygon() { return GetObjectProperty<Curve>("outerPolygon", NULL); }
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
     };
@@ -2944,15 +2950,15 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_polygons(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("polygons", instances, count); }
+        bool set_polygons(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("polygons", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_polygons(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("polygons", instances, count); }
+        bool set_polygons(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("polygons", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_polygons(int64_t* pCount) { return GetObjectProperty<Curve>("polygons", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_polygons_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("polygons", pCount); }
         ///<summary>Sets value of setting</summary>
-        void set_setting(int64_t value) { SetDatatypeProperty ("setting", &value, 1); }
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
         ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
     };
@@ -2986,19 +2992,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of factor</summary>
-        void set_factor(double value) { SetDatatypeProperty ("factor", &value, 1); }
+        bool set_factor(double value) { return SetDatatypeProperty ("factor", &value, 1); }
         ///<summary>Gets a value of factor, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_factor() { return GetDatatypeProperty<double>("factor", NULL); }
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -3032,15 +3038,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of majorRadius</summary>
-        void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", &value, 1); }
+        bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", &value, 1); }
         ///<summary>Gets a value of majorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_majorRadius() { return GetDatatypeProperty<double>("majorRadius", NULL); }
         ///<summary>Sets value of minorRadius</summary>
-        void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", &value, 1); }
+        bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", &value, 1); }
         ///<summary>Gets a value of minorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_minorRadius() { return GetDatatypeProperty<double>("minorRadius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -3099,7 +3105,7 @@ namespace GEOM
        //
 
         ///<summary>Sets value of b</summary>
-        void set_b(double value) { SetDatatypeProperty ("b", &value, 1); }
+        bool set_b(double value) { return SetDatatypeProperty ("b", &value, 1); }
         ///<summary>Gets a value of b, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_b() { return GetDatatypeProperty<double>("b", NULL); }
     };
@@ -3158,9 +3164,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Surface. OWL cardinality 2..2</summary>
-        void set_surfaces(const Surface* instances, int64_t count) { SetObjectProperty<Surface>("surfaces", instances, count); }
+        bool set_surfaces(const Surface* instances, int64_t count) { return SetObjectProperty<Surface>("surfaces", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 2..2</summary>
-        void set_surfaces(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("surfaces", instances, count); }
+        bool set_surfaces(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("surfaces", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 2..2. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Surface* get_surfaces(int64_t* pCount) { return GetObjectProperty<Surface>("surfaces", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 2..2. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -3196,11 +3202,11 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_curve(const Curve& instance) { SetObjectProperty<Curve>("curve", &instance, 1); }
+        bool set_curve(const Curve& instance) { return SetObjectProperty<Curve>("curve", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_curve() { return GetObjectProperty<Curve>("curve", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        void set_surface(const Surface& instance) { SetObjectProperty<Surface>("surface", &instance, 1); }
+        bool set_surface(const Surface& instance) { return SetObjectProperty<Surface>("surface", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Surface* get_surface() { return GetObjectProperty<Surface>("surface", NULL); }
     };
@@ -3259,55 +3265,55 @@ namespace GEOM
        //
 
         ///<summary>Sets value of _11</summary>
-        void set__11(double value) { SetDatatypeProperty ("_11", &value, 1); }
+        bool set__11(double value) { return SetDatatypeProperty ("_11", &value, 1); }
         ///<summary>Gets a value of _11, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__11() { return GetDatatypeProperty<double>("_11", NULL); }
         ///<summary>Sets value of _12</summary>
-        void set__12(double value) { SetDatatypeProperty ("_12", &value, 1); }
+        bool set__12(double value) { return SetDatatypeProperty ("_12", &value, 1); }
         ///<summary>Gets a value of _12, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__12() { return GetDatatypeProperty<double>("_12", NULL); }
         ///<summary>Sets value of _13</summary>
-        void set__13(double value) { SetDatatypeProperty ("_13", &value, 1); }
+        bool set__13(double value) { return SetDatatypeProperty ("_13", &value, 1); }
         ///<summary>Gets a value of _13, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__13() { return GetDatatypeProperty<double>("_13", NULL); }
         ///<summary>Sets value of _21</summary>
-        void set__21(double value) { SetDatatypeProperty ("_21", &value, 1); }
+        bool set__21(double value) { return SetDatatypeProperty ("_21", &value, 1); }
         ///<summary>Gets a value of _21, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__21() { return GetDatatypeProperty<double>("_21", NULL); }
         ///<summary>Sets value of _22</summary>
-        void set__22(double value) { SetDatatypeProperty ("_22", &value, 1); }
+        bool set__22(double value) { return SetDatatypeProperty ("_22", &value, 1); }
         ///<summary>Gets a value of _22, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__22() { return GetDatatypeProperty<double>("_22", NULL); }
         ///<summary>Sets value of _23</summary>
-        void set__23(double value) { SetDatatypeProperty ("_23", &value, 1); }
+        bool set__23(double value) { return SetDatatypeProperty ("_23", &value, 1); }
         ///<summary>Gets a value of _23, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__23() { return GetDatatypeProperty<double>("_23", NULL); }
         ///<summary>Sets value of _31</summary>
-        void set__31(double value) { SetDatatypeProperty ("_31", &value, 1); }
+        bool set__31(double value) { return SetDatatypeProperty ("_31", &value, 1); }
         ///<summary>Gets a value of _31, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__31() { return GetDatatypeProperty<double>("_31", NULL); }
         ///<summary>Sets value of _32</summary>
-        void set__32(double value) { SetDatatypeProperty ("_32", &value, 1); }
+        bool set__32(double value) { return SetDatatypeProperty ("_32", &value, 1); }
         ///<summary>Gets a value of _32, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__32() { return GetDatatypeProperty<double>("_32", NULL); }
         ///<summary>Sets value of _33</summary>
-        void set__33(double value) { SetDatatypeProperty ("_33", &value, 1); }
+        bool set__33(double value) { return SetDatatypeProperty ("_33", &value, 1); }
         ///<summary>Gets a value of _33, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__33() { return GetDatatypeProperty<double>("_33", NULL); }
         ///<summary>Sets value of _41</summary>
-        void set__41(double value) { SetDatatypeProperty ("_41", &value, 1); }
+        bool set__41(double value) { return SetDatatypeProperty ("_41", &value, 1); }
         ///<summary>Gets a value of _41, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__41() { return GetDatatypeProperty<double>("_41", NULL); }
         ///<summary>Sets value of _42</summary>
-        void set__42(double value) { SetDatatypeProperty ("_42", &value, 1); }
+        bool set__42(double value) { return SetDatatypeProperty ("_42", &value, 1); }
         ///<summary>Gets a value of _42, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__42() { return GetDatatypeProperty<double>("_42", NULL); }
         ///<summary>Sets value of _43</summary>
-        void set__43(double value) { SetDatatypeProperty ("_43", &value, 1); }
+        bool set__43(double value) { return SetDatatypeProperty ("_43", &value, 1); }
         ///<summary>Gets a value of _43, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get__43() { return GetDatatypeProperty<double>("_43", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..12</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..12. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
     };
@@ -3341,7 +3347,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
     };
@@ -3375,7 +3381,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_curve(const Curve& instance) { SetObjectProperty<Curve>("curve", &instance, 1); }
+        bool set_curve(const Curve& instance) { return SetObjectProperty<Curve>("curve", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_curve() { return GetObjectProperty<Curve>("curve", NULL); }
     };
@@ -3409,7 +3415,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        void set_surface(const Surface& instance) { SetObjectProperty<Surface>("surface", &instance, 1); }
+        bool set_surface(const Surface& instance) { return SetObjectProperty<Surface>("surface", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Surface* get_surface() { return GetObjectProperty<Surface>("surface", NULL); }
     };
@@ -3443,11 +3449,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", &value, 1); }
+        bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", &value, 1); }
         ///<summary>Gets a value of asOpenGL, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of points. OWL cardinality 6..6</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 6..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -3481,43 +3487,43 @@ namespace GEOM
        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", &value, 1); }
+        bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", &value, 1); }
         ///<summary>Gets a value of asOpenGL, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of endDirection. OWL cardinality 0..3</summary>
-        void set_endDirection(double* values, int64_t count) { SetDatatypeProperty ("endDirection", values, count); }
+        bool set_endDirection(const double* values, int64_t count) { return SetDatatypeProperty ("endDirection", values, count); }
         ///<summary>Gets values array of endDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_endDirection(int64_t* pCount) { return GetDatatypeProperty<double>("endDirection", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..6</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of startDirection. OWL cardinality 0..3</summary>
-        void set_startDirection(double* values, int64_t count) { SetDatatypeProperty ("startDirection", values, count); }
+        bool set_startDirection(const double* values, int64_t count) { return SetDatatypeProperty ("startDirection", values, count); }
         ///<summary>Gets values array of startDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_startDirection(int64_t* pCount) { return GetDatatypeProperty<double>("startDirection", pCount); }
         ///<summary>Sets value of x0</summary>
-        void set_x0(double value) { SetDatatypeProperty ("x0", &value, 1); }
+        bool set_x0(double value) { return SetDatatypeProperty ("x0", &value, 1); }
         ///<summary>Gets a value of x0, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_x0() { return GetDatatypeProperty<double>("x0", NULL); }
         ///<summary>Sets value of x1</summary>
-        void set_x1(double value) { SetDatatypeProperty ("x1", &value, 1); }
+        bool set_x1(double value) { return SetDatatypeProperty ("x1", &value, 1); }
         ///<summary>Gets a value of x1, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_x1() { return GetDatatypeProperty<double>("x1", NULL); }
         ///<summary>Sets value of y0</summary>
-        void set_y0(double value) { SetDatatypeProperty ("y0", &value, 1); }
+        bool set_y0(double value) { return SetDatatypeProperty ("y0", &value, 1); }
         ///<summary>Gets a value of y0, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_y0() { return GetDatatypeProperty<double>("y0", NULL); }
         ///<summary>Sets value of y1</summary>
-        void set_y1(double value) { SetDatatypeProperty ("y1", &value, 1); }
+        bool set_y1(double value) { return SetDatatypeProperty ("y1", &value, 1); }
         ///<summary>Gets a value of y1, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_y1() { return GetDatatypeProperty<double>("y1", NULL); }
         ///<summary>Sets value of z0</summary>
-        void set_z0(double value) { SetDatatypeProperty ("z0", &value, 1); }
+        bool set_z0(double value) { return SetDatatypeProperty ("z0", &value, 1); }
         ///<summary>Gets a value of z0, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_z0() { return GetDatatypeProperty<double>("z0", NULL); }
         ///<summary>Sets value of z1</summary>
-        void set_z1(double value) { SetDatatypeProperty ("z1", &value, 1); }
+        bool set_z1(double value) { return SetDatatypeProperty ("z1", &value, 1); }
         ///<summary>Gets a value of z1, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_z1() { return GetDatatypeProperty<double>("z1", NULL); }
     };
@@ -3551,11 +3557,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", &value, 1); }
+        bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", &value, 1); }
         ///<summary>Gets a value of asOpenGL, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -3589,9 +3595,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        void set_faces(const Face* instances, int64_t count) { SetObjectProperty<Face>("faces", instances, count); }
+        bool set_faces(const Face* instances, int64_t count) { return SetObjectProperty<Face>("faces", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_faces(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("faces", instances, count); }
+        bool set_faces(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("faces", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Face* get_faces(int64_t* pCount) { return GetObjectProperty<Face>("faces", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -3627,13 +3633,13 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        void set_color(const Color& instance) { SetObjectProperty<Color>("color", &instance, 1); }
+        bool set_color(const Color& instance) { return SetObjectProperty<Color>("color", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Color* get_color() { return GetObjectProperty<Color>("color", NULL); }
         ///<summary>Sets relationships from this instance to an array of Texture. OWL cardinality 0..2</summary>
-        void set_textures(const Texture* instances, int64_t count) { SetObjectProperty<Texture>("textures", instances, count); }
+        bool set_textures(const Texture* instances, int64_t count) { return SetObjectProperty<Texture>("textures", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..2</summary>
-        void set_textures(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("textures", instances, count); }
+        bool set_textures(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("textures", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..2. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Texture* get_textures(int64_t* pCount) { return GetObjectProperty<Texture>("textures", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..2. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -3669,11 +3675,11 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_firstMatrix(const Matrix& instance) { SetObjectProperty<Matrix>("firstMatrix", &instance, 1); }
+        bool set_firstMatrix(const Matrix& instance) { return SetObjectProperty<Matrix>("firstMatrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_firstMatrix() { return GetObjectProperty<Matrix>("firstMatrix", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_secondMatrix(const Matrix& instance) { SetObjectProperty<Matrix>("secondMatrix", &instance, 1); }
+        bool set_secondMatrix(const Matrix& instance) { return SetObjectProperty<Matrix>("secondMatrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_secondMatrix() { return GetObjectProperty<Matrix>("secondMatrix", NULL); }
     };
@@ -3707,7 +3713,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Point3DSet</summary>
-        void set_pointSet(const Point3DSet& instance) { SetObjectProperty<Point3DSet>("pointSet", &instance, 1); }
+        bool set_pointSet(const Point3DSet& instance) { return SetObjectProperty<Point3DSet>("pointSet", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Point3DSet* get_pointSet() { return GetObjectProperty<Point3DSet>("pointSet", NULL); }
     };
@@ -3741,7 +3747,7 @@ namespace GEOM
        //
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        void set_weights(double* values, int64_t count) { SetDatatypeProperty ("weights", values, count); }
+        bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
         ///<summary>Gets values array of weights. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -3775,7 +3781,7 @@ namespace GEOM
        //
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        void set_weights(double* values, int64_t count) { SetDatatypeProperty ("weights", values, count); }
+        bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
         ///<summary>Gets values array of weights. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -3834,19 +3840,19 @@ namespace GEOM
        //
 
         ///<summary>Sets value of A</summary>
-        void set_A(double value) { SetDatatypeProperty ("A", &value, 1); }
+        bool set_A(double value) { return SetDatatypeProperty ("A", &value, 1); }
         ///<summary>Gets a value of A, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_A() { return GetDatatypeProperty<double>("A", NULL); }
         ///<summary>Sets value of B</summary>
-        void set_B(double value) { SetDatatypeProperty ("B", &value, 1); }
+        bool set_B(double value) { return SetDatatypeProperty ("B", &value, 1); }
         ///<summary>Gets a value of B, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_B() { return GetDatatypeProperty<double>("B", NULL); }
         ///<summary>Sets value of C</summary>
-        void set_C(double value) { SetDatatypeProperty ("C", &value, 1); }
+        bool set_C(double value) { return SetDatatypeProperty ("C", &value, 1); }
         ///<summary>Gets a value of C, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_C() { return GetDatatypeProperty<double>("C", NULL); }
         ///<summary>Sets value of D</summary>
-        void set_D(double value) { SetDatatypeProperty ("D", &value, 1); }
+        bool set_D(double value) { return SetDatatypeProperty ("D", &value, 1); }
         ///<summary>Gets a value of D, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_D() { return GetDatatypeProperty<double>("D", NULL); }
     };
@@ -3880,7 +3886,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        void set_plane(const Plane& instance) { SetObjectProperty<Plane>("plane", &instance, 1); }
+        bool set_plane(const Plane& instance) { return SetObjectProperty<Plane>("plane", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Plane* get_plane() { return GetObjectProperty<Plane>("plane", NULL); }
     };
@@ -3939,27 +3945,27 @@ namespace GEOM
        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", &value, 1); }
+        bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", &value, 1); }
         ///<summary>Gets a value of asOpenGL, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..3</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets value of x</summary>
-        void set_x(double value) { SetDatatypeProperty ("x", &value, 1); }
+        bool set_x(double value) { return SetDatatypeProperty ("x", &value, 1); }
         ///<summary>Gets a value of x, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_x() { return GetDatatypeProperty<double>("x", NULL); }
         ///<summary>Sets value of y</summary>
-        void set_y(double value) { SetDatatypeProperty ("y", &value, 1); }
+        bool set_y(double value) { return SetDatatypeProperty ("y", &value, 1); }
         ///<summary>Gets a value of y, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_y() { return GetDatatypeProperty<double>("y", NULL); }
         ///<summary>Sets value of z</summary>
-        void set_z(double value) { SetDatatypeProperty ("z", &value, 1); }
+        bool set_z(double value) { return SetDatatypeProperty ("z", &value, 1); }
         ///<summary>Gets a value of z, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_z() { return GetDatatypeProperty<double>("z", NULL); }
     };
@@ -3993,15 +3999,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", &value, 1); }
+        bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", &value, 1); }
         ///<summary>Gets a value of asOpenGL, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_asOpenGL() { return GetDatatypeProperty<bool>("asOpenGL", NULL); }
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
     };
@@ -4035,7 +4041,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
     };
@@ -4069,7 +4075,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        void set_position(const Point3D& instance) { SetObjectProperty<Point3D>("position", &instance, 1); }
+        bool set_position(const Point3D& instance) { return SetObjectProperty<Point3D>("position", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Point3D* get_position() { return GetObjectProperty<Point3D>("position", NULL); }
     };
@@ -4103,19 +4109,19 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of x</summary>
-        void set_x(double value) { SetDatatypeProperty ("x", &value, 1); }
+        bool set_x(double value) { return SetDatatypeProperty ("x", &value, 1); }
         ///<summary>Gets a value of x, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_x() { return GetDatatypeProperty<double>("x", NULL); }
         ///<summary>Sets value of y</summary>
-        void set_y(double value) { SetDatatypeProperty ("y", &value, 1); }
+        bool set_y(double value) { return SetDatatypeProperty ("y", &value, 1); }
         ///<summary>Gets a value of y, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_y() { return GetDatatypeProperty<double>("y", NULL); }
         ///<summary>Sets value of z</summary>
-        void set_z(double value) { SetDatatypeProperty ("z", &value, 1); }
+        bool set_z(double value) { return SetDatatypeProperty ("z", &value, 1); }
         ///<summary>Gets a value of z, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_z() { return GetDatatypeProperty<double>("z", NULL); }
     };
@@ -4149,9 +4155,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        void set_lineParts(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("lineParts", instances, count); }
+        bool set_lineParts(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("lineParts", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_lineParts(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("lineParts", instances, count); }
+        bool set_lineParts(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("lineParts", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_lineParts(int64_t* pCount) { return GetObjectProperty<Curve>("lineParts", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -4187,9 +4193,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        void set_lineParts(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("lineParts", instances, count); }
+        bool set_lineParts(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("lineParts", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_lineParts(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("lineParts", instances, count); }
+        bool set_lineParts(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("lineParts", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_lineParts(int64_t* pCount) { return GetObjectProperty<Curve>("lineParts", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -4225,23 +4231,23 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..-1</summary>
-        void set_pointReferences(const Point3D* instances, int64_t count) { SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_pointReferences(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("pointReferences", instances, count); }
+        bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_pointReferences_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("pointReferences", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        void set_points(double* values, int64_t count) { SetDatatypeProperty ("points", values, count); }
+        bool set_points(const double* values, int64_t count) { return SetDatatypeProperty ("points", values, count); }
         ///<summary>Gets values array of points. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_points(int64_t* pCount) { return GetDatatypeProperty<double>("points", pCount); }
         ///<summary>Sets values of tangent. OWL cardinality 0..-1</summary>
-        void set_tangent(double* values, int64_t count) { SetDatatypeProperty ("tangent", values, count); }
+        bool set_tangent(const double* values, int64_t count) { return SetDatatypeProperty ("tangent", values, count); }
         ///<summary>Gets values array of tangent. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_tangent(int64_t* pCount) { return GetDatatypeProperty<double>("tangent", pCount); }
     };
@@ -4275,11 +4281,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
     };
@@ -4313,15 +4319,15 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_innerPolygons(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("innerPolygons", instances, count); }
+        bool set_innerPolygons(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("innerPolygons", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_innerPolygons(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("innerPolygons", instances, count); }
+        bool set_innerPolygons(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("innerPolygons", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_innerPolygons(int64_t* pCount) { return GetObjectProperty<Curve>("innerPolygons", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_innerPolygons_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("innerPolygons", pCount); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_outerPolygon(const Curve& instance) { SetObjectProperty<Curve>("outerPolygon", &instance, 1); }
+        bool set_outerPolygon(const Curve& instance) { return SetObjectProperty<Curve>("outerPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_outerPolygon() { return GetObjectProperty<Curve>("outerPolygon", NULL); }
     };
@@ -4355,7 +4361,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
     };
@@ -4389,15 +4395,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of length</summary>
-        void set_length(double value) { SetDatatypeProperty ("length", &value, 1); }
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
         ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets value of width</summary>
-        void set_width(double value) { SetDatatypeProperty ("width", &value, 1); }
+        bool set_width(double value) { return SetDatatypeProperty ("width", &value, 1); }
         ///<summary>Gets a value of width, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_width() { return GetDatatypeProperty<double>("width", NULL); }
     };
@@ -4431,7 +4437,7 @@ namespace GEOM
        //
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        void set_weights(double* values, int64_t count) { SetDatatypeProperty ("weights", values, count); }
+        bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
         ///<summary>Gets values array of weights. OWL cardinality 2..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -4465,7 +4471,7 @@ namespace GEOM
        //
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        void set_weights(double* values, int64_t count) { SetDatatypeProperty ("weights", values, count); }
+        bool set_weights(const double* values, int64_t count) { return SetDatatypeProperty ("weights", values, count); }
         ///<summary>Gets values array of weights. OWL cardinality 4..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_weights(int64_t* pCount) { return GetDatatypeProperty<double>("weights", pCount); }
     };
@@ -4499,23 +4505,23 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets value of offsetZ</summary>
-        void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", &value, 1); }
+        bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", &value, 1); }
         ///<summary>Gets a value of offsetZ, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetZ() { return GetDatatypeProperty<double>("offsetZ", NULL); }
         ///<summary>Sets value of width</summary>
-        void set_width(double value) { SetDatatypeProperty ("width", &value, 1); }
+        bool set_width(double value) { return SetDatatypeProperty ("width", &value, 1); }
         ///<summary>Gets a value of width, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_width() { return GetDatatypeProperty<double>("width", NULL); }
     };
@@ -4549,15 +4555,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of count</summary>
-        void set_count(int64_t value) { SetDatatypeProperty ("count", &value, 1); }
+        bool set_count(int64_t value) { return SetDatatypeProperty ("count", &value, 1); }
         ///<summary>Gets a value of count, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_count() { return GetDatatypeProperty<int64_t>("count", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
     };
@@ -4616,27 +4622,27 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        void set_lightDirection(const Vector3& instance) { SetObjectProperty<Vector3>("lightDirection", &instance, 1); }
+        bool set_lightDirection(const Vector3& instance) { return SetObjectProperty<Vector3>("lightDirection", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector3* get_lightDirection() { return GetObjectProperty<Vector3>("lightDirection", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        void set_lightPoint(const Point3D& instance) { SetObjectProperty<Point3D>("lightPoint", &instance, 1); }
+        bool set_lightPoint(const Point3D& instance) { return SetObjectProperty<Point3D>("lightPoint", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Point3D* get_lightPoint() { return GetObjectProperty<Point3D>("lightPoint", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        void set_plane(const Plane& instance) { SetObjectProperty<Plane>("plane", &instance, 1); }
+        bool set_plane(const Plane& instance) { return SetObjectProperty<Plane>("plane", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Plane* get_plane() { return GetObjectProperty<Plane>("plane", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        void set_planeRefDirection(const Vector3& instance) { SetObjectProperty<Vector3>("planeRefDirection", &instance, 1); }
+        bool set_planeRefDirection(const Vector3& instance) { return SetObjectProperty<Vector3>("planeRefDirection", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector3* get_planeRefDirection() { return GetObjectProperty<Vector3>("planeRefDirection", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
     };
@@ -4695,23 +4701,23 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -4745,27 +4751,27 @@ namespace GEOM
        //
 
         ///<summary>Sets value of factor</summary>
-        void set_factor(double value) { SetDatatypeProperty ("factor", &value, 1); }
+        bool set_factor(double value) { return SetDatatypeProperty ("factor", &value, 1); }
         ///<summary>Gets a value of factor, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_factor() { return GetDatatypeProperty<double>("factor", NULL); }
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -4799,9 +4805,9 @@ namespace GEOM
        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        void set_faces(const Face* instances, int64_t count) { SetObjectProperty<Face>("faces", instances, count); }
+        bool set_faces(const Face* instances, int64_t count) { return SetObjectProperty<Face>("faces", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_faces(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("faces", instances, count); }
+        bool set_faces(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("faces", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Face* get_faces(int64_t* pCount) { return GetObjectProperty<Face>("faces", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -4837,15 +4843,15 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..6</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..6. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of thickness</summary>
-        void set_thickness(double value) { SetDatatypeProperty ("thickness", &value, 1); }
+        bool set_thickness(double value) { return SetDatatypeProperty ("thickness", &value, 1); }
         ///<summary>Gets a value of thickness, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_thickness() { return GetDatatypeProperty<double>("thickness", NULL); }
     };
@@ -4879,11 +4885,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -4917,11 +4923,11 @@ namespace GEOM
        //
 
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -4980,27 +4986,27 @@ namespace GEOM
        //
 
         ///<summary>Sets value of height</summary>
-        void set_height(double value) { SetDatatypeProperty ("height", &value, 1); }
+        bool set_height(double value) { return SetDatatypeProperty ("height", &value, 1); }
         ///<summary>Gets a value of height, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_height() { return GetDatatypeProperty<double>("height", NULL); }
         ///<summary>Sets value of offsetZ</summary>
-        void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", &value, 1); }
+        bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", &value, 1); }
         ///<summary>Gets a value of offsetZ, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetZ() { return GetDatatypeProperty<double>("offsetZ", NULL); }
         ///<summary>Sets value of radius</summary>
-        void set_radius(double value) { SetDatatypeProperty ("radius", &value, 1); }
+        bool set_radius(double value) { return SetDatatypeProperty ("radius", &value, 1); }
         ///<summary>Gets a value of radius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_radius() { return GetDatatypeProperty<double>("radius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
         ///<summary>Sets value of size</summary>
-        void set_size(double value) { SetDatatypeProperty ("size", &value, 1); }
+        bool set_size(double value) { return SetDatatypeProperty ("size", &value, 1); }
         ///<summary>Gets a value of size, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_size() { return GetDatatypeProperty<double>("size", NULL); }
         ///<summary>Sets value of start</summary>
-        void set_start(double value) { SetDatatypeProperty ("start", &value, 1); }
+        bool set_start(double value) { return SetDatatypeProperty ("start", &value, 1); }
         ///<summary>Gets a value of start, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_start() { return GetDatatypeProperty<double>("start", NULL); }
     };
@@ -5059,17 +5065,17 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_sweptArea(const Curve& instance) { SetObjectProperty<Curve>("sweptArea", &instance, 1); }
+        bool set_sweptArea(const Curve& instance) { return SetObjectProperty<Curve>("sweptArea", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_sweptArea() { return GetObjectProperty<Curve>("sweptArea", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_sweptAreaOpenings(int64_t* pCount) { return GetObjectProperty<Curve>("sweptAreaOpenings", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -5105,11 +5111,11 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_extrusion(const Vector& instance) { SetObjectProperty<Vector>("extrusion", &instance, 1); }
+        bool set_extrusion(const Vector& instance) { return SetObjectProperty<Vector>("extrusion", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_extrusion() { return GetObjectProperty<Vector>("extrusion", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_polygon(const Curve& instance) { SetObjectProperty<Curve>("polygon", &instance, 1); }
+        bool set_polygon(const Curve& instance) { return SetObjectProperty<Curve>("polygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_polygon() { return GetObjectProperty<Curve>("polygon", NULL); }
     };
@@ -5143,11 +5149,11 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -5181,25 +5187,25 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_sweptArea(const Curve& instance) { SetObjectProperty<Curve>("sweptArea", &instance, 1); }
+        bool set_sweptArea(const Curve& instance) { return SetObjectProperty<Curve>("sweptArea", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_sweptArea() { return GetObjectProperty<Curve>("sweptArea", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_sweptAreaOpenings(int64_t* pCount) { return GetObjectProperty<Curve>("sweptAreaOpenings", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -5235,21 +5241,21 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        void set_sweptAreaSet(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("sweptAreaSet", instances, count); }
+        bool set_sweptAreaSet(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("sweptAreaSet", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
-        void set_sweptAreaSet(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("sweptAreaSet", instances, count); }
+        bool set_sweptAreaSet(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("sweptAreaSet", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_sweptAreaSet(int64_t* pCount) { return GetObjectProperty<Curve>("sweptAreaSet", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -5285,37 +5291,37 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        void set_direction(const Vector& instance) { SetObjectProperty<Vector>("direction", &instance, 1); }
+        bool set_direction(const Vector& instance) { return SetObjectProperty<Vector>("direction", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector* get_direction() { return GetObjectProperty<Vector>("direction", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_sweptArea(const Curve& instance) { SetObjectProperty<Curve>("sweptArea", &instance, 1); }
+        bool set_sweptArea(const Curve& instance) { return SetObjectProperty<Curve>("sweptArea", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_sweptArea() { return GetObjectProperty<Curve>("sweptArea", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_sweptAreaEnd(const Curve& instance) { SetObjectProperty<Curve>("sweptAreaEnd", &instance, 1); }
+        bool set_sweptAreaEnd(const Curve& instance) { return SetObjectProperty<Curve>("sweptAreaEnd", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_sweptAreaEnd() { return GetObjectProperty<Curve>("sweptAreaEnd", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_sweptAreaEndOpenings(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("sweptAreaEndOpenings", instances, count); }
+        bool set_sweptAreaEndOpenings(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("sweptAreaEndOpenings", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_sweptAreaEndOpenings(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("sweptAreaEndOpenings", instances, count); }
+        bool set_sweptAreaEndOpenings(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("sweptAreaEndOpenings", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_sweptAreaEndOpenings(int64_t* pCount) { return GetObjectProperty<Curve>("sweptAreaEndOpenings", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_sweptAreaEndOpenings_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("sweptAreaEndOpenings", pCount); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const Curve* instances, int64_t count) { SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("sweptAreaOpenings", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
-        void set_sweptAreaOpenings(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
+        bool set_sweptAreaOpenings(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("sweptAreaOpenings", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Curve* get_sweptAreaOpenings(int64_t* pCount) { return GetObjectProperty<Curve>("sweptAreaOpenings", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -5351,43 +5357,43 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_bottomPolygon(const Curve& instance) { SetObjectProperty<Curve>("bottomPolygon", &instance, 1); }
+        bool set_bottomPolygon(const Curve& instance) { return SetObjectProperty<Curve>("bottomPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_bottomPolygon() { return GetObjectProperty<Curve>("bottomPolygon", NULL); }
         ///<summary>Sets values of connectionMap. OWL cardinality 0..-1</summary>
-        void set_connectionMap(int64_t* values, int64_t count) { SetDatatypeProperty ("connectionMap", values, count); }
+        bool set_connectionMap(const int64_t* values, int64_t count) { return SetDatatypeProperty ("connectionMap", values, count); }
         ///<summary>Gets values array of connectionMap. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_connectionMap(int64_t* pCount) { return GetDatatypeProperty<int64_t>("connectionMap", pCount); }
         ///<summary>Sets values of forcedStaticDirection. OWL cardinality 0..3</summary>
-        void set_forcedStaticDirection(double* values, int64_t count) { SetDatatypeProperty ("forcedStaticDirection", values, count); }
+        bool set_forcedStaticDirection(const double* values, int64_t count) { return SetDatatypeProperty ("forcedStaticDirection", values, count); }
         ///<summary>Gets values array of forcedStaticDirection. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_forcedStaticDirection(int64_t* pCount) { return GetDatatypeProperty<double>("forcedStaticDirection", pCount); }
         ///<summary>Sets value of forceSolid</summary>
-        void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", &value, 1); }
+        bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", &value, 1); }
         ///<summary>Gets a value of forceSolid, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_forceSolid() { return GetDatatypeProperty<bool>("forceSolid", NULL); }
         ///<summary>Sets value of fraction</summary>
-        void set_fraction(double value) { SetDatatypeProperty ("fraction", &value, 1); }
+        bool set_fraction(double value) { return SetDatatypeProperty ("fraction", &value, 1); }
         ///<summary>Gets a value of fraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_fraction() { return GetDatatypeProperty<double>("fraction", NULL); }
         ///<summary>Sets value of hasBottom</summary>
-        void set_hasBottom(bool value) { SetDatatypeProperty ("hasBottom", &value, 1); }
+        bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", &value, 1); }
         ///<summary>Gets a value of hasBottom, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_hasBottom() { return GetDatatypeProperty<bool>("hasBottom", NULL); }
         ///<summary>Sets value of hasTop</summary>
-        void set_hasTop(bool value) { SetDatatypeProperty ("hasTop", &value, 1); }
+        bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", &value, 1); }
         ///<summary>Gets a value of hasTop, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_hasTop() { return GetDatatypeProperty<bool>("hasTop", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_path(const Curve& instance) { SetObjectProperty<Curve>("path", &instance, 1); }
+        bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        void set_topPolygon(const Curve& instance) { SetObjectProperty<Curve>("topPolygon", &instance, 1); }
+        bool set_topPolygon(const Curve& instance) { return SetObjectProperty<Curve>("topPolygon", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_topPolygon() { return GetObjectProperty<Curve>("topPolygon", NULL); }
         ///<summary>Sets value of usesAbsolutePlacement</summary>
-        void set_usesAbsolutePlacement(bool value) { SetDatatypeProperty ("usesAbsolutePlacement", &value, 1); }
+        bool set_usesAbsolutePlacement(bool value) { return SetDatatypeProperty ("usesAbsolutePlacement", &value, 1); }
         ///<summary>Gets a value of usesAbsolutePlacement, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const bool* get_usesAbsolutePlacement() { return GetDatatypeProperty<bool>("usesAbsolutePlacement", NULL); }
     };
@@ -5421,35 +5427,35 @@ namespace GEOM
        //
 
         ///<summary>Sets value of name</summary>
-        void set_name(const char* const value) { SetDatatypeProperty ("name", &value, 1); }
+        bool set_name(const char* const value) { return SetDatatypeProperty ("name", &value, 1); }
         ///<summary>Gets a value of name, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const char* const* get_name() { return GetDatatypeProperty<const char* const>("name", NULL); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets values of origin. OWL cardinality 0..3</summary>
-        void set_origin(double* values, int64_t count) { SetDatatypeProperty ("origin", values, count); }
+        bool set_origin(const double* values, int64_t count) { return SetDatatypeProperty ("origin", values, count); }
         ///<summary>Gets values array of origin. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_origin(int64_t* pCount) { return GetDatatypeProperty<double>("origin", pCount); }
         ///<summary>Sets value of rotation</summary>
-        void set_rotation(double value) { SetDatatypeProperty ("rotation", &value, 1); }
+        bool set_rotation(double value) { return SetDatatypeProperty ("rotation", &value, 1); }
         ///<summary>Gets a value of rotation, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_rotation() { return GetDatatypeProperty<double>("rotation", NULL); }
         ///<summary>Sets value of scalingX</summary>
-        void set_scalingX(double value) { SetDatatypeProperty ("scalingX", &value, 1); }
+        bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", &value, 1); }
         ///<summary>Gets a value of scalingX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingX() { return GetDatatypeProperty<double>("scalingX", NULL); }
         ///<summary>Sets value of scalingY</summary>
-        void set_scalingY(double value) { SetDatatypeProperty ("scalingY", &value, 1); }
+        bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", &value, 1); }
         ///<summary>Gets a value of scalingY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_scalingY() { return GetDatatypeProperty<double>("scalingY", NULL); }
         ///<summary>Sets value of type</summary>
-        void set_type(int64_t value) { SetDatatypeProperty ("type", &value, 1); }
+        bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
     };
@@ -5483,15 +5489,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of majorRadius</summary>
-        void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", &value, 1); }
+        bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", &value, 1); }
         ///<summary>Gets a value of majorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_majorRadius() { return GetDatatypeProperty<double>("majorRadius", NULL); }
         ///<summary>Sets value of minorRadius</summary>
-        void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", &value, 1); }
+        bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", &value, 1); }
         ///<summary>Gets a value of minorRadius, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_minorRadius() { return GetDatatypeProperty<double>("minorRadius", NULL); }
         ///<summary>Sets value of segmentationParts</summary>
-        void set_segmentationParts(int64_t value) { SetDatatypeProperty ("segmentationParts", &value, 1); }
+        bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
     };
@@ -5525,11 +5531,11 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
     };
@@ -5563,25 +5569,25 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..9</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..9. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of offsetX</summary>
-        void set_offsetX(double value) { SetDatatypeProperty ("offsetX", &value, 1); }
+        bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", &value, 1); }
         ///<summary>Gets a value of offsetX, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetX() { return GetDatatypeProperty<double>("offsetX", NULL); }
         ///<summary>Sets value of offsetY</summary>
-        void set_offsetY(double value) { SetDatatypeProperty ("offsetY", &value, 1); }
+        bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", &value, 1); }
         ///<summary>Gets a value of offsetY, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetY() { return GetDatatypeProperty<double>("offsetY", NULL); }
         ///<summary>Sets value of offsetZ</summary>
-        void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", &value, 1); }
+        bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", &value, 1); }
         ///<summary>Gets a value of offsetZ, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetZ() { return GetDatatypeProperty<double>("offsetZ", NULL); }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..3</summary>
-        void set_pointReferences(const Point3D* instances, int64_t count) { SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..3</summary>
-        void set_pointReferences(const int64_t* instances, int64_t count) { SetObjectProperty<int64_t>("pointReferences", instances, count); }
+        bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -5617,15 +5623,15 @@ namespace GEOM
        //
 
         ///<summary>Sets value of innerFraction</summary>
-        void set_innerFraction(double value) { SetDatatypeProperty ("innerFraction", &value, 1); }
+        bool set_innerFraction(double value) { return SetDatatypeProperty ("innerFraction", &value, 1); }
         ///<summary>Gets a value of innerFraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_innerFraction() { return GetDatatypeProperty<double>("innerFraction", NULL); }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        void set_object(const GeometricItem& instance) { SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
         ///<summary>Sets value of outerFraction</summary>
-        void set_outerFraction(double value) { SetDatatypeProperty ("outerFraction", &value, 1); }
+        bool set_outerFraction(double value) { return SetDatatypeProperty ("outerFraction", &value, 1); }
         ///<summary>Gets a value of outerFraction, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_outerFraction() { return GetDatatypeProperty<double>("outerFraction", NULL); }
     };
@@ -5659,11 +5665,11 @@ namespace GEOM
        //
 
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        void set_indices(int64_t* values, int64_t count) { SetDatatypeProperty ("indices", values, count); }
+        bool set_indices(const int64_t* values, int64_t count) { return SetDatatypeProperty ("indices", values, count); }
         ///<summary>Gets values array of indices. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_indices(int64_t* pCount) { return GetDatatypeProperty<int64_t>("indices", pCount); }
         ///<summary>Sets values of vertices. OWL cardinality 3..-1</summary>
-        void set_vertices(double* values, int64_t count) { SetDatatypeProperty ("vertices", values, count); }
+        bool set_vertices(const double* values, int64_t count) { return SetDatatypeProperty ("vertices", values, count); }
         ///<summary>Gets values array of vertices. OWL cardinality 3..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_vertices(int64_t* pCount) { return GetDatatypeProperty<double>("vertices", pCount); }
     };
@@ -5722,19 +5728,19 @@ namespace GEOM
        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        void set_coordinates(double* values, int64_t count) { SetDatatypeProperty ("coordinates", values, count); }
+        bool set_coordinates(const double* values, int64_t count) { return SetDatatypeProperty ("coordinates", values, count); }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
         ///<summary>Sets value of x</summary>
-        void set_x(double value) { SetDatatypeProperty ("x", &value, 1); }
+        bool set_x(double value) { return SetDatatypeProperty ("x", &value, 1); }
         ///<summary>Gets a value of x, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_x() { return GetDatatypeProperty<double>("x", NULL); }
         ///<summary>Sets value of y</summary>
-        void set_y(double value) { SetDatatypeProperty ("y", &value, 1); }
+        bool set_y(double value) { return SetDatatypeProperty ("y", &value, 1); }
         ///<summary>Gets a value of y, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_y() { return GetDatatypeProperty<double>("y", NULL); }
         ///<summary>Sets value of z</summary>
-        void set_z(double value) { SetDatatypeProperty ("z", &value, 1); }
+        bool set_z(double value) { return SetDatatypeProperty ("z", &value, 1); }
         ///<summary>Gets a value of z, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_z() { return GetDatatypeProperty<double>("z", NULL); }
     };
@@ -5768,7 +5774,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
     };
@@ -5802,7 +5808,7 @@ namespace GEOM
        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        void set_matrix(const Matrix& instance) { SetObjectProperty<Matrix>("matrix", &instance, 1); }
+        bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
     };

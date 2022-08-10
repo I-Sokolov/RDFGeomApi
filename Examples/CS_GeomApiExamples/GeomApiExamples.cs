@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace CS_GeometryKernel
 {
-    class Program
+    class GeomApiExamples
     {
 		/// <summary>
 		/// 
@@ -76,19 +76,26 @@ namespace CS_GeometryKernel
 			Texture texture = Texture.Create(model);
 			var curve = NURBSCurve.Create(model);
 
-			new GeometricItem (curve); //no assertion
-			new GeometricItem (texture); //expected assertion
+			Int64 curve_id = curve;
+			Int64 texture_id = texture;
+
+			ASSERT(new GeometricItem(curve) != 0);
+			ASSERT(new GeometricItem(texture) == 0);
+			//implicit cast altrenative
+			ASSERT ((GeometricItem)curve_id != 0); 
+			ASSERT ((GeometricItem)texture_id == 0); 
 
 			//double
 			double? lseg = curve.get_segmentationLength();
-			Trace.Assert(lseg == null);
-			curve.set_segmentationLength(0.5);
+			ASSERT(lseg == null);
+			var ok = curve.set_segmentationLength(0.5);
+			ASSERT(ok);
 			lseg = curve.get_segmentationLength();
-			Trace.Assert(lseg == 0.5);
+			ASSERT(lseg == 0.5);
 
 			//double []
 			double[] org = texture.get_origin();
-			Trace.Assert(org == null);
+			ASSERT(org == null);
 			org = new double[] { 1, 2, 3 };
 			texture.set_origin(org);
 			double[] ret_org = texture.get_origin();
@@ -100,24 +107,27 @@ namespace CS_GeometryKernel
 			ret_org = texture.GetDatatypeProperty_double("origin");
 			ASSERT_ARR_EQ(org, ret_org);
 
-			//expected debug assert here because of cardinality restriction violation
+			//false b/c cardinality restriction violation
 			var tooLong = new double[] { 1, 2, 3, 4 };
-			texture.set_origin(tooLong);
+			ok = texture.set_origin(tooLong);
+			ASSERT(!ok);
 
-			//expected debug assertion here because of wrong property name
-			texture.SetDatatypeProperty("length", org);
+			//false b/c wrong property name
+			ok = texture.SetDatatypeProperty("length", org);
+			ASSERT(!ok);
 			ret_org = texture.GetDatatypeProperty_double("originnn");
+			ASSERT(ret_org == null);
 
 			//long
 			long? setting = curve.get_setting();
-			Trace.Assert(setting == null);
+			ASSERT(setting == null);
 			curve.set_setting(13);
 			setting = curve.get_setting();
-			Trace.Assert(setting == 13);
+			ASSERT(setting == 13);
 
 			//long[]
 			long[] km = curve.get_knotMultiplicities();
-			Trace.Assert(km == null);
+			ASSERT(km == null);
 			long[] km_ = new long[] { 3, 5, 6 };
 			curve.set_knotMultiplicities(km_);
 			km = curve.get_knotMultiplicities();
@@ -125,56 +135,69 @@ namespace CS_GeometryKernel
 
 			//string 
 			string tname = texture.get_name();
-			Trace.Assert(tname == null);
+			ASSERT(tname == null);
 			texture.set_name("test");
 			tname = texture.get_name();
-			Trace.Assert(tname == "test");
+			ASSERT(tname == "test");
 
 			//string[]
 			//No example in Geometry Kernel
 
 			//bool
 			bool? closed = curve.get_closed();
-			Trace.Assert(closed == null);
+			ASSERT(closed == null);
 			curve.set_closed(true);
 			closed = curve.get_closed();
-			Trace.Assert(closed.Value);
+			ASSERT(closed.Value);
 
 			//bool[]
 			//No example in Geometry Kernel
 
 			//object
 			Material material = curve.get_material();
-			Trace.Assert(material == null);
+			ASSERT(material == null);
 			Int64 mat = Material.Create(model);
 			curve.set_material(new Material(mat));
 			material = curve.get_material();
-			Trace.Assert(material == mat);
+			ASSERT(material == mat);
 			var m2 = curve.get_material();
-			Trace.Assert(m2 == material);
+			ASSERT(m2 == material);
 
 			//object []
 			Point3D[] ptg = curve.get_controlPoints();
-			Trace.Assert(ptg == null);
+			ASSERT(ptg == null);
 			Int64[] ptg64 = curve.get_controlPoints_Int64();
-			Trace.Assert(ptg64 == null);
+			ASSERT(ptg64 == null);
 
 			Point3D[] pts = new Point3D[2];
 			pts[0] = Point3D.Create(model);
 			pts[1] = Point3D.Create(model);
-			Trace.Assert(pts[0] != pts[1]);
+			ASSERT(pts[0] != pts[1]);
 
 			curve.set_controlPoints(pts);
 
 			ptg = curve.get_controlPoints();
-			Trace.Assert(ptg.Length == pts.Length);
-			for (int i = 0; i < pts.Length; i++) Trace.Assert(pts[i] == ptg[i]);
+			ASSERT(ptg.Length == pts.Length);
+			for (int i = 0; i < pts.Length; i++) ASSERT(pts[i] == ptg[i]);
 			ASSERT_ARR_EQ(ptg, pts);
 
 			ptg64 = curve.get_controlPoints_Int64();
-			Trace.Assert(ptg64.Length == pts.Length);
-			for (int i = 0; i < pts.Length; i++) Trace.Assert(pts[i] == ptg64[i]);
+			ASSERT(ptg64.Length == pts.Length);
+			for (int i = 0; i < pts.Length; i++) ASSERT(pts[i] == ptg64[i]);
 
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="c"></param>
+		static void ASSERT(bool c)
+		{
+			if (!c)
+            {
+				Console.WriteLine("!!! ASSERT VIOLATION");
+            }
+			Trace.Assert(c);
 		}
 
 		/// <summary>
@@ -185,11 +208,11 @@ namespace CS_GeometryKernel
 		/// <param name="b"></param>
 		static void ASSERT_ARR_EQ<TElem>(TElem[] a, TElem[] b) where TElem : IComparable
 		{
-			Trace.Assert(a.Length == b.Length);
+			ASSERT(a.Length == b.Length);
 
 			for (int i = 0; i < a.Length; i++)
 			{
-				Trace.Assert(a[i].CompareTo(b[i]) == 0);
+				ASSERT(a[i].CompareTo(b[i]) == 0);
 			}
 		}
 

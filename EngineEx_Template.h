@@ -55,7 +55,9 @@ namespace NAMESPACE_NAME
         Instance(int64_t instance, const char* cls)
         {
             m_instance = instance;
-            assert(cls == NULL/*do not check*/ || ::IsInstanceOfClass(instance, cls));
+            if (cls != NULL && !::IsInstanceOfClass(instance, cls)) {
+                m_instance = NULL;
+            }
         }
 
 
@@ -70,32 +72,32 @@ namespace NAMESPACE_NAME
         int64_t GetPropertyId(const char* name, int64_t checkCardinality = -1)
         {
             int64_t model = GetModel(m_instance);
-            assert(model != 0);
 
             int64_t propId = GetPropertyByName(model, name);
-            assert(propId != 0);
 
-#ifdef _DEBUG
             if (propId) {
                 int64_t clsId = GetInstanceClass(m_instance);
                 int64_t minCard = 0, maxCard = 0;
                 GetPropertyRestrictionsConsolidated(clsId, propId, &minCard, &maxCard);
-                assert(minCard >= 0); //property assigned to the class
+                if (minCard < 0) {
+                    propId = NULL; //property is not assigned to the class
+                }
                 if (checkCardinality > 0) { //chek cardinatity when set property
-                    assert(checkCardinality >= minCard && (checkCardinality <= maxCard || maxCard < 0)); //cardinality is in range
+                    if (checkCardinality < minCard || (maxCard > 0 && checkCardinality > maxCard)) {
+                        propId = NULL; //cardinality is out of range
+                    }
                 }
             }
-#endif
 
             return propId;
         }
 
         ///<summary></summary>
-        template<typename TElem> void SetDatatypeProperty(const char* name, TElem* values, int64_t count)
+        template<typename TElem> bool SetDatatypeProperty(const char* name, const TElem* values, int64_t count)
         {
             int64_t propId = GetPropertyId(name, count);
             int64_t res = ::SetDatatypeProperty(m_instance, propId, values, count);
-            assert(res == 0);
+            return (res == 0);
         }
 
 
@@ -107,7 +109,9 @@ namespace NAMESPACE_NAME
             TElem* values = NULL;
             int64_t count = 0;
             int64_t res = ::GetDatatypeProperty(m_instance, propId, (void**)&values, &count);
-            assert(res == 0);
+            if (res != 0) {
+                count = 0;
+            }
 
             if (pCount) {
                 *pCount = count;
@@ -123,11 +127,11 @@ namespace NAMESPACE_NAME
 
 
         ///<summary></summary>
-        template<class TInstance> void SetObjectProperty(const char* name, const TInstance* instances, int64_t count)
+        template<class TInstance> bool SetObjectProperty(const char* name, const TInstance* instances, int64_t count)
         {
             int64_t propId = GetPropertyId(name, count);
             int64_t res = ::SetObjectProperty(m_instance, propId, (int64_t*)instances, count);
-            assert(res == 0);
+            return(res == 0);
         }
 
         ///<summary>The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
@@ -138,7 +142,9 @@ namespace NAMESPACE_NAME
             int64_t* values = NULL;
             int64_t count = 0;
             int64_t res = ::GetObjectProperty(m_instance, propId, &values, &count);
-            assert(res == 0);
+            if (res != 0) {
+                count = 0;            
+            }
 
             if (pCount) {
                 *pCount = count;
@@ -186,10 +192,10 @@ namespace NAMESPACE_NAME
 
 //## TEMPLATE: SetDataProperty
         ///<summary>Sets value of PROPERTY_NAME</summary>
-        void set_PROPERTY_NAME(double value) { SetDatatypeProperty ("PROPERTY_NAME", &value, 1); }
+        bool set_PROPERTY_NAME(double value) { return SetDatatypeProperty ("PROPERTY_NAME", &value, 1); }
 //## TEMPLATE SetDataArrayProperty
         ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        void set_PROPERTY_NAME(double* values, int64_t count) { SetDatatypeProperty ("PROPERTY_NAME", values, count); }
+        bool set_PROPERTY_NAME(const double* values, int64_t count) { return SetDatatypeProperty ("PROPERTY_NAME", values, count); }
 //## TEMPLATE GetDataProperty
         ///<summary>Gets a value of PROPERTY_NAME, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_PROPERTY_NAME() { return GetDatatypeProperty<double>("PROPERTY_NAME", NULL); }
@@ -198,10 +204,10 @@ namespace NAMESPACE_NAME
         const double* get_PROPERTY_NAMEasType(int64_t* pCount) { return GetDatatypeProperty<double>("PROPERTY_NAME", pCount); }
 //## TEMPLATE: SetObjectProperty
         ///<summary>Sets relationship from this instance to an instance of Instance</summary>
-        void set_PROPERTY_NAME(const Instance& instance) { SetObjectProperty<Instance>("PROPERTY_NAME", &instance, 1); }
+        bool set_PROPERTY_NAME(const Instance& instance) { return SetObjectProperty<Instance>("PROPERTY_NAME", &instance, 1); }
 //## TEMPLATE SetObjectArrayProperty
         ///<summary>Sets relationships from this instance to an array of Instance. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        void set_PROPERTY_NAME(const Instance* instances, int64_t count) { SetObjectProperty<Instance>("PROPERTY_NAME", instances, count); }
+        bool set_PROPERTY_NAME(const Instance* instances, int64_t count) { return SetObjectProperty<Instance>("PROPERTY_NAME", instances, count); }
 //## TEMPLATE GetObjectProperty
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Instance* get_PROPERTY_NAMEasTYPe() { return GetObjectProperty<Instance>("PROPERTY_NAME", NULL); }

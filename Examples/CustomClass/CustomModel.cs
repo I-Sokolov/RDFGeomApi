@@ -169,14 +169,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to AdvancedFace
-       //
+        public static implicit operator AdvancedFace(Int64 instance) => new AdvancedFace(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to AdvancedFace
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_bounds(Curve[] instances) { SetObjectProperty("bounds", instances); }
+        public bool set_bounds(Curve[] instances) { return SetObjectProperty("bounds", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_bounds(Int64[] instances) { SetObjectProperty("bounds", instances); }
+        public bool set_bounds(Int64[] instances) { return SetObjectProperty("bounds", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_bounds() 
         {
@@ -228,7 +231,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public void set_surface(Surface instance) { SetObjectProperty("surface", instance); }
+        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
         ///<summary>Get related instance</summary>
         public Surface get_surface() 
         {
@@ -278,20 +281,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to AdvancedFace2D
-       //
+        public static implicit operator AdvancedFace2D(Int64 instance) => new AdvancedFace2D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to AdvancedFace2D
+        //
 
         ///<summary>Sets value of clipped</summary>
-        public void set_clipped(bool value) { SetDatatypeProperty ("clipped", value); }
+        public bool set_clipped(bool value) { return SetDatatypeProperty ("clipped", value); }
         ///<summary>Gets value of clipped, returns null is the property was not set</summary>
         public bool? get_clipped() { var arr = GetDatatypeProperty_bool("clipped"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of scalingX</summary>
-        public void set_scalingX(double value) { SetDatatypeProperty ("scalingX", value); }
+        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }
         ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
         public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of scalingY</summary>
-        public void set_scalingY(double value) { SetDatatypeProperty ("scalingY", value); }
+        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }
         ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
         public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -320,6 +326,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "AdvancedFace3D") 
         {            
         }
+
+        public static implicit operator AdvancedFace3D(Int64 instance) => new AdvancedFace3D(instance);
+
     }
 
 
@@ -347,16 +356,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to AdvancedFaceMapped
-       //
+        public static implicit operator AdvancedFaceMapped(Int64 instance) => new AdvancedFaceMapped(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to AdvancedFaceMapped
+        //
 
         ///<summary>Sets value of scalingX</summary>
-        public void set_scalingX(double value) { SetDatatypeProperty ("scalingX", value); }
+        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }
         ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
         public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of scalingY</summary>
-        public void set_scalingY(double value) { SetDatatypeProperty ("scalingY", value); }
+        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }
         ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
         public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -386,24 +398,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to AlignedSegment
-       //
+        public static implicit operator AlignedSegment(Int64 instance) => new AlignedSegment(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to AlignedSegment
+        //
 
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_segment(Curve instance) { SetObjectProperty("segment", instance); }
+        public bool set_segment(Curve instance) { return SetObjectProperty("segment", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_segment() 
         {
@@ -427,7 +442,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of tangentDirectionStart. OWL cardinality 3..3</summary>
-        public void set_tangentDirectionStart(double[] values) { SetDatatypeProperty ("tangentDirectionStart", values); }
+        public bool set_tangentDirectionStart(double[] values) { return SetDatatypeProperty ("tangentDirectionStart", values); }
         ///<summary>Gets values of tangentDirectionStart. OWL cardinality 3..3</summary>
         public double[] get_tangentDirectionStart() { return GetDatatypeProperty_double("tangentDirectionStart"); }
     }
@@ -457,14 +472,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to AlignedSegments
-       //
+        public static implicit operator AlignedSegments(Int64 instance) => new AlignedSegments(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to AlignedSegments
+        //
 
         ///<summary>Sets relationships from this instance to an array of AlignedSegment. OWL cardinality 0..-1</summary>
-        public void set_segments(AlignedSegment[] instances) { SetObjectProperty("segments", instances); }
+        public bool set_segments(AlignedSegment[] instances) { return SetObjectProperty("segments", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_segments(Int64[] instances) { SetObjectProperty("segments", instances); }
+        public bool set_segments(Int64[] instances) { return SetObjectProperty("segments", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public AlignedSegment[] get_segments() 
         {
@@ -542,12 +560,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Alignment
-       //
+        public static implicit operator Alignment(Int64 instance) => new Alignment(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Alignment
+        //
 
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        public void set_horizontal(AlignedSegments instance) { SetObjectProperty("horizontal", instance); }
+        public bool set_horizontal(AlignedSegments instance) { return SetObjectProperty("horizontal", instance); }
         ///<summary>Get related instance</summary>
         public AlignedSegments get_horizontal() 
         {
@@ -571,15 +592,15 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        public void set_vertical(AlignedSegments instance) { SetObjectProperty("vertical", instance); }
+        public bool set_vertical(AlignedSegments instance) { return SetObjectProperty("vertical", instance); }
         ///<summary>Get related instance</summary>
         public AlignedSegments get_vertical() 
         {
@@ -628,6 +649,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "AmbientLight") 
         {            
         }
+
+        public static implicit operator AmbientLight(Int64 instance) => new AmbientLight(instance);
+
     }
 
 
@@ -654,6 +678,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Appearance") 
         {            
         }
+
+        public static implicit operator Appearance(Int64 instance) => new Appearance(instance);
+
     }
 
 
@@ -681,28 +708,31 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Arc3D
-       //
+        public static implicit operator Arc3D(Int64 instance) => new Arc3D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Arc3D
+        //
 
         ///<summary>Sets value of hasNormals</summary>
-        public void set_hasNormals(bool value) { SetDatatypeProperty ("hasNormals", value); }
+        public bool set_hasNormals(bool value) { return SetDatatypeProperty ("hasNormals", value); }
         ///<summary>Gets value of hasNormals, returns null is the property was not set</summary>
         public bool? get_hasNormals() { var arr = GetDatatypeProperty_bool("hasNormals"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of size</summary>
-        public void set_size(double value) { SetDatatypeProperty ("size", value); }
+        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }
         ///<summary>Gets value of size, returns null is the property was not set</summary>
         public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of start</summary>
-        public void set_start(double value) { SetDatatypeProperty ("start", value); }
+        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }
         ///<summary>Gets value of start, returns null is the property was not set</summary>
         public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -731,6 +761,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "BezierCurve") 
         {            
         }
+
+        public static implicit operator BezierCurve(Int64 instance) => new BezierCurve(instance);
+
     }
 
 
@@ -758,12 +791,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BezierSurface
-       //
+        public static implicit operator BezierSurface(Int64 instance) => new BezierSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BezierSurface
+        //
 
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -792,6 +828,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "BiQuadraticParabola") 
         {            
         }
+
+        public static implicit operator BiQuadraticParabola(Int64 instance) => new BiQuadraticParabola(instance);
+
     }
 
 
@@ -819,12 +858,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Blend
-       //
+        public static implicit operator Blend(Int64 instance) => new Blend(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Blend
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_bottomPolygon(Curve instance) { SetObjectProperty("bottomPolygon", instance); }
+        public bool set_bottomPolygon(Curve instance) { return SetObjectProperty("bottomPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_bottomPolygon() 
         {
@@ -848,27 +890,27 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of forceSolid</summary>
-        public void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", value); }
+        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }
         ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
         public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of hasBottom</summary>
-        public void set_hasBottom(bool value) { SetDatatypeProperty ("hasBottom", value); }
+        public bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", value); }
         ///<summary>Gets value of hasBottom, returns null is the property was not set</summary>
         public bool? get_hasBottom() { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of hasTop</summary>
-        public void set_hasTop(bool value) { SetDatatypeProperty ("hasTop", value); }
+        public bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", value); }
         ///<summary>Gets value of hasTop, returns null is the property was not set</summary>
         public bool? get_hasTop() { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_topPolygon(Curve instance) { SetObjectProperty("topPolygon", instance); }
+        public bool set_topPolygon(Curve instance) { return SetObjectProperty("topPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_topPolygon() 
         {
@@ -917,6 +959,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "BlossCurve") 
         {            
         }
+
+        public static implicit operator BlossCurve(Int64 instance) => new BlossCurve(instance);
+
     }
 
 
@@ -944,12 +989,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BooleanOperation
-       //
+        public static implicit operator BooleanOperation(Int64 instance) => new BooleanOperation(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BooleanOperation
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public void set_deviation(Deviation instance) { SetObjectProperty("deviation", instance); }
+        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
         ///<summary>Get related instance</summary>
         public Deviation get_deviation() 
         {
@@ -973,7 +1021,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_firstObject(GeometricItem instance) { SetObjectProperty("firstObject", instance); }
+        public bool set_firstObject(GeometricItem instance) { return SetObjectProperty("firstObject", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_firstObject() 
         {
@@ -997,7 +1045,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_secondObject(GeometricItem instance) { SetObjectProperty("secondObject", instance); }
+        public bool set_secondObject(GeometricItem instance) { return SetObjectProperty("secondObject", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_secondObject() 
         {
@@ -1021,11 +1069,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -1055,12 +1103,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BooleanOperation2D
-       //
+        public static implicit operator BooleanOperation2D(Int64 instance) => new BooleanOperation2D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BooleanOperation2D
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public void set_deviation(Deviation instance) { SetObjectProperty("deviation", instance); }
+        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
         ///<summary>Get related instance</summary>
         public Deviation get_deviation() 
         {
@@ -1084,7 +1135,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_firstObject(GeometricItem instance) { SetObjectProperty("firstObject", instance); }
+        public bool set_firstObject(GeometricItem instance) { return SetObjectProperty("firstObject", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_firstObject() 
         {
@@ -1108,7 +1159,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_secondObject(GeometricItem instance) { SetObjectProperty("secondObject", instance); }
+        public bool set_secondObject(GeometricItem instance) { return SetObjectProperty("secondObject", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_secondObject() 
         {
@@ -1132,7 +1183,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -1162,22 +1213,25 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BoundaryRepresentation
-       //
+        public static implicit operator BoundaryRepresentation(Int64 instance) => new BoundaryRepresentation(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BoundaryRepresentation
+        //
 
         ///<summary>Sets value of consistencyCheck</summary>
-        public void set_consistencyCheck(Int64 value) { SetDatatypeProperty ("consistencyCheck", value); }
+        public bool set_consistencyCheck(Int64 value) { return SetDatatypeProperty ("consistencyCheck", value); }
         ///<summary>Gets value of consistencyCheck, returns null is the property was not set</summary>
         public Int64? get_consistencyCheck() { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of epsilon</summary>
-        public void set_epsilon(double value) { SetDatatypeProperty ("epsilon", value); }
+        public bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", value); }
         ///<summary>Gets value of epsilon, returns null is the property was not set</summary>
         public double? get_epsilon() { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 0..-1</summary>
-        public void set_faces(Face[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_faces(Int64[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Face[] get_faces() 
         {
@@ -1229,39 +1283,39 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of flags. OWL cardinality 0..-1</summary>
-        public void set_flags(Int64[] values) { SetDatatypeProperty ("flags", values); }
+        public bool set_flags(Int64[] values) { return SetDatatypeProperty ("flags", values); }
         ///<summary>Gets values of flags. OWL cardinality 0..-1</summary>
         public Int64[] get_flags() { return GetDatatypeProperty_Int64("flags"); }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        public void set_indices(Int64[] values) { SetDatatypeProperty ("indices", values); }
+        public bool set_indices(Int64[] values) { return SetDatatypeProperty ("indices", values); }
         ///<summary>Gets values of indices. OWL cardinality 0..-1</summary>
         public Int64[] get_indices() { return GetDatatypeProperty_Int64("indices"); }
         ///<summary>Sets values of normalCoordinates. OWL cardinality 0..-1</summary>
-        public void set_normalCoordinates(double[] values) { SetDatatypeProperty ("normalCoordinates", values); }
+        public bool set_normalCoordinates(double[] values) { return SetDatatypeProperty ("normalCoordinates", values); }
         ///<summary>Gets values of normalCoordinates. OWL cardinality 0..-1</summary>
         public double[] get_normalCoordinates() { return GetDatatypeProperty_double("normalCoordinates"); }
         ///<summary>Sets values of normalIndices. OWL cardinality 0..-1</summary>
-        public void set_normalIndices(Int64[] values) { SetDatatypeProperty ("normalIndices", values); }
+        public bool set_normalIndices(Int64[] values) { return SetDatatypeProperty ("normalIndices", values); }
         ///<summary>Gets values of normalIndices. OWL cardinality 0..-1</summary>
         public Int64[] get_normalIndices() { return GetDatatypeProperty_Int64("normalIndices"); }
         ///<summary>Sets value of relativeEpsilon</summary>
-        public void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", value); }
+        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }
         ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
         public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of textureCoordinates. OWL cardinality 0..-1</summary>
-        public void set_textureCoordinates(double[] values) { SetDatatypeProperty ("textureCoordinates", values); }
+        public bool set_textureCoordinates(double[] values) { return SetDatatypeProperty ("textureCoordinates", values); }
         ///<summary>Gets values of textureCoordinates. OWL cardinality 0..-1</summary>
         public double[] get_textureCoordinates() { return GetDatatypeProperty_double("textureCoordinates"); }
         ///<summary>Sets values of textureIndices. OWL cardinality 0..-1</summary>
-        public void set_textureIndices(Int64[] values) { SetDatatypeProperty ("textureIndices", values); }
+        public bool set_textureIndices(Int64[] values) { return SetDatatypeProperty ("textureIndices", values); }
         ///<summary>Gets values of textureIndices. OWL cardinality 0..-1</summary>
         public Int64[] get_textureIndices() { return GetDatatypeProperty_Int64("textureIndices"); }
         ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
-        public void set_vertices(double[] values) { SetDatatypeProperty ("vertices", values); }
+        public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
         ///<summary>Gets values of vertices. OWL cardinality 0..-1</summary>
         public double[] get_vertices() { return GetDatatypeProperty_double("vertices"); }
     }
@@ -1291,20 +1345,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Box
-       //
+        public static implicit operator Box(Int64 instance) => new Box(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Box
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of width</summary>
-        public void set_width(double value) { SetDatatypeProperty ("width", value); }
+        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }
         ///<summary>Gets value of width, returns null is the property was not set</summary>
         public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -1334,20 +1391,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BSplineCurve
-       //
+        public static implicit operator BSplineCurve(Int64 instance) => new BSplineCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BSplineCurve
+        //
 
         ///<summary>Sets values of knotMultiplicities. OWL cardinality 0..-1</summary>
-        public void set_knotMultiplicities(Int64[] values) { SetDatatypeProperty ("knotMultiplicities", values); }
+        public bool set_knotMultiplicities(Int64[] values) { return SetDatatypeProperty ("knotMultiplicities", values); }
         ///<summary>Gets values of knotMultiplicities. OWL cardinality 0..-1</summary>
         public Int64[] get_knotMultiplicities() { return GetDatatypeProperty_Int64("knotMultiplicities"); }
         ///<summary>Sets values of knots. OWL cardinality 2..-1</summary>
-        public void set_knots(double[] values) { SetDatatypeProperty ("knots", values); }
+        public bool set_knots(double[] values) { return SetDatatypeProperty ("knots", values); }
         ///<summary>Gets values of knots. OWL cardinality 2..-1</summary>
         public double[] get_knots() { return GetDatatypeProperty_double("knots"); }
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -1377,28 +1437,31 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to BSplineSurface
-       //
+        public static implicit operator BSplineSurface(Int64 instance) => new BSplineSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to BSplineSurface
+        //
 
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public void set_uKnotMultiplicities(Int64[] values) { SetDatatypeProperty ("uKnotMultiplicities", values); }
+        public bool set_uKnotMultiplicities(Int64[] values) { return SetDatatypeProperty ("uKnotMultiplicities", values); }
         ///<summary>Gets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
         public Int64[] get_uKnotMultiplicities() { return GetDatatypeProperty_Int64("uKnotMultiplicities"); }
         ///<summary>Sets values of uKnots. OWL cardinality 2..-1</summary>
-        public void set_uKnots(double[] values) { SetDatatypeProperty ("uKnots", values); }
+        public bool set_uKnots(double[] values) { return SetDatatypeProperty ("uKnots", values); }
         ///<summary>Gets values of uKnots. OWL cardinality 2..-1</summary>
         public double[] get_uKnots() { return GetDatatypeProperty_double("uKnots"); }
         ///<summary>Sets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public void set_vKnotMultiplicities(Int64[] values) { SetDatatypeProperty ("vKnotMultiplicities", values); }
+        public bool set_vKnotMultiplicities(Int64[] values) { return SetDatatypeProperty ("vKnotMultiplicities", values); }
         ///<summary>Gets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
         public Int64[] get_vKnotMultiplicities() { return GetDatatypeProperty_Int64("vKnotMultiplicities"); }
         ///<summary>Sets values of vKnots. OWL cardinality 2..-1</summary>
-        public void set_vKnots(double[] values) { SetDatatypeProperty ("vKnots", values); }
+        public bool set_vKnots(double[] values) { return SetDatatypeProperty ("vKnots", values); }
         ///<summary>Gets values of vKnots. OWL cardinality 2..-1</summary>
         public double[] get_vKnots() { return GetDatatypeProperty_double("vKnots"); }
     }
@@ -1427,6 +1490,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Circle") 
         {            
         }
+
+        public static implicit operator Circle(Int64 instance) => new Circle(instance);
+
     }
 
 
@@ -1454,14 +1520,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to CircleByPoints
-       //
+        public static implicit operator CircleByPoints(Int64 instance) => new CircleByPoints(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to CircleByPoints
+        //
 
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 3..3</summary>
-        public void set_pointReferences(Point3D[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 3..3</summary>
-        public void set_pointReferences(Int64[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 3..3</summary>
         public Point3D[] get_pointReferences() 
         {
@@ -1539,16 +1608,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ClippedPyramid
-       //
+        public static implicit operator ClippedPyramid(Int64 instance) => new ClippedPyramid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ClippedPyramid
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 12..12</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 12..12</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets values of points. OWL cardinality 0..12</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..12</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
     }
@@ -1578,12 +1650,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Clipping
-       //
+        public static implicit operator Clipping(Int64 instance) => new Clipping(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Clipping
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public void set_deviation(Deviation instance) { SetObjectProperty("deviation", instance); }
+        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
         ///<summary>Get related instance</summary>
         public Deviation get_deviation() 
         {
@@ -1607,7 +1682,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -1631,7 +1706,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public void set_plane(Plane instance) { SetObjectProperty("plane", instance); }
+        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
         ///<summary>Get related instance</summary>
         public Plane get_plane() 
         {
@@ -1655,7 +1730,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -1685,16 +1760,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Clothoid
-       //
+        public static implicit operator Clothoid(Int64 instance) => new Clothoid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Clothoid
+        //
 
         ///<summary>Sets value of A</summary>
-        public void set_A(double value) { SetDatatypeProperty ("A", value); }
+        public bool set_A(double value) { return SetDatatypeProperty ("A", value); }
         ///<summary>Gets value of A, returns null is the property was not set</summary>
         public double? get_A() { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -1718,19 +1796,19 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of orientation</summary>
-        public void set_orientation(Int64 value) { SetDatatypeProperty ("orientation", value); }
+        public bool set_orientation(Int64 value) { return SetDatatypeProperty ("orientation", value); }
         ///<summary>Gets value of orientation, returns null is the property was not set</summary>
         public Int64? get_orientation() { var arr = GetDatatypeProperty_Int64("orientation"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -1759,6 +1837,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "ClothoidCurve") 
         {            
         }
+
+        public static implicit operator ClothoidCurve(Int64 instance) => new ClothoidCurve(instance);
+
     }
 
 
@@ -1786,30 +1867,33 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Collection
-       //
+        public static implicit operator Collection(Int64 instance) => new Collection(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Collection
+        //
 
         ///<summary>Sets value of consistencyCheck</summary>
-        public void set_consistencyCheck(Int64 value) { SetDatatypeProperty ("consistencyCheck", value); }
+        public bool set_consistencyCheck(Int64 value) { return SetDatatypeProperty ("consistencyCheck", value); }
         ///<summary>Gets value of consistencyCheck, returns null is the property was not set</summary>
         public Int64? get_consistencyCheck() { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of epsilon</summary>
-        public void set_epsilon(double value) { SetDatatypeProperty ("epsilon", value); }
+        public bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", value); }
         ///<summary>Gets value of epsilon, returns null is the property was not set</summary>
         public double? get_epsilon() { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of forceSolid</summary>
-        public void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", value); }
+        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }
         ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
         public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
-        public void set_objects(GeometricItem[] instances) { SetObjectProperty("objects", instances); }
+        public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_objects(Int64[] instances) { SetObjectProperty("objects", instances); }
+        public bool set_objects(Int64[] instances) { return SetObjectProperty("objects", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public GeometricItem[] get_objects() 
         {
@@ -1861,11 +1945,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of relativeEpsilon</summary>
-        public void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", value); }
+        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }
         ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
         public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of representsSolid</summary>
-        public void set_representsSolid(bool value) { SetDatatypeProperty ("representsSolid", value); }
+        public bool set_representsSolid(bool value) { return SetDatatypeProperty ("representsSolid", value); }
         ///<summary>Gets value of representsSolid, returns null is the property was not set</summary>
         public bool? get_representsSolid() { var arr = GetDatatypeProperty_bool("representsSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
     }
@@ -1895,12 +1979,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Color
-       //
+        public static implicit operator Color(Int64 instance) => new Color(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Color
+        //
 
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public void set_ambient(ColorComponent instance) { SetObjectProperty("ambient", instance); }
+        public bool set_ambient(ColorComponent instance) { return SetObjectProperty("ambient", instance); }
         ///<summary>Get related instance</summary>
         public ColorComponent get_ambient() 
         {
@@ -1924,11 +2011,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of ambientReflectance</summary>
-        public void set_ambientReflectance(double value) { SetDatatypeProperty ("ambientReflectance", value); }
+        public bool set_ambientReflectance(double value) { return SetDatatypeProperty ("ambientReflectance", value); }
         ///<summary>Gets value of ambientReflectance, returns null is the property was not set</summary>
         public double? get_ambientReflectance() { var arr = GetDatatypeProperty_double("ambientReflectance"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public void set_diffuse(ColorComponent instance) { SetObjectProperty("diffuse", instance); }
+        public bool set_diffuse(ColorComponent instance) { return SetObjectProperty("diffuse", instance); }
         ///<summary>Get related instance</summary>
         public ColorComponent get_diffuse() 
         {
@@ -1952,7 +2039,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public void set_emissive(ColorComponent instance) { SetObjectProperty("emissive", instance); }
+        public bool set_emissive(ColorComponent instance) { return SetObjectProperty("emissive", instance); }
         ///<summary>Get related instance</summary>
         public ColorComponent get_emissive() 
         {
@@ -1976,7 +2063,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public void set_specular(ColorComponent instance) { SetObjectProperty("specular", instance); }
+        public bool set_specular(ColorComponent instance) { return SetObjectProperty("specular", instance); }
         ///<summary>Get related instance</summary>
         public ColorComponent get_specular() 
         {
@@ -2000,7 +2087,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of transparency</summary>
-        public void set_transparency(double value) { SetDatatypeProperty ("transparency", value); }
+        public bool set_transparency(double value) { return SetDatatypeProperty ("transparency", value); }
         ///<summary>Gets value of transparency, returns null is the property was not set</summary>
         public double? get_transparency() { var arr = GetDatatypeProperty_double("transparency"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2030,24 +2117,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ColorComponent
-       //
+        public static implicit operator ColorComponent(Int64 instance) => new ColorComponent(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ColorComponent
+        //
 
         ///<summary>Sets value of B</summary>
-        public void set_B(double value) { SetDatatypeProperty ("B", value); }
+        public bool set_B(double value) { return SetDatatypeProperty ("B", value); }
         ///<summary>Gets value of B, returns null is the property was not set</summary>
         public double? get_B() { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of G</summary>
-        public void set_G(double value) { SetDatatypeProperty ("G", value); }
+        public bool set_G(double value) { return SetDatatypeProperty ("G", value); }
         ///<summary>Gets value of G, returns null is the property was not set</summary>
         public double? get_G() { var arr = GetDatatypeProperty_double("G"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of R</summary>
-        public void set_R(double value) { SetDatatypeProperty ("R", value); }
+        public bool set_R(double value) { return SetDatatypeProperty ("R", value); }
         ///<summary>Gets value of R, returns null is the property was not set</summary>
         public double? get_R() { var arr = GetDatatypeProperty_double("R"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of W</summary>
-        public void set_W(double value) { SetDatatypeProperty ("W", value); }
+        public bool set_W(double value) { return SetDatatypeProperty ("W", value); }
         ///<summary>Gets value of W, returns null is the property was not set</summary>
         public double? get_W() { var arr = GetDatatypeProperty_double("W"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2077,20 +2167,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Cone
-       //
+        public static implicit operator Cone(Int64 instance) => new Cone(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Cone
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2120,24 +2213,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ConicalCurve
-       //
+        public static implicit operator ConicalCurve(Int64 instance) => new ConicalCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ConicalCurve
+        //
 
         ///<summary>Sets value of a</summary>
-        public void set_a(double value) { SetDatatypeProperty ("a", value); }
+        public bool set_a(double value) { return SetDatatypeProperty ("a", value); }
         ///<summary>Gets value of a, returns null is the property was not set</summary>
         public double? get_a() { var arr = GetDatatypeProperty_double("a"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of size</summary>
-        public void set_size(double value) { SetDatatypeProperty ("size", value); }
+        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }
         ///<summary>Gets value of size, returns null is the property was not set</summary>
         public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of start</summary>
-        public void set_start(double value) { SetDatatypeProperty ("start", value); }
+        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }
         ///<summary>Gets value of start, returns null is the property was not set</summary>
         public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2167,24 +2263,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ConicalSurface
-       //
+        public static implicit operator ConicalSurface(Int64 instance) => new ConicalSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ConicalSurface
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of semiVerticalAngle</summary>
-        public void set_semiVerticalAngle(double value) { SetDatatypeProperty ("semiVerticalAngle", value); }
+        public bool set_semiVerticalAngle(double value) { return SetDatatypeProperty ("semiVerticalAngle", value); }
         ///<summary>Gets value of semiVerticalAngle, returns null is the property was not set</summary>
         public double? get_semiVerticalAngle() { var arr = GetDatatypeProperty_double("semiVerticalAngle"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2214,12 +2313,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Copy
-       //
+        public static implicit operator Copy(Int64 instance) => new Copy(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Copy
+        //
 
         ///<summary>Sets value of instanceReference</summary>
-        public void set_instanceReference(Int64 value) { SetDatatypeProperty ("instanceReference", value); }
+        public bool set_instanceReference(Int64 value) { return SetDatatypeProperty ("instanceReference", value); }
         ///<summary>Gets value of instanceReference, returns null is the property was not set</summary>
         public Int64? get_instanceReference() { var arr = GetDatatypeProperty_Int64("instanceReference"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2248,6 +2350,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "CosineCurve") 
         {            
         }
+
+        public static implicit operator CosineCurve(Int64 instance) => new CosineCurve(instance);
+
     }
 
 
@@ -2275,12 +2380,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Cube
-       //
+        public static implicit operator Cube(Int64 instance) => new Cube(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Cube
+        //
 
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2309,6 +2417,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "CubicParabola") 
         {            
         }
+
+        public static implicit operator CubicParabola(Int64 instance) => new CubicParabola(instance);
+
     }
 
 
@@ -2336,20 +2447,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Cuboid
-       //
+        public static implicit operator Cuboid(Int64 instance) => new Cuboid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Cuboid
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of width</summary>
-        public void set_width(double value) { SetDatatypeProperty ("width", value); }
+        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }
         ///<summary>Gets value of width, returns null is the property was not set</summary>
         public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2378,6 +2492,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Curve") 
         {            
         }
+
+        public static implicit operator Curve(Int64 instance) => new Curve(instance);
+
     }
 
 
@@ -2405,14 +2522,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to CurvesFromSurface
-       //
+        public static implicit operator CurvesFromSurface(Int64 instance) => new CurvesFromSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to CurvesFromSurface
+        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public void set_faces(Face[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_faces(Int64[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Face[] get_faces() 
         {
@@ -2490,20 +2610,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Cylinder
-       //
+        public static implicit operator Cylinder(Int64 instance) => new Cylinder(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Cylinder
+        //
 
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2533,16 +2656,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to CylindricalSurface
-       //
+        public static implicit operator CylindricalSurface(Int64 instance) => new CylindricalSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to CylindricalSurface
+        //
 
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2572,20 +2698,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to DegenerateToroidalSurface
-       //
+        public static implicit operator DegenerateToroidalSurface(Int64 instance) => new DegenerateToroidalSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to DegenerateToroidalSurface
+        //
 
         ///<summary>Sets value of majorRadius</summary>
-        public void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", value); }
+        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }
         ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
         public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of minorRadius</summary>
-        public void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", value); }
+        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }
         ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
         public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2615,16 +2744,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Deviation
-       //
+        public static implicit operator Deviation(Int64 instance) => new Deviation(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Deviation
+        //
 
         ///<summary>Sets value of absoluteEpsilon</summary>
-        public void set_absoluteEpsilon(double value) { SetDatatypeProperty ("absoluteEpsilon", value); }
+        public bool set_absoluteEpsilon(double value) { return SetDatatypeProperty ("absoluteEpsilon", value); }
         ///<summary>Gets value of absoluteEpsilon, returns null is the property was not set</summary>
         public double? get_absoluteEpsilon() { var arr = GetDatatypeProperty_double("absoluteEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of relativeEpsilon</summary>
-        public void set_relativeEpsilon(double value) { SetDatatypeProperty ("relativeEpsilon", value); }
+        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }
         ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
         public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2654,12 +2786,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to DirectionalLight
-       //
+        public static implicit operator DirectionalLight(Int64 instance) => new DirectionalLight(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to DirectionalLight
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -2709,16 +2844,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to DirectLight
-       //
+        public static implicit operator DirectLight(Int64 instance) => new DirectLight(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to DirectLight
+        //
 
         ///<summary>Sets value of attenuation</summary>
-        public void set_attenuation(double value) { SetDatatypeProperty ("attenuation", value); }
+        public bool set_attenuation(double value) { return SetDatatypeProperty ("attenuation", value); }
         ///<summary>Gets value of attenuation, returns null is the property was not set</summary>
         public double? get_attenuation() { var arr = GetDatatypeProperty_double("attenuation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of range</summary>
-        public void set_range(double value) { SetDatatypeProperty ("range", value); }
+        public bool set_range(double value) { return SetDatatypeProperty ("range", value); }
         ///<summary>Gets value of range, returns null is the property was not set</summary>
         public double? get_range() { var arr = GetDatatypeProperty_double("range"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2747,6 +2885,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Dummy") 
         {            
         }
+
+        public static implicit operator Dummy(Int64 instance) => new Dummy(instance);
+
     }
 
 
@@ -2774,20 +2915,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Ellipse
-       //
+        public static implicit operator Ellipse(Int64 instance) => new Ellipse(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Ellipse
+        //
 
         ///<summary>Sets value of b</summary>
-        public void set_b(double value) { SetDatatypeProperty ("b", value); }
+        public bool set_b(double value) { return SetDatatypeProperty ("b", value); }
         ///<summary>Gets value of b, returns null is the property was not set</summary>
         public double? get_b() { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radiusI</summary>
-        public void set_radiusI(double value) { SetDatatypeProperty ("radiusI", value); }
+        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }
         ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
         public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radiusII</summary>
-        public void set_radiusII(double value) { SetDatatypeProperty ("radiusII", value); }
+        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }
         ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
         public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -2817,24 +2961,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to EllipticCone
-       //
+        public static implicit operator EllipticCone(Int64 instance) => new EllipticCone(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to EllipticCone
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radiusI</summary>
-        public void set_radiusI(double value) { SetDatatypeProperty ("radiusI", value); }
+        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }
         ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
         public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radiusII</summary>
-        public void set_radiusII(double value) { SetDatatypeProperty ("radiusII", value); }
+        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }
         ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
         public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -2863,6 +3010,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Environment") 
         {            
         }
+
+        public static implicit operator Environment(Int64 instance) => new Environment(instance);
+
     }
 
 
@@ -2890,32 +3040,35 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ExtrudedPolygon
-       //
+        public static implicit operator ExtrudedPolygon(Int64 instance) => new ExtrudedPolygon(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ExtrudedPolygon
+        //
 
         ///<summary>Sets value of extrusionLength</summary>
-        public void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", value); }
+        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }
         ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
         public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        public void set_openingPoints(double[] values) { SetDatatypeProperty ("openingPoints", values); }
+        public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
         ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
         public double[] get_openingPoints() { return GetDatatypeProperty_double("openingPoints"); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        public void set_openingSizes(Int64[] values) { SetDatatypeProperty ("openingSizes", values); }
+        public bool set_openingSizes(Int64[] values) { return SetDatatypeProperty ("openingSizes", values); }
         ///<summary>Gets values of openingSizes. OWL cardinality 0..-1</summary>
         public Int64[] get_openingSizes() { return GetDatatypeProperty_Int64("openingSizes"); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 6..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        public void set_polygonDirection(double[] values) { SetDatatypeProperty ("polygonDirection", values); }
+        public bool set_polygonDirection(double[] values) { return SetDatatypeProperty ("polygonDirection", values); }
         ///<summary>Gets values of polygonDirection. OWL cardinality 0..3</summary>
         public double[] get_polygonDirection() { return GetDatatypeProperty_double("polygonDirection"); }
     }
@@ -2945,44 +3098,47 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ExtrudedPolygonTapered
-       //
+        public static implicit operator ExtrudedPolygonTapered(Int64 instance) => new ExtrudedPolygonTapered(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ExtrudedPolygonTapered
+        //
 
         ///<summary>Sets value of extrusionLength</summary>
-        public void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", value); }
+        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }
         ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
         public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        public void set_openingPoints(double[] values) { SetDatatypeProperty ("openingPoints", values); }
+        public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
         ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
         public double[] get_openingPoints() { return GetDatatypeProperty_double("openingPoints"); }
         ///<summary>Sets values of openingPointsEnd. OWL cardinality 0..-1</summary>
-        public void set_openingPointsEnd(double[] values) { SetDatatypeProperty ("openingPointsEnd", values); }
+        public bool set_openingPointsEnd(double[] values) { return SetDatatypeProperty ("openingPointsEnd", values); }
         ///<summary>Gets values of openingPointsEnd. OWL cardinality 0..-1</summary>
         public double[] get_openingPointsEnd() { return GetDatatypeProperty_double("openingPointsEnd"); }
         ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        public void set_openingSizes(Int64[] values) { SetDatatypeProperty ("openingSizes", values); }
+        public bool set_openingSizes(Int64[] values) { return SetDatatypeProperty ("openingSizes", values); }
         ///<summary>Gets values of openingSizes. OWL cardinality 0..-1</summary>
         public Int64[] get_openingSizes() { return GetDatatypeProperty_Int64("openingSizes"); }
         ///<summary>Sets values of openingSizesEnd. OWL cardinality 0..-1</summary>
-        public void set_openingSizesEnd(Int64[] values) { SetDatatypeProperty ("openingSizesEnd", values); }
+        public bool set_openingSizesEnd(Int64[] values) { return SetDatatypeProperty ("openingSizesEnd", values); }
         ///<summary>Gets values of openingSizesEnd. OWL cardinality 0..-1</summary>
         public Int64[] get_openingSizesEnd() { return GetDatatypeProperty_Int64("openingSizesEnd"); }
         ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 6..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         ///<summary>Sets values of pointsEnd. OWL cardinality 6..-1</summary>
-        public void set_pointsEnd(double[] values) { SetDatatypeProperty ("pointsEnd", values); }
+        public bool set_pointsEnd(double[] values) { return SetDatatypeProperty ("pointsEnd", values); }
         ///<summary>Gets values of pointsEnd. OWL cardinality 6..-1</summary>
         public double[] get_pointsEnd() { return GetDatatypeProperty_double("pointsEnd"); }
         ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        public void set_polygonDirection(double[] values) { SetDatatypeProperty ("polygonDirection", values); }
+        public bool set_polygonDirection(double[] values) { return SetDatatypeProperty ("polygonDirection", values); }
         ///<summary>Gets values of polygonDirection. OWL cardinality 0..3</summary>
         public double[] get_polygonDirection() { return GetDatatypeProperty_double("polygonDirection"); }
     }
@@ -3012,12 +3168,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ExtrusionAreaSolid
-       //
+        public static implicit operator ExtrusionAreaSolid(Int64 instance) => new ExtrusionAreaSolid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ExtrusionAreaSolid
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_extrusionArea(Curve instance) { SetObjectProperty("extrusionArea", instance); }
+        public bool set_extrusionArea(Curve instance) { return SetObjectProperty("extrusionArea", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_extrusionArea() 
         {
@@ -3041,9 +3200,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_extrusionAreaOpenings(Curve[] instances) { SetObjectProperty("extrusionAreaOpenings", instances); }
+        public bool set_extrusionAreaOpenings(Curve[] instances) { return SetObjectProperty("extrusionAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_extrusionAreaOpenings(Int64[] instances) { SetObjectProperty("extrusionAreaOpenings", instances); }
+        public bool set_extrusionAreaOpenings(Int64[] instances) { return SetObjectProperty("extrusionAreaOpenings", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_extrusionAreaOpenings() 
         {
@@ -3095,15 +3254,15 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public void set_extrusionDirection(double[] values) { SetDatatypeProperty ("extrusionDirection", values); }
+        public bool set_extrusionDirection(double[] values) { return SetDatatypeProperty ("extrusionDirection", values); }
         ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
         ///<summary>Sets value of extrusionLength</summary>
-        public void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", value); }
+        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }
         ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
         public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -3133,14 +3292,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ExtrusionAreaSolidSet
-       //
+        public static implicit operator ExtrusionAreaSolidSet(Int64 instance) => new ExtrusionAreaSolidSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ExtrusionAreaSolidSet
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public void set_extrusionAreaSet(Curve[] instances) { SetObjectProperty("extrusionAreaSet", instances); }
+        public bool set_extrusionAreaSet(Curve[] instances) { return SetObjectProperty("extrusionAreaSet", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_extrusionAreaSet(Int64[] instances) { SetObjectProperty("extrusionAreaSet", instances); }
+        public bool set_extrusionAreaSet(Int64[] instances) { return SetObjectProperty("extrusionAreaSet", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Curve[] get_extrusionAreaSet() 
         {
@@ -3192,15 +3354,15 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public void set_extrusionDirection(double[] values) { SetDatatypeProperty ("extrusionDirection", values); }
+        public bool set_extrusionDirection(double[] values) { return SetDatatypeProperty ("extrusionDirection", values); }
         ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
         ///<summary>Sets value of extrusionLength</summary>
-        public void set_extrusionLength(double value) { SetDatatypeProperty ("extrusionLength", value); }
+        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }
         ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
         public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -3229,6 +3391,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Face") 
         {            
         }
+
+        public static implicit operator Face(Int64 instance) => new Face(instance);
+
     }
 
 
@@ -3256,14 +3421,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Face2D
-       //
+        public static implicit operator Face2D(Int64 instance) => new Face2D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Face2D
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_innerPolygons(Curve[] instances) { SetObjectProperty("innerPolygons", instances); }
+        public bool set_innerPolygons(Curve[] instances) { return SetObjectProperty("innerPolygons", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_innerPolygons(Int64[] instances) { SetObjectProperty("innerPolygons", instances); }
+        public bool set_innerPolygons(Int64[] instances) { return SetObjectProperty("innerPolygons", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_innerPolygons() 
         {
@@ -3315,7 +3483,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_outerPolygon(Curve instance) { SetObjectProperty("outerPolygon", instance); }
+        public bool set_outerPolygon(Curve instance) { return SetObjectProperty("outerPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_outerPolygon() 
         {
@@ -3339,7 +3507,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -3369,14 +3537,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Face2DSet
-       //
+        public static implicit operator Face2DSet(Int64 instance) => new Face2DSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Face2DSet
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_polygons(Curve[] instances) { SetObjectProperty("polygons", instances); }
+        public bool set_polygons(Curve[] instances) { return SetObjectProperty("polygons", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_polygons(Int64[] instances) { SetObjectProperty("polygons", instances); }
+        public bool set_polygons(Int64[] instances) { return SetObjectProperty("polygons", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_polygons() 
         {
@@ -3428,7 +3599,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of setting</summary>
-        public void set_setting(Int64 value) { SetDatatypeProperty ("setting", value); }
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
         ///<summary>Gets value of setting, returns null is the property was not set</summary>
         public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -3457,6 +3628,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "FiniteSurface") 
         {            
         }
+
+        public static implicit operator FiniteSurface(Int64 instance) => new FiniteSurface(instance);
+
     }
 
 
@@ -3484,24 +3658,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to FrustumCone
-       //
+        public static implicit operator FrustumCone(Int64 instance) => new FrustumCone(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to FrustumCone
+        //
 
         ///<summary>Sets value of factor</summary>
-        public void set_factor(double value) { SetDatatypeProperty ("factor", value); }
+        public bool set_factor(double value) { return SetDatatypeProperty ("factor", value); }
         ///<summary>Gets value of factor, returns null is the property was not set</summary>
         public double? get_factor() { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -3531,12 +3708,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to GeometricItem
-       //
+        public static implicit operator GeometricItem(Int64 instance) => new GeometricItem(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to GeometricItem
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Material</summary>
-        public void set_material(Material instance) { SetObjectProperty("material", instance); }
+        public bool set_material(Material instance) { return SetObjectProperty("material", instance); }
         ///<summary>Get related instance</summary>
         public Material get_material() 
         {
@@ -3585,6 +3765,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "HornTorus") 
         {            
         }
+
+        public static implicit operator HornTorus(Int64 instance) => new HornTorus(instance);
+
     }
 
 
@@ -3612,12 +3795,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Hyperbola
-       //
+        public static implicit operator Hyperbola(Int64 instance) => new Hyperbola(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Hyperbola
+        //
 
         ///<summary>Sets value of b</summary>
-        public void set_b(double value) { SetDatatypeProperty ("b", value); }
+        public bool set_b(double value) { return SetDatatypeProperty ("b", value); }
         ///<summary>Gets value of b, returns null is the property was not set</summary>
         public double? get_b() { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -3646,6 +3832,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "InfiniteSurface") 
         {            
         }
+
+        public static implicit operator InfiniteSurface(Int64 instance) => new InfiniteSurface(instance);
+
     }
 
 
@@ -3672,6 +3861,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Intersection") 
         {            
         }
+
+        public static implicit operator Intersection(Int64 instance) => new Intersection(instance);
+
     }
 
 
@@ -3699,14 +3891,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to IntersectionCurve
-       //
+        public static implicit operator IntersectionCurve(Int64 instance) => new IntersectionCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to IntersectionCurve
+        //
 
         ///<summary>Sets relationships from this instance to an array of Surface. OWL cardinality 2..2</summary>
-        public void set_surfaces(Surface[] instances) { SetObjectProperty("surfaces", instances); }
+        public bool set_surfaces(Surface[] instances) { return SetObjectProperty("surfaces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..2</summary>
-        public void set_surfaces(Int64[] instances) { SetObjectProperty("surfaces", instances); }
+        public bool set_surfaces(Int64[] instances) { return SetObjectProperty("surfaces", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 2..2</summary>
         public Surface[] get_surfaces() 
         {
@@ -3784,12 +3979,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to IntersectionPoint
-       //
+        public static implicit operator IntersectionPoint(Int64 instance) => new IntersectionPoint(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to IntersectionPoint
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_curve(Curve instance) { SetObjectProperty("curve", instance); }
+        public bool set_curve(Curve instance) { return SetObjectProperty("curve", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_curve() 
         {
@@ -3813,7 +4011,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public void set_surface(Surface instance) { SetObjectProperty("surface", instance); }
+        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
         ///<summary>Get related instance</summary>
         public Surface get_surface() 
         {
@@ -3863,12 +4061,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to InverseMatrix
-       //
+        public static implicit operator InverseMatrix(Int64 instance) => new InverseMatrix(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to InverseMatrix
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -3918,12 +4119,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to InvertedCurve
-       //
+        public static implicit operator InvertedCurve(Int64 instance) => new InvertedCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to InvertedCurve
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_curve(Curve instance) { SetObjectProperty("curve", instance); }
+        public bool set_curve(Curve instance) { return SetObjectProperty("curve", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_curve() 
         {
@@ -3973,12 +4177,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to InvertedSurface
-       //
+        public static implicit operator InvertedSurface(Int64 instance) => new InvertedSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to InvertedSurface
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public void set_surface(Surface instance) { SetObjectProperty("surface", instance); }
+        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
         ///<summary>Get related instance</summary>
         public Surface get_surface() 
         {
@@ -4028,12 +4235,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Light
-       //
+        public static implicit operator Light(Int64 instance) => new Light(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Light
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        public void set_color(Color instance) { SetObjectProperty("color", instance); }
+        public bool set_color(Color instance) { return SetObjectProperty("color", instance); }
         ///<summary>Get related instance</summary>
         public Color get_color() 
         {
@@ -4083,16 +4293,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Line3D
-       //
+        public static implicit operator Line3D(Int64 instance) => new Line3D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Line3D
+        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        public void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", value); }
+        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }
         ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
         public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets values of points. OWL cardinality 6..6</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 6..6</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
     }
@@ -4122,48 +4335,51 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Line3Dn
-       //
+        public static implicit operator Line3Dn(Int64 instance) => new Line3Dn(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Line3Dn
+        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        public void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", value); }
+        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }
         ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
         public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets values of endDirection. OWL cardinality 0..3</summary>
-        public void set_endDirection(double[] values) { SetDatatypeProperty ("endDirection", values); }
+        public bool set_endDirection(double[] values) { return SetDatatypeProperty ("endDirection", values); }
         ///<summary>Gets values of endDirection. OWL cardinality 0..3</summary>
         public double[] get_endDirection() { return GetDatatypeProperty_double("endDirection"); }
         ///<summary>Sets values of points. OWL cardinality 0..6</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..6</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         ///<summary>Sets values of startDirection. OWL cardinality 0..3</summary>
-        public void set_startDirection(double[] values) { SetDatatypeProperty ("startDirection", values); }
+        public bool set_startDirection(double[] values) { return SetDatatypeProperty ("startDirection", values); }
         ///<summary>Gets values of startDirection. OWL cardinality 0..3</summary>
         public double[] get_startDirection() { return GetDatatypeProperty_double("startDirection"); }
         ///<summary>Sets value of x0</summary>
-        public void set_x0(double value) { SetDatatypeProperty ("x0", value); }
+        public bool set_x0(double value) { return SetDatatypeProperty ("x0", value); }
         ///<summary>Gets value of x0, returns null is the property was not set</summary>
         public double? get_x0() { var arr = GetDatatypeProperty_double("x0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of x1</summary>
-        public void set_x1(double value) { SetDatatypeProperty ("x1", value); }
+        public bool set_x1(double value) { return SetDatatypeProperty ("x1", value); }
         ///<summary>Gets value of x1, returns null is the property was not set</summary>
         public double? get_x1() { var arr = GetDatatypeProperty_double("x1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of y0</summary>
-        public void set_y0(double value) { SetDatatypeProperty ("y0", value); }
+        public bool set_y0(double value) { return SetDatatypeProperty ("y0", value); }
         ///<summary>Gets value of y0, returns null is the property was not set</summary>
         public double? get_y0() { var arr = GetDatatypeProperty_double("y0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of y1</summary>
-        public void set_y1(double value) { SetDatatypeProperty ("y1", value); }
+        public bool set_y1(double value) { return SetDatatypeProperty ("y1", value); }
         ///<summary>Gets value of y1, returns null is the property was not set</summary>
         public double? get_y1() { var arr = GetDatatypeProperty_double("y1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of z0</summary>
-        public void set_z0(double value) { SetDatatypeProperty ("z0", value); }
+        public bool set_z0(double value) { return SetDatatypeProperty ("z0", value); }
         ///<summary>Gets value of z0, returns null is the property was not set</summary>
         public double? get_z0() { var arr = GetDatatypeProperty_double("z0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of z1</summary>
-        public void set_z1(double value) { SetDatatypeProperty ("z1", value); }
+        public bool set_z1(double value) { return SetDatatypeProperty ("z1", value); }
         ///<summary>Gets value of z1, returns null is the property was not set</summary>
         public double? get_z1() { var arr = GetDatatypeProperty_double("z1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -4193,16 +4409,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Line3DSet
-       //
+        public static implicit operator Line3DSet(Int64 instance) => new Line3DSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Line3DSet
+        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        public void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", value); }
+        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }
         ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
         public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
     }
@@ -4232,14 +4451,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to LineByFace
-       //
+        public static implicit operator LineByFace(Int64 instance) => new LineByFace(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to LineByFace
+        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public void set_faces(Face[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_faces(Int64[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Face[] get_faces() 
         {
@@ -4317,12 +4539,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Material
-       //
+        public static implicit operator Material(Int64 instance) => new Material(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Material
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        public void set_color(Color instance) { SetObjectProperty("color", instance); }
+        public bool set_color(Color instance) { return SetObjectProperty("color", instance); }
         ///<summary>Get related instance</summary>
         public Color get_color() 
         {
@@ -4346,9 +4571,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Texture. OWL cardinality 0..2</summary>
-        public void set_textures(Texture[] instances) { SetObjectProperty("textures", instances); }
+        public bool set_textures(Texture[] instances) { return SetObjectProperty("textures", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..2</summary>
-        public void set_textures(Int64[] instances) { SetObjectProperty("textures", instances); }
+        public bool set_textures(Int64[] instances) { return SetObjectProperty("textures", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..2</summary>
         public Texture[] get_textures() 
         {
@@ -4425,6 +4650,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Mathematics") 
         {            
         }
+
+        public static implicit operator Mathematics(Int64 instance) => new Mathematics(instance);
+
     }
 
 
@@ -4452,60 +4680,63 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Matrix
-       //
+        public static implicit operator Matrix(Int64 instance) => new Matrix(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Matrix
+        //
 
         ///<summary>Sets value of _11</summary>
-        public void set__11(double value) { SetDatatypeProperty ("_11", value); }
+        public bool set__11(double value) { return SetDatatypeProperty ("_11", value); }
         ///<summary>Gets value of _11, returns null is the property was not set</summary>
         public double? get__11() { var arr = GetDatatypeProperty_double("_11"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _12</summary>
-        public void set__12(double value) { SetDatatypeProperty ("_12", value); }
+        public bool set__12(double value) { return SetDatatypeProperty ("_12", value); }
         ///<summary>Gets value of _12, returns null is the property was not set</summary>
         public double? get__12() { var arr = GetDatatypeProperty_double("_12"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _13</summary>
-        public void set__13(double value) { SetDatatypeProperty ("_13", value); }
+        public bool set__13(double value) { return SetDatatypeProperty ("_13", value); }
         ///<summary>Gets value of _13, returns null is the property was not set</summary>
         public double? get__13() { var arr = GetDatatypeProperty_double("_13"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _21</summary>
-        public void set__21(double value) { SetDatatypeProperty ("_21", value); }
+        public bool set__21(double value) { return SetDatatypeProperty ("_21", value); }
         ///<summary>Gets value of _21, returns null is the property was not set</summary>
         public double? get__21() { var arr = GetDatatypeProperty_double("_21"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _22</summary>
-        public void set__22(double value) { SetDatatypeProperty ("_22", value); }
+        public bool set__22(double value) { return SetDatatypeProperty ("_22", value); }
         ///<summary>Gets value of _22, returns null is the property was not set</summary>
         public double? get__22() { var arr = GetDatatypeProperty_double("_22"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _23</summary>
-        public void set__23(double value) { SetDatatypeProperty ("_23", value); }
+        public bool set__23(double value) { return SetDatatypeProperty ("_23", value); }
         ///<summary>Gets value of _23, returns null is the property was not set</summary>
         public double? get__23() { var arr = GetDatatypeProperty_double("_23"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _31</summary>
-        public void set__31(double value) { SetDatatypeProperty ("_31", value); }
+        public bool set__31(double value) { return SetDatatypeProperty ("_31", value); }
         ///<summary>Gets value of _31, returns null is the property was not set</summary>
         public double? get__31() { var arr = GetDatatypeProperty_double("_31"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _32</summary>
-        public void set__32(double value) { SetDatatypeProperty ("_32", value); }
+        public bool set__32(double value) { return SetDatatypeProperty ("_32", value); }
         ///<summary>Gets value of _32, returns null is the property was not set</summary>
         public double? get__32() { var arr = GetDatatypeProperty_double("_32"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _33</summary>
-        public void set__33(double value) { SetDatatypeProperty ("_33", value); }
+        public bool set__33(double value) { return SetDatatypeProperty ("_33", value); }
         ///<summary>Gets value of _33, returns null is the property was not set</summary>
         public double? get__33() { var arr = GetDatatypeProperty_double("_33"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _41</summary>
-        public void set__41(double value) { SetDatatypeProperty ("_41", value); }
+        public bool set__41(double value) { return SetDatatypeProperty ("_41", value); }
         ///<summary>Gets value of _41, returns null is the property was not set</summary>
         public double? get__41() { var arr = GetDatatypeProperty_double("_41"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _42</summary>
-        public void set__42(double value) { SetDatatypeProperty ("_42", value); }
+        public bool set__42(double value) { return SetDatatypeProperty ("_42", value); }
         ///<summary>Gets value of _42, returns null is the property was not set</summary>
         public double? get__42() { var arr = GetDatatypeProperty_double("_42"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of _43</summary>
-        public void set__43(double value) { SetDatatypeProperty ("_43", value); }
+        public bool set__43(double value) { return SetDatatypeProperty ("_43", value); }
         ///<summary>Gets value of _43, returns null is the property was not set</summary>
         public double? get__43() { var arr = GetDatatypeProperty_double("_43"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of coordinates. OWL cardinality 0..12</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..12</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
     }
@@ -4535,12 +4766,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to MatrixMultiplication
-       //
+        public static implicit operator MatrixMultiplication(Int64 instance) => new MatrixMultiplication(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to MatrixMultiplication
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_firstMatrix(Matrix instance) { SetObjectProperty("firstMatrix", instance); }
+        public bool set_firstMatrix(Matrix instance) { return SetObjectProperty("firstMatrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_firstMatrix() 
         {
@@ -4564,7 +4798,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_secondMatrix(Matrix instance) { SetObjectProperty("secondMatrix", instance); }
+        public bool set_secondMatrix(Matrix instance) { return SetObjectProperty("secondMatrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_secondMatrix() 
         {
@@ -4614,12 +4848,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Mesh
-       //
+        public static implicit operator Mesh(Int64 instance) => new Mesh(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Mesh
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Point3DSet</summary>
-        public void set_pointSet(Point3DSet instance) { SetObjectProperty("pointSet", instance); }
+        public bool set_pointSet(Point3DSet instance) { return SetObjectProperty("pointSet", instance); }
         ///<summary>Get related instance</summary>
         public Point3DSet get_pointSet() 
         {
@@ -4669,16 +4906,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to MyCustomCylinder
-       //
+        public static implicit operator MyCustomCylinder(Int64 instance) => new MyCustomCylinder(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to MyCustomCylinder
+        //
 
         ///<summary>Sets values of MyCustomBool. OWL cardinality 1..10</summary>
-        public void set_MyCustomBool(bool[] values) { SetDatatypeProperty ("MyCustomBool", values); }
+        public bool set_MyCustomBool(bool[] values) { return SetDatatypeProperty ("MyCustomBool", values); }
         ///<summary>Gets values of MyCustomBool. OWL cardinality 1..10</summary>
         public bool[] get_MyCustomBool() { return GetDatatypeProperty_bool("MyCustomBool"); }
         ///<summary>Sets values of MyCustomString. OWL cardinality 1..10</summary>
-        public void set_MyCustomString(string[] values) { SetDatatypeProperty ("MyCustomString", values); }
+        public bool set_MyCustomString(string[] values) { return SetDatatypeProperty ("MyCustomString", values); }
         ///<summary>Gets values of MyCustomString. OWL cardinality 1..10</summary>
         public string[] get_MyCustomString() { return GetDatatypeProperty_string("MyCustomString"); }
     }
@@ -4708,12 +4948,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to NURBSCurve
-       //
+        public static implicit operator NURBSCurve(Int64 instance) => new NURBSCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to NURBSCurve
+        //
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        public void set_weights(double[] values) { SetDatatypeProperty ("weights", values); }
+        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
         ///<summary>Gets values of weights. OWL cardinality 2..-1</summary>
         public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
     }
@@ -4743,12 +4986,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to NURBSSurface
-       //
+        public static implicit operator NURBSSurface(Int64 instance) => new NURBSSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to NURBSSurface
+        //
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        public void set_weights(double[] values) { SetDatatypeProperty ("weights", values); }
+        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
         ///<summary>Gets values of weights. OWL cardinality 4..-1</summary>
         public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
     }
@@ -4777,6 +5023,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Parabola") 
         {            
         }
+
+        public static implicit operator Parabola(Int64 instance) => new Parabola(instance);
+
     }
 
 
@@ -4804,24 +5053,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Plane
-       //
+        public static implicit operator Plane(Int64 instance) => new Plane(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Plane
+        //
 
         ///<summary>Sets value of A</summary>
-        public void set_A(double value) { SetDatatypeProperty ("A", value); }
+        public bool set_A(double value) { return SetDatatypeProperty ("A", value); }
         ///<summary>Gets value of A, returns null is the property was not set</summary>
         public double? get_A() { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of B</summary>
-        public void set_B(double value) { SetDatatypeProperty ("B", value); }
+        public bool set_B(double value) { return SetDatatypeProperty ("B", value); }
         ///<summary>Gets value of B, returns null is the property was not set</summary>
         public double? get_B() { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of C</summary>
-        public void set_C(double value) { SetDatatypeProperty ("C", value); }
+        public bool set_C(double value) { return SetDatatypeProperty ("C", value); }
         ///<summary>Gets value of C, returns null is the property was not set</summary>
         public double? get_C() { var arr = GetDatatypeProperty_double("C"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of D</summary>
-        public void set_D(double value) { SetDatatypeProperty ("D", value); }
+        public bool set_D(double value) { return SetDatatypeProperty ("D", value); }
         ///<summary>Gets value of D, returns null is the property was not set</summary>
         public double? get_D() { var arr = GetDatatypeProperty_double("D"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -4851,12 +5103,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to PlaneSurface
-       //
+        public static implicit operator PlaneSurface(Int64 instance) => new PlaneSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to PlaneSurface
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public void set_plane(Plane instance) { SetObjectProperty("plane", instance); }
+        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
         ///<summary>Get related instance</summary>
         public Plane get_plane() 
         {
@@ -4905,6 +5160,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Point") 
         {            
         }
+
+        public static implicit operator Point(Int64 instance) => new Point(instance);
+
     }
 
 
@@ -4932,32 +5190,35 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Point3D
-       //
+        public static implicit operator Point3D(Int64 instance) => new Point3D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Point3D
+        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        public void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", value); }
+        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }
         ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
         public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets values of points. OWL cardinality 0..3</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..3</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         ///<summary>Sets value of x</summary>
-        public void set_x(double value) { SetDatatypeProperty ("x", value); }
+        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }
         ///<summary>Gets value of x, returns null is the property was not set</summary>
         public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of y</summary>
-        public void set_y(double value) { SetDatatypeProperty ("y", value); }
+        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }
         ///<summary>Gets value of y, returns null is the property was not set</summary>
         public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of z</summary>
-        public void set_z(double value) { SetDatatypeProperty ("z", value); }
+        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }
         ///<summary>Gets value of z, returns null is the property was not set</summary>
         public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -4987,20 +5248,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Point3DSet
-       //
+        public static implicit operator Point3DSet(Int64 instance) => new Point3DSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Point3DSet
+        //
 
         ///<summary>Sets value of asOpenGL</summary>
-        public void set_asOpenGL(bool value) { SetDatatypeProperty ("asOpenGL", value); }
+        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }
         ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
         public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
     }
@@ -5030,12 +5294,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Point3DSetByGeometricItem
-       //
+        public static implicit operator Point3DSetByGeometricItem(Int64 instance) => new Point3DSetByGeometricItem(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Point3DSetByGeometricItem
+        //
 
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -5085,12 +5352,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to PointLight
-       //
+        public static implicit operator PointLight(Int64 instance) => new PointLight(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to PointLight
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        public void set_position(Point3D instance) { SetObjectProperty("position", instance); }
+        public bool set_position(Point3D instance) { return SetObjectProperty("position", instance); }
         ///<summary>Get related instance</summary>
         public Point3D get_position() 
         {
@@ -5140,24 +5410,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to PointLoop
-       //
+        public static implicit operator PointLoop(Int64 instance) => new PointLoop(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to PointLoop
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets value of x</summary>
-        public void set_x(double value) { SetDatatypeProperty ("x", value); }
+        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }
         ///<summary>Gets value of x, returns null is the property was not set</summary>
         public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of y</summary>
-        public void set_y(double value) { SetDatatypeProperty ("y", value); }
+        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }
         ///<summary>Gets value of y, returns null is the property was not set</summary>
         public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of z</summary>
-        public void set_z(double value) { SetDatatypeProperty ("z", value); }
+        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }
         ///<summary>Gets value of z, returns null is the property was not set</summary>
         public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -5187,14 +5460,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Polygon2D
-       //
+        public static implicit operator Polygon2D(Int64 instance) => new Polygon2D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Polygon2D
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public void set_lineParts(Curve[] instances) { SetObjectProperty("lineParts", instances); }
+        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_lineParts(Int64[] instances) { SetObjectProperty("lineParts", instances); }
+        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Curve[] get_lineParts() 
         {
@@ -5272,14 +5548,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Polygon3D
-       //
+        public static implicit operator Polygon3D(Int64 instance) => new Polygon3D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Polygon3D
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public void set_lineParts(Curve[] instances) { SetObjectProperty("lineParts", instances); }
+        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_lineParts(Int64[] instances) { SetObjectProperty("lineParts", instances); }
+        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Curve[] get_lineParts() 
         {
@@ -5357,18 +5636,21 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to PolyLine3D
-       //
+        public static implicit operator PolyLine3D(Int64 instance) => new PolyLine3D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to PolyLine3D
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..-1</summary>
-        public void set_pointReferences(Point3D[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_pointReferences(Int64[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Point3D[] get_pointReferences() 
         {
@@ -5420,11 +5702,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public void set_points(double[] values) { SetDatatypeProperty ("points", values); }
+        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         ///<summary>Sets values of tangent. OWL cardinality 0..-1</summary>
-        public void set_tangent(double[] values) { SetDatatypeProperty ("tangent", values); }
+        public bool set_tangent(double[] values) { return SetDatatypeProperty ("tangent", values); }
         ///<summary>Gets values of tangent. OWL cardinality 0..-1</summary>
         public double[] get_tangent() { return GetDatatypeProperty_double("tangent"); }
     }
@@ -5454,16 +5736,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Prism
-       //
+        public static implicit operator Prism(Int64 instance) => new Prism(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Prism
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -5493,14 +5778,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Profile
-       //
+        public static implicit operator Profile(Int64 instance) => new Profile(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Profile
+        //
 
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_innerPolygons(Curve[] instances) { SetObjectProperty("innerPolygons", instances); }
+        public bool set_innerPolygons(Curve[] instances) { return SetObjectProperty("innerPolygons", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_innerPolygons(Int64[] instances) { SetObjectProperty("innerPolygons", instances); }
+        public bool set_innerPolygons(Int64[] instances) { return SetObjectProperty("innerPolygons", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_innerPolygons() 
         {
@@ -5552,7 +5840,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_outerPolygon(Curve instance) { SetObjectProperty("outerPolygon", instance); }
+        public bool set_outerPolygon(Curve instance) { return SetObjectProperty("outerPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_outerPolygon() 
         {
@@ -5602,12 +5890,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Projection
-       //
+        public static implicit operator Projection(Int64 instance) => new Projection(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Projection
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -5657,20 +5948,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Pyramid
-       //
+        public static implicit operator Pyramid(Int64 instance) => new Pyramid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Pyramid
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of width</summary>
-        public void set_width(double value) { SetDatatypeProperty ("width", value); }
+        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }
         ///<summary>Gets value of width, returns null is the property was not set</summary>
         public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -5700,12 +5994,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to RationalBezierCurve
-       //
+        public static implicit operator RationalBezierCurve(Int64 instance) => new RationalBezierCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to RationalBezierCurve
+        //
 
         ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        public void set_weights(double[] values) { SetDatatypeProperty ("weights", values); }
+        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
         ///<summary>Gets values of weights. OWL cardinality 2..-1</summary>
         public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
     }
@@ -5735,12 +6032,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to RationalBezierSurface
-       //
+        public static implicit operator RationalBezierSurface(Int64 instance) => new RationalBezierSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to RationalBezierSurface
+        //
 
         ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        public void set_weights(double[] values) { SetDatatypeProperty ("weights", values); }
+        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
         ///<summary>Gets values of weights. OWL cardinality 4..-1</summary>
         public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
     }
@@ -5770,28 +6070,31 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to RectangleCurve
-       //
+        public static implicit operator RectangleCurve(Int64 instance) => new RectangleCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to RectangleCurve
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetZ</summary>
-        public void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", value); }
+        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }
         ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
         public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of width</summary>
-        public void set_width(double value) { SetDatatypeProperty ("width", value); }
+        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }
         ///<summary>Gets value of width, returns null is the property was not set</summary>
         public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -5821,16 +6124,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Repetition
-       //
+        public static implicit operator Repetition(Int64 instance) => new Repetition(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Repetition
+        //
 
         ///<summary>Sets value of count</summary>
-        public void set_count(Int64 value) { SetDatatypeProperty ("count", value); }
+        public bool set_count(Int64 value) { return SetDatatypeProperty ("count", value); }
         ///<summary>Gets value of count, returns null is the property was not set</summary>
         public Int64? get_count() { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -5854,7 +6160,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -5903,6 +6209,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "RingTorus") 
         {            
         }
+
+        public static implicit operator RingTorus(Int64 instance) => new RingTorus(instance);
+
     }
 
 
@@ -5930,12 +6239,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Shadow
-       //
+        public static implicit operator Shadow(Int64 instance) => new Shadow(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Shadow
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public void set_lightDirection(Vector3 instance) { SetObjectProperty("lightDirection", instance); }
+        public bool set_lightDirection(Vector3 instance) { return SetObjectProperty("lightDirection", instance); }
         ///<summary>Get related instance</summary>
         public Vector3 get_lightDirection() 
         {
@@ -5959,7 +6271,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        public void set_lightPoint(Point3D instance) { SetObjectProperty("lightPoint", instance); }
+        public bool set_lightPoint(Point3D instance) { return SetObjectProperty("lightPoint", instance); }
         ///<summary>Get related instance</summary>
         public Point3D get_lightPoint() 
         {
@@ -5983,7 +6295,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -6007,7 +6319,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public void set_plane(Plane instance) { SetObjectProperty("plane", instance); }
+        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
         ///<summary>Get related instance</summary>
         public Plane get_plane() 
         {
@@ -6031,7 +6343,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public void set_planeRefDirection(Vector3 instance) { SetObjectProperty("planeRefDirection", instance); }
+        public bool set_planeRefDirection(Vector3 instance) { return SetObjectProperty("planeRefDirection", instance); }
         ///<summary>Get related instance</summary>
         public Vector3 get_planeRefDirection() 
         {
@@ -6055,7 +6367,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6084,6 +6396,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "SineCurve") 
         {            
         }
+
+        public static implicit operator SineCurve(Int64 instance) => new SineCurve(instance);
+
     }
 
 
@@ -6111,28 +6426,31 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SkewedCone
-       //
+        public static implicit operator SkewedCone(Int64 instance) => new SkewedCone(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SkewedCone
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6162,32 +6480,35 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SkewedFrustumCone
-       //
+        public static implicit operator SkewedFrustumCone(Int64 instance) => new SkewedFrustumCone(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SkewedFrustumCone
+        //
 
         ///<summary>Sets value of factor</summary>
-        public void set_factor(double value) { SetDatatypeProperty ("factor", value); }
+        public bool set_factor(double value) { return SetDatatypeProperty ("factor", value); }
         ///<summary>Gets value of factor, returns null is the property was not set</summary>
         public double? get_factor() { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6216,6 +6537,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Solid") 
         {            
         }
+
+        public static implicit operator Solid(Int64 instance) => new Solid(instance);
+
     }
 
 
@@ -6243,14 +6567,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SolidBySurface
-       //
+        public static implicit operator SolidBySurface(Int64 instance) => new SolidBySurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SolidBySurface
+        //
 
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public void set_faces(Face[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_faces(Int64[] instances) { SetObjectProperty("faces", instances); }
+        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Face[] get_faces() 
         {
@@ -6328,20 +6655,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SolidLine
-       //
+        public static implicit operator SolidLine(Int64 instance) => new SolidLine(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SolidLine
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..6</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..6</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of thickness</summary>
-        public void set_thickness(double value) { SetDatatypeProperty ("thickness", value); }
+        public bool set_thickness(double value) { return SetDatatypeProperty ("thickness", value); }
         ///<summary>Gets value of thickness, returns null is the property was not set</summary>
         public double? get_thickness() { var arr = GetDatatypeProperty_double("thickness"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -6371,16 +6701,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Sphere
-       //
+        public static implicit operator Sphere(Int64 instance) => new Sphere(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Sphere
+        //
 
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6410,16 +6743,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SphericalSurface
-       //
+        public static implicit operator SphericalSurface(Int64 instance) => new SphericalSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SphericalSurface
+        //
 
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6448,6 +6784,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "SpindleTorus") 
         {            
         }
+
+        public static implicit operator SpindleTorus(Int64 instance) => new SpindleTorus(instance);
+
     }
 
 
@@ -6475,32 +6814,35 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Spiral
-       //
+        public static implicit operator Spiral(Int64 instance) => new Spiral(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Spiral
+        //
 
         ///<summary>Sets value of height</summary>
-        public void set_height(double value) { SetDatatypeProperty ("height", value); }
+        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }
         ///<summary>Gets value of height, returns null is the property was not set</summary>
         public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetZ</summary>
-        public void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", value); }
+        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }
         ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
         public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
-        public void set_radius(double value) { SetDatatypeProperty ("radius", value); }
+        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
         public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of size</summary>
-        public void set_size(double value) { SetDatatypeProperty ("size", value); }
+        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }
         ///<summary>Gets value of size, returns null is the property was not set</summary>
         public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of start</summary>
-        public void set_start(double value) { SetDatatypeProperty ("start", value); }
+        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }
         ///<summary>Gets value of start, returns null is the property was not set</summary>
         public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -6530,18 +6872,21 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SplineCurve
-       //
+        public static implicit operator SplineCurve(Int64 instance) => new SplineCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SplineCurve
+        //
 
         ///<summary>Sets value of closed</summary>
-        public void set_closed(bool value) { SetDatatypeProperty ("closed", value); }
+        public bool set_closed(bool value) { return SetDatatypeProperty ("closed", value); }
         ///<summary>Gets value of closed, returns null is the property was not set</summary>
         public bool? get_closed() { var arr = GetDatatypeProperty_bool("closed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 2..-1</summary>
-        public void set_controlPoints(Point3D[] instances) { SetObjectProperty("controlPoints", instances); }
+        public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..-1</summary>
-        public void set_controlPoints(Int64[] instances) { SetObjectProperty("controlPoints", instances); }
+        public bool set_controlPoints(Int64[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 2..-1</summary>
         public Point3D[] get_controlPoints() 
         {
@@ -6593,19 +6938,19 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of count</summary>
-        public void set_count(Int64 value) { SetDatatypeProperty ("count", value); }
+        public bool set_count(Int64 value) { return SetDatatypeProperty ("count", value); }
         ///<summary>Gets value of count, returns null is the property was not set</summary>
         public Int64? get_count() { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of degree</summary>
-        public void set_degree(Int64 value) { SetDatatypeProperty ("degree", value); }
+        public bool set_degree(Int64 value) { return SetDatatypeProperty ("degree", value); }
         ///<summary>Gets value of degree, returns null is the property was not set</summary>
         public Int64? get_degree() { var arr = GetDatatypeProperty_Int64("degree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of segmentationLength</summary>
-        public void set_segmentationLength(double value) { SetDatatypeProperty ("segmentationLength", value); }
+        public bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", value); }
         ///<summary>Gets value of segmentationLength, returns null is the property was not set</summary>
         public double? get_segmentationLength() { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6635,14 +6980,17 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SplineSurface
-       //
+        public static implicit operator SplineSurface(Int64 instance) => new SplineSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SplineSurface
+        //
 
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 4..-1</summary>
-        public void set_controlPoints(Point3D[] instances) { SetObjectProperty("controlPoints", instances); }
+        public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 4..-1</summary>
-        public void set_controlPoints(Int64[] instances) { SetObjectProperty("controlPoints", instances); }
+        public bool set_controlPoints(Int64[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 4..-1</summary>
         public Point3D[] get_controlPoints() 
         {
@@ -6694,43 +7042,43 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of segmentationLength</summary>
-        public void set_segmentationLength(double value) { SetDatatypeProperty ("segmentationLength", value); }
+        public bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", value); }
         ///<summary>Gets value of segmentationLength, returns null is the property was not set</summary>
         public double? get_segmentationLength() { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of uClosed</summary>
-        public void set_uClosed(bool value) { SetDatatypeProperty ("uClosed", value); }
+        public bool set_uClosed(bool value) { return SetDatatypeProperty ("uClosed", value); }
         ///<summary>Gets value of uClosed, returns null is the property was not set</summary>
         public bool? get_uClosed() { var arr = GetDatatypeProperty_bool("uClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of uCount</summary>
-        public void set_uCount(Int64 value) { SetDatatypeProperty ("uCount", value); }
+        public bool set_uCount(Int64 value) { return SetDatatypeProperty ("uCount", value); }
         ///<summary>Gets value of uCount, returns null is the property was not set</summary>
         public Int64? get_uCount() { var arr = GetDatatypeProperty_Int64("uCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of uDegree</summary>
-        public void set_uDegree(Int64 value) { SetDatatypeProperty ("uDegree", value); }
+        public bool set_uDegree(Int64 value) { return SetDatatypeProperty ("uDegree", value); }
         ///<summary>Gets value of uDegree, returns null is the property was not set</summary>
         public Int64? get_uDegree() { var arr = GetDatatypeProperty_Int64("uDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of uSegmentationParts</summary>
-        public void set_uSegmentationParts(Int64 value) { SetDatatypeProperty ("uSegmentationParts", value); }
+        public bool set_uSegmentationParts(Int64 value) { return SetDatatypeProperty ("uSegmentationParts", value); }
         ///<summary>Gets value of uSegmentationParts, returns null is the property was not set</summary>
         public Int64? get_uSegmentationParts() { var arr = GetDatatypeProperty_Int64("uSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of vClosed</summary>
-        public void set_vClosed(bool value) { SetDatatypeProperty ("vClosed", value); }
+        public bool set_vClosed(bool value) { return SetDatatypeProperty ("vClosed", value); }
         ///<summary>Gets value of vClosed, returns null is the property was not set</summary>
         public bool? get_vClosed() { var arr = GetDatatypeProperty_bool("vClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of vCount</summary>
-        public void set_vCount(Int64 value) { SetDatatypeProperty ("vCount", value); }
+        public bool set_vCount(Int64 value) { return SetDatatypeProperty ("vCount", value); }
         ///<summary>Gets value of vCount, returns null is the property was not set</summary>
         public Int64? get_vCount() { var arr = GetDatatypeProperty_Int64("vCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of vDegree</summary>
-        public void set_vDegree(Int64 value) { SetDatatypeProperty ("vDegree", value); }
+        public bool set_vDegree(Int64 value) { return SetDatatypeProperty ("vDegree", value); }
         ///<summary>Gets value of vDegree, returns null is the property was not set</summary>
         public Int64? get_vDegree() { var arr = GetDatatypeProperty_Int64("vDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets value of vSegmentationParts</summary>
-        public void set_vSegmentationParts(Int64 value) { SetDatatypeProperty ("vSegmentationParts", value); }
+        public bool set_vSegmentationParts(Int64 value) { return SetDatatypeProperty ("vSegmentationParts", value); }
         ///<summary>Gets value of vSegmentationParts, returns null is the property was not set</summary>
         public Int64? get_vSegmentationParts() { var arr = GetDatatypeProperty_Int64("vSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -6759,6 +7107,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "SpotLight") 
         {            
         }
+
+        public static implicit operator SpotLight(Int64 instance) => new SpotLight(instance);
+
     }
 
 
@@ -6785,6 +7136,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Surface") 
         {            
         }
+
+        public static implicit operator Surface(Int64 instance) => new Surface(instance);
+
     }
 
 
@@ -6812,12 +7166,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SurfaceBySweptCurve
-       //
+        public static implicit operator SurfaceBySweptCurve(Int64 instance) => new SurfaceBySweptCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SurfaceBySweptCurve
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -6841,7 +7198,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_sweptArea(Curve instance) { SetObjectProperty("sweptArea", instance); }
+        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_sweptArea() 
         {
@@ -6865,9 +7222,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Curve[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Int64[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_sweptAreaOpenings() 
         {
@@ -6945,12 +7302,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SurfaceOfLinearExtrusion
-       //
+        public static implicit operator SurfaceOfLinearExtrusion(Int64 instance) => new SurfaceOfLinearExtrusion(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SurfaceOfLinearExtrusion
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_extrusion(Vector instance) { SetObjectProperty("extrusion", instance); }
+        public bool set_extrusion(Vector instance) { return SetObjectProperty("extrusion", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_extrusion() 
         {
@@ -6974,7 +7334,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_polygon(Curve instance) { SetObjectProperty("polygon", instance); }
+        public bool set_polygon(Curve instance) { return SetObjectProperty("polygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_polygon() 
         {
@@ -7024,12 +7384,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SurfaceOfRevolution
-       //
+        public static implicit operator SurfaceOfRevolution(Int64 instance) => new SurfaceOfRevolution(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SurfaceOfRevolution
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -7053,7 +7416,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -7083,12 +7446,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SweptAreaSolid
-       //
+        public static implicit operator SweptAreaSolid(Int64 instance) => new SweptAreaSolid(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SweptAreaSolid
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -7112,11 +7478,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -7140,7 +7506,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_sweptArea(Curve instance) { SetObjectProperty("sweptArea", instance); }
+        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_sweptArea() 
         {
@@ -7164,9 +7530,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Curve[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Int64[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_sweptAreaOpenings() 
         {
@@ -7244,12 +7610,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SweptAreaSolidSet
-       //
+        public static implicit operator SweptAreaSolidSet(Int64 instance) => new SweptAreaSolidSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SweptAreaSolidSet
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -7273,11 +7642,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -7301,9 +7670,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public void set_sweptAreaSet(Curve[] instances) { SetObjectProperty("sweptAreaSet", instances); }
+        public bool set_sweptAreaSet(Curve[] instances) { return SetObjectProperty("sweptAreaSet", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public void set_sweptAreaSet(Int64[] instances) { SetObjectProperty("sweptAreaSet", instances); }
+        public bool set_sweptAreaSet(Int64[] instances) { return SetObjectProperty("sweptAreaSet", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
         public Curve[] get_sweptAreaSet() 
         {
@@ -7381,12 +7750,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SweptAreaSolidTapered
-       //
+        public static implicit operator SweptAreaSolidTapered(Int64 instance) => new SweptAreaSolidTapered(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SweptAreaSolidTapered
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -7410,11 +7782,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -7438,7 +7810,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_sweptArea(Curve instance) { SetObjectProperty("sweptArea", instance); }
+        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_sweptArea() 
         {
@@ -7462,7 +7834,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_sweptAreaEnd(Curve instance) { SetObjectProperty("sweptAreaEnd", instance); }
+        public bool set_sweptAreaEnd(Curve instance) { return SetObjectProperty("sweptAreaEnd", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_sweptAreaEnd() 
         {
@@ -7486,9 +7858,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaEndOpenings(Curve[] instances) { SetObjectProperty("sweptAreaEndOpenings", instances); }
+        public bool set_sweptAreaEndOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaEndOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaEndOpenings(Int64[] instances) { SetObjectProperty("sweptAreaEndOpenings", instances); }
+        public bool set_sweptAreaEndOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaEndOpenings", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_sweptAreaEndOpenings() 
         {
@@ -7540,9 +7912,9 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Curve[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public void set_sweptAreaOpenings(Int64[] instances) { SetObjectProperty("sweptAreaOpenings", instances); }
+        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
         public Curve[] get_sweptAreaOpenings() 
         {
@@ -7620,12 +7992,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to SweptBlend
-       //
+        public static implicit operator SweptBlend(Int64 instance) => new SweptBlend(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SweptBlend
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_bottomPolygon(Curve instance) { SetObjectProperty("bottomPolygon", instance); }
+        public bool set_bottomPolygon(Curve instance) { return SetObjectProperty("bottomPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_bottomPolygon() 
         {
@@ -7649,31 +8024,31 @@ namespace CustomModel
             }
         }
         ///<summary>Sets values of connectionMap. OWL cardinality 0..-1</summary>
-        public void set_connectionMap(Int64[] values) { SetDatatypeProperty ("connectionMap", values); }
+        public bool set_connectionMap(Int64[] values) { return SetDatatypeProperty ("connectionMap", values); }
         ///<summary>Gets values of connectionMap. OWL cardinality 0..-1</summary>
         public Int64[] get_connectionMap() { return GetDatatypeProperty_Int64("connectionMap"); }
         ///<summary>Sets values of forcedStaticDirection. OWL cardinality 0..3</summary>
-        public void set_forcedStaticDirection(double[] values) { SetDatatypeProperty ("forcedStaticDirection", values); }
+        public bool set_forcedStaticDirection(double[] values) { return SetDatatypeProperty ("forcedStaticDirection", values); }
         ///<summary>Gets values of forcedStaticDirection. OWL cardinality 0..3</summary>
         public double[] get_forcedStaticDirection() { return GetDatatypeProperty_double("forcedStaticDirection"); }
         ///<summary>Sets value of forceSolid</summary>
-        public void set_forceSolid(bool value) { SetDatatypeProperty ("forceSolid", value); }
+        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }
         ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
         public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of fraction</summary>
-        public void set_fraction(double value) { SetDatatypeProperty ("fraction", value); }
+        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }
         ///<summary>Gets value of fraction, returns null is the property was not set</summary>
         public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of hasBottom</summary>
-        public void set_hasBottom(bool value) { SetDatatypeProperty ("hasBottom", value); }
+        public bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", value); }
         ///<summary>Gets value of hasBottom, returns null is the property was not set</summary>
         public bool? get_hasBottom() { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of hasTop</summary>
-        public void set_hasTop(bool value) { SetDatatypeProperty ("hasTop", value); }
+        public bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", value); }
         ///<summary>Gets value of hasTop, returns null is the property was not set</summary>
         public bool? get_hasTop() { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -7697,7 +8072,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_topPolygon(Curve instance) { SetObjectProperty("topPolygon", instance); }
+        public bool set_topPolygon(Curve instance) { return SetObjectProperty("topPolygon", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_topPolygon() 
         {
@@ -7721,7 +8096,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of usesAbsolutePlacement</summary>
-        public void set_usesAbsolutePlacement(bool value) { SetDatatypeProperty ("usesAbsolutePlacement", value); }
+        public bool set_usesAbsolutePlacement(bool value) { return SetDatatypeProperty ("usesAbsolutePlacement", value); }
         ///<summary>Gets value of usesAbsolutePlacement, returns null is the property was not set</summary>
         public bool? get_usesAbsolutePlacement() { var arr = GetDatatypeProperty_bool("usesAbsolutePlacement"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
     }
@@ -7751,40 +8126,43 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Texture
-       //
+        public static implicit operator Texture(Int64 instance) => new Texture(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Texture
+        //
 
         ///<summary>Sets value of name</summary>
-        public void set_name(string value) { SetDatatypeProperty ("name", value); }
+        public bool set_name(string value) { return SetDatatypeProperty ("name", value); }
         ///<summary>Gets value of name, returns null is the property was not set</summary>
         public string get_name() { var arr = GetDatatypeProperty_string("name"); return (arr != null && arr.Length > 0) ? (string)arr[0] : null; }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of origin. OWL cardinality 0..3</summary>
-        public void set_origin(double[] values) { SetDatatypeProperty ("origin", values); }
+        public bool set_origin(double[] values) { return SetDatatypeProperty ("origin", values); }
         ///<summary>Gets values of origin. OWL cardinality 0..3</summary>
         public double[] get_origin() { return GetDatatypeProperty_double("origin"); }
         ///<summary>Sets value of rotation</summary>
-        public void set_rotation(double value) { SetDatatypeProperty ("rotation", value); }
+        public bool set_rotation(double value) { return SetDatatypeProperty ("rotation", value); }
         ///<summary>Gets value of rotation, returns null is the property was not set</summary>
         public double? get_rotation() { var arr = GetDatatypeProperty_double("rotation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of scalingX</summary>
-        public void set_scalingX(double value) { SetDatatypeProperty ("scalingX", value); }
+        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }
         ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
         public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of scalingY</summary>
-        public void set_scalingY(double value) { SetDatatypeProperty ("scalingY", value); }
+        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }
         ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
         public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of type</summary>
-        public void set_type(Int64 value) { SetDatatypeProperty ("type", value); }
+        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }
         ///<summary>Gets value of type, returns null is the property was not set</summary>
         public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -7814,20 +8192,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to ToroidalSurface
-       //
+        public static implicit operator ToroidalSurface(Int64 instance) => new ToroidalSurface(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ToroidalSurface
+        //
 
         ///<summary>Sets value of majorRadius</summary>
-        public void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", value); }
+        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }
         ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
         public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of minorRadius</summary>
-        public void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", value); }
+        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }
         ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
         public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -7857,20 +8238,23 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Torus
-       //
+        public static implicit operator Torus(Int64 instance) => new Torus(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Torus
+        //
 
         ///<summary>Sets value of majorRadius</summary>
-        public void set_majorRadius(double value) { SetDatatypeProperty ("majorRadius", value); }
+        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }
         ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
         public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of minorRadius</summary>
-        public void set_minorRadius(double value) { SetDatatypeProperty ("minorRadius", value); }
+        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }
         ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
         public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -7900,12 +8284,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Transformation
-       //
+        public static implicit operator Transformation(Int64 instance) => new Transformation(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Transformation
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -7929,7 +8316,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -7979,12 +8366,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to TransitionalCurve
-       //
+        public static implicit operator TransitionalCurve(Int64 instance) => new TransitionalCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to TransitionalCurve
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public void set_direction(Vector instance) { SetObjectProperty("direction", instance); }
+        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
         public Vector get_direction() 
         {
@@ -8008,11 +8398,11 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of length</summary>
-        public void set_length(double value) { SetDatatypeProperty ("length", value); }
+        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }
         ///<summary>Gets value of length, returns null is the property was not set</summary>
         public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public void set_path(Curve instance) { SetObjectProperty("path", instance); }
+        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
         public Curve get_path() 
         {
@@ -8036,15 +8426,15 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of radiusI</summary>
-        public void set_radiusI(double value) { SetDatatypeProperty ("radiusI", value); }
+        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }
         ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
         public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of radiusII</summary>
-        public void set_radiusII(double value) { SetDatatypeProperty ("radiusII", value); }
+        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }
         ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
         public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of segmentationParts</summary>
-        public void set_segmentationParts(Int64 value) { SetDatatypeProperty ("segmentationParts", value); }
+        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }
         ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
         public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
     }
@@ -8074,30 +8464,33 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to TriangleCurve
-       //
+        public static implicit operator TriangleCurve(Int64 instance) => new TriangleCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to TriangleCurve
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..9</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..9</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets value of offsetX</summary>
-        public void set_offsetX(double value) { SetDatatypeProperty ("offsetX", value); }
+        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }
         ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
         public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetY</summary>
-        public void set_offsetY(double value) { SetDatatypeProperty ("offsetY", value); }
+        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }
         ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
         public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of offsetZ</summary>
-        public void set_offsetZ(double value) { SetDatatypeProperty ("offsetZ", value); }
+        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }
         ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
         public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..3</summary>
-        public void set_pointReferences(Point3D[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..3</summary>
-        public void set_pointReferences(Int64[] instances) { SetObjectProperty("pointReferences", instances); }
+        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..3</summary>
         public Point3D[] get_pointReferences() 
         {
@@ -8175,16 +8568,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to TriangleReduction
-       //
+        public static implicit operator TriangleReduction(Int64 instance) => new TriangleReduction(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to TriangleReduction
+        //
 
         ///<summary>Sets value of innerFraction</summary>
-        public void set_innerFraction(double value) { SetDatatypeProperty ("innerFraction", value); }
+        public bool set_innerFraction(double value) { return SetDatatypeProperty ("innerFraction", value); }
         ///<summary>Gets value of innerFraction, returns null is the property was not set</summary>
         public double? get_innerFraction() { var arr = GetDatatypeProperty_double("innerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public void set_object(GeometricItem instance) { SetObjectProperty("object", instance); }
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
         public GeometricItem get_object() 
         {
@@ -8208,7 +8604,7 @@ namespace CustomModel
             }
         }
         ///<summary>Sets value of outerFraction</summary>
-        public void set_outerFraction(double value) { SetDatatypeProperty ("outerFraction", value); }
+        public bool set_outerFraction(double value) { return SetDatatypeProperty ("outerFraction", value); }
         ///<summary>Gets value of outerFraction, returns null is the property was not set</summary>
         public double? get_outerFraction() { var arr = GetDatatypeProperty_double("outerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -8238,16 +8634,19 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to TriangleSet
-       //
+        public static implicit operator TriangleSet(Int64 instance) => new TriangleSet(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to TriangleSet
+        //
 
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        public void set_indices(Int64[] values) { SetDatatypeProperty ("indices", values); }
+        public bool set_indices(Int64[] values) { return SetDatatypeProperty ("indices", values); }
         ///<summary>Gets values of indices. OWL cardinality 0..-1</summary>
         public Int64[] get_indices() { return GetDatatypeProperty_Int64("indices"); }
         ///<summary>Sets values of vertices. OWL cardinality 3..-1</summary>
-        public void set_vertices(double[] values) { SetDatatypeProperty ("vertices", values); }
+        public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
         ///<summary>Gets values of vertices. OWL cardinality 3..-1</summary>
         public double[] get_vertices() { return GetDatatypeProperty_double("vertices"); }
     }
@@ -8276,6 +8675,9 @@ namespace CustomModel
             : base (instance, (checkClassName!=null) ? checkClassName : "Vector") 
         {            
         }
+
+        public static implicit operator Vector(Int64 instance) => new Vector(instance);
+
     }
 
 
@@ -8303,24 +8705,27 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to Vector3
-       //
+        public static implicit operator Vector3(Int64 instance) => new Vector3(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Vector3
+        //
 
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public void set_coordinates(double[] values) { SetDatatypeProperty ("coordinates", values); }
+        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         ///<summary>Sets value of x</summary>
-        public void set_x(double value) { SetDatatypeProperty ("x", value); }
+        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }
         ///<summary>Gets value of x, returns null is the property was not set</summary>
         public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of y</summary>
-        public void set_y(double value) { SetDatatypeProperty ("y", value); }
+        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }
         ///<summary>Gets value of y, returns null is the property was not set</summary>
         public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets value of z</summary>
-        public void set_z(double value) { SetDatatypeProperty ("z", value); }
+        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }
         ///<summary>Gets value of z, returns null is the property was not set</summary>
         public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
@@ -8350,12 +8755,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to View
-       //
+        public static implicit operator View(Int64 instance) => new View(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to View
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -8405,12 +8813,15 @@ namespace CustomModel
         {            
         }
 
-       //
-       // Properties with known cardinality restrictions to World
-       //
+        public static implicit operator World(Int64 instance) => new World(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to World
+        //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public void set_matrix(Matrix instance) { SetObjectProperty("matrix", instance); }
+        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
         public Matrix get_matrix() 
         {
@@ -8474,7 +8885,10 @@ namespace CustomModel
         public Instance(Int64 instance, string cls)
         {
             m_instance = instance;
-            System.Diagnostics.Debug.Assert(cls == null/*do not check*/ || engine.IsInstanceOfClass(instance, cls));
+            if (cls != null && !engine.IsInstanceOfClass(instance, cls))
+            {
+                m_instance = 0;
+            }
         }
 
 
@@ -8489,24 +8903,24 @@ namespace CustomModel
         public Int64 GetPropertyId(string name, Int64 checkCardinality = -1)
         {
             var model = engine.GetModel(m_instance);
-            System.Diagnostics.Debug.Assert(model != 0);
-
             var propId = engine.GetPropertyByName(model, name);
-            System.Diagnostics.Debug.Assert(propId != 0);
-
-#if DEBUG
             if (propId != 0)
             {
                 var clsId = engine.GetInstanceClass(m_instance);
                 Int64 minCard = 0, maxCard = 0;
                 engine.GetPropertyRestrictionsConsolidated(clsId, propId, out minCard, out maxCard);
-                System.Diagnostics.Debug.Assert(minCard >= 0); //property assigned to the class
+                if (minCard < 0)
+                {
+                    propId = 0; //property is not assigned to the class
+                }
                 if (checkCardinality > 0)
                 { //chek cardinatity when set property
-                    System.Diagnostics.Debug.Assert(checkCardinality >= minCard && (checkCardinality <= maxCard || maxCard < 0)); //cardinality is in range
+                    if (checkCardinality < minCard || (maxCard > 0 && checkCardinality > maxCard))
+                    {
+                        propId = 0; //cardinality is out of range
+                    }
                 }
             }
-#endif
 
             return propId;
         }
@@ -8514,58 +8928,58 @@ namespace CustomModel
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, double value)
+        public bool SetDatatypeProperty(string name, double value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, double[] values)
+        public bool SetDatatypeProperty(string name, double[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, Int64 value)
+        public bool SetDatatypeProperty(string name, Int64 value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, Int64[] values)
+        public bool SetDatatypeProperty(string name, Int64[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, bool value)
+        public bool SetDatatypeProperty(string name, bool value)
         {
             var propId = GetPropertyId(name, 1);
             byte v = (byte)(value ? 1 : 0);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref v, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, bool[] values)
+        public bool SetDatatypeProperty(string name, bool[] values)
         {
             byte[] bytes = new byte[values.Length];
             for (int i = 0; i < values.Length; i++)
@@ -8573,27 +8987,27 @@ namespace CustomModel
 
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, bytes, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, string value)
+        public bool SetDatatypeProperty(string name, string value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, string[] values)
+        public bool SetDatatypeProperty(string name, string[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
@@ -8606,7 +9020,10 @@ namespace CustomModel
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if (res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -8631,7 +9048,10 @@ namespace CustomModel
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -8656,7 +9076,10 @@ namespace CustomModel
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -8687,7 +9110,10 @@ namespace CustomModel
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -8710,29 +9136,29 @@ namespace CustomModel
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Int64 instance)
+        public bool SetObjectProperty(string name, Int64 instance)
         {
             var propId = GetPropertyId(name);
             var res = engine.SetObjectProperty(m_instance, propId, ref instance, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return (res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Instance[] instances)
+        public bool SetObjectProperty(string name, Instance[] instances)
         {
             var inst = new Int64[instances.Length];
             for (int i = 0; i < instances.Length; i++)
                 inst[i] = instances[i];
 
-            SetObjectProperty(name, inst);
+            return SetObjectProperty(name, inst);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Int64[] instances)
+        public bool SetObjectProperty(string name, Int64[] instances)
         {
             var propId = GetPropertyId(name);
 
@@ -8741,7 +9167,7 @@ namespace CustomModel
                 inst[i] = instances[i];
 
             var res = engine.SetObjectProperty(m_instance, propId, ref inst[0], inst.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
 

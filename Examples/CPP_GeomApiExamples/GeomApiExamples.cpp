@@ -11,7 +11,16 @@
 #include "geom.h"
 using namespace GEOM;
 
-#define ASSERT assert
+#include "..\..\EngineEx_Template.h" //to check compilable
+
+static void ASSERT_AT(bool c, const char* cond, const char* file, int line)
+{
+	if (!c)
+		printf("!!!!  ASSERT %s VIOLATED at file %s line %d\n", cond, file, line);
+	assert(c);
+}
+#define ASSERT(c) ASSERT_AT((c), #c, __FILE__, __LINE__);
+#define ASSERT_ARR_EQ(r1,r2,N)  	for (int i=0; i<N; i++) { ASSERT_AT((fabs ((double)r1[i]-(double)r2[i]) < 1e-9), #r1 "!=" #r2, __FILE__, __LINE__);}
 
 static int64_t CreateRedBox(int64_t model);
 static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model);
@@ -31,7 +40,7 @@ int main()
 
 	CloseModel(model);
 
-	printf("finsihed successfully\n");
+	printf("\ntest finsihed\n");
 }
 
 
@@ -80,8 +89,6 @@ static int64_t CreateRedBox(int64_t model)
 	return box;
 }
 
-///
-#define ASSERT_ARR_EQ(r1,r2,N)  	for (int i=0; i<N; i++) { ASSERT(fabs ((double)r1[i]-(double)r2[i]) < 1e-9);}
 
 /// <summary>
 /// 
@@ -94,13 +101,28 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 	Texture texture = Texture::Create(model);
 	NURBSCurve curve = NURBSCurve::Create(model);
 
-	GeometricItem geometricItem ((int64_t)curve); //no assertion
-	//GeometricItem notGeometricItem (texture); //expected assertion
+	//cast check
+	int64_t texture_id = texture;
+	int64_t curve_id = curve;
+
+	GeometricItem geometricItem (curve_id);   //use either id or wrapper
+	ASSERT(geometricItem != 0);
+
+	GeometricItem notGeometricItem (texture);
+	ASSERT(notGeometricItem == 0);
+
+	ASSERT((GeometricItem) curve != 0);
+	ASSERT((GeometricItem) texture == 0);
+
+	ASSERT((GeometricItem) curve_id != 0);
+	ASSERT((GeometricItem) texture_id == 0);
+
 
 	//double
 	const double* lseg = curve.get_segmentationLength();
 	ASSERT(lseg == NULL);
-	curve.set_segmentationLength(0.5);
+	auto ok = curve.set_segmentationLength(0.5);
+	ASSERT(ok);
 	lseg = curve.get_segmentationLength();
 	ASSERT(*lseg == 0.5);
 
@@ -109,30 +131,36 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 	const double* org = texture.get_origin(&cnt);
 	ASSERT(org == NULL);
 	double orgset[] = {1, 2, 3};
-	texture.set_origin(orgset, 3);
+	ok = texture.set_origin(orgset, 3);
+	ASSERT(ok);
 	org = texture.get_origin(&cnt);
 	ASSERT(cnt == 3);
 	ASSERT_ARR_EQ(org, orgset, cnt);
 
 	//there is ability to identity property by name
 	orgset[1] = 10;
-	texture.SetDatatypeProperty<double>("origin", orgset, 3);
+	ok = texture.SetDatatypeProperty<double>("origin", orgset, 3);
+	ASSERT(ok);
 	org = texture.GetDatatypeProperty<double>("origin", &cnt);
 	ASSERT_ARR_EQ(org, orgset, cnt);
 
-	//expected debug assert here because of cardinality restriction violation
-	//double tooLong[] = { 1, 2, 3, 4 };
-	//texture.set_origin(tooLong, 4);
+	//cardinality restriction violation
+	double tooLong[] = { 1, 2, 3, 4 };
+	ok = texture.set_origin(tooLong, 4);
+	ASSERT(!ok);
 
-	//expected debug assertion here because of wrong property name
-	//texture.SetDatatypeProperty<double>("length", org, 3);
-	//org = texture.GetDatatypeProperty<double>("originnn", &cnt);
+	// wrong property name
+	ok = texture.SetDatatypeProperty<double>("length", org, 3);
+	ASSERT(!ok);
+	ok = texture.GetDatatypeProperty<double>("originnn", &cnt);
+	ASSERT(!ok);
 
 
 	//int64_t
 	const int64_t* setting = curve.get_setting();
 	ASSERT(setting == NULL);
-	curve.set_setting(13);
+	ok = curve.set_setting(13);
+	ASSERT(ok);
 	setting = curve.get_setting();
 	ASSERT(*setting == 13);
 
@@ -140,7 +168,8 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 	const int64_t* km = curve.get_knotMultiplicities(&cnt);
 	ASSERT(km == NULL);
 	int64_t kmset[] = {3, 5, 6};
-	curve.set_knotMultiplicities(kmset, 3);
+	ok = curve.set_knotMultiplicities(kmset, 3);
+	ASSERT(ok);
 	km = curve.get_knotMultiplicities(&cnt);
 	ASSERT(cnt == 3);
 	ASSERT_ARR_EQ(km, kmset, cnt);
@@ -148,7 +177,8 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model)
 	//string 
 	const char* const* tname = texture.get_name();
 	ASSERT(tname == NULL);
-	texture.set_name("test");
+	ok = texture.set_name("test");
+	ASSERT(ok);
 	tname = texture.get_name();
 	ASSERT(0 == strcmp(*tname, "test"));
 

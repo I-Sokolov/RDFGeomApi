@@ -35,18 +35,21 @@ namespace NAMESPACE_NAME
             : base (instance, (checkClassName!=null) ? checkClassName : "CLASS_NAME") 
         {            
         }
-//## TEMPLATE StartPropertiesBlock
 
-       //
-       // Properties with known cardinality restrictions to PROPERTIES_OF_CLASS
-       //
+        public static implicit operator CLASS_NAME(Int64 instance) => new CLASS_NAME(instance);
 
-//## TEMPLATE: SetDataProperty
+        //## TEMPLATE StartPropertiesBlock
+
+        //
+        // Properties with known cardinality restrictions to PROPERTIES_OF_CLASS
+        //
+
+        //## TEMPLATE: SetDataProperty
         ///<summary>Sets value of PROPERTY_NAME</summary>
-        public void set_PROPERTY_NAME(double value) { SetDatatypeProperty ("PROPERTY_NAME", value); }
+        public bool set_PROPERTY_NAME(double value) { return SetDatatypeProperty ("PROPERTY_NAME", value); }
 //## TEMPLATE SetDataArrayProperty
         ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public void set_PROPERTY_NAME(double[] values) { SetDatatypeProperty ("PROPERTY_NAME", values); }
+        public bool set_PROPERTY_NAME(double[] values) { return SetDatatypeProperty ("PROPERTY_NAME", values); }
 //## TEMPLATE GetDataProperty
         ///<summary>Gets value of PROPERTY_NAME, returns null is the property was not set</summary>
         public double? get_PROPERTY_NAME() { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
@@ -55,10 +58,10 @@ namespace NAMESPACE_NAME
         public double[] get_PROPERTY_NAMEasType() { return GetDatatypeProperty_double("PROPERTY_NAME"); }
 //## TEMPLATE: SetObjectProperty
         ///<summary>Sets relationship from this instance to an instance of Instance</summary>
-        public void set_PROPERTY_NAME(Instance instance) { SetObjectProperty("PROPERTY_NAME", instance); }
+        public bool set_PROPERTY_NAME(Instance instance) { return SetObjectProperty("PROPERTY_NAME", instance); }
 //## TEMPLATE SetObjectArrayProperty
         ///<summary>Sets relationships from this instance to an array of Instance. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public void set_PROPERTY_NAME(Instance[] instances) { SetObjectProperty("PROPERTY_NAME", instances); }
+        public bool set_PROPERTY_NAME(Instance[] instances) { return SetObjectProperty("PROPERTY_NAME", instances); }
 //## TEMPLATE GetObjectProperty
         ///<summary>Get related instance</summary>
         public Instance get_PROPERTY_NAMEasTYPe() 
@@ -177,7 +180,10 @@ namespace NAMESPACE_NAME
         public Instance(Int64 instance, string cls)
         {
             m_instance = instance;
-            System.Diagnostics.Debug.Assert(cls == null/*do not check*/ || engine.IsInstanceOfClass(instance, cls));
+            if (cls != null && !engine.IsInstanceOfClass(instance, cls))
+            {
+                m_instance = 0;
+            }
         }
 
 
@@ -192,24 +198,24 @@ namespace NAMESPACE_NAME
         public Int64 GetPropertyId(string name, Int64 checkCardinality = -1)
         {
             var model = engine.GetModel(m_instance);
-            System.Diagnostics.Debug.Assert(model != 0);
-
             var propId = engine.GetPropertyByName(model, name);
-            System.Diagnostics.Debug.Assert(propId != 0);
-
-#if DEBUG
             if (propId != 0)
             {
                 var clsId = engine.GetInstanceClass(m_instance);
                 Int64 minCard = 0, maxCard = 0;
                 engine.GetPropertyRestrictionsConsolidated(clsId, propId, out minCard, out maxCard);
-                System.Diagnostics.Debug.Assert(minCard >= 0); //property assigned to the class
+                if (minCard < 0)
+                {
+                    propId = 0; //property is not assigned to the class
+                }
                 if (checkCardinality > 0)
                 { //chek cardinatity when set property
-                    System.Diagnostics.Debug.Assert(checkCardinality >= minCard && (checkCardinality <= maxCard || maxCard < 0)); //cardinality is in range
+                    if (checkCardinality < minCard || (maxCard > 0 && checkCardinality > maxCard))
+                    {
+                        propId = 0; //cardinality is out of range
+                    }
                 }
             }
-#endif
 
             return propId;
         }
@@ -217,58 +223,58 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, double value)
+        public bool SetDatatypeProperty(string name, double value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, double[] values)
+        public bool SetDatatypeProperty(string name, double[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, Int64 value)
+        public bool SetDatatypeProperty(string name, Int64 value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, Int64[] values)
+        public bool SetDatatypeProperty(string name, Int64[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, bool value)
+        public bool SetDatatypeProperty(string name, bool value)
         {
             var propId = GetPropertyId(name, 1);
             byte v = (byte)(value ? 1 : 0);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref v, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, bool[] values)
+        public bool SetDatatypeProperty(string name, bool[] values)
         {
             byte[] bytes = new byte[values.Length];
             for (int i = 0; i < values.Length; i++)
@@ -276,27 +282,27 @@ namespace NAMESPACE_NAME
 
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, bytes, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, string value)
+        public bool SetDatatypeProperty(string name, string value)
         {
             var propId = GetPropertyId(name, 1);
             var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetDatatypeProperty(string name, string[] values)
+        public bool SetDatatypeProperty(string name, string[] values)
         {
             var propId = GetPropertyId(name, values.Length);
             var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
         /// <summary>
@@ -309,7 +315,10 @@ namespace NAMESPACE_NAME
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if (res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -334,7 +343,10 @@ namespace NAMESPACE_NAME
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -359,7 +371,10 @@ namespace NAMESPACE_NAME
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -390,7 +405,10 @@ namespace NAMESPACE_NAME
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
             var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+            if(res != 0)
+            {
+                card = 0;
+            }
 
             if (card > 0)
             {
@@ -413,29 +431,29 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Int64 instance)
+        public bool SetObjectProperty(string name, Int64 instance)
         {
             var propId = GetPropertyId(name);
             var res = engine.SetObjectProperty(m_instance, propId, ref instance, 1);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return (res == 0);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Instance[] instances)
+        public bool SetObjectProperty(string name, Instance[] instances)
         {
             var inst = new Int64[instances.Length];
             for (int i = 0; i < instances.Length; i++)
                 inst[i] = instances[i];
 
-            SetObjectProperty(name, inst);
+            return SetObjectProperty(name, inst);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetObjectProperty(string name, Int64[] instances)
+        public bool SetObjectProperty(string name, Int64[] instances)
         {
             var propId = GetPropertyId(name);
 
@@ -444,7 +462,7 @@ namespace NAMESPACE_NAME
                 inst[i] = instances[i];
 
             var res = engine.SetObjectProperty(m_instance, propId, ref inst[0], inst.Length);
-            System.Diagnostics.Debug.Assert(res == 0);
+            return(res == 0);
         }
 
 
