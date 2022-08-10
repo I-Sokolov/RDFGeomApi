@@ -151,12 +151,12 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// Create an instance of specified class
         /// </summary>
-        public static Int64 Create(Int64 model, string className, string instanseName)
+        public static Int64 Create(Int64 model, string className, string instanceName)
         {
             Int64 clsid = engine.GetClassByName(model, className);
             System.Diagnostics.Debug.Assert(clsid != 0);
 
-            Int64 instance = engine.CreateInstance(clsid, instanseName);
+            Int64 instance = engine.CreateInstance(clsid, instanceName);
             System.Diagnostics.Debug.Assert(instance != 0);
 
             return instance;
