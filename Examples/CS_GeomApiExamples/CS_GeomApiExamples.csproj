@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Compile Include="..\..\bin\Debug\net5.0\geom.cs" />
+    <Compile Include="..\..\API.generated\geom.cs" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Compile Include="..\..\bin\Release\net5.0\geom.cs" />
+    <Compile Include="..\..\API.generated\geom.cs" />
   </ItemGroup>
 
 

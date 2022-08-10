@@ -55,13 +55,21 @@ namespace RDFWrappers
                 string baseNameSmall = (options.modelFile == null ? "geom" : System.IO.Path.GetFileNameWithoutExtension (options.modelFile));
                 string baseNameCapital = (options.modelFile == null ? "GEOM" : System.IO.Path.GetFileNameWithoutExtension(options.modelFile));
 
+                string defaultOutDir = @"..\..\..\API.generated\";
+                if (!System.IO.Directory.Exists (defaultOutDir))
+                {
+                    defaultOutDir = "";
+                }
+
                 if (string.IsNullOrWhiteSpace (options.csFile))
                 {
-                    options.csFile = baseNameSmall + ".cs";
+                    options.csFile = defaultOutDir + baseNameSmall + ".cs";
+                    options.csFile = System.IO.Path.GetFullPath(options.csFile);
                 }
                 if (string.IsNullOrWhiteSpace (options.hFile))
                 {
-                    options.hFile = baseNameSmall + ".h";
+                    options.hFile = defaultOutDir + baseNameSmall + ".h";
+                    options.hFile = System.IO.Path.GetFullPath(options.hFile);
                 }
                 if (string.IsNullOrWhiteSpace (options.Namespace))
                 {
