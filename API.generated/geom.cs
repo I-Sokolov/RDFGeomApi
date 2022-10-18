@@ -80,6 +80,7 @@ namespace GEOM
 //     Line3D
 //     Line3Dn
 //     Line3DSet
+//     Line4D
 //     LineByFace
 //     Material
 //     Mathematics
@@ -95,10 +96,12 @@ namespace GEOM
 //     Point3D
 //     Point3DSet
 //     Point3DSetByGeometricItem
+//     Point4D
 //     PointLight
 //     PointLoop
 //     Polygon2D
 //     Polygon3D
+//     Polygon4D
 //     PolyLine3D
 //     Prism
 //     Profile
@@ -328,6 +331,15 @@ namespace GEOM
 
         public static implicit operator AdvancedFace3D(Int64 instance) => new AdvancedFace3D(instance);
 
+
+        //
+        // Properties with known cardinality restrictions to AdvancedFace3D
+        //
+
+        ///<summary>Sets values of isOuterBound. OWL cardinality 0..-1</summary>
+        public bool set_isOuterBound(bool[] values) { return SetDatatypeProperty ("isOuterBound", values); }
+        ///<summary>Gets values of isOuterBound. OWL cardinality 0..-1</summary>
+        public bool[] get_isOuterBound() { return GetDatatypeProperty_bool("isOuterBound"); }
     }
 
 
@@ -1313,6 +1325,10 @@ namespace GEOM
         public bool set_textureIndices(Int64[] values) { return SetDatatypeProperty ("textureIndices", values); }
         ///<summary>Gets values of textureIndices. OWL cardinality 0..-1</summary>
         public Int64[] get_textureIndices() { return GetDatatypeProperty_Int64("textureIndices"); }
+        ///<summary>Sets value of vertexEpsilon</summary>
+        public bool set_vertexEpsilon(double value) { return SetDatatypeProperty ("vertexEpsilon", value); }
+        ///<summary>Gets value of vertexEpsilon, returns null is the property was not set</summary>
+        public double? get_vertexEpsilon() { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
         ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
         public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
         ///<summary>Gets values of vertices. OWL cardinality 0..-1</summary>
@@ -1951,6 +1967,10 @@ namespace GEOM
         public bool set_representsSolid(bool value) { return SetDatatypeProperty ("representsSolid", value); }
         ///<summary>Gets value of representsSolid, returns null is the property was not set</summary>
         public bool? get_representsSolid() { var arr = GetDatatypeProperty_bool("representsSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+        ///<summary>Sets value of vertexEpsilon</summary>
+        public bool set_vertexEpsilon(double value) { return SetDatatypeProperty ("vertexEpsilon", value); }
+        ///<summary>Gets value of vertexEpsilon, returns null is the property was not set</summary>
+        public double? get_vertexEpsilon() { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
     }
 
 
@@ -4427,6 +4447,88 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Line4D
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class Line4D : Curve
+    {
+        /// <summary>
+        /// Create new instace of OWL class Line4D and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new Line4D Create(Int64 model, string name=null) { return new Line4D(Instance.Create(model, "Line4D", name), "Line4D");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public Line4D(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "Line4D") 
+        {            
+        }
+
+        public static implicit operator Line4D(Int64 instance) => new Line4D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Line4D
+        //
+
+        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        public bool set_firstPoint(Point instance) { return SetObjectProperty("firstPoint", instance); }
+        ///<summary>Get related instance</summary>
+        public Point get_firstPoint() 
+        {
+            var propId = GetPropertyId("firstPoint");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new Point(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        public bool set_secondPoint(Point instance) { return SetObjectProperty("secondPoint", instance); }
+        ///<summary>Get related instance</summary>
+        public Point get_secondPoint() 
+        {
+            var propId = GetPropertyId("secondPoint");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new Point(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class LineByFace
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5286,6 +5388,112 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Point4D
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class Point4D : Point
+    {
+        /// <summary>
+        /// Create new instace of OWL class Point4D and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new Point4D Create(Int64 model, string name=null) { return new Point4D(Instance.Create(model, "Point4D", name), "Point4D");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public Point4D(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "Point4D") 
+        {            
+        }
+
+        public static implicit operator Point4D(Int64 instance) => new Point4D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Point4D
+        //
+
+        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        public bool set_normal(Vector3 instance) { return SetObjectProperty("normal", instance); }
+        ///<summary>Get related instance</summary>
+        public Vector3 get_normal() 
+        {
+            var propId = GetPropertyId("normal");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new Vector3(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
+        public bool set_point(Point3D instance) { return SetObjectProperty("point", instance); }
+        ///<summary>Get related instance</summary>
+        public Point3D get_point() 
+        {
+            var propId = GetPropertyId("point");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new Point3D(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        public bool set_tangent(Vector3 instance) { return SetObjectProperty("tangent", instance); }
+        ///<summary>Get related instance</summary>
+        public Vector3 get_tangent() 
+        {
+            var propId = GetPropertyId("tangent");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new Vector3(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class PointLight
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5570,6 +5778,94 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Polygon4D
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class Polygon4D : Curve
+    {
+        /// <summary>
+        /// Create new instace of OWL class Polygon4D and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new Polygon4D Create(Int64 model, string name=null) { return new Polygon4D(Instance.Create(model, "Polygon4D", name), "Polygon4D");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public Polygon4D(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "Polygon4D") 
+        {            
+        }
+
+        public static implicit operator Polygon4D(Int64 instance) => new Polygon4D(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Polygon4D
+        //
+
+        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
+        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
+        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
+        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
+        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] get_lineParts() 
+        {
+            var propId = GetPropertyId("lineParts");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[card];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                var ret = new Curve[card];
+                for (int i = 0; i < card; i++)
+                {
+                    ret[i] = new Curve(values[i], null);
+                }
+
+                return ret;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] get_lineParts_Int64()  
+        {
+            var propId = GetPropertyId("lineParts");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[card];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                return values;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class PolyLine3D
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5662,10 +5958,10 @@ namespace GEOM
         public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        ///<summary>Sets values of tangent. OWL cardinality 0..-1</summary>
-        public bool set_tangent(double[] values) { return SetDatatypeProperty ("tangent", values); }
-        ///<summary>Gets values of tangent. OWL cardinality 0..-1</summary>
-        public double[] get_tangent() { return GetDatatypeProperty_double("tangent"); }
+        ///<summary>Sets values of tangentArray. OWL cardinality 0..-1</summary>
+        public bool set_tangentArray(double[] values) { return SetDatatypeProperty ("tangentArray", values); }
+        ///<summary>Gets values of tangentArray. OWL cardinality 0..-1</summary>
+        public double[] get_tangentArray() { return GetDatatypeProperty_double("tangentArray"); }
     }
 
 
@@ -6707,6 +7003,10 @@ namespace GEOM
         // Properties with known cardinality restrictions to SphericalSurface
         //
 
+        ///<summary>Sets value of invert</summary>
+        public bool set_invert(bool value) { return SetDatatypeProperty ("invert", value); }
+        ///<summary>Gets value of invert, returns null is the property was not set</summary>
+        public bool? get_invert() { var arr = GetDatatypeProperty_bool("invert"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of radius</summary>
         public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }
         ///<summary>Gets value of radius, returns null is the property was not set</summary>
