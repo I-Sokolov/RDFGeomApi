@@ -1,6 +1,9 @@
 //
 // Helper classes (C# wrappers)
 //
+#pragma warning disable CS1587
+#pragma warning disable CS1591
+
 using System;
 using RDF;
 
@@ -175,8 +178,6 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// Constructs object that wraps existing OWL instance
         /// </summary>
-        /// <param name="instance">OWL instance to interact with</param>
-        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
         public Instance(Int64 instance, string cls)
         {
             m_instance = instance;

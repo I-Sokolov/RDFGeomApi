@@ -1,3 +1,7 @@
+#pragma warning disable CS1570
+#pragma warning disable CS1587
+#pragma warning disable CS1591
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -2547,148 +2551,149 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetDependingProperty")]
 		public static extern void GetDependingProperty(Int64 baseOwlInstance, Int64 conceptualFace, Int64 index, out Int64 owlInstance, out Int64 datatypeProperty);
 
-		/// <summary>
-		///		SetFormat                                   (http://rdf.bg/gkdoc/CS64/SetFormat.html)
-		///
-		///	This function sets the type of export format, by setting a mask
-		///		bit 0 & 1:
-		///			00	Each vertex is unique (although mostly irrelevant UpdateIndexBuffer() and 
-		///				UpdateTransformationBuffer() are still returning information)
-		///			01	Each index is unique => vertices are not necessarily (although mostly
-		///				irrelevant UpdateTransformationBuffer() is still returning information)
-		///			10	Single level Transformations are used, most optimal when using DirectX till version 11
-		///				and OpenGL till version 2
-		///			11	Nested Transformations are used, most optimal but till 2011 no known support of
-		///				low level 3D interfaces like DirectX and OpenGL
-		///		bit 2:	(FORMAT_SIZE_VERTEX_DOUBLE)
-		///			0	Vertex items returned as float (4 byte/32 bit)
-		///			1	Vertex items returned as double (8 byte/64 bit)
-		///		bit 3:	(FORMAT_SIZE_INDEX_INT64)
-		///			0	Index items returned as int32_t (4 byte/32 bit)
-		///			1	Index items returned as int64_t (8 byte/64 bit) (only available in 64 bit mode)
-		///
-		///		bit 4:	(FORMAT_VERTEX_POINT)
-		///			0	Vertex does not contain 3D point info
-		///			1	Vertex does contain 3D point info
-		///		bit 5:	(FORMAT_VERTEX_NORMAL)
-		///			0	Vertex does not contain 3D normal vector info
-		///			1	Vertex does contain 3D normal vector info => if set, bit 4 will also be set
-		///		bit 6:	(FORMAT_VERTEX_TEXTURE_UV)
-		///			0	Vertex does not contain first 2D texture info
-		///			1	Vertex does contain first 2D texture info
-		///		bit 7:	(FORMAT_VERTEX_TEXTURE2_UV)
-		///			0	Vertex does not contain second 2D texture info
-		///			1	Vertex does contain second 2D texture info => if set, bit 6 will also be set
-		///
-		///		bit 8:	(FORMAT_EXPORT_TRIANGLES)
-		///			0	No object form triangles are exported
-		///			1	Object form triangles are exported (effective if instance contains faces and/or solids)
-		///		bit 9:	(FORMAT_EXPORT_LINES)
-		///			0	No object polygon lines are exported
-		///			1	Object polygon lines are exported (effective if instance contains line representations)
-		///		bit 10:	(FORMAT_EXPORT_POINTS)
-		///			0	No object points are exported
-		///			1	Object points are exported (effective if instance contains point representations)
-		///
-		///		bit 11:	Reserved, by default 0
-		///
-		///		bit 12:	(FORMAT_EXPORT_FACE_POLYGONS)
-		///			0	No object face polygon lines are exported
-		///			1	Object face polygon lines (dense wireframe) are exported => if set, bit 8 will also be set
-		///		bit 13:	(FORMAT_EXPORT_CONCEPTUAL_FACE_POLYGONS)
-		///			0	No object conceptual face polygon lines are exported
-		///			1	Object conceptual face polygon lines (wireframe) are exported => if set, bit 12 will also be set
-		///		bit 14:	(FORMAT_EXPORT_POLYGONS_AS_TUPLES)
-		///			0	Polygon lines (wireframe) exported as list, i.e. typical 4 point polygon exported as  0 1 2 3 0 -1
-		///			1	Polygon lines (wireframe) exported as tuples, i.e. typical 4 point polygon exported as 0 1 1 2 2 3 3 0
-		///
-		///		bit 15:	(FORMAT_EXPORT_ADVANCED_NORMALS)
-		///			0	All normals of triangles are transformed orthogonal to the 2D face they belong to
-		///			1	Normals are exported to be in line with the original semantic form description (could be non orthogonal to the 2D face) 
-		///
-		///		bit 16:	(FORMAT_EXPORT_DIRECTX)
-		///			0	no specific behavior
-		///			1	Where possible DirectX compatibility is given to exported data (i.e. order of components in vertex buffer)
-		///					 => [bit 20, bit 21 both UNSET]
-		///					 => if set, bit 17 will be unset
-		///
-		///		bit 17:	(FORMAT_EXPORT_OPENGL)
-		///			0	no specific behavior
-		///			1	Where possible OpenGL compatibility is given to exported data (i.e. order of components in vertex buffer and inverted texture coordinates in Y direction)
-		///					 => [bit 20, bit 21 both SET]
-		///					 => if set, bit 16 will be unset
-		///
-		///		bit 18:	(FORMAT_EXPORT_DOUBLE_SIDED)
-		///			0	All faces are defined as calculated
-		///			1	Every face has exactly one opposite face (normally both index and vertex buffer are doubled in size)
-		///
-		///		bit 19:	Reserved, by default 0
-		///
-		///		bit 20-23:
-		///			0000	version 0 (used in case there is different behavior between versions in DirectX or OpenGL)
-		///			....	...
-		///			1111	version 15
-		///
-		///		bit 20:	(FORMAT_EXPORT_VERSION_0001)
-		///			0	Standard Triangle Rotation (LHS as expected by DirectX) 
-		///			1	Opposite Triangle Rotation (RHS as expected by OpenGL)
-		///		bit 21:	(FORMAT_EXPORT_VERSION_0010)
-		///			0	X, Y, Z (nX, nY, nZ) formatted as <X Y Z> considering internal concepts
-		///			1	X, Y, Z (nX, nY, nZ) formatted as <X -Z Y>, i.e. X, -Z, Y (nX, -nZ, nY) considering internal concepts (OpenGL)
-		///
-		///		bit 24:	(FORMAT_VERTEX_COLOR_AMBIENT)
-		///			0	Vertex does not contain Ambient color information
-		///			1	Vertex does contain Ambient color information
-		///		bit 25:	(FORMAT_VERTEX_COLOR_DIFFUSE)
-		///			0	Vertex does not contain Diffuse color information
-		///			1	Vertex does contain Diffuse color information
-		///		bit 26:	(FORMAT_VERTEX_COLOR_EMISSIVE)
-		///			0	Vertex does not contain Emissive color information
-		///			1	Vertex does contain Emissive color information
-		///		bit 27:	(FORMAT_VERTEX_COLOR_SPECULAR)
-		///			0	Vertex does not contain Specular color information
-		///			1	Vertex does contain Specular color information
-		///
-		///		bit 28:	(FORMAT_VERTEX_TEXTURE_TANGENT)
-		///			0	Vertex does not contain tangent vector for first texture
-		///			1	Vertex does contain tangent vector for first texture => if set, bit 6 will also be set
-		///		bit 29:	(FORMAT_VERTEX_TEXTURE_BINORMAL)
-		///			0	Vertex does not contain binormal vector for first texture
-		///			1	Vertex does contain binormal vector for first texture => if set, bit 6 will also be set
-		///		bit 30:	(FORMAT_VERTEX_TEXTURE2_TANGENT)		ONLY WORKS IN 64 BIT MODE
-		///			0	Vertex does not contain tangent vector for second texture
-		///			1	Vertex does contain tangent vector for second texture => if set, bit 6 will also be set
-		///		bit 31:	(FORMAT_VERTEX_TEXTURE2_BINORMAL)		ONLY WORKS IN 64 BIT MODE
-		///			0	Vertex does not contain binormal vector for second texture
-		///			1	Vertex does contain binormal vector for second texture => if set, bit 6 will also be set
-		///
-		///		bit 26-31:	Reserved, by default 0
-		///
-		///		bit 32-63:	Reserved, by default 0
-		///
-		///	Note: default setting is 0000 0000 0000 0000   0000 0000 0000 0000  -  0000 0000 0000 0000   1000 0001  0011 0000 = h0000 0000 - 0000 8130 = 33072
-		///
-		///
-		///	Depending on FORMAT_SIZE_VERTEX_DOUBLE each element in the vertex buffer is a double or float number.
-		///	Number of elements for each vertex depends on format setting. You can get the number by GetVertexElementsCounts. 
-		///	Each vertex block contains data items in an order according to the table below. The table also specifies when an item is present and number of elements 
-		///	it occupied. Use GetVertexDataOffset or GetVertexColor to get required item. 
-		///
-		///	#	Vertex data item	Included when format setting bit is on					Size (num of elements)
-		///	Point coordinates		X, Y, X				FORMAT_VERTEX_POINT	(bit 4)					3
-		///	Normal coordinates		Nx, Ny, Nz			FORMAT_VERTEX_NORMAL (bit 5)				3
-		///	Texture coordinates		T1u, T1v			FORMAT_VERTEX_TEXTURE_UV (bit 6)			2
-		///	2nd Texture coordinates	T2u, T2v			FORMAT_VERTEX_TEXTURE2_UV (bit 7)			2
-		///	Ambient color								FORMAT_VERTEX_COLOR_AMBIENT (bit 24)		1
-		///	Diffuse color								FORMAT_VERTEX_COLOR_DIFFUSE (bit 25)		1
-		///	Emissive color								FORMAT_VERTEX_COLOR _EMISSIVE (bit 26)		1
-		///	Specular color								FORMAT_VERTEX_COLOR _SPECULAR (bit 27)		1
-		///	Texture tangent			T1Tx, T1Ty, T1Tz	FORMAT_VERTEX_TEXTURE_TANGENT (bit 28)		3
-		///	Texture binormal		T1BNx,T1BNy,T1BNz	FORMAT_VERTEX_TEXTURE_BINORMAL (bit 29)		3
-		///	2nd texture tangent		T2Tx, T2Ty, T2Tz	FORMAT_VERTEX_TEXTURE2_TANGENT (bit 30)		3
-		///	2nd texture binormal	T2BNx,T2BNy,T2BNz	FORMAT_VERTEX_TEXTURE2_BINORMAL (bit 31)	3
-		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetFormat")]
+        /// <summary>
+        ///		SetFormat                                   (http://rdf.bg/gkdoc/CS64/SetFormat.html)
+        ///
+        ///	This function sets the type of export format, by setting a mask
+        /// </summary>
+        ///		bit 0 & 1:
+        ///			00	Each vertex is unique (although mostly irrelevant UpdateIndexBuffer() and 
+        ///				UpdateTransformationBuffer() are still returning information)
+        ///			01	Each index is unique => vertices are not necessarily (although mostly
+        ///				irrelevant UpdateTransformationBuffer() is still returning information)
+        ///			10	Single level Transformations are used, most optimal when using DirectX till version 11
+        ///				and OpenGL till version 2
+        ///			11	Nested Transformations are used, most optimal but till 2011 no known support of
+        ///				low level 3D interfaces like DirectX and OpenGL
+        ///		bit 2:	(FORMAT_SIZE_VERTEX_DOUBLE)
+        ///			0	Vertex items returned as float (4 byte/32 bit)
+        ///			1	Vertex items returned as double (8 byte/64 bit)
+        ///		bit 3:	(FORMAT_SIZE_INDEX_INT64)
+        ///			0	Index items returned as int32_t (4 byte/32 bit)
+        ///			1	Index items returned as int64_t (8 byte/64 bit) (only available in 64 bit mode)
+        ///
+        ///		bit 4:	(FORMAT_VERTEX_POINT)
+        ///			0	Vertex does not contain 3D point info
+        ///			1	Vertex does contain 3D point info
+        ///		bit 5:	(FORMAT_VERTEX_NORMAL)
+        ///			0	Vertex does not contain 3D normal vector info
+        ///			1	Vertex does contain 3D normal vector info => if set, bit 4 will also be set
+        ///		bit 6:	(FORMAT_VERTEX_TEXTURE_UV)
+        ///			0	Vertex does not contain first 2D texture info
+        ///			1	Vertex does contain first 2D texture info
+        ///		bit 7:	(FORMAT_VERTEX_TEXTURE2_UV)
+        ///			0	Vertex does not contain second 2D texture info
+        ///			1	Vertex does contain second 2D texture info => if set, bit 6 will also be set
+        ///
+        ///		bit 8:	(FORMAT_EXPORT_TRIANGLES)
+        ///			0	No object form triangles are exported
+        ///			1	Object form triangles are exported (effective if instance contains faces and/or solids)
+        ///		bit 9:	(FORMAT_EXPORT_LINES)
+        ///			0	No object polygon lines are exported
+        ///			1	Object polygon lines are exported (effective if instance contains line representations)
+        ///		bit 10:	(FORMAT_EXPORT_POINTS)
+        ///			0	No object points are exported
+        ///			1	Object points are exported (effective if instance contains point representations)
+        ///
+        ///		bit 11:	Reserved, by default 0
+        ///
+        ///		bit 12:	(FORMAT_EXPORT_FACE_POLYGONS)
+        ///			0	No object face polygon lines are exported
+        ///			1	Object face polygon lines (dense wireframe) are exported => if set, bit 8 will also be set
+        ///		bit 13:	(FORMAT_EXPORT_CONCEPTUAL_FACE_POLYGONS)
+        ///			0	No object conceptual face polygon lines are exported
+        ///			1	Object conceptual face polygon lines (wireframe) are exported => if set, bit 12 will also be set
+        ///		bit 14:	(FORMAT_EXPORT_POLYGONS_AS_TUPLES)
+        ///			0	Polygon lines (wireframe) exported as list, i.e. typical 4 point polygon exported as  0 1 2 3 0 -1
+        ///			1	Polygon lines (wireframe) exported as tuples, i.e. typical 4 point polygon exported as 0 1 1 2 2 3 3 0
+        ///
+        ///		bit 15:	(FORMAT_EXPORT_ADVANCED_NORMALS)
+        ///			0	All normals of triangles are transformed orthogonal to the 2D face they belong to
+        ///			1	Normals are exported to be in line with the original semantic form description (could be non orthogonal to the 2D face) 
+        ///
+        ///		bit 16:	(FORMAT_EXPORT_DIRECTX)
+        ///			0	no specific behavior
+        ///			1	Where possible DirectX compatibility is given to exported data (i.e. order of components in vertex buffer)
+        ///					 => [bit 20, bit 21 both UNSET]
+        ///					 => if set, bit 17 will be unset
+        ///
+        ///		bit 17:	(FORMAT_EXPORT_OPENGL)
+        ///			0	no specific behavior
+        ///			1	Where possible OpenGL compatibility is given to exported data (i.e. order of components in vertex buffer and inverted texture coordinates in Y direction)
+        ///					 => [bit 20, bit 21 both SET]
+        ///					 => if set, bit 16 will be unset
+        ///
+        ///		bit 18:	(FORMAT_EXPORT_DOUBLE_SIDED)
+        ///			0	All faces are defined as calculated
+        ///			1	Every face has exactly one opposite face (normally both index and vertex buffer are doubled in size)
+        ///
+        ///		bit 19:	Reserved, by default 0
+        ///
+        ///		bit 20-23:
+        ///			0000	version 0 (used in case there is different behavior between versions in DirectX or OpenGL)
+        ///			....	...
+        ///			1111	version 15
+        ///
+        ///		bit 20:	(FORMAT_EXPORT_VERSION_0001)
+        ///			0	Standard Triangle Rotation (LHS as expected by DirectX) 
+        ///			1	Opposite Triangle Rotation (RHS as expected by OpenGL)
+        ///		bit 21:	(FORMAT_EXPORT_VERSION_0010)
+        ///			0	X, Y, Z (nX, nY, nZ) formatted as <X Y Z> considering internal concepts
+        ///			1	X, Y, Z (nX, nY, nZ) formatted as <X -Z Y>, i.e. X, -Z, Y (nX, -nZ, nY) considering internal concepts (OpenGL)
+        ///
+        ///		bit 24:	(FORMAT_VERTEX_COLOR_AMBIENT)
+        ///			0	Vertex does not contain Ambient color information
+        ///			1	Vertex does contain Ambient color information
+        ///		bit 25:	(FORMAT_VERTEX_COLOR_DIFFUSE)
+        ///			0	Vertex does not contain Diffuse color information
+        ///			1	Vertex does contain Diffuse color information
+        ///		bit 26:	(FORMAT_VERTEX_COLOR_EMISSIVE)
+        ///			0	Vertex does not contain Emissive color information
+        ///			1	Vertex does contain Emissive color information
+        ///		bit 27:	(FORMAT_VERTEX_COLOR_SPECULAR)
+        ///			0	Vertex does not contain Specular color information
+        ///			1	Vertex does contain Specular color information
+        ///
+        ///		bit 28:	(FORMAT_VERTEX_TEXTURE_TANGENT)
+        ///			0	Vertex does not contain tangent vector for first texture
+        ///			1	Vertex does contain tangent vector for first texture => if set, bit 6 will also be set
+        ///		bit 29:	(FORMAT_VERTEX_TEXTURE_BINORMAL)
+        ///			0	Vertex does not contain binormal vector for first texture
+        ///			1	Vertex does contain binormal vector for first texture => if set, bit 6 will also be set
+        ///		bit 30:	(FORMAT_VERTEX_TEXTURE2_TANGENT)		ONLY WORKS IN 64 BIT MODE
+        ///			0	Vertex does not contain tangent vector for second texture
+        ///			1	Vertex does contain tangent vector for second texture => if set, bit 6 will also be set
+        ///		bit 31:	(FORMAT_VERTEX_TEXTURE2_BINORMAL)		ONLY WORKS IN 64 BIT MODE
+        ///			0	Vertex does not contain binormal vector for second texture
+        ///			1	Vertex does contain binormal vector for second texture => if set, bit 6 will also be set
+        ///
+        ///		bit 26-31:	Reserved, by default 0
+        ///
+        ///		bit 32-63:	Reserved, by default 0
+        ///
+        ///	Note: default setting is 0000 0000 0000 0000   0000 0000 0000 0000  -  0000 0000 0000 0000   1000 0001  0011 0000 = h0000 0000 - 0000 8130 = 33072
+        ///
+        ///
+        ///	Depending on FORMAT_SIZE_VERTEX_DOUBLE each element in the vertex buffer is a double or float number.
+        ///	Number of elements for each vertex depends on format setting. You can get the number by GetVertexElementsCounts. 
+        ///	Each vertex block contains data items in an order according to the table below. The table also specifies when an item is present and number of elements 
+        ///	it occupied. Use GetVertexDataOffset or GetVertexColor to get required item. 
+        ///
+        ///	#	Vertex data item	Included when format setting bit is on					Size (num of elements)
+        ///	Point coordinates		X, Y, X				FORMAT_VERTEX_POINT	(bit 4)					3
+        ///	Normal coordinates		Nx, Ny, Nz			FORMAT_VERTEX_NORMAL (bit 5)				3
+        ///	Texture coordinates		T1u, T1v			FORMAT_VERTEX_TEXTURE_UV (bit 6)			2
+        ///	2nd Texture coordinates	T2u, T2v			FORMAT_VERTEX_TEXTURE2_UV (bit 7)			2
+        ///	Ambient color								FORMAT_VERTEX_COLOR_AMBIENT (bit 24)		1
+        ///	Diffuse color								FORMAT_VERTEX_COLOR_DIFFUSE (bit 25)		1
+        ///	Emissive color								FORMAT_VERTEX_COLOR _EMISSIVE (bit 26)		1
+        ///	Specular color								FORMAT_VERTEX_COLOR _SPECULAR (bit 27)		1
+        ///	Texture tangent			T1Tx, T1Ty, T1Tz	FORMAT_VERTEX_TEXTURE_TANGENT (bit 28)		3
+        ///	Texture binormal		T1BNx,T1BNy,T1BNz	FORMAT_VERTEX_TEXTURE_BINORMAL (bit 29)		3
+        ///	2nd texture tangent		T2Tx, T2Ty, T2Tz	FORMAT_VERTEX_TEXTURE2_TANGENT (bit 30)		3
+        ///	2nd texture binormal	T2BNx,T2BNy,T2BNz	FORMAT_VERTEX_TEXTURE2_BINORMAL (bit 31)	3
+        ///	
+        [DllImport(enginedll, EntryPoint = "SetFormat")]
 		public static extern Int64 SetFormat(Int64 model, Int64 setting, Int64 mask);
 
 		/// <summary>

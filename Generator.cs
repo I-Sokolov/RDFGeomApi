@@ -1,4 +1,8 @@
-﻿using System;
+﻿#pragma warning disable CS1587
+#pragma warning disable CS1573
+#pragma warning disable CS1591
+
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -247,7 +251,6 @@ namespace RDFWrappers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="parentClassId"></param>
         private void WriteParentProperties (StreamWriter writer, Int64 parentClassId)
         {
             string parentName = m_schema.GetNameOfClass(parentClassId);
@@ -264,8 +267,6 @@ namespace RDFWrappers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="properiesOfClass"></param>
-        /// <param name="properties"></param>
         private void WriteProperties (StreamWriter writer, string properiesOfClass, List<Schema.ClassProperty> properties)
         {
             m_replacements[KWD_PROPERTIES_OF] = properiesOfClass;
