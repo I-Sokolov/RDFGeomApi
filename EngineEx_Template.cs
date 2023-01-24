@@ -204,7 +204,7 @@ namespace NAMESPACE_NAME
             {
                 var clsId = engine.GetInstanceClass(m_instance);
                 Int64 minCard = 0, maxCard = 0;
-                engine.GetPropertyRestrictionsConsolidated(clsId, propId, out minCard, out maxCard);
+                engine.GetClassPropertyAggregatedCardinalityRestriction(clsId, propId, out minCard, out maxCard);
                 if (minCard < 0)
                 {
                     propId = 0; //property is not assigned to the class
