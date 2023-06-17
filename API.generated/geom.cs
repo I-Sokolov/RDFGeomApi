@@ -43,6 +43,7 @@ namespace GEOM
 //     Cone
 //     ConicalCurve
 //     ConicalSurface
+//     ConvexPolyhedron
 //     Copy
 //     CosineCurve
 //     Cube
@@ -1963,6 +1964,10 @@ namespace GEOM
                 return null;
             }
         }
+        ///<summary>Sets value of recalculateBBox</summary>
+        public bool set_recalculateBBox(bool value) { return SetDatatypeProperty ("recalculateBBox", value); }
+        ///<summary>Gets value of recalculateBBox, returns null is the property was not set</summary>
+        public bool? get_recalculateBBox() { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
         ///<summary>Sets value of relativeEpsilon</summary>
         public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }
         ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
@@ -2309,6 +2314,64 @@ namespace GEOM
         public bool set_semiVerticalAngle(double value) { return SetDatatypeProperty ("semiVerticalAngle", value); }
         ///<summary>Gets value of semiVerticalAngle, returns null is the property was not set</summary>
         public double? get_semiVerticalAngle() { var arr = GetDatatypeProperty_double("semiVerticalAngle"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+    }
+
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class ConvexPolyhedron
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class ConvexPolyhedron : Solid
+    {
+        /// <summary>
+        /// Create new instace of OWL class ConvexPolyhedron and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new ConvexPolyhedron Create(Int64 model, string name=null) { return new ConvexPolyhedron(Instance.Create(model, "ConvexPolyhedron", name), "ConvexPolyhedron");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public ConvexPolyhedron(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "ConvexPolyhedron") 
+        {            
+        }
+
+        public static implicit operator ConvexPolyhedron(Int64 instance) => new ConvexPolyhedron(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to ConvexPolyhedron
+        //
+
+        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
+        ///<summary>Get related instance</summary>
+        public GeometricItem get_object() 
+        {
+            var propId = GetPropertyId("object");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[1];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                return new GeometricItem(values[0], null);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
 

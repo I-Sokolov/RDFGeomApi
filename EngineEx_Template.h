@@ -112,7 +112,7 @@ namespace NAMESPACE_NAME
 
             TElem* values = NULL;
             int64_t count = 0;
-            int64_t res = ::GetDatatypeProperty(m_instance, propId, (void**)&values, &count);
+            int64_t res = ::GetDatatypeProperty(m_instance, propId, (const void**)&values, &count);
             if (res != 0) {
                 count = 0;
             }
