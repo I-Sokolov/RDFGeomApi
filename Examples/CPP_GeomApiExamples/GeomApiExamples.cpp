@@ -32,7 +32,7 @@ static void MoreExamplesToAccessDifferentTypesOfProperties(int64_t model);
 /// <returns></returns>
 int main()
 {
-	int64_t model = OpenModel(NULL);
+	int64_t model = OpenModel((char*)NULL);
 
 	CreateRedBox(model);
 
@@ -69,7 +69,7 @@ static int64_t CreateRedBox(int64_t model)
 
 	//or you easy use existing instance handlers with classes
 	int64_t colorClass = GetClassByName(model, "Color");
-	int64_t colorInstance = CreateInstance(colorClass, NULL);
+	int64_t colorInstance = CreateInstance(colorClass);
 
 	//get wrapper object from instance handler
 	Color color(colorInstance);

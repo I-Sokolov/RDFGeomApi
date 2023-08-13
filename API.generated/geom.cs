@@ -8733,6 +8733,10 @@ namespace GEOM
                 return null;
             }
         }
+        ///<summary>Sets value of recalculateBBox</summary>
+        public bool set_recalculateBBox(bool value) { return SetDatatypeProperty ("recalculateBBox", value); }
+        ///<summary>Gets value of recalculateBBox, returns null is the property was not set</summary>
+        public bool? get_recalculateBBox() { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
     }
 
 

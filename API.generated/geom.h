@@ -7888,6 +7888,10 @@ namespace GEOM
         bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
+        ///<summary>Sets value of recalculateBBox</summary>
+        bool set_recalculateBBox(bool value) { return SetDatatypeProperty ("recalculateBBox", &value, 1); }
+        ///<summary>Gets a value of recalculateBBox, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const bool* get_recalculateBBox() { return GetDatatypeProperty<bool>("recalculateBBox", NULL); }
     };
 
     /// <summary>
