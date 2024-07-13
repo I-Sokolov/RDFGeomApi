@@ -47,18 +47,20 @@ namespace NAMESPACE_NAME
         // Properties with known cardinality restrictions to PROPERTIES_OF_CLASS
         //
 
-        //## TEMPLATE: SetDataProperty
+//## TEMPLATE: SetDataProperty
         ///<summary>Sets value of PROPERTY_NAME</summary>
-        public bool set_PROPERTY_NAME(double value) { return SetDatatypeProperty ("PROPERTY_NAME", value); }
+        public bool set_PROPERTY_NAME(double value) { return SetDatatypeProperty ("PROPERTY_NAME", value); }        
 //## TEMPLATE SetDataArrayProperty
         ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public bool set_PROPERTY_NAME(double[] values) { return SetDatatypeProperty ("PROPERTY_NAME", values); }
 //## TEMPLATE GetDataProperty
         ///<summary>Gets value of PROPERTY_NAME, returns null is the property was not set</summary>
         public double? get_PROPERTY_NAME() { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+        public double? _PROPERTY_NAME { get { return get_PROPERTY_NAME(); } }
 //## TEMPLATE GetDataArrayProperty
         ///<summary>Gets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public double[] get_PROPERTY_NAMEasType() { return GetDatatypeProperty_double("PROPERTY_NAME"); }
+        public double[] _PROPERTY_NAMEasType { get { return get_PROPERTY_NAMEasType(); } }
 //## TEMPLATE: SetObjectProperty
         ///<summary>Sets relationship from this instance to an instance of Instance</summary>
         public bool set_PROPERTY_NAME(Instance instance) { return SetObjectProperty("PROPERTY_NAME", instance); }
@@ -88,6 +90,8 @@ namespace NAMESPACE_NAME
                 return null;
             }
         }
+
+        public Instance _PROPERTY_NAMEasTYPe { get { return get_PROPERTY_NAMEasTYPe(); } }
 //## TEMPLATE GetObjectArrayProperty
         ///<summary>Get an array of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public Instance[] get_PROPERTY_NAMEasTYPE() 
@@ -117,6 +121,8 @@ namespace NAMESPACE_NAME
                 return null;
             }
         }
+
+        public Instance[] _PROPERTY_NAMEasTYPE { get { return get_PROPERTY_NAMEasTYPE(); } }
 //## TEMPLATE GetObjectArrayPropertyInt64
         ///<summary>Get an array of handles of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public Int64[] get_PROPERTY_NAME_Int64()  
