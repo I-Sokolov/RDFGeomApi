@@ -129,6 +129,7 @@ namespace GEOM
     class Spiral;
     class SplineCurve;
     class SplineSurface;
+    class SplitConceptualFace;
     class SpotLight;
     class Surface;
     class SurfaceBySweptCurve;
@@ -7182,6 +7183,55 @@ namespace GEOM
         bool set_start(double value) { return SetDatatypeProperty ("start", &value, 1); }
         ///<summary>Gets a value of start, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_start() { return GetDatatypeProperty<double>("start", NULL); }
+    };
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class SplitConceptualFace
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class SplitConceptualFace : public GeometricItem
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class SplitConceptualFace and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SplitConceptualFace Create(int64_t model, const char* name=NULL) { return SplitConceptualFace(Instance::Create(model, "SplitConceptualFace", name, NULL), "SplitConceptualFace");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SplitConceptualFace CreateW(int64_t model, const wchar_t* name = NULL) { return SplitConceptualFace(Instance::Create(model, "SplitConceptualFace", NULL, name), "SplitConceptualFace"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        SplitConceptualFace(int64_t instance = NULL)
+            : GeometricItem(instance, "SplitConceptualFace")
+        {}
+
+    protected:
+        SplitConceptualFace(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to SplitConceptualFace
+       //
+
+        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
     };
 
     /// <summary>
