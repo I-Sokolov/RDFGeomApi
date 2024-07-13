@@ -90,6 +90,7 @@ namespace GEOM
     class Matrix;
     class MatrixMultiplication;
     class Mesh;
+    class Nill;
     class NURBSCurve;
     class NURBSSurface;
     class Parabola;
@@ -2255,12 +2256,12 @@ namespace GEOM
        // Properties with known cardinality restrictions to CircleByPoints
        //
 
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 3..3</summary>
-        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 3..3</summary>
+        bool set_pointReferences(const Point* instances, int64_t count) { return SetObjectProperty<Point>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 3..3</summary>
         bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
-        const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
+        const Point* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 3..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_pointReferences_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("pointReferences", pCount); }
     };
@@ -5208,6 +5209,59 @@ namespace GEOM
     };
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Nill
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class Nill : public GeometricItem
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class Nill and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Nill Create(int64_t model, const char* name=NULL) { return Nill(Instance::Create(model, "Nill", name, NULL), "Nill");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Nill CreateW(int64_t model, const wchar_t* name = NULL) { return Nill(Instance::Create(model, "Nill", NULL, name), "Nill"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        Nill(int64_t instance = NULL)
+            : GeometricItem(instance, "Nill")
+        {}
+
+    protected:
+        Nill(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to Nill
+       //
+
+        ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
+        bool set_objects(const GeometricItem* instances, int64_t count) { return SetObjectProperty<GeometricItem>("objects", instances, count); }
+        ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
+        bool set_objects(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("objects", instances, count); }
+        ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const GeometricItem* get_objects(int64_t* pCount) { return GetObjectProperty<GeometricItem>("objects", pCount); }
+        ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const int64_t* get_objects_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("objects", pCount); }
+    };
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class NURBSCurve
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5727,10 +5781,10 @@ namespace GEOM
         bool set_normal(const Vector3& instance) { return SetObjectProperty<Vector3>("normal", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Vector3* get_normal() { return GetObjectProperty<Vector3>("normal", NULL); }
-        ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        bool set_point(const Point3D& instance) { return SetObjectProperty<Point3D>("point", &instance, 1); }
+        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        bool set_point(const Point& instance) { return SetObjectProperty<Point>("point", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
-        const Point3D* get_point() { return GetObjectProperty<Point3D>("point", NULL); }
+        const Point* get_point() { return GetObjectProperty<Point>("point", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
         bool set_tangent(const Vector3& instance) { return SetObjectProperty<Vector3>("tangent", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
@@ -6057,12 +6111,12 @@ namespace GEOM
         template <typename TList> bool set_coordinates(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_coordinates(arr, count); if (arr) delete[] arr; return ok; }
         ///<summary>Gets values array of coordinates. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_coordinates(int64_t* pCount) { return GetDatatypeProperty<double>("coordinates", pCount); }
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..-1</summary>
-        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..-1</summary>
+        bool set_pointReferences(const Point* instances, int64_t count) { return SetObjectProperty<Point>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..-1</summary>
         bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
-        const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
+        const Point* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_pointReferences_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("pointReferences", pCount); }
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
@@ -7391,6 +7445,10 @@ namespace GEOM
         bool set_path(const Curve& instance) { return SetObjectProperty<Curve>("path", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Curve* get_path() { return GetObjectProperty<Curve>("path", NULL); }
+        ///<summary>Sets value of setting</summary>
+        bool set_setting(int64_t value) { return SetDatatypeProperty ("setting", &value, 1); }
+        ///<summary>Gets a value of setting, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const int64_t* get_setting() { return GetDatatypeProperty<int64_t>("setting", NULL); }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         bool set_sweptArea(const Curve& instance) { return SetObjectProperty<Curve>("sweptArea", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
@@ -7955,12 +8013,12 @@ namespace GEOM
         bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", &value, 1); }
         ///<summary>Gets a value of offsetZ, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const double* get_offsetZ() { return GetDatatypeProperty<double>("offsetZ", NULL); }
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..3</summary>
-        bool set_pointReferences(const Point3D* instances, int64_t count) { return SetObjectProperty<Point3D>("pointReferences", instances, count); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..3</summary>
+        bool set_pointReferences(const Point* instances, int64_t count) { return SetObjectProperty<Point>("pointReferences", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..3</summary>
         bool set_pointReferences(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("pointReferences", instances, count); }
         ///<summary>Get an array of related instances. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
-        const Point3D* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point3D>("pointReferences", pCount); }
+        const Point* get_pointReferences(int64_t* pCount) { return GetObjectProperty<Point>("pointReferences", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_pointReferences_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("pointReferences", pCount); }
     };

@@ -91,6 +91,7 @@ namespace GEOM
 //     Matrix
 //     MatrixMultiplication
 //     Mesh
+//     Nill
 //     NURBSCurve
 //     NURBSSurface
 //     Parabola
@@ -1547,12 +1548,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to CircleByPoints
         //
 
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 3..3</summary>
-        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 3..3</summary>
+        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 3..3</summary>
         public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 3..3</summary>
-        public Point3D[] get_pointReferences() 
+        public Point[] get_pointReferences() 
         {
             var propId = GetPropertyId("pointReferences");
 
@@ -1566,10 +1567,10 @@ namespace GEOM
                 var values = new Int64[card];
                 System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                var ret = new Point3D[card];
+                var ret = new Point[card];
                 for (int i = 0; i < card; i++)
                 {
-                    ret[i] = new Point3D(values[i], null);
+                    ret[i] = new Point(values[i], null);
                 }
 
                 return ret;
@@ -5051,6 +5052,94 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Nill
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class Nill : GeometricItem
+    {
+        /// <summary>
+        /// Create new instace of OWL class Nill and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new Nill Create(Int64 model, string name=null) { return new Nill(Instance.Create(model, "Nill", name), "Nill");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public Nill(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "Nill") 
+        {            
+        }
+
+        public static implicit operator Nill(Int64 instance) => new Nill(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Nill
+        //
+
+        ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
+        public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
+        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
+        public bool set_objects(Int64[] instances) { return SetObjectProperty("objects", instances); }
+        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
+        public GeometricItem[] get_objects() 
+        {
+            var propId = GetPropertyId("objects");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[card];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                var ret = new GeometricItem[card];
+                for (int i = 0; i < card; i++)
+                {
+                    ret[i] = new GeometricItem(values[i], null);
+                }
+
+                return ret;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] get_objects_Int64()  
+        {
+            var propId = GetPropertyId("objects");
+
+            Int64 card = 0;
+            IntPtr valuesPtr = IntPtr.Zero;
+            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+            System.Diagnostics.Debug.Assert(res == 0);
+
+            if (card > 0)
+            {
+                var values = new Int64[card];
+                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                return values;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class NURBSCurve
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5509,10 +5598,10 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        public bool set_point(Point3D instance) { return SetObjectProperty("point", instance); }
+        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        public bool set_point(Point instance) { return SetObjectProperty("point", instance); }
         ///<summary>Get related instance</summary>
-        public Point3D get_point() 
+        public Point get_point() 
         {
             var propId = GetPropertyId("point");
 
@@ -5526,7 +5615,7 @@ namespace GEOM
                 var values = new Int64[1];
                 System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
 
-                return new Point3D(values[0], null);
+                return new Point(values[0], null);
             }
             else
             {
@@ -5967,12 +6056,12 @@ namespace GEOM
         public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..-1</summary>
-        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..-1</summary>
+        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
         public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Point3D[] get_pointReferences() 
+        public Point[] get_pointReferences() 
         {
             var propId = GetPropertyId("pointReferences");
 
@@ -5986,10 +6075,10 @@ namespace GEOM
                 var values = new Int64[card];
                 System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                var ret = new Point3D[card];
+                var ret = new Point[card];
                 for (int i = 0; i < card; i++)
                 {
-                    ret[i] = new Point3D(values[i], null);
+                    ret[i] = new Point(values[i], null);
                 }
 
                 return ret;
@@ -7829,6 +7918,10 @@ namespace GEOM
                 return null;
             }
         }
+        ///<summary>Sets value of setting</summary>
+        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }
+        ///<summary>Gets value of setting, returns null is the property was not set</summary>
+        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
         ///<summary>Get related instance</summary>
@@ -8885,12 +8978,12 @@ namespace GEOM
         public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }
         ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
         public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 0..3</summary>
-        public bool set_pointReferences(Point3D[] instances) { return SetObjectProperty("pointReferences", instances); }
+        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..3</summary>
+        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..3</summary>
         public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Get an array of related instances. OWL cardinality 0..3</summary>
-        public Point3D[] get_pointReferences() 
+        public Point[] get_pointReferences() 
         {
             var propId = GetPropertyId("pointReferences");
 
@@ -8904,10 +8997,10 @@ namespace GEOM
                 var values = new Int64[card];
                 System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                var ret = new Point3D[card];
+                var ret = new Point[card];
                 for (int i = 0; i < card; i++)
                 {
-                    ret[i] = new Point3D(values[i], null);
+                    ret[i] = new Point(values[i], null);
                 }
 
                 return ret;
