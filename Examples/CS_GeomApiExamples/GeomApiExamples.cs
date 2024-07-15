@@ -51,10 +51,10 @@ namespace CS_GeometryKernel
 
 			//get wrapper object from instance handler
 			Color color = new Color(colorInstance);
-			color.set_ambient(colorComponent);
+			color.ambient = colorComponent;
 
 			Material material = Material.Create(model);
-			material.set_color(color);
+			material.color = color;
 
 			//
 			Box box = Box.Create(model);
@@ -62,7 +62,7 @@ namespace CS_GeometryKernel
 			box.height = 3;
 			box.width = 2;
 			box.length = 4;
-			box.set_material(material);  //set_material is inherited from GeometricItem
+			box.material = material;  //set_material is inherited from GeometricItem
 
 			return box;
 		}
@@ -152,13 +152,13 @@ namespace CS_GeometryKernel
 			//No example in Geometry Kernel
 
 			//object
-			Material material = curve.get_material();
+			Material material = curve.material;
 			ASSERT(material == null);
 			Int64 mat = Material.Create(model);
-			curve.set_material(new Material(mat));
-			material = curve.get_material();
+			curve.material = new Material(mat);
+			material = curve.material;
 			ASSERT(material == mat);
-			var m2 = curve.get_material();
+			var m2 = curve.material;
 			ASSERT(m2 == material);
 
 			//object []

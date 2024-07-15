@@ -218,7 +218,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _bounds { get { return get_bounds(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_bounds_Int64()  
         {
@@ -242,31 +241,34 @@ namespace GEOM
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
-        ///<summary>Get related instance</summary>
-        public Surface get_surface() 
-        {
-            var propId = GetPropertyId("surface");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Surface surface
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("surface", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("surface");
 
-                return new Surface(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Surface _surface { get { return get_surface(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Surface(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -306,19 +308,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("clipped", value); }
             get { var arr = GetDatatypeProperty_bool("clipped"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of scalingX</summary>
         public double? scalingX
             {
             set { SetDatatypeProperty("scalingX", value); }
             get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of scalingY</summary>
         public double? scalingY
             {
             set { SetDatatypeProperty("scalingY", value); }
             get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -398,13 +400,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("scalingX", value); }
             get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of scalingY</summary>
         public double? scalingY
             {
             set { SetDatatypeProperty("scalingY", value); }
             get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -444,45 +446,48 @@ namespace GEOM
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_segment(Curve instance) { return SetObjectProperty("segment", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_segment() 
-        {
-            var propId = GetPropertyId("segment");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve segment
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("segment", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("segment");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _segment { get { return get_segment(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access values of tangentDirectionStart. OWL cardinality 3..3</summary>
         public double[] tangentDirectionStart
             {
@@ -556,7 +561,6 @@ namespace GEOM
             }
         }
 
-        public AlignedSegment[] _segments { get { return get_segments(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_segments_Int64()  
         {
@@ -614,69 +618,75 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        public bool set_horizontal(AlignedSegments instance) { return SetObjectProperty("horizontal", instance); }
-        ///<summary>Get related instance</summary>
-        public AlignedSegments get_horizontal() 
-        {
-            var propId = GetPropertyId("horizontal");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public AlignedSegments horizontal
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("horizontal", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("horizontal");
 
-                return new AlignedSegments(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public AlignedSegments _horizontal { get { return get_horizontal(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new AlignedSegments(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
-        public bool set_vertical(AlignedSegments instance) { return SetObjectProperty("vertical", instance); }
-        ///<summary>Get related instance</summary>
-        public AlignedSegments get_vertical() 
-        {
-            var propId = GetPropertyId("vertical");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public AlignedSegments vertical
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("vertical", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("vertical");
 
-                return new AlignedSegments(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public AlignedSegments _vertical { get { return get_vertical(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new AlignedSegments(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -774,31 +784,31 @@ namespace GEOM
             {
             set { SetDatatypeProperty("hasNormals", value); }
             get { var arr = GetDatatypeProperty_bool("hasNormals"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of size</summary>
         public double? size
             {
             set { SetDatatypeProperty("size", value); }
             get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of start</summary>
         public double? start
             {
             set { SetDatatypeProperty("start", value); }
             get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -867,7 +877,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -932,87 +942,93 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_bottomPolygon(Curve instance) { return SetObjectProperty("bottomPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_bottomPolygon() 
-        {
-            var propId = GetPropertyId("bottomPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve bottomPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("bottomPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("bottomPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _bottomPolygon { get { return get_bottomPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of forceSolid</summary>
         public bool? forceSolid
             {
             set { SetDatatypeProperty("forceSolid", value); }
             get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of hasBottom</summary>
         public bool? hasBottom
             {
             set { SetDatatypeProperty("hasBottom", value); }
             get { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of hasTop</summary>
         public bool? hasTop
             {
             set { SetDatatypeProperty("hasTop", value); }
             get { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of height</summary>
         public double? height
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_topPolygon(Curve instance) { return SetObjectProperty("topPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_topPolygon() 
-        {
-            var propId = GetPropertyId("topPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve topPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("topPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("topPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _topPolygon { get { return get_topPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -1077,95 +1093,104 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
-        ///<summary>Get related instance</summary>
-        public Deviation get_deviation() 
-        {
-            var propId = GetPropertyId("deviation");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Deviation deviation
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("deviation", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("deviation");
 
-                return new Deviation(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Deviation _deviation { get { return get_deviation(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Deviation(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_firstObject(GeometricItem instance) { return SetObjectProperty("firstObject", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_firstObject() 
-        {
-            var propId = GetPropertyId("firstObject");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem firstObject
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("firstObject", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("firstObject");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _firstObject { get { return get_firstObject(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_secondObject(GeometricItem instance) { return SetObjectProperty("secondObject", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_secondObject() 
-        {
-            var propId = GetPropertyId("secondObject");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem secondObject
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("secondObject", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("secondObject");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _secondObject { get { return get_secondObject(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of setting</summary>
         public Int64? setting
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -1201,89 +1226,98 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
-        ///<summary>Get related instance</summary>
-        public Deviation get_deviation() 
-        {
-            var propId = GetPropertyId("deviation");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Deviation deviation
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("deviation", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("deviation");
 
-                return new Deviation(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Deviation _deviation { get { return get_deviation(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Deviation(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_firstObject(GeometricItem instance) { return SetObjectProperty("firstObject", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_firstObject() 
-        {
-            var propId = GetPropertyId("firstObject");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem firstObject
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("firstObject", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("firstObject");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _firstObject { get { return get_firstObject(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_secondObject(GeometricItem instance) { return SetObjectProperty("secondObject", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_secondObject() 
-        {
-            var propId = GetPropertyId("secondObject");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem secondObject
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("secondObject", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("secondObject");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _secondObject { get { return get_secondObject(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -1323,13 +1357,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("consistencyCheck", value); }
             get { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of epsilon</summary>
         public double? epsilon
             {
             set { SetDatatypeProperty("epsilon", value); }
             get { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 0..-1</summary>
         public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -1363,7 +1397,6 @@ namespace GEOM
             }
         }
 
-        public Face[] _faces { get { return get_faces(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_faces_Int64()  
         {
@@ -1397,7 +1430,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of indices. OWL cardinality 0..-1</summary>
         public Int64[] indices
             {
@@ -1421,7 +1454,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("relativeEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of textureCoordinates. OWL cardinality 0..-1</summary>
         public double[] textureCoordinates
             {
@@ -1439,7 +1472,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("vertexEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of vertices. OWL cardinality 0..-1</summary>
         public double[] vertices
             {
@@ -1485,19 +1518,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of width</summary>
         public double? width
             {
             set { SetDatatypeProperty("width", value); }
             get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -1549,7 +1582,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -1589,7 +1622,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
         public Int64[] uKnotMultiplicities
             {
@@ -1710,7 +1743,6 @@ namespace GEOM
             }
         }
 
-        public Point[] _pointReferences { get { return get_pointReferences(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 3..3</summary>
         public Int64[] get_pointReferences_Int64()  
         {
@@ -1814,89 +1846,98 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
-        public bool set_deviation(Deviation instance) { return SetObjectProperty("deviation", instance); }
-        ///<summary>Get related instance</summary>
-        public Deviation get_deviation() 
-        {
-            var propId = GetPropertyId("deviation");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Deviation deviation
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("deviation", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("deviation");
 
-                return new Deviation(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Deviation _deviation { get { return get_deviation(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Deviation(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
-        ///<summary>Get related instance</summary>
-        public Plane get_plane() 
-        {
-            var propId = GetPropertyId("plane");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Plane plane
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("plane", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("plane");
 
-                return new Plane(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Plane _plane { get { return get_plane(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Plane(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -1936,57 +1977,60 @@ namespace GEOM
             {
             set { SetDatatypeProperty("A", value); }
             get { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of orientation</summary>
         public Int64? orientation
             {
             set { SetDatatypeProperty("orientation", value); }
             get { var arr = GetDatatypeProperty_Int64("orientation"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2055,25 +2099,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("consistencyCheck", value); }
             get { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of epsilon</summary>
         public double? epsilon
             {
             set { SetDatatypeProperty("epsilon", value); }
             get { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of forceSolid</summary>
         public bool? forceSolid
             {
             set { SetDatatypeProperty("forceSolid", value); }
             get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
         public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -2107,7 +2151,6 @@ namespace GEOM
             }
         }
 
-        public GeometricItem[] _objects { get { return get_objects(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_objects_Int64()  
         {
@@ -2135,25 +2178,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("recalculateBBox", value); }
             get { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of relativeEpsilon</summary>
         public double? relativeEpsilon
             {
             set { SetDatatypeProperty("relativeEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of representsSolid</summary>
         public bool? representsSolid
             {
             set { SetDatatypeProperty("representsSolid", value); }
             get { var arr = GetDatatypeProperty_bool("representsSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of vertexEpsilon</summary>
         public double? vertexEpsilon
             {
             set { SetDatatypeProperty("vertexEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2189,121 +2232,133 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public bool set_ambient(ColorComponent instance) { return SetObjectProperty("ambient", instance); }
-        ///<summary>Get related instance</summary>
-        public ColorComponent get_ambient() 
-        {
-            var propId = GetPropertyId("ambient");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public ColorComponent ambient
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("ambient", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("ambient");
 
-                return new ColorComponent(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public ColorComponent _ambient { get { return get_ambient(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new ColorComponent(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of ambientReflectance</summary>
         public double? ambientReflectance
             {
             set { SetDatatypeProperty("ambientReflectance", value); }
             get { var arr = GetDatatypeProperty_double("ambientReflectance"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public bool set_diffuse(ColorComponent instance) { return SetObjectProperty("diffuse", instance); }
-        ///<summary>Get related instance</summary>
-        public ColorComponent get_diffuse() 
-        {
-            var propId = GetPropertyId("diffuse");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public ColorComponent diffuse
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("diffuse", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("diffuse");
 
-                return new ColorComponent(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public ColorComponent _diffuse { get { return get_diffuse(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new ColorComponent(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public bool set_emissive(ColorComponent instance) { return SetObjectProperty("emissive", instance); }
-        ///<summary>Get related instance</summary>
-        public ColorComponent get_emissive() 
-        {
-            var propId = GetPropertyId("emissive");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public ColorComponent emissive
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("emissive", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("emissive");
 
-                return new ColorComponent(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public ColorComponent _emissive { get { return get_emissive(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new ColorComponent(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
-        public bool set_specular(ColorComponent instance) { return SetObjectProperty("specular", instance); }
-        ///<summary>Get related instance</summary>
-        public ColorComponent get_specular() 
-        {
-            var propId = GetPropertyId("specular");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public ColorComponent specular
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("specular", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("specular");
 
-                return new ColorComponent(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public ColorComponent _specular { get { return get_specular(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new ColorComponent(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of transparency</summary>
         public double? transparency
             {
             set { SetDatatypeProperty("transparency", value); }
             get { var arr = GetDatatypeProperty_double("transparency"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2343,25 +2398,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("B", value); }
             get { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of G</summary>
         public double? G
             {
             set { SetDatatypeProperty("G", value); }
             get { var arr = GetDatatypeProperty_double("G"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of R</summary>
         public double? R
             {
             set { SetDatatypeProperty("R", value); }
             get { var arr = GetDatatypeProperty_double("R"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of W</summary>
         public double? W
             {
             set { SetDatatypeProperty("W", value); }
             get { var arr = GetDatatypeProperty_double("W"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2401,19 +2456,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2453,25 +2508,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("a", value); }
             get { var arr = GetDatatypeProperty_double("a"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of size</summary>
         public double? size
             {
             set { SetDatatypeProperty("size", value); }
             get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of start</summary>
         public double? start
             {
             set { SetDatatypeProperty("start", value); }
             get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2511,25 +2566,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of semiVerticalAngle</summary>
         public double? semiVerticalAngle
             {
             set { SetDatatypeProperty("semiVerticalAngle", value); }
             get { var arr = GetDatatypeProperty_double("semiVerticalAngle"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2565,31 +2620,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -2629,7 +2687,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("instanceReference", value); }
             get { var arr = GetDatatypeProperty_Int64("instanceReference"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2698,7 +2756,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2767,19 +2825,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of width</summary>
         public double? width
             {
             set { SetDatatypeProperty("width", value); }
             get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2876,7 +2934,6 @@ namespace GEOM
             }
         }
 
-        public Face[] _faces { get { return get_faces(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_faces_Int64()  
         {
@@ -2938,19 +2995,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -2990,13 +3047,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3036,19 +3093,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("majorRadius", value); }
             get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of minorRadius</summary>
         public double? minorRadius
             {
             set { SetDatatypeProperty("minorRadius", value); }
             get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3088,13 +3145,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("absoluteEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("absoluteEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of relativeEpsilon</summary>
         public double? relativeEpsilon
             {
             set { SetDatatypeProperty("relativeEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3130,31 +3187,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -3194,13 +3254,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("attenuation", value); }
             get { var arr = GetDatatypeProperty_double("attenuation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of range</summary>
         public double? range
             {
             set { SetDatatypeProperty("range", value); }
             get { var arr = GetDatatypeProperty_double("range"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3269,19 +3329,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("b", value); }
             get { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radiusI</summary>
         public double? radiusI
             {
             set { SetDatatypeProperty("radiusI", value); }
             get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radiusII</summary>
         public double? radiusII
             {
             set { SetDatatypeProperty("radiusII", value); }
             get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3321,25 +3381,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radiusI</summary>
         public double? radiusI
             {
             set { SetDatatypeProperty("radiusI", value); }
             get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radiusII</summary>
         public double? radiusII
             {
             set { SetDatatypeProperty("radiusII", value); }
             get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3408,13 +3468,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("extrusionLength", value); }
             get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of openingPoints. OWL cardinality 0..-1</summary>
         public double[] openingPoints
             {
@@ -3478,13 +3538,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("extrusionLength", value); }
             get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of openingPoints. OWL cardinality 0..-1</summary>
         public double[] openingPoints
             {
@@ -3562,31 +3622,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_extrusionArea(Curve instance) { return SetObjectProperty("extrusionArea", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_extrusionArea() 
-        {
-            var propId = GetPropertyId("extrusionArea");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve extrusionArea
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("extrusionArea", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("extrusionArea");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _extrusionArea { get { return get_extrusionArea(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
         public bool set_extrusionAreaOpenings(Curve[] instances) { return SetObjectProperty("extrusionAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -3620,7 +3683,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _extrusionAreaOpenings { get { return get_extrusionAreaOpenings(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_extrusionAreaOpenings_Int64()  
         {
@@ -3654,13 +3716,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("extrusionLength", value); }
             get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3728,7 +3790,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _extrusionAreaSet { get { return get_extrusionAreaSet(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_extrusionAreaSet_Int64()  
         {
@@ -3762,13 +3823,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("extrusionLength", value); }
             get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3865,7 +3926,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _innerPolygons { get { return get_innerPolygons(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_innerPolygons_Int64()  
         {
@@ -3889,37 +3949,40 @@ namespace GEOM
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_outerPolygon(Curve instance) { return SetObjectProperty("outerPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_outerPolygon() 
-        {
-            var propId = GetPropertyId("outerPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve outerPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("outerPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("outerPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _outerPolygon { get { return get_outerPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of setting</summary>
         public Int64? setting
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -3987,7 +4050,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _polygons { get { return get_polygons(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_polygons_Int64()  
         {
@@ -4015,7 +4077,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -4084,25 +4146,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("factor", value); }
             get { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of height</summary>
         public double? height
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -4138,31 +4200,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Material</summary>
-        public bool set_material(Material instance) { return SetObjectProperty("material", instance); }
-        ///<summary>Get related instance</summary>
-        public Material get_material() 
-        {
-            var propId = GetPropertyId("material");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Material material
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("material", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("material");
 
-                return new Material(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Material _material { get { return get_material(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Material(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4231,7 +4296,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("b", value); }
             get { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -4357,7 +4422,6 @@ namespace GEOM
             }
         }
 
-        public Surface[] _surfaces { get { return get_surfaces(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 2..2</summary>
         public Int64[] get_surfaces_Int64()  
         {
@@ -4415,57 +4479,63 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_curve(Curve instance) { return SetObjectProperty("curve", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_curve() 
-        {
-            var propId = GetPropertyId("curve");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve curve
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("curve", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("curve");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _curve { get { return get_curve(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
-        ///<summary>Get related instance</summary>
-        public Surface get_surface() 
-        {
-            var propId = GetPropertyId("surface");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Surface surface
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("surface", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("surface");
 
-                return new Surface(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Surface _surface { get { return get_surface(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Surface(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4501,31 +4571,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4561,31 +4634,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_curve(Curve instance) { return SetObjectProperty("curve", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_curve() 
-        {
-            var propId = GetPropertyId("curve");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve curve
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("curve", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("curve");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _curve { get { return get_curve(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4621,31 +4697,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Surface</summary>
-        public bool set_surface(Surface instance) { return SetObjectProperty("surface", instance); }
-        ///<summary>Get related instance</summary>
-        public Surface get_surface() 
-        {
-            var propId = GetPropertyId("surface");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Surface surface
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("surface", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("surface");
 
-                return new Surface(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Surface _surface { get { return get_surface(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Surface(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4681,31 +4760,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        public bool set_color(Color instance) { return SetObjectProperty("color", instance); }
-        ///<summary>Get related instance</summary>
-        public Color get_color() 
-        {
-            var propId = GetPropertyId("color");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Color color
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("color", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("color");
 
-                return new Color(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Color _color { get { return get_color(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Color(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -4745,7 +4827,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of points. OWL cardinality 6..6</summary>
         public double[] points
             {
@@ -4791,7 +4873,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of endDirection. OWL cardinality 0..3</summary>
         public double[] endDirection
             {
@@ -4815,37 +4897,37 @@ namespace GEOM
             {
             set { SetDatatypeProperty("x0", value); }
             get { var arr = GetDatatypeProperty_double("x0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of x1</summary>
         public double? x1
             {
             set { SetDatatypeProperty("x1", value); }
             get { var arr = GetDatatypeProperty_double("x1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of y0</summary>
         public double? y0
             {
             set { SetDatatypeProperty("y0", value); }
             get { var arr = GetDatatypeProperty_double("y0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of y1</summary>
         public double? y1
             {
             set { SetDatatypeProperty("y1", value); }
             get { var arr = GetDatatypeProperty_double("y1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of z0</summary>
         public double? z0
             {
             set { SetDatatypeProperty("z0", value); }
             get { var arr = GetDatatypeProperty_double("z0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of z1</summary>
         public double? z1
             {
             set { SetDatatypeProperty("z1", value); }
             get { var arr = GetDatatypeProperty_double("z1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -4885,7 +4967,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of points. OWL cardinality 0..-1</summary>
         public double[] points
             {
@@ -4927,57 +5009,63 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Point</summary>
-        public bool set_firstPoint(Point instance) { return SetObjectProperty("firstPoint", instance); }
-        ///<summary>Get related instance</summary>
-        public Point get_firstPoint() 
-        {
-            var propId = GetPropertyId("firstPoint");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point firstPoint
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("firstPoint", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("firstPoint");
 
-                return new Point(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point _firstPoint { get { return get_firstPoint(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Point</summary>
-        public bool set_secondPoint(Point instance) { return SetObjectProperty("secondPoint", instance); }
-        ///<summary>Get related instance</summary>
-        public Point get_secondPoint() 
-        {
-            var propId = GetPropertyId("secondPoint");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point secondPoint
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("secondPoint", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("secondPoint");
 
-                return new Point(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point _secondPoint { get { return get_secondPoint(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -5045,7 +5133,6 @@ namespace GEOM
             }
         }
 
-        public Face[] _faces { get { return get_faces(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_faces_Int64()  
         {
@@ -5103,31 +5190,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Color</summary>
-        public bool set_color(Color instance) { return SetObjectProperty("color", instance); }
-        ///<summary>Get related instance</summary>
-        public Color get_color() 
-        {
-            var propId = GetPropertyId("color");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Color color
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("color", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("color");
 
-                return new Color(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Color _color { get { return get_color(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Color(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Texture. OWL cardinality 0..2</summary>
         public bool set_textures(Texture[] instances) { return SetObjectProperty("textures", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..2</summary>
@@ -5161,7 +5251,6 @@ namespace GEOM
             }
         }
 
-        public Texture[] _textures { get { return get_textures(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..2</summary>
         public Int64[] get_textures_Int64()  
         {
@@ -5252,73 +5341,73 @@ namespace GEOM
             {
             set { SetDatatypeProperty("_11", value); }
             get { var arr = GetDatatypeProperty_double("_11"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _12</summary>
         public double? _12
             {
             set { SetDatatypeProperty("_12", value); }
             get { var arr = GetDatatypeProperty_double("_12"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _13</summary>
         public double? _13
             {
             set { SetDatatypeProperty("_13", value); }
             get { var arr = GetDatatypeProperty_double("_13"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _21</summary>
         public double? _21
             {
             set { SetDatatypeProperty("_21", value); }
             get { var arr = GetDatatypeProperty_double("_21"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _22</summary>
         public double? _22
             {
             set { SetDatatypeProperty("_22", value); }
             get { var arr = GetDatatypeProperty_double("_22"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _23</summary>
         public double? _23
             {
             set { SetDatatypeProperty("_23", value); }
             get { var arr = GetDatatypeProperty_double("_23"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _31</summary>
         public double? _31
             {
             set { SetDatatypeProperty("_31", value); }
             get { var arr = GetDatatypeProperty_double("_31"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _32</summary>
         public double? _32
             {
             set { SetDatatypeProperty("_32", value); }
             get { var arr = GetDatatypeProperty_double("_32"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _33</summary>
         public double? _33
             {
             set { SetDatatypeProperty("_33", value); }
             get { var arr = GetDatatypeProperty_double("_33"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _41</summary>
         public double? _41
             {
             set { SetDatatypeProperty("_41", value); }
             get { var arr = GetDatatypeProperty_double("_41"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _42</summary>
         public double? _42
             {
             set { SetDatatypeProperty("_42", value); }
             get { var arr = GetDatatypeProperty_double("_42"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of _43</summary>
         public double? _43
             {
             set { SetDatatypeProperty("_43", value); }
             get { var arr = GetDatatypeProperty_double("_43"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of coordinates. OWL cardinality 0..12</summary>
         public double[] coordinates
             {
@@ -5360,57 +5449,63 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_firstMatrix(Matrix instance) { return SetObjectProperty("firstMatrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_firstMatrix() 
-        {
-            var propId = GetPropertyId("firstMatrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix firstMatrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("firstMatrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("firstMatrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _firstMatrix { get { return get_firstMatrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_secondMatrix(Matrix instance) { return SetObjectProperty("secondMatrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_secondMatrix() 
-        {
-            var propId = GetPropertyId("secondMatrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix secondMatrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("secondMatrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("secondMatrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _secondMatrix { get { return get_secondMatrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -5446,31 +5541,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Point3DSet</summary>
-        public bool set_pointSet(Point3DSet instance) { return SetObjectProperty("pointSet", instance); }
-        ///<summary>Get related instance</summary>
-        public Point3DSet get_pointSet() 
-        {
-            var propId = GetPropertyId("pointSet");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point3DSet pointSet
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("pointSet", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("pointSet");
 
-                return new Point3DSet(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point3DSet _pointSet { get { return get_pointSet(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point3DSet(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -5538,7 +5636,6 @@ namespace GEOM
             }
         }
 
-        public GeometricItem[] _objects { get { return get_objects(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_objects_Int64()  
         {
@@ -5709,25 +5806,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("A", value); }
             get { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of B</summary>
         public double? B
             {
             set { SetDatatypeProperty("B", value); }
             get { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of C</summary>
         public double? C
             {
             set { SetDatatypeProperty("C", value); }
             get { var arr = GetDatatypeProperty_double("C"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of D</summary>
         public double? D
             {
             set { SetDatatypeProperty("D", value); }
             get { var arr = GetDatatypeProperty_double("D"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -5763,31 +5860,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
-        ///<summary>Get related instance</summary>
-        public Plane get_plane() 
-        {
-            var propId = GetPropertyId("plane");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Plane plane
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("plane", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("plane");
 
-                return new Plane(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Plane _plane { get { return get_plane(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Plane(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -5856,7 +5956,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of coordinates. OWL cardinality 0..3</summary>
         public double[] coordinates
             {
@@ -5874,19 +5974,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("x", value); }
             get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of y</summary>
         public double? y
             {
             set { SetDatatypeProperty("y", value); }
             get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of z</summary>
         public double? z
             {
             set { SetDatatypeProperty("z", value); }
             get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -5926,7 +6026,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of coordinates. OWL cardinality 0..-1</summary>
         public double[] coordinates
             {
@@ -5974,31 +6074,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -6034,83 +6137,92 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public bool set_normal(Vector3 instance) { return SetObjectProperty("normal", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector3 get_normal() 
-        {
-            var propId = GetPropertyId("normal");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector3 normal
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("normal", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("normal");
 
-                return new Vector3(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector3 _normal { get { return get_normal(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector3(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Point</summary>
-        public bool set_point(Point instance) { return SetObjectProperty("point", instance); }
-        ///<summary>Get related instance</summary>
-        public Point get_point() 
-        {
-            var propId = GetPropertyId("point");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point point
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("point", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("point");
 
-                return new Point(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point _point { get { return get_point(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public bool set_tangent(Vector3 instance) { return SetObjectProperty("tangent", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector3 get_tangent() 
-        {
-            var propId = GetPropertyId("tangent");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector3 tangent
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("tangent", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("tangent");
 
-                return new Vector3(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector3 _tangent { get { return get_tangent(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector3(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -6146,31 +6258,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        public bool set_position(Point3D instance) { return SetObjectProperty("position", instance); }
-        ///<summary>Get related instance</summary>
-        public Point3D get_position() 
-        {
-            var propId = GetPropertyId("position");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point3D position
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("position", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("position");
 
-                return new Point3D(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point3D _position { get { return get_position(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point3D(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -6216,19 +6331,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("x", value); }
             get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of y</summary>
         public double? y
             {
             set { SetDatatypeProperty("y", value); }
             get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of z</summary>
         public double? z
             {
             set { SetDatatypeProperty("z", value); }
             get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -6296,7 +6411,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _lineParts { get { return get_lineParts(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_lineParts_Int64()  
         {
@@ -6386,7 +6500,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _lineParts { get { return get_lineParts(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_lineParts_Int64()  
         {
@@ -6476,7 +6589,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _lineParts { get { return get_lineParts(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_lineParts_Int64()  
         {
@@ -6572,7 +6684,6 @@ namespace GEOM
             }
         }
 
-        public Point[] _pointReferences { get { return get_pointReferences(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_pointReferences_Int64()  
         {
@@ -6646,13 +6757,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -6720,7 +6831,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _innerPolygons { get { return get_innerPolygons(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_innerPolygons_Int64()  
         {
@@ -6744,31 +6854,34 @@ namespace GEOM
             }
         }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_outerPolygon(Curve instance) { return SetObjectProperty("outerPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_outerPolygon() 
-        {
-            var propId = GetPropertyId("outerPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve outerPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("outerPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("outerPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _outerPolygon { get { return get_outerPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -6804,31 +6917,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -6868,19 +6984,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of width</summary>
         public double? width
             {
             set { SetDatatypeProperty("width", value); }
             get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7000,31 +7116,31 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetZ</summary>
         public double? offsetZ
             {
             set { SetDatatypeProperty("offsetZ", value); }
             get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of width</summary>
         public double? width
             {
             set { SetDatatypeProperty("width", value); }
             get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7064,59 +7180,65 @@ namespace GEOM
             {
             set { SetDatatypeProperty("count", value); }
             get { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -7181,141 +7303,156 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public bool set_lightDirection(Vector3 instance) { return SetObjectProperty("lightDirection", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector3 get_lightDirection() 
-        {
-            var propId = GetPropertyId("lightDirection");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector3 lightDirection
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("lightDirection", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("lightDirection");
 
-                return new Vector3(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector3 _lightDirection { get { return get_lightDirection(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector3(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
-        public bool set_lightPoint(Point3D instance) { return SetObjectProperty("lightPoint", instance); }
-        ///<summary>Get related instance</summary>
-        public Point3D get_lightPoint() 
-        {
-            var propId = GetPropertyId("lightPoint");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Point3D lightPoint
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("lightPoint", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("lightPoint");
 
-                return new Point3D(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Point3D _lightPoint { get { return get_lightPoint(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Point3D(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Plane</summary>
-        public bool set_plane(Plane instance) { return SetObjectProperty("plane", instance); }
-        ///<summary>Get related instance</summary>
-        public Plane get_plane() 
-        {
-            var propId = GetPropertyId("plane");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Plane plane
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("plane", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("plane");
 
-                return new Plane(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Plane _plane { get { return get_plane(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Plane(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
-        public bool set_planeRefDirection(Vector3 instance) { return SetObjectProperty("planeRefDirection", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector3 get_planeRefDirection() 
-        {
-            var propId = GetPropertyId("planeRefDirection");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector3 planeRefDirection
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("planeRefDirection", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("planeRefDirection");
 
-                return new Vector3(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector3 _planeRefDirection { get { return get_planeRefDirection(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector3(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7384,31 +7521,31 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7448,37 +7585,37 @@ namespace GEOM
             {
             set { SetDatatypeProperty("factor", value); }
             get { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of height</summary>
         public double? height
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7575,7 +7712,6 @@ namespace GEOM
             }
         }
 
-        public Face[] _faces { get { return get_faces(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_faces_Int64()  
         {
@@ -7643,13 +7779,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of thickness</summary>
         public double? thickness
             {
             set { SetDatatypeProperty("thickness", value); }
             get { var arr = GetDatatypeProperty_double("thickness"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7689,13 +7825,13 @@ namespace GEOM
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7735,19 +7871,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("invert", value); }
             get { var arr = GetDatatypeProperty_bool("invert"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7816,37 +7952,37 @@ namespace GEOM
             {
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetZ</summary>
         public double? offsetZ
             {
             set { SetDatatypeProperty("offsetZ", value); }
             get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of size</summary>
         public double? size
             {
             set { SetDatatypeProperty("size", value); }
             get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of start</summary>
         public double? start
             {
             set { SetDatatypeProperty("start", value); }
             get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -7886,7 +8022,7 @@ namespace GEOM
             {
             set { SetDatatypeProperty("closed", value); }
             get { var arr = GetDatatypeProperty_bool("closed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 2..-1</summary>
         public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..-1</summary>
@@ -7920,7 +8056,6 @@ namespace GEOM
             }
         }
 
-        public Point3D[] _controlPoints { get { return get_controlPoints(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 2..-1</summary>
         public Int64[] get_controlPoints_Int64()  
         {
@@ -7948,25 +8083,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("count", value); }
             get { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of degree</summary>
         public Int64? degree
             {
             set { SetDatatypeProperty("degree", value); }
             get { var arr = GetDatatypeProperty_Int64("degree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationLength</summary>
         public double? segmentationLength
             {
             set { SetDatatypeProperty("segmentationLength", value); }
             get { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -8034,7 +8169,6 @@ namespace GEOM
             }
         }
 
-        public Point3D[] _controlPoints { get { return get_controlPoints(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 4..-1</summary>
         public Int64[] get_controlPoints_Int64()  
         {
@@ -8062,61 +8196,61 @@ namespace GEOM
             {
             set { SetDatatypeProperty("segmentationLength", value); }
             get { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of uClosed</summary>
         public bool? uClosed
             {
             set { SetDatatypeProperty("uClosed", value); }
             get { var arr = GetDatatypeProperty_bool("uClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of uCount</summary>
         public Int64? uCount
             {
             set { SetDatatypeProperty("uCount", value); }
             get { var arr = GetDatatypeProperty_Int64("uCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of uDegree</summary>
         public Int64? uDegree
             {
             set { SetDatatypeProperty("uDegree", value); }
             get { var arr = GetDatatypeProperty_Int64("uDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of uSegmentationParts</summary>
         public Int64? uSegmentationParts
             {
             set { SetDatatypeProperty("uSegmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("uSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of vClosed</summary>
         public bool? vClosed
             {
             set { SetDatatypeProperty("vClosed", value); }
             get { var arr = GetDatatypeProperty_bool("vClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of vCount</summary>
         public Int64? vCount
             {
             set { SetDatatypeProperty("vCount", value); }
             get { var arr = GetDatatypeProperty_Int64("vCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of vDegree</summary>
         public Int64? vDegree
             {
             set { SetDatatypeProperty("vDegree", value); }
             get { var arr = GetDatatypeProperty_Int64("vDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of vSegmentationParts</summary>
         public Int64? vSegmentationParts
             {
             set { SetDatatypeProperty("vSegmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("vSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -8152,31 +8286,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -8270,57 +8407,63 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_sweptArea() 
-        {
-            var propId = GetPropertyId("sweptArea");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve sweptArea
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("sweptArea", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptArea");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _sweptArea { get { return get_sweptArea(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
         public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -8354,7 +8497,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _sweptAreaOpenings { get { return get_sweptAreaOpenings(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_sweptAreaOpenings_Int64()  
         {
@@ -8412,57 +8554,63 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_extrusion(Vector instance) { return SetObjectProperty("extrusion", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_extrusion() 
-        {
-            var propId = GetPropertyId("extrusion");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector extrusion
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("extrusion", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("extrusion");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _extrusion { get { return get_extrusion(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_polygon(Curve instance) { return SetObjectProperty("polygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_polygon() 
-        {
-            var propId = GetPropertyId("polygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve polygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("polygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("polygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _polygon { get { return get_polygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -8498,37 +8646,40 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -8564,95 +8715,104 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of setting</summary>
         public Int64? setting
             {
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_sweptArea() 
-        {
-            var propId = GetPropertyId("sweptArea");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve sweptArea
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("sweptArea", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptArea");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _sweptArea { get { return get_sweptArea(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
         public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -8686,7 +8846,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _sweptAreaOpenings { get { return get_sweptAreaOpenings(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_sweptAreaOpenings_Int64()  
         {
@@ -8744,63 +8903,69 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
         public bool set_sweptAreaSet(Curve[] instances) { return SetObjectProperty("sweptAreaSet", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
@@ -8834,7 +8999,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _sweptAreaSet { get { return get_sweptAreaSet(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
         public Int64[] get_sweptAreaSet_Int64()  
         {
@@ -8892,115 +9056,127 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_sweptArea() 
-        {
-            var propId = GetPropertyId("sweptArea");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve sweptArea
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("sweptArea", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptArea");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _sweptArea { get { return get_sweptArea(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_sweptAreaEnd(Curve instance) { return SetObjectProperty("sweptAreaEnd", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_sweptAreaEnd() 
-        {
-            var propId = GetPropertyId("sweptAreaEnd");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve sweptAreaEnd
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("sweptAreaEnd", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaEnd");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _sweptAreaEnd { get { return get_sweptAreaEnd(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
         public bool set_sweptAreaEndOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaEndOpenings", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -9034,7 +9210,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _sweptAreaEndOpenings { get { return get_sweptAreaEndOpenings(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_sweptAreaEndOpenings_Int64()  
         {
@@ -9090,7 +9265,6 @@ namespace GEOM
             }
         }
 
-        public Curve[] _sweptAreaOpenings { get { return get_sweptAreaOpenings(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
         public Int64[] get_sweptAreaOpenings_Int64()  
         {
@@ -9148,31 +9322,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_bottomPolygon(Curve instance) { return SetObjectProperty("bottomPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_bottomPolygon() 
-        {
-            var propId = GetPropertyId("bottomPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve bottomPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("bottomPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("bottomPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _bottomPolygon { get { return get_bottomPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access values of connectionMap. OWL cardinality 0..-1</summary>
         public Int64[] connectionMap
             {
@@ -9190,83 +9367,89 @@ namespace GEOM
             {
             set { SetDatatypeProperty("forceSolid", value); }
             get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of hasBottom</summary>
         public bool? hasBottom
             {
             set { SetDatatypeProperty("hasBottom", value); }
             get { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of hasTop</summary>
         public bool? hasTop
             {
             set { SetDatatypeProperty("hasTop", value); }
             get { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_topPolygon(Curve instance) { return SetObjectProperty("topPolygon", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_topPolygon() 
-        {
-            var propId = GetPropertyId("topPolygon");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve topPolygon
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("topPolygon", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("topPolygon");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _topPolygon { get { return get_topPolygon(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of usesAbsolutePlacement</summary>
         public bool? usesAbsolutePlacement
             {
             set { SetDatatypeProperty("usesAbsolutePlacement", value); }
             get { var arr = GetDatatypeProperty_bool("usesAbsolutePlacement"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9306,45 +9489,48 @@ namespace GEOM
             {
             set { SetDatatypeProperty("innerRadius", value); }
             get { var arr = GetDatatypeProperty_double("innerRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of radius</summary>
         public double? radius
             {
             set { SetDatatypeProperty("radius", value); }
             get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9384,19 +9570,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("name", value); }
             get { var arr = GetDatatypeProperty_string("name"); return (arr != null && arr.Length > 0) ? (string)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access values of origin. OWL cardinality 0..3</summary>
         public double[] origin
             {
@@ -9408,25 +9594,25 @@ namespace GEOM
             {
             set { SetDatatypeProperty("rotation", value); }
             get { var arr = GetDatatypeProperty_double("rotation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of scalingX</summary>
         public double? scalingX
             {
             set { SetDatatypeProperty("scalingX", value); }
             get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of scalingY</summary>
         public double? scalingY
             {
             set { SetDatatypeProperty("scalingY", value); }
             get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of type</summary>
         public Int64? type
             {
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9466,19 +9652,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("majorRadius", value); }
             get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of minorRadius</summary>
         public double? minorRadius
             {
             set { SetDatatypeProperty("minorRadius", value); }
             get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9518,19 +9704,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("majorRadius", value); }
             get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of minorRadius</summary>
         public double? minorRadius
             {
             set { SetDatatypeProperty("minorRadius", value); }
             get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9566,63 +9752,69 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of recalculateBBox</summary>
         public bool? recalculateBBox
             {
             set { SetDatatypeProperty("recalculateBBox", value); }
             get { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9658,81 +9850,87 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
-        public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
-        ///<summary>Get related instance</summary>
-        public Vector get_direction() 
-        {
-            var propId = GetPropertyId("direction");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Vector direction
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("direction", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("direction");
 
-                return new Vector(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Vector _direction { get { return get_direction(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of length</summary>
         public double? length
             {
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
-        public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
-        ///<summary>Get related instance</summary>
-        public Curve get_path() 
-        {
-            var propId = GetPropertyId("path");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Curve path
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("path", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("path");
 
-                return new Curve(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Curve _path { get { return get_path(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of radiusI</summary>
         public double? radiusI
             {
             set { SetDatatypeProperty("radiusI", value); }
             get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of radiusII</summary>
         public double? radiusII
             {
             set { SetDatatypeProperty("radiusII", value); }
             get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
             set { SetDatatypeProperty("segmentationParts", value); }
             get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -9778,19 +9976,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("offsetX", value); }
             get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetY</summary>
         public double? offsetY
             {
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of offsetZ</summary>
         public double? offsetZ
             {
             set { SetDatatypeProperty("offsetZ", value); }
             get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..3</summary>
         public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..3</summary>
@@ -9824,7 +10022,6 @@ namespace GEOM
             }
         }
 
-        public Point[] _pointReferences { get { return get_pointReferences(); } }
         ///<summary>Get an array of handles of related instances. OWL cardinality 0..3</summary>
         public Int64[] get_pointReferences_Int64()  
         {
@@ -9886,39 +10083,42 @@ namespace GEOM
             {
             set { SetDatatypeProperty("innerFraction", value); }
             get { var arr = GetDatatypeProperty_double("innerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
-        public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
-        ///<summary>Get related instance</summary>
-        public GeometricItem get_object() 
-        {
-            var propId = GetPropertyId("object");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public GeometricItem object_
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("object", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
 
-                return new GeometricItem(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public GeometricItem _object { get { return get_object(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
         ///<summary>Access value of outerFraction</summary>
         public double? outerFraction
             {
             set { SetDatatypeProperty("outerFraction", value); }
             get { var arr = GetDatatypeProperty_double("outerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -10039,19 +10239,19 @@ namespace GEOM
             {
             set { SetDatatypeProperty("x", value); }
             get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of y</summary>
         public double? y
             {
             set { SetDatatypeProperty("y", value); }
             get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
         ///<summary>Access value of z</summary>
         public double? z
             {
             set { SetDatatypeProperty("z", value); }
             get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
+            }
     }
 
 
@@ -10087,31 +10287,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
@@ -10147,31 +10350,34 @@ namespace GEOM
         //
 
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
-        public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
-        ///<summary>Get related instance</summary>
-        public Matrix get_matrix() 
-        {
-            var propId = GetPropertyId("matrix");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        public Matrix matrix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("matrix", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
 
-                return new Matrix(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Matrix _matrix { get { return get_matrix(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 

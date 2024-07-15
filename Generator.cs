@@ -28,6 +28,7 @@ namespace RDFWrappers
         const string KWD_CARDINALITY_MAX = "CARDINALITY_MAX";
         const string KWD_OBJECT_TYPE = "Instance";
         const string KWD_asType = "asTYPE";
+        const string KWD_SUFIX = "_sufix";
 
         /// <summary>
         /// 
@@ -296,11 +297,18 @@ namespace RDFWrappers
         {
             var prop = m_schema.m_properties[classProp.name];
 
-            m_replacements[KWD_PROPERTY_NAME] = classProp.name;
+            var propName = classProp.name;
+            m_replacements[KWD_PROPERTY_NAME] = propName;
             m_replacements[KWD_DATA_TYPE] = prop.DataType(m_cs);
             m_replacements[KWD_CARDINALITY_MIN] = classProp.min.ToString();
             m_replacements[KWD_CARDINALITY_MAX] = classProp.max.ToString();
-            m_replacements[KWD_asType] = "";
+            
+            m_replacements[KWD_SUFIX] = "";
+            
+            if (m_cs && propName == "object")
+                {
+                m_replacements[KWD_SUFIX] = "_";
+                }
 
             if (!prop.IsObject())
             {
@@ -343,21 +351,23 @@ namespace RDFWrappers
         /// <param name="prop"></param>
         /// <param name="template"></param>
         private void WriteSetObjectProperty(StreamWriter writer, Schema.Property prop, Template template)
-        {
-            if (prop.resrtictions.Count > 0)
             {
-                foreach (var restr in prop.resrtictions)
+            int cnt = prop.resrtictions.Count;
+            if (cnt > 0)
                 {
+                Verify(cnt == 1, "This case was not tested yet: more then one restriction for 1-cardinality object property - needs handling for C#");
+                foreach (var restr in prop.resrtictions)
+                    {
                     string instClass = m_schema.GetNameOfClass(restr);
                     WriteAccessObjectProperty(writer, instClass, "", template);
+                    }
                 }
-            }
             else
-            {
+                {
                 Verify(false, "This case was not tested yet: no restriction");
                 WriteAccessObjectProperty(writer, "Instance", "", template);
+                }
             }
-        }
 
         /// <summary>
         /// 
@@ -366,27 +376,23 @@ namespace RDFWrappers
         /// <param name="prop"></param>
         /// <param name="template"></param>
         private void WriteGetObjectProperty(StreamWriter writer, Schema.Property prop, Template template)
-        {
-            if (prop.resrtictions.Count > 0)
             {
-                bool first = true;
-                foreach (var restr in prop.resrtictions)
+            int cnt = prop.resrtictions.Count;
+            if (cnt > 0)
                 {
-                    Verify(first, "This case was not tested yet: more then one restriction");
-
+                Verify(cnt == 1, "This case was not tested yet: more then one restriction for 1-cardinality object property - needs handling for C#");
+                foreach (var restr in prop.resrtictions)
+                    {
                     string instClass = m_schema.GetNameOfClass(restr);
-                    string asType = first ? "" : instClass;
-                    WriteAccessObjectProperty(writer, instClass, asType, template);
-
-                    first = false;
+                    WriteAccessObjectProperty(writer, instClass, "", template);
+                    }
                 }
-            }
             else
-            {
+                {
                 Verify(false, "This case was not tested yet: no restriction");
                 WriteAccessObjectProperty(writer, "Instance", "", template);
+                }
             }
-        }
 
 
 

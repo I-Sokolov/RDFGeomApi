@@ -47,53 +47,56 @@ namespace NAMESPACE_NAME
         // Properties with known cardinality restrictions to PROPERTIES_OF_CLASS
         //
 
-//## TEMPLATE: SetDataProperty
+//## TEMPLATE SetDataProperty
+//## TEMPLATE SetDataArrayProperty
+//## TEMPLATE GetDataProperty
         ///<summary>Access value of PROPERTY_NAME</summary>
         public double? PROPERTY_NAME
             {
             set { SetDatatypeProperty("PROPERTY_NAME", value); }
             get { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }        
-//## TEMPLATE SetDataArrayProperty
+            }
+//## TEMPLATE GetDataArrayProperty
         ///<summary>Access values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public double[] PROPERTY_NAme
             {
             set { SetDatatypeProperty("PROPERTY_NAME", value); }
             get { return GetDatatypeProperty_double("PROPERTY_NAME"); }
             }
-//## TEMPLATE GetDataProperty
-//## TEMPLATE GetDataArrayProperty
-//## TEMPLATE: SetObjectProperty
-        ///<summary>Sets relationship from this instance to an instance of Instance</summary>
-        public bool set_PROPERTY_NAME(Instance instance) { return SetObjectProperty("PROPERTY_NAME", instance); }
+//## TEMPLATE SetObjectProperty
 //## TEMPLATE SetObjectArrayProperty
         ///<summary>Sets relationships from this instance to an array of Instance. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public bool set_PROPERTY_NAME(Instance[] instances) { return SetObjectProperty("PROPERTY_NAME", instances); }
 //## TEMPLATE GetObjectProperty
-        ///<summary>Get related instance</summary>
-        public Instance get_PROPERTY_NAMEasTYPe() 
-        {
-            var propId = GetPropertyId("PROPERTY_NAME");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Sets relationship from this instance to an instance of Instance</summary>
+        public Instance PROPERTY_NAME_sufix
             {
-                var values = new Int64[1];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+            set
+                {
+                SetObjectProperty("PROPERTY_NAME", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("PROPERTY_NAME");
 
-                return new Instance(values[0], null);
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        public Instance _PROPERTY_NAMEasTYPe { get { return get_PROPERTY_NAMEasTYPe(); } }
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Instance(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
 //## TEMPLATE GetObjectArrayProperty
         ///<summary>Get an array of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public Instance[] get_PROPERTY_NAMEasTYPE() 
@@ -124,7 +127,6 @@ namespace NAMESPACE_NAME
             }
         }
 
-        public Instance[] _PROPERTY_NAMEasTYPE { get { return get_PROPERTY_NAMEasTYPE(); } }
 //## TEMPLATE GetObjectArrayPropertyInt64
         ///<summary>Get an array of handles of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public Int64[] get_PROPERTY_NAME_Int64()  
