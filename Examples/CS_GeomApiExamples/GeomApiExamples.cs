@@ -34,16 +34,16 @@ namespace CS_GeometryKernel
 			//
 
 			ColorComponent colorComponent = ColorComponent.Create(model);
-			colorComponent.set_R(0.9);
-			colorComponent.set_G(0);
-			colorComponent.set_B(0);
+			colorComponent.R = 0.9;
+			colorComponent.G = 0;
+			colorComponent.B = 0;
 
 			//you can use instance and property handlers API
 			Int64 propW = engine.GetPropertyByName(model, "W");
 			double w = 0.5;
 			engine.SetDatatypeProperty(colorComponent, propW, ref w, 1);
 			//the code above is equivalent to
-			colorComponent.set_W(0.5);
+			colorComponent.W = 0.5;
 
 			//or you easy use existing instance handlers with classes
 			Int64 colorClass = engine.GetClassByName(model, "Color");
@@ -59,9 +59,9 @@ namespace CS_GeometryKernel
 			//
 			Box box = Box.Create(model);
 
-			box.set_height(3);
-			box.set_width(2);
-			box.set_length(4);
+			box.height = 3;
+			box.width = 2;
+			box.length = 4;
 			box.set_material(material);  //set_material is inherited from GeometricItem
 
 			return box;
@@ -86,11 +86,10 @@ namespace CS_GeometryKernel
 			ASSERT ((GeometricItem)texture_id == 0); 
 
 			//double
-			double? lseg = curve.get_segmentationLength();
+			double? lseg = curve.segmentationLength;
 			ASSERT(lseg == null);
-			var ok = curve.set_segmentationLength(0.5);
-			ASSERT(ok);
-			lseg = curve.get_segmentationLength();
+			curve.segmentationLength = 0.5;
+			lseg = curve.segmentationLength;
 			ASSERT(lseg == 0.5);
 
 			//double []
@@ -109,7 +108,7 @@ namespace CS_GeometryKernel
 
 			//false b/c cardinality restriction violation
 			var tooLong = new double[] { 1, 2, 3, 4 };
-			ok = texture.set_origin(tooLong);
+			var ok = texture.set_origin(tooLong);
 			ASSERT(!ok);
 
 			//false b/c wrong property name
@@ -119,10 +118,10 @@ namespace CS_GeometryKernel
 			ASSERT(ret_org == null);
 
 			//long
-			long? setting = curve.get_setting();
+			long? setting = curve.setting;
 			ASSERT(setting == null);
-			curve.set_setting(13);
-			setting = curve.get_setting();
+			curve.setting = 13;
+			setting = curve.setting;
 			ASSERT(setting == 13);
 
 			//long[]
@@ -134,20 +133,20 @@ namespace CS_GeometryKernel
 			ASSERT_ARR_EQ(km, km_);
 
 			//string 
-			string tname = texture.get_name();
+			string tname = texture.name;
 			ASSERT(tname == null);
-			texture.set_name("test");
-			tname = texture.get_name();
+			texture.name = "test";
+			tname = texture.name;
 			ASSERT(tname == "test");
 
 			//string[]
 			//No example in Geometry Kernel
 
 			//bool
-			bool? closed = curve.get_closed();
+			bool? closed = curve.closed;
 			ASSERT(closed == null);
-			curve.set_closed(true);
-			closed = curve.get_closed();
+			curve.closed = true;
+			closed = curve.closed;
 			ASSERT(closed.Value);
 
 			//bool[]

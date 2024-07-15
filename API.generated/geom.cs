@@ -301,21 +301,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to AdvancedFace2D
         //
 
-        ///<summary>Sets value of clipped</summary>
-        public bool set_clipped(bool value) { return SetDatatypeProperty ("clipped", value); }        
-        ///<summary>Gets value of clipped, returns null is the property was not set</summary>
-        public bool? get_clipped() { var arr = GetDatatypeProperty_bool("clipped"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _clipped { get { return get_clipped(); } }
-        ///<summary>Sets value of scalingX</summary>
-        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }        
-        ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
-        public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingX { get { return get_scalingX(); } }
-        ///<summary>Sets value of scalingY</summary>
-        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }        
-        ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
-        public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingY { get { return get_scalingY(); } }
+        ///<summary>Access value of clipped</summary>
+        public bool? clipped
+            {
+            set { SetDatatypeProperty("clipped", value); }
+            get { var arr = GetDatatypeProperty_bool("clipped"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of scalingX</summary>
+        public double? scalingX
+            {
+            set { SetDatatypeProperty("scalingX", value); }
+            get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of scalingY</summary>
+        public double? scalingY
+            {
+            set { SetDatatypeProperty("scalingY", value); }
+            get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -389,16 +392,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to AdvancedFaceMapped
         //
 
-        ///<summary>Sets value of scalingX</summary>
-        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }        
-        ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
-        public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingX { get { return get_scalingX(); } }
-        ///<summary>Sets value of scalingY</summary>
-        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }        
-        ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
-        public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingY { get { return get_scalingY(); } }
+        ///<summary>Access value of scalingX</summary>
+        public double? scalingX
+            {
+            set { SetDatatypeProperty("scalingX", value); }
+            get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of scalingY</summary>
+        public double? scalingY
+            {
+            set { SetDatatypeProperty("scalingY", value); }
+            get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -433,21 +438,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to AlignedSegment
         //
 
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_segment(Curve instance) { return SetObjectProperty("segment", instance); }
         ///<summary>Get related instance</summary>
@@ -629,16 +637,18 @@ namespace GEOM
         }
 
         public AlignedSegments _horizontal { get { return get_horizontal(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
         public bool set_vertical(AlignedSegments instance) { return SetObjectProperty("vertical", instance); }
         ///<summary>Get related instance</summary>
@@ -757,31 +767,36 @@ namespace GEOM
         // Properties with known cardinality restrictions to Arc3D
         //
 
-        ///<summary>Sets value of hasNormals</summary>
-        public bool set_hasNormals(bool value) { return SetDatatypeProperty ("hasNormals", value); }        
-        ///<summary>Gets value of hasNormals, returns null is the property was not set</summary>
-        public bool? get_hasNormals() { var arr = GetDatatypeProperty_bool("hasNormals"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _hasNormals { get { return get_hasNormals(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of size</summary>
-        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }        
-        ///<summary>Gets value of size, returns null is the property was not set</summary>
-        public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _size { get { return get_size(); } }
-        ///<summary>Sets value of start</summary>
-        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }        
-        ///<summary>Gets value of start, returns null is the property was not set</summary>
-        public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _start { get { return get_start(); } }
+        ///<summary>Access value of hasNormals</summary>
+        public bool? hasNormals
+            {
+            set { SetDatatypeProperty("hasNormals", value); }
+            get { var arr = GetDatatypeProperty_bool("hasNormals"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of size</summary>
+        public double? size
+            {
+            set { SetDatatypeProperty("size", value); }
+            get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of start</summary>
+        public double? start
+            {
+            set { SetDatatypeProperty("start", value); }
+            get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -845,11 +860,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to BezierSurface
         //
 
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -939,31 +955,36 @@ namespace GEOM
         }
 
         public Curve _bottomPolygon { get { return get_bottomPolygon(); } }
-        ///<summary>Sets value of forceSolid</summary>
-        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }        
-        ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
-        public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _forceSolid { get { return get_forceSolid(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
-        ///<summary>Sets value of hasBottom</summary>
-        public bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", value); }        
-        ///<summary>Gets value of hasBottom, returns null is the property was not set</summary>
-        public bool? get_hasBottom() { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _hasBottom { get { return get_hasBottom(); } }
-        ///<summary>Sets value of hasTop</summary>
-        public bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", value); }        
-        ///<summary>Gets value of hasTop, returns null is the property was not set</summary>
-        public bool? get_hasTop() { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _hasTop { get { return get_hasTop(); } }
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
+        ///<summary>Access value of forceSolid</summary>
+        public bool? forceSolid
+            {
+            set { SetDatatypeProperty("forceSolid", value); }
+            get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of hasBottom</summary>
+        public bool? hasBottom
+            {
+            set { SetDatatypeProperty("hasBottom", value); }
+            get { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of hasTop</summary>
+        public bool? hasTop
+            {
+            set { SetDatatypeProperty("hasTop", value); }
+            get { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_topPolygon(Curve instance) { return SetObjectProperty("topPolygon", instance); }
         ///<summary>Get related instance</summary>
@@ -1131,16 +1152,18 @@ namespace GEOM
         }
 
         public GeometricItem _secondObject { get { return get_secondObject(); } }
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -1253,11 +1276,12 @@ namespace GEOM
         }
 
         public GeometricItem _secondObject { get { return get_secondObject(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -1292,16 +1316,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to BoundaryRepresentation
         //
 
-        ///<summary>Sets value of consistencyCheck</summary>
-        public bool set_consistencyCheck(Int64 value) { return SetDatatypeProperty ("consistencyCheck", value); }        
-        ///<summary>Gets value of consistencyCheck, returns null is the property was not set</summary>
-        public Int64? get_consistencyCheck() { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _consistencyCheck { get { return get_consistencyCheck(); } }
-        ///<summary>Sets value of epsilon</summary>
-        public bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", value); }        
-        ///<summary>Gets value of epsilon, returns null is the property was not set</summary>
-        public double? get_epsilon() { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _epsilon { get { return get_epsilon(); } }
+        ///<summary>Access value of consistencyCheck</summary>
+        public Int64? consistencyCheck
+            {
+            set { SetDatatypeProperty("consistencyCheck", value); }
+            get { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of epsilon</summary>
+        public double? epsilon
+            {
+            set { SetDatatypeProperty("epsilon", value); }
+            get { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 0..-1</summary>
         public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -1363,11 +1389,12 @@ namespace GEOM
         ///<summary>Gets values of flags. OWL cardinality 0..-1</summary>
         public Int64[] get_flags() { return GetDatatypeProperty_Int64("flags"); }
         public Int64[] _flags { get { return get_flags(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
         public bool set_indices(Int64[] values) { return SetDatatypeProperty ("indices", values); }
         ///<summary>Gets values of indices. OWL cardinality 0..-1</summary>
@@ -1383,11 +1410,12 @@ namespace GEOM
         ///<summary>Gets values of normalIndices. OWL cardinality 0..-1</summary>
         public Int64[] get_normalIndices() { return GetDatatypeProperty_Int64("normalIndices"); }
         public Int64[] _normalIndices { get { return get_normalIndices(); } }
-        ///<summary>Sets value of relativeEpsilon</summary>
-        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }        
-        ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
-        public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _relativeEpsilon { get { return get_relativeEpsilon(); } }
+        ///<summary>Access value of relativeEpsilon</summary>
+        public double? relativeEpsilon
+            {
+            set { SetDatatypeProperty("relativeEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of textureCoordinates. OWL cardinality 0..-1</summary>
         public bool set_textureCoordinates(double[] values) { return SetDatatypeProperty ("textureCoordinates", values); }
         ///<summary>Gets values of textureCoordinates. OWL cardinality 0..-1</summary>
@@ -1398,11 +1426,12 @@ namespace GEOM
         ///<summary>Gets values of textureIndices. OWL cardinality 0..-1</summary>
         public Int64[] get_textureIndices() { return GetDatatypeProperty_Int64("textureIndices"); }
         public Int64[] _textureIndices { get { return get_textureIndices(); } }
-        ///<summary>Sets value of vertexEpsilon</summary>
-        public bool set_vertexEpsilon(double value) { return SetDatatypeProperty ("vertexEpsilon", value); }        
-        ///<summary>Gets value of vertexEpsilon, returns null is the property was not set</summary>
-        public double? get_vertexEpsilon() { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _vertexEpsilon { get { return get_vertexEpsilon(); } }
+        ///<summary>Access value of vertexEpsilon</summary>
+        public double? vertexEpsilon
+            {
+            set { SetDatatypeProperty("vertexEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
         public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
         ///<summary>Gets values of vertices. OWL cardinality 0..-1</summary>
@@ -1442,21 +1471,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Box
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of width</summary>
-        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }        
-        ///<summary>Gets value of width, returns null is the property was not set</summary>
-        public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _width { get { return get_width(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of width</summary>
+        public double? width
+            {
+            set { SetDatatypeProperty("width", value); }
+            get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -1501,11 +1533,12 @@ namespace GEOM
         ///<summary>Gets values of knots. OWL cardinality 2..-1</summary>
         public double[] get_knots() { return GetDatatypeProperty_double("knots"); }
         public double[] _knots { get { return get_knots(); } }
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -1540,11 +1573,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to BSplineSurface
         //
 
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
         ///<summary>Sets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
         public bool set_uKnotMultiplicities(Int64[] values) { return SetDatatypeProperty ("uKnotMultiplicities", values); }
         ///<summary>Gets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
@@ -1840,11 +1874,12 @@ namespace GEOM
         }
 
         public Plane _plane { get { return get_plane(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -1879,11 +1914,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Clothoid
         //
 
-        ///<summary>Sets value of A</summary>
-        public bool set_A(double value) { return SetDatatypeProperty ("A", value); }        
-        ///<summary>Gets value of A, returns null is the property was not set</summary>
-        public double? get_A() { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _A { get { return get_A(); } }
+        ///<summary>Access value of A</summary>
+        public double? A
+            {
+            set { SetDatatypeProperty("A", value); }
+            get { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Vector</summary>
         public bool set_direction(Vector instance) { return SetObjectProperty("direction", instance); }
         ///<summary>Get related instance</summary>
@@ -1910,26 +1946,30 @@ namespace GEOM
         }
 
         public Vector _direction { get { return get_direction(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of orientation</summary>
-        public bool set_orientation(Int64 value) { return SetDatatypeProperty ("orientation", value); }        
-        ///<summary>Gets value of orientation, returns null is the property was not set</summary>
-        public Int64? get_orientation() { var arr = GetDatatypeProperty_Int64("orientation"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _orientation { get { return get_orientation(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of orientation</summary>
+        public Int64? orientation
+            {
+            set { SetDatatypeProperty("orientation", value); }
+            get { var arr = GetDatatypeProperty_Int64("orientation"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -1993,26 +2033,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to Collection
         //
 
-        ///<summary>Sets value of consistencyCheck</summary>
-        public bool set_consistencyCheck(Int64 value) { return SetDatatypeProperty ("consistencyCheck", value); }        
-        ///<summary>Gets value of consistencyCheck, returns null is the property was not set</summary>
-        public Int64? get_consistencyCheck() { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _consistencyCheck { get { return get_consistencyCheck(); } }
-        ///<summary>Sets value of epsilon</summary>
-        public bool set_epsilon(double value) { return SetDatatypeProperty ("epsilon", value); }        
-        ///<summary>Gets value of epsilon, returns null is the property was not set</summary>
-        public double? get_epsilon() { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _epsilon { get { return get_epsilon(); } }
-        ///<summary>Sets value of forceSolid</summary>
-        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }        
-        ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
-        public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _forceSolid { get { return get_forceSolid(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of consistencyCheck</summary>
+        public Int64? consistencyCheck
+            {
+            set { SetDatatypeProperty("consistencyCheck", value); }
+            get { var arr = GetDatatypeProperty_Int64("consistencyCheck"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of epsilon</summary>
+        public double? epsilon
+            {
+            set { SetDatatypeProperty("epsilon", value); }
+            get { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of forceSolid</summary>
+        public bool? forceSolid
+            {
+            set { SetDatatypeProperty("forceSolid", value); }
+            get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
         public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -2069,26 +2113,30 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets value of recalculateBBox</summary>
-        public bool set_recalculateBBox(bool value) { return SetDatatypeProperty ("recalculateBBox", value); }        
-        ///<summary>Gets value of recalculateBBox, returns null is the property was not set</summary>
-        public bool? get_recalculateBBox() { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _recalculateBBox { get { return get_recalculateBBox(); } }
-        ///<summary>Sets value of relativeEpsilon</summary>
-        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }        
-        ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
-        public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _relativeEpsilon { get { return get_relativeEpsilon(); } }
-        ///<summary>Sets value of representsSolid</summary>
-        public bool set_representsSolid(bool value) { return SetDatatypeProperty ("representsSolid", value); }        
-        ///<summary>Gets value of representsSolid, returns null is the property was not set</summary>
-        public bool? get_representsSolid() { var arr = GetDatatypeProperty_bool("representsSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _representsSolid { get { return get_representsSolid(); } }
-        ///<summary>Sets value of vertexEpsilon</summary>
-        public bool set_vertexEpsilon(double value) { return SetDatatypeProperty ("vertexEpsilon", value); }        
-        ///<summary>Gets value of vertexEpsilon, returns null is the property was not set</summary>
-        public double? get_vertexEpsilon() { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _vertexEpsilon { get { return get_vertexEpsilon(); } }
+        ///<summary>Access value of recalculateBBox</summary>
+        public bool? recalculateBBox
+            {
+            set { SetDatatypeProperty("recalculateBBox", value); }
+            get { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of relativeEpsilon</summary>
+        public double? relativeEpsilon
+            {
+            set { SetDatatypeProperty("relativeEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of representsSolid</summary>
+        public bool? representsSolid
+            {
+            set { SetDatatypeProperty("representsSolid", value); }
+            get { var arr = GetDatatypeProperty_bool("representsSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of vertexEpsilon</summary>
+        public double? vertexEpsilon
+            {
+            set { SetDatatypeProperty("vertexEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2149,11 +2197,12 @@ namespace GEOM
         }
 
         public ColorComponent _ambient { get { return get_ambient(); } }
-        ///<summary>Sets value of ambientReflectance</summary>
-        public bool set_ambientReflectance(double value) { return SetDatatypeProperty ("ambientReflectance", value); }        
-        ///<summary>Gets value of ambientReflectance, returns null is the property was not set</summary>
-        public double? get_ambientReflectance() { var arr = GetDatatypeProperty_double("ambientReflectance"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _ambientReflectance { get { return get_ambientReflectance(); } }
+        ///<summary>Access value of ambientReflectance</summary>
+        public double? ambientReflectance
+            {
+            set { SetDatatypeProperty("ambientReflectance", value); }
+            get { var arr = GetDatatypeProperty_double("ambientReflectance"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
         public bool set_diffuse(ColorComponent instance) { return SetObjectProperty("diffuse", instance); }
         ///<summary>Get related instance</summary>
@@ -2232,11 +2281,12 @@ namespace GEOM
         }
 
         public ColorComponent _specular { get { return get_specular(); } }
-        ///<summary>Sets value of transparency</summary>
-        public bool set_transparency(double value) { return SetDatatypeProperty ("transparency", value); }        
-        ///<summary>Gets value of transparency, returns null is the property was not set</summary>
-        public double? get_transparency() { var arr = GetDatatypeProperty_double("transparency"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _transparency { get { return get_transparency(); } }
+        ///<summary>Access value of transparency</summary>
+        public double? transparency
+            {
+            set { SetDatatypeProperty("transparency", value); }
+            get { var arr = GetDatatypeProperty_double("transparency"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2271,26 +2321,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to ColorComponent
         //
 
-        ///<summary>Sets value of B</summary>
-        public bool set_B(double value) { return SetDatatypeProperty ("B", value); }        
-        ///<summary>Gets value of B, returns null is the property was not set</summary>
-        public double? get_B() { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _B { get { return get_B(); } }
-        ///<summary>Sets value of G</summary>
-        public bool set_G(double value) { return SetDatatypeProperty ("G", value); }        
-        ///<summary>Gets value of G, returns null is the property was not set</summary>
-        public double? get_G() { var arr = GetDatatypeProperty_double("G"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _G { get { return get_G(); } }
-        ///<summary>Sets value of R</summary>
-        public bool set_R(double value) { return SetDatatypeProperty ("R", value); }        
-        ///<summary>Gets value of R, returns null is the property was not set</summary>
-        public double? get_R() { var arr = GetDatatypeProperty_double("R"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _R { get { return get_R(); } }
-        ///<summary>Sets value of W</summary>
-        public bool set_W(double value) { return SetDatatypeProperty ("W", value); }        
-        ///<summary>Gets value of W, returns null is the property was not set</summary>
-        public double? get_W() { var arr = GetDatatypeProperty_double("W"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _W { get { return get_W(); } }
+        ///<summary>Access value of B</summary>
+        public double? B
+            {
+            set { SetDatatypeProperty("B", value); }
+            get { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of G</summary>
+        public double? G
+            {
+            set { SetDatatypeProperty("G", value); }
+            get { var arr = GetDatatypeProperty_double("G"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of R</summary>
+        public double? R
+            {
+            set { SetDatatypeProperty("R", value); }
+            get { var arr = GetDatatypeProperty_double("R"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of W</summary>
+        public double? W
+            {
+            set { SetDatatypeProperty("W", value); }
+            get { var arr = GetDatatypeProperty_double("W"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2325,21 +2379,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Cone
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -2374,26 +2431,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to ConicalCurve
         //
 
-        ///<summary>Sets value of a</summary>
-        public bool set_a(double value) { return SetDatatypeProperty ("a", value); }        
-        ///<summary>Gets value of a, returns null is the property was not set</summary>
-        public double? get_a() { var arr = GetDatatypeProperty_double("a"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _a { get { return get_a(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of size</summary>
-        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }        
-        ///<summary>Gets value of size, returns null is the property was not set</summary>
-        public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _size { get { return get_size(); } }
-        ///<summary>Sets value of start</summary>
-        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }        
-        ///<summary>Gets value of start, returns null is the property was not set</summary>
-        public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _start { get { return get_start(); } }
+        ///<summary>Access value of a</summary>
+        public double? a
+            {
+            set { SetDatatypeProperty("a", value); }
+            get { var arr = GetDatatypeProperty_double("a"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of size</summary>
+        public double? size
+            {
+            set { SetDatatypeProperty("size", value); }
+            get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of start</summary>
+        public double? start
+            {
+            set { SetDatatypeProperty("start", value); }
+            get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2428,26 +2489,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to ConicalSurface
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of semiVerticalAngle</summary>
-        public bool set_semiVerticalAngle(double value) { return SetDatatypeProperty ("semiVerticalAngle", value); }        
-        ///<summary>Gets value of semiVerticalAngle, returns null is the property was not set</summary>
-        public double? get_semiVerticalAngle() { var arr = GetDatatypeProperty_double("semiVerticalAngle"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _semiVerticalAngle { get { return get_semiVerticalAngle(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of semiVerticalAngle</summary>
+        public double? semiVerticalAngle
+            {
+            set { SetDatatypeProperty("semiVerticalAngle", value); }
+            get { var arr = GetDatatypeProperty_double("semiVerticalAngle"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2542,11 +2607,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Copy
         //
 
-        ///<summary>Sets value of instanceReference</summary>
-        public bool set_instanceReference(Int64 value) { return SetDatatypeProperty ("instanceReference", value); }        
-        ///<summary>Gets value of instanceReference, returns null is the property was not set</summary>
-        public Int64? get_instanceReference() { var arr = GetDatatypeProperty_Int64("instanceReference"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _instanceReference { get { return get_instanceReference(); } }
+        ///<summary>Access value of instanceReference</summary>
+        public Int64? instanceReference
+            {
+            set { SetDatatypeProperty("instanceReference", value); }
+            get { var arr = GetDatatypeProperty_Int64("instanceReference"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -2610,11 +2676,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Cube
         //
 
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2678,21 +2745,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Cuboid
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of width</summary>
-        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }        
-        ///<summary>Gets value of width, returns null is the property was not set</summary>
-        public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _width { get { return get_width(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of width</summary>
+        public double? width
+            {
+            set { SetDatatypeProperty("width", value); }
+            get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -2846,21 +2916,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Cylinder
         //
 
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -2895,16 +2968,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to CylindricalSurface
         //
 
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -2939,21 +3014,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to DegenerateToroidalSurface
         //
 
-        ///<summary>Sets value of majorRadius</summary>
-        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }        
-        ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
-        public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _majorRadius { get { return get_majorRadius(); } }
-        ///<summary>Sets value of minorRadius</summary>
-        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }        
-        ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
-        public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _minorRadius { get { return get_minorRadius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of majorRadius</summary>
+        public double? majorRadius
+            {
+            set { SetDatatypeProperty("majorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of minorRadius</summary>
+        public double? minorRadius
+            {
+            set { SetDatatypeProperty("minorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -2988,16 +3066,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to Deviation
         //
 
-        ///<summary>Sets value of absoluteEpsilon</summary>
-        public bool set_absoluteEpsilon(double value) { return SetDatatypeProperty ("absoluteEpsilon", value); }        
-        ///<summary>Gets value of absoluteEpsilon, returns null is the property was not set</summary>
-        public double? get_absoluteEpsilon() { var arr = GetDatatypeProperty_double("absoluteEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _absoluteEpsilon { get { return get_absoluteEpsilon(); } }
-        ///<summary>Sets value of relativeEpsilon</summary>
-        public bool set_relativeEpsilon(double value) { return SetDatatypeProperty ("relativeEpsilon", value); }        
-        ///<summary>Gets value of relativeEpsilon, returns null is the property was not set</summary>
-        public double? get_relativeEpsilon() { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _relativeEpsilon { get { return get_relativeEpsilon(); } }
+        ///<summary>Access value of absoluteEpsilon</summary>
+        public double? absoluteEpsilon
+            {
+            set { SetDatatypeProperty("absoluteEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("absoluteEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of relativeEpsilon</summary>
+        public double? relativeEpsilon
+            {
+            set { SetDatatypeProperty("relativeEpsilon", value); }
+            get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -3092,16 +3172,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to DirectLight
         //
 
-        ///<summary>Sets value of attenuation</summary>
-        public bool set_attenuation(double value) { return SetDatatypeProperty ("attenuation", value); }        
-        ///<summary>Gets value of attenuation, returns null is the property was not set</summary>
-        public double? get_attenuation() { var arr = GetDatatypeProperty_double("attenuation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _attenuation { get { return get_attenuation(); } }
-        ///<summary>Sets value of range</summary>
-        public bool set_range(double value) { return SetDatatypeProperty ("range", value); }        
-        ///<summary>Gets value of range, returns null is the property was not set</summary>
-        public double? get_range() { var arr = GetDatatypeProperty_double("range"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _range { get { return get_range(); } }
+        ///<summary>Access value of attenuation</summary>
+        public double? attenuation
+            {
+            set { SetDatatypeProperty("attenuation", value); }
+            get { var arr = GetDatatypeProperty_double("attenuation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of range</summary>
+        public double? range
+            {
+            set { SetDatatypeProperty("range", value); }
+            get { var arr = GetDatatypeProperty_double("range"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -3165,21 +3247,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Ellipse
         //
 
-        ///<summary>Sets value of b</summary>
-        public bool set_b(double value) { return SetDatatypeProperty ("b", value); }        
-        ///<summary>Gets value of b, returns null is the property was not set</summary>
-        public double? get_b() { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _b { get { return get_b(); } }
-        ///<summary>Sets value of radiusI</summary>
-        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }        
-        ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
-        public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusI { get { return get_radiusI(); } }
-        ///<summary>Sets value of radiusII</summary>
-        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }        
-        ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
-        public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusII { get { return get_radiusII(); } }
+        ///<summary>Access value of b</summary>
+        public double? b
+            {
+            set { SetDatatypeProperty("b", value); }
+            get { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radiusI</summary>
+        public double? radiusI
+            {
+            set { SetDatatypeProperty("radiusI", value); }
+            get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radiusII</summary>
+        public double? radiusII
+            {
+            set { SetDatatypeProperty("radiusII", value); }
+            get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -3214,26 +3299,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to EllipticCone
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of radiusI</summary>
-        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }        
-        ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
-        public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusI { get { return get_radiusI(); } }
-        ///<summary>Sets value of radiusII</summary>
-        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }        
-        ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
-        public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusII { get { return get_radiusII(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radiusI</summary>
+        public double? radiusI
+            {
+            set { SetDatatypeProperty("radiusI", value); }
+            get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radiusII</summary>
+        public double? radiusII
+            {
+            set { SetDatatypeProperty("radiusII", value); }
+            get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -3297,16 +3386,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to ExtrudedPolygon
         //
 
-        ///<summary>Sets value of extrusionLength</summary>
-        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }        
-        ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
-        public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _extrusionLength { get { return get_extrusionLength(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of extrusionLength</summary>
+        public double? extrusionLength
+            {
+            set { SetDatatypeProperty("extrusionLength", value); }
+            get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
         public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
         ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
@@ -3361,16 +3452,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to ExtrudedPolygonTapered
         //
 
-        ///<summary>Sets value of extrusionLength</summary>
-        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }        
-        ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
-        public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _extrusionLength { get { return get_extrusionLength(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of extrusionLength</summary>
+        public double? extrusionLength
+            {
+            set { SetDatatypeProperty("extrusionLength", value); }
+            get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
         public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
         ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
@@ -3527,16 +3620,18 @@ namespace GEOM
         ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
         public double[] _extrusionDirection { get { return get_extrusionDirection(); } }
-        ///<summary>Sets value of extrusionLength</summary>
-        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }        
-        ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
-        public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _extrusionLength { get { return get_extrusionLength(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of extrusionLength</summary>
+        public double? extrusionLength
+            {
+            set { SetDatatypeProperty("extrusionLength", value); }
+            get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -3632,16 +3727,18 @@ namespace GEOM
         ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
         public double[] _extrusionDirection { get { return get_extrusionDirection(); } }
-        ///<summary>Sets value of extrusionLength</summary>
-        public bool set_extrusionLength(double value) { return SetDatatypeProperty ("extrusionLength", value); }        
-        ///<summary>Gets value of extrusionLength, returns null is the property was not set</summary>
-        public double? get_extrusionLength() { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _extrusionLength { get { return get_extrusionLength(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of extrusionLength</summary>
+        public double? extrusionLength
+            {
+            set { SetDatatypeProperty("extrusionLength", value); }
+            get { var arr = GetDatatypeProperty_double("extrusionLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -3787,11 +3884,12 @@ namespace GEOM
         }
 
         public Curve _outerPolygon { get { return get_outerPolygon(); } }
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -3882,11 +3980,12 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -3950,26 +4049,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to FrustumCone
         //
 
-        ///<summary>Sets value of factor</summary>
-        public bool set_factor(double value) { return SetDatatypeProperty ("factor", value); }        
-        ///<summary>Gets value of factor, returns null is the property was not set</summary>
-        public double? get_factor() { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _factor { get { return get_factor(); } }
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of factor</summary>
+        public double? factor
+            {
+            set { SetDatatypeProperty("factor", value); }
+            get { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -4093,11 +4196,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Hyperbola
         //
 
-        ///<summary>Sets value of b</summary>
-        public bool set_b(double value) { return SetDatatypeProperty ("b", value); }        
-        ///<summary>Gets value of b, returns null is the property was not set</summary>
-        public double? get_b() { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _b { get { return get_b(); } }
+        ///<summary>Access value of b</summary>
+        public double? b
+            {
+            set { SetDatatypeProperty("b", value); }
+            get { var arr = GetDatatypeProperty_double("b"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -4606,11 +4710,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Line3D
         //
 
-        ///<summary>Sets value of asOpenGL</summary>
-        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }        
-        ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
-        public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _asOpenGL { get { return get_asOpenGL(); } }
+        ///<summary>Access value of asOpenGL</summary>
+        public bool? asOpenGL
+            {
+            set { SetDatatypeProperty("asOpenGL", value); }
+            get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets values of points. OWL cardinality 6..6</summary>
         public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 6..6</summary>
@@ -4650,11 +4755,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Line3Dn
         //
 
-        ///<summary>Sets value of asOpenGL</summary>
-        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }        
-        ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
-        public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _asOpenGL { get { return get_asOpenGL(); } }
+        ///<summary>Access value of asOpenGL</summary>
+        public bool? asOpenGL
+            {
+            set { SetDatatypeProperty("asOpenGL", value); }
+            get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets values of endDirection. OWL cardinality 0..3</summary>
         public bool set_endDirection(double[] values) { return SetDatatypeProperty ("endDirection", values); }
         ///<summary>Gets values of endDirection. OWL cardinality 0..3</summary>
@@ -4670,36 +4776,42 @@ namespace GEOM
         ///<summary>Gets values of startDirection. OWL cardinality 0..3</summary>
         public double[] get_startDirection() { return GetDatatypeProperty_double("startDirection"); }
         public double[] _startDirection { get { return get_startDirection(); } }
-        ///<summary>Sets value of x0</summary>
-        public bool set_x0(double value) { return SetDatatypeProperty ("x0", value); }        
-        ///<summary>Gets value of x0, returns null is the property was not set</summary>
-        public double? get_x0() { var arr = GetDatatypeProperty_double("x0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _x0 { get { return get_x0(); } }
-        ///<summary>Sets value of x1</summary>
-        public bool set_x1(double value) { return SetDatatypeProperty ("x1", value); }        
-        ///<summary>Gets value of x1, returns null is the property was not set</summary>
-        public double? get_x1() { var arr = GetDatatypeProperty_double("x1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _x1 { get { return get_x1(); } }
-        ///<summary>Sets value of y0</summary>
-        public bool set_y0(double value) { return SetDatatypeProperty ("y0", value); }        
-        ///<summary>Gets value of y0, returns null is the property was not set</summary>
-        public double? get_y0() { var arr = GetDatatypeProperty_double("y0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _y0 { get { return get_y0(); } }
-        ///<summary>Sets value of y1</summary>
-        public bool set_y1(double value) { return SetDatatypeProperty ("y1", value); }        
-        ///<summary>Gets value of y1, returns null is the property was not set</summary>
-        public double? get_y1() { var arr = GetDatatypeProperty_double("y1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _y1 { get { return get_y1(); } }
-        ///<summary>Sets value of z0</summary>
-        public bool set_z0(double value) { return SetDatatypeProperty ("z0", value); }        
-        ///<summary>Gets value of z0, returns null is the property was not set</summary>
-        public double? get_z0() { var arr = GetDatatypeProperty_double("z0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _z0 { get { return get_z0(); } }
-        ///<summary>Sets value of z1</summary>
-        public bool set_z1(double value) { return SetDatatypeProperty ("z1", value); }        
-        ///<summary>Gets value of z1, returns null is the property was not set</summary>
-        public double? get_z1() { var arr = GetDatatypeProperty_double("z1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _z1 { get { return get_z1(); } }
+        ///<summary>Access value of x0</summary>
+        public double? x0
+            {
+            set { SetDatatypeProperty("x0", value); }
+            get { var arr = GetDatatypeProperty_double("x0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of x1</summary>
+        public double? x1
+            {
+            set { SetDatatypeProperty("x1", value); }
+            get { var arr = GetDatatypeProperty_double("x1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of y0</summary>
+        public double? y0
+            {
+            set { SetDatatypeProperty("y0", value); }
+            get { var arr = GetDatatypeProperty_double("y0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of y1</summary>
+        public double? y1
+            {
+            set { SetDatatypeProperty("y1", value); }
+            get { var arr = GetDatatypeProperty_double("y1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of z0</summary>
+        public double? z0
+            {
+            set { SetDatatypeProperty("z0", value); }
+            get { var arr = GetDatatypeProperty_double("z0"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of z1</summary>
+        public double? z1
+            {
+            set { SetDatatypeProperty("z1", value); }
+            get { var arr = GetDatatypeProperty_double("z1"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -4734,11 +4846,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Line3DSet
         //
 
-        ///<summary>Sets value of asOpenGL</summary>
-        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }        
-        ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
-        public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _asOpenGL { get { return get_asOpenGL(); } }
+        ///<summary>Access value of asOpenGL</summary>
+        public bool? asOpenGL
+            {
+            set { SetDatatypeProperty("asOpenGL", value); }
+            get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
         public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
         ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
@@ -5099,66 +5212,78 @@ namespace GEOM
         // Properties with known cardinality restrictions to Matrix
         //
 
-        ///<summary>Sets value of _11</summary>
-        public bool set__11(double value) { return SetDatatypeProperty ("_11", value); }        
-        ///<summary>Gets value of _11, returns null is the property was not set</summary>
-        public double? get__11() { var arr = GetDatatypeProperty_double("_11"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __11 { get { return get__11(); } }
-        ///<summary>Sets value of _12</summary>
-        public bool set__12(double value) { return SetDatatypeProperty ("_12", value); }        
-        ///<summary>Gets value of _12, returns null is the property was not set</summary>
-        public double? get__12() { var arr = GetDatatypeProperty_double("_12"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __12 { get { return get__12(); } }
-        ///<summary>Sets value of _13</summary>
-        public bool set__13(double value) { return SetDatatypeProperty ("_13", value); }        
-        ///<summary>Gets value of _13, returns null is the property was not set</summary>
-        public double? get__13() { var arr = GetDatatypeProperty_double("_13"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __13 { get { return get__13(); } }
-        ///<summary>Sets value of _21</summary>
-        public bool set__21(double value) { return SetDatatypeProperty ("_21", value); }        
-        ///<summary>Gets value of _21, returns null is the property was not set</summary>
-        public double? get__21() { var arr = GetDatatypeProperty_double("_21"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __21 { get { return get__21(); } }
-        ///<summary>Sets value of _22</summary>
-        public bool set__22(double value) { return SetDatatypeProperty ("_22", value); }        
-        ///<summary>Gets value of _22, returns null is the property was not set</summary>
-        public double? get__22() { var arr = GetDatatypeProperty_double("_22"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __22 { get { return get__22(); } }
-        ///<summary>Sets value of _23</summary>
-        public bool set__23(double value) { return SetDatatypeProperty ("_23", value); }        
-        ///<summary>Gets value of _23, returns null is the property was not set</summary>
-        public double? get__23() { var arr = GetDatatypeProperty_double("_23"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __23 { get { return get__23(); } }
-        ///<summary>Sets value of _31</summary>
-        public bool set__31(double value) { return SetDatatypeProperty ("_31", value); }        
-        ///<summary>Gets value of _31, returns null is the property was not set</summary>
-        public double? get__31() { var arr = GetDatatypeProperty_double("_31"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __31 { get { return get__31(); } }
-        ///<summary>Sets value of _32</summary>
-        public bool set__32(double value) { return SetDatatypeProperty ("_32", value); }        
-        ///<summary>Gets value of _32, returns null is the property was not set</summary>
-        public double? get__32() { var arr = GetDatatypeProperty_double("_32"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __32 { get { return get__32(); } }
-        ///<summary>Sets value of _33</summary>
-        public bool set__33(double value) { return SetDatatypeProperty ("_33", value); }        
-        ///<summary>Gets value of _33, returns null is the property was not set</summary>
-        public double? get__33() { var arr = GetDatatypeProperty_double("_33"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __33 { get { return get__33(); } }
-        ///<summary>Sets value of _41</summary>
-        public bool set__41(double value) { return SetDatatypeProperty ("_41", value); }        
-        ///<summary>Gets value of _41, returns null is the property was not set</summary>
-        public double? get__41() { var arr = GetDatatypeProperty_double("_41"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __41 { get { return get__41(); } }
-        ///<summary>Sets value of _42</summary>
-        public bool set__42(double value) { return SetDatatypeProperty ("_42", value); }        
-        ///<summary>Gets value of _42, returns null is the property was not set</summary>
-        public double? get__42() { var arr = GetDatatypeProperty_double("_42"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __42 { get { return get__42(); } }
-        ///<summary>Sets value of _43</summary>
-        public bool set__43(double value) { return SetDatatypeProperty ("_43", value); }        
-        ///<summary>Gets value of _43, returns null is the property was not set</summary>
-        public double? get__43() { var arr = GetDatatypeProperty_double("_43"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? __43 { get { return get__43(); } }
+        ///<summary>Access value of _11</summary>
+        public double? _11
+            {
+            set { SetDatatypeProperty("_11", value); }
+            get { var arr = GetDatatypeProperty_double("_11"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _12</summary>
+        public double? _12
+            {
+            set { SetDatatypeProperty("_12", value); }
+            get { var arr = GetDatatypeProperty_double("_12"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _13</summary>
+        public double? _13
+            {
+            set { SetDatatypeProperty("_13", value); }
+            get { var arr = GetDatatypeProperty_double("_13"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _21</summary>
+        public double? _21
+            {
+            set { SetDatatypeProperty("_21", value); }
+            get { var arr = GetDatatypeProperty_double("_21"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _22</summary>
+        public double? _22
+            {
+            set { SetDatatypeProperty("_22", value); }
+            get { var arr = GetDatatypeProperty_double("_22"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _23</summary>
+        public double? _23
+            {
+            set { SetDatatypeProperty("_23", value); }
+            get { var arr = GetDatatypeProperty_double("_23"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _31</summary>
+        public double? _31
+            {
+            set { SetDatatypeProperty("_31", value); }
+            get { var arr = GetDatatypeProperty_double("_31"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _32</summary>
+        public double? _32
+            {
+            set { SetDatatypeProperty("_32", value); }
+            get { var arr = GetDatatypeProperty_double("_32"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _33</summary>
+        public double? _33
+            {
+            set { SetDatatypeProperty("_33", value); }
+            get { var arr = GetDatatypeProperty_double("_33"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _41</summary>
+        public double? _41
+            {
+            set { SetDatatypeProperty("_41", value); }
+            get { var arr = GetDatatypeProperty_double("_41"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _42</summary>
+        public double? _42
+            {
+            set { SetDatatypeProperty("_42", value); }
+            get { var arr = GetDatatypeProperty_double("_42"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of _43</summary>
+        public double? _43
+            {
+            set { SetDatatypeProperty("_43", value); }
+            get { var arr = GetDatatypeProperty_double("_43"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of coordinates. OWL cardinality 0..12</summary>
         public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..12</summary>
@@ -5541,26 +5666,30 @@ namespace GEOM
         // Properties with known cardinality restrictions to Plane
         //
 
-        ///<summary>Sets value of A</summary>
-        public bool set_A(double value) { return SetDatatypeProperty ("A", value); }        
-        ///<summary>Gets value of A, returns null is the property was not set</summary>
-        public double? get_A() { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _A { get { return get_A(); } }
-        ///<summary>Sets value of B</summary>
-        public bool set_B(double value) { return SetDatatypeProperty ("B", value); }        
-        ///<summary>Gets value of B, returns null is the property was not set</summary>
-        public double? get_B() { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _B { get { return get_B(); } }
-        ///<summary>Sets value of C</summary>
-        public bool set_C(double value) { return SetDatatypeProperty ("C", value); }        
-        ///<summary>Gets value of C, returns null is the property was not set</summary>
-        public double? get_C() { var arr = GetDatatypeProperty_double("C"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _C { get { return get_C(); } }
-        ///<summary>Sets value of D</summary>
-        public bool set_D(double value) { return SetDatatypeProperty ("D", value); }        
-        ///<summary>Gets value of D, returns null is the property was not set</summary>
-        public double? get_D() { var arr = GetDatatypeProperty_double("D"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _D { get { return get_D(); } }
+        ///<summary>Access value of A</summary>
+        public double? A
+            {
+            set { SetDatatypeProperty("A", value); }
+            get { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of B</summary>
+        public double? B
+            {
+            set { SetDatatypeProperty("B", value); }
+            get { var arr = GetDatatypeProperty_double("B"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of C</summary>
+        public double? C
+            {
+            set { SetDatatypeProperty("C", value); }
+            get { var arr = GetDatatypeProperty_double("C"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of D</summary>
+        public double? D
+            {
+            set { SetDatatypeProperty("D", value); }
+            get { var arr = GetDatatypeProperty_double("D"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -5684,11 +5813,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Point3D
         //
 
-        ///<summary>Sets value of asOpenGL</summary>
-        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }        
-        ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
-        public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _asOpenGL { get { return get_asOpenGL(); } }
+        ///<summary>Access value of asOpenGL</summary>
+        public bool? asOpenGL
+            {
+            set { SetDatatypeProperty("asOpenGL", value); }
+            get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
         public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
@@ -5699,21 +5829,24 @@ namespace GEOM
         ///<summary>Gets values of points. OWL cardinality 0..3</summary>
         public double[] get_points() { return GetDatatypeProperty_double("points"); }
         public double[] _points { get { return get_points(); } }
-        ///<summary>Sets value of x</summary>
-        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }        
-        ///<summary>Gets value of x, returns null is the property was not set</summary>
-        public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _x { get { return get_x(); } }
-        ///<summary>Sets value of y</summary>
-        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }        
-        ///<summary>Gets value of y, returns null is the property was not set</summary>
-        public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _y { get { return get_y(); } }
-        ///<summary>Sets value of z</summary>
-        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }        
-        ///<summary>Gets value of z, returns null is the property was not set</summary>
-        public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _z { get { return get_z(); } }
+        ///<summary>Access value of x</summary>
+        public double? x
+            {
+            set { SetDatatypeProperty("x", value); }
+            get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of y</summary>
+        public double? y
+            {
+            set { SetDatatypeProperty("y", value); }
+            get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of z</summary>
+        public double? z
+            {
+            set { SetDatatypeProperty("z", value); }
+            get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -5748,11 +5881,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Point3DSet
         //
 
-        ///<summary>Sets value of asOpenGL</summary>
-        public bool set_asOpenGL(bool value) { return SetDatatypeProperty ("asOpenGL", value); }        
-        ///<summary>Gets value of asOpenGL, returns null is the property was not set</summary>
-        public bool? get_asOpenGL() { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _asOpenGL { get { return get_asOpenGL(); } }
+        ///<summary>Access value of asOpenGL</summary>
+        public bool? asOpenGL
+            {
+            set { SetDatatypeProperty("asOpenGL", value); }
+            get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
         public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
         ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
@@ -6034,21 +6168,24 @@ namespace GEOM
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets value of x</summary>
-        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }        
-        ///<summary>Gets value of x, returns null is the property was not set</summary>
-        public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _x { get { return get_x(); } }
-        ///<summary>Sets value of y</summary>
-        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }        
-        ///<summary>Gets value of y, returns null is the property was not set</summary>
-        public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _y { get { return get_y(); } }
-        ///<summary>Sets value of z</summary>
-        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }        
-        ///<summary>Gets value of z, returns null is the property was not set</summary>
-        public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _z { get { return get_z(); } }
+        ///<summary>Access value of x</summary>
+        public double? x
+            {
+            set { SetDatatypeProperty("x", value); }
+            get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of y</summary>
+        public double? y
+            {
+            set { SetDatatypeProperty("y", value); }
+            get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of z</summary>
+        public double? z
+            {
+            set { SetDatatypeProperty("z", value); }
+            get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -6458,16 +6595,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to Prism
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -6678,21 +6817,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Pyramid
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
-        ///<summary>Sets value of width</summary>
-        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }        
-        ///<summary>Gets value of width, returns null is the property was not set</summary>
-        public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _width { get { return get_width(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of width</summary>
+        public double? width
+            {
+            set { SetDatatypeProperty("width", value); }
+            get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -6805,31 +6947,36 @@ namespace GEOM
         // Properties with known cardinality restrictions to RectangleCurve
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
-        ///<summary>Sets value of offsetZ</summary>
-        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }        
-        ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
-        public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetZ { get { return get_offsetZ(); } }
-        ///<summary>Sets value of width</summary>
-        public bool set_width(double value) { return SetDatatypeProperty ("width", value); }        
-        ///<summary>Gets value of width, returns null is the property was not set</summary>
-        public double? get_width() { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _width { get { return get_width(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetZ</summary>
+        public double? offsetZ
+            {
+            set { SetDatatypeProperty("offsetZ", value); }
+            get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of width</summary>
+        public double? width
+            {
+            set { SetDatatypeProperty("width", value); }
+            get { var arr = GetDatatypeProperty_double("width"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -6864,11 +7011,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Repetition
         //
 
-        ///<summary>Sets value of count</summary>
-        public bool set_count(Int64 value) { return SetDatatypeProperty ("count", value); }        
-        ///<summary>Gets value of count, returns null is the property was not set</summary>
-        public Int64? get_count() { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _count { get { return get_count(); } }
+        ///<summary>Access value of count</summary>
+        public Int64? count
+            {
+            set { SetDatatypeProperty("count", value); }
+            get { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
         public bool set_matrix(Matrix instance) { return SetObjectProperty("matrix", instance); }
         ///<summary>Get related instance</summary>
@@ -7114,11 +7262,12 @@ namespace GEOM
         }
 
         public Vector3 _planeRefDirection { get { return get_planeRefDirection(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7182,31 +7331,36 @@ namespace GEOM
         // Properties with known cardinality restrictions to SkewedCone
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7241,36 +7395,42 @@ namespace GEOM
         // Properties with known cardinality restrictions to SkewedFrustumCone
         //
 
-        ///<summary>Sets value of factor</summary>
-        public bool set_factor(double value) { return SetDatatypeProperty ("factor", value); }        
-        ///<summary>Gets value of factor, returns null is the property was not set</summary>
-        public double? get_factor() { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _factor { get { return get_factor(); } }
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of factor</summary>
+        public double? factor
+            {
+            set { SetDatatypeProperty("factor", value); }
+            get { var arr = GetDatatypeProperty_double("factor"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7429,16 +7589,18 @@ namespace GEOM
         ///<summary>Gets values of coordinates. OWL cardinality 0..6</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of thickness</summary>
-        public bool set_thickness(double value) { return SetDatatypeProperty ("thickness", value); }        
-        ///<summary>Gets value of thickness, returns null is the property was not set</summary>
-        public double? get_thickness() { var arr = GetDatatypeProperty_double("thickness"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _thickness { get { return get_thickness(); } }
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of thickness</summary>
+        public double? thickness
+            {
+            set { SetDatatypeProperty("thickness", value); }
+            get { var arr = GetDatatypeProperty_double("thickness"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -7473,16 +7635,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to Sphere
         //
 
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7517,21 +7681,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to SphericalSurface
         //
 
-        ///<summary>Sets value of invert</summary>
-        public bool set_invert(bool value) { return SetDatatypeProperty ("invert", value); }        
-        ///<summary>Gets value of invert, returns null is the property was not set</summary>
-        public bool? get_invert() { var arr = GetDatatypeProperty_bool("invert"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _invert { get { return get_invert(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of invert</summary>
+        public bool? invert
+            {
+            set { SetDatatypeProperty("invert", value); }
+            get { var arr = GetDatatypeProperty_bool("invert"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7595,36 +7762,42 @@ namespace GEOM
         // Properties with known cardinality restrictions to Spiral
         //
 
-        ///<summary>Sets value of height</summary>
-        public bool set_height(double value) { return SetDatatypeProperty ("height", value); }        
-        ///<summary>Gets value of height, returns null is the property was not set</summary>
-        public double? get_height() { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _height { get { return get_height(); } }
-        ///<summary>Sets value of offsetZ</summary>
-        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }        
-        ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
-        public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetZ { get { return get_offsetZ(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of size</summary>
-        public bool set_size(double value) { return SetDatatypeProperty ("size", value); }        
-        ///<summary>Gets value of size, returns null is the property was not set</summary>
-        public double? get_size() { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _size { get { return get_size(); } }
-        ///<summary>Sets value of start</summary>
-        public bool set_start(double value) { return SetDatatypeProperty ("start", value); }        
-        ///<summary>Gets value of start, returns null is the property was not set</summary>
-        public double? get_start() { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _start { get { return get_start(); } }
+        ///<summary>Access value of height</summary>
+        public double? height
+            {
+            set { SetDatatypeProperty("height", value); }
+            get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetZ</summary>
+        public double? offsetZ
+            {
+            set { SetDatatypeProperty("offsetZ", value); }
+            get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of size</summary>
+        public double? size
+            {
+            set { SetDatatypeProperty("size", value); }
+            get { var arr = GetDatatypeProperty_double("size"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of start</summary>
+        public double? start
+            {
+            set { SetDatatypeProperty("start", value); }
+            get { var arr = GetDatatypeProperty_double("start"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -7659,11 +7832,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to SplineCurve
         //
 
-        ///<summary>Sets value of closed</summary>
-        public bool set_closed(bool value) { return SetDatatypeProperty ("closed", value); }        
-        ///<summary>Gets value of closed, returns null is the property was not set</summary>
-        public bool? get_closed() { var arr = GetDatatypeProperty_bool("closed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _closed { get { return get_closed(); } }
+        ///<summary>Access value of closed</summary>
+        public bool? closed
+            {
+            set { SetDatatypeProperty("closed", value); }
+            get { var arr = GetDatatypeProperty_bool("closed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 2..-1</summary>
         public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..-1</summary>
@@ -7720,26 +7894,30 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets value of count</summary>
-        public bool set_count(Int64 value) { return SetDatatypeProperty ("count", value); }        
-        ///<summary>Gets value of count, returns null is the property was not set</summary>
-        public Int64? get_count() { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _count { get { return get_count(); } }
-        ///<summary>Sets value of degree</summary>
-        public bool set_degree(Int64 value) { return SetDatatypeProperty ("degree", value); }        
-        ///<summary>Gets value of degree, returns null is the property was not set</summary>
-        public Int64? get_degree() { var arr = GetDatatypeProperty_Int64("degree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _degree { get { return get_degree(); } }
-        ///<summary>Sets value of segmentationLength</summary>
-        public bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", value); }        
-        ///<summary>Gets value of segmentationLength, returns null is the property was not set</summary>
-        public double? get_segmentationLength() { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _segmentationLength { get { return get_segmentationLength(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of count</summary>
+        public Int64? count
+            {
+            set { SetDatatypeProperty("count", value); }
+            get { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of degree</summary>
+        public Int64? degree
+            {
+            set { SetDatatypeProperty("degree", value); }
+            get { var arr = GetDatatypeProperty_Int64("degree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationLength</summary>
+        public double? segmentationLength
+            {
+            set { SetDatatypeProperty("segmentationLength", value); }
+            get { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -7830,56 +8008,66 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets value of segmentationLength</summary>
-        public bool set_segmentationLength(double value) { return SetDatatypeProperty ("segmentationLength", value); }        
-        ///<summary>Gets value of segmentationLength, returns null is the property was not set</summary>
-        public double? get_segmentationLength() { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _segmentationLength { get { return get_segmentationLength(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
-        ///<summary>Sets value of uClosed</summary>
-        public bool set_uClosed(bool value) { return SetDatatypeProperty ("uClosed", value); }        
-        ///<summary>Gets value of uClosed, returns null is the property was not set</summary>
-        public bool? get_uClosed() { var arr = GetDatatypeProperty_bool("uClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _uClosed { get { return get_uClosed(); } }
-        ///<summary>Sets value of uCount</summary>
-        public bool set_uCount(Int64 value) { return SetDatatypeProperty ("uCount", value); }        
-        ///<summary>Gets value of uCount, returns null is the property was not set</summary>
-        public Int64? get_uCount() { var arr = GetDatatypeProperty_Int64("uCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _uCount { get { return get_uCount(); } }
-        ///<summary>Sets value of uDegree</summary>
-        public bool set_uDegree(Int64 value) { return SetDatatypeProperty ("uDegree", value); }        
-        ///<summary>Gets value of uDegree, returns null is the property was not set</summary>
-        public Int64? get_uDegree() { var arr = GetDatatypeProperty_Int64("uDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _uDegree { get { return get_uDegree(); } }
-        ///<summary>Sets value of uSegmentationParts</summary>
-        public bool set_uSegmentationParts(Int64 value) { return SetDatatypeProperty ("uSegmentationParts", value); }        
-        ///<summary>Gets value of uSegmentationParts, returns null is the property was not set</summary>
-        public Int64? get_uSegmentationParts() { var arr = GetDatatypeProperty_Int64("uSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _uSegmentationParts { get { return get_uSegmentationParts(); } }
-        ///<summary>Sets value of vClosed</summary>
-        public bool set_vClosed(bool value) { return SetDatatypeProperty ("vClosed", value); }        
-        ///<summary>Gets value of vClosed, returns null is the property was not set</summary>
-        public bool? get_vClosed() { var arr = GetDatatypeProperty_bool("vClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _vClosed { get { return get_vClosed(); } }
-        ///<summary>Sets value of vCount</summary>
-        public bool set_vCount(Int64 value) { return SetDatatypeProperty ("vCount", value); }        
-        ///<summary>Gets value of vCount, returns null is the property was not set</summary>
-        public Int64? get_vCount() { var arr = GetDatatypeProperty_Int64("vCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _vCount { get { return get_vCount(); } }
-        ///<summary>Sets value of vDegree</summary>
-        public bool set_vDegree(Int64 value) { return SetDatatypeProperty ("vDegree", value); }        
-        ///<summary>Gets value of vDegree, returns null is the property was not set</summary>
-        public Int64? get_vDegree() { var arr = GetDatatypeProperty_Int64("vDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _vDegree { get { return get_vDegree(); } }
-        ///<summary>Sets value of vSegmentationParts</summary>
-        public bool set_vSegmentationParts(Int64 value) { return SetDatatypeProperty ("vSegmentationParts", value); }        
-        ///<summary>Gets value of vSegmentationParts, returns null is the property was not set</summary>
-        public Int64? get_vSegmentationParts() { var arr = GetDatatypeProperty_Int64("vSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _vSegmentationParts { get { return get_vSegmentationParts(); } }
+        ///<summary>Access value of segmentationLength</summary>
+        public double? segmentationLength
+            {
+            set { SetDatatypeProperty("segmentationLength", value); }
+            get { var arr = GetDatatypeProperty_double("segmentationLength"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of uClosed</summary>
+        public bool? uClosed
+            {
+            set { SetDatatypeProperty("uClosed", value); }
+            get { var arr = GetDatatypeProperty_bool("uClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of uCount</summary>
+        public Int64? uCount
+            {
+            set { SetDatatypeProperty("uCount", value); }
+            get { var arr = GetDatatypeProperty_Int64("uCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of uDegree</summary>
+        public Int64? uDegree
+            {
+            set { SetDatatypeProperty("uDegree", value); }
+            get { var arr = GetDatatypeProperty_Int64("uDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of uSegmentationParts</summary>
+        public Int64? uSegmentationParts
+            {
+            set { SetDatatypeProperty("uSegmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("uSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of vClosed</summary>
+        public bool? vClosed
+            {
+            set { SetDatatypeProperty("vClosed", value); }
+            get { var arr = GetDatatypeProperty_bool("vClosed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of vCount</summary>
+        public Int64? vCount
+            {
+            set { SetDatatypeProperty("vCount", value); }
+            get { var arr = GetDatatypeProperty_Int64("vCount"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of vDegree</summary>
+        public Int64? vDegree
+            {
+            set { SetDatatypeProperty("vDegree", value); }
+            get { var arr = GetDatatypeProperty_Int64("vDegree"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
+        ///<summary>Access value of vSegmentationParts</summary>
+        public Int64? vSegmentationParts
+            {
+            set { SetDatatypeProperty("vSegmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("vSegmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -8286,11 +8474,12 @@ namespace GEOM
         }
 
         public Curve _path { get { return get_path(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -8351,11 +8540,12 @@ namespace GEOM
         }
 
         public Vector _direction { get { return get_direction(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -8382,11 +8572,12 @@ namespace GEOM
         }
 
         public Curve _path { get { return get_path(); } }
-        ///<summary>Sets value of setting</summary>
-        public bool set_setting(Int64 value) { return SetDatatypeProperty ("setting", value); }        
-        ///<summary>Gets value of setting, returns null is the property was not set</summary>
-        public Int64? get_setting() { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _setting { get { return get_setting(); } }
+        ///<summary>Access value of setting</summary>
+        public Int64? setting
+            {
+            set { SetDatatypeProperty("setting", value); }
+            get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_sweptArea(Curve instance) { return SetObjectProperty("sweptArea", instance); }
         ///<summary>Get related instance</summary>
@@ -8529,11 +8720,12 @@ namespace GEOM
         }
 
         public Vector _direction { get { return get_direction(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -8676,11 +8868,12 @@ namespace GEOM
         }
 
         public Vector _direction { get { return get_direction(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -8941,26 +9134,30 @@ namespace GEOM
         ///<summary>Gets values of forcedStaticDirection. OWL cardinality 0..3</summary>
         public double[] get_forcedStaticDirection() { return GetDatatypeProperty_double("forcedStaticDirection"); }
         public double[] _forcedStaticDirection { get { return get_forcedStaticDirection(); } }
-        ///<summary>Sets value of forceSolid</summary>
-        public bool set_forceSolid(bool value) { return SetDatatypeProperty ("forceSolid", value); }        
-        ///<summary>Gets value of forceSolid, returns null is the property was not set</summary>
-        public bool? get_forceSolid() { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _forceSolid { get { return get_forceSolid(); } }
-        ///<summary>Sets value of fraction</summary>
-        public bool set_fraction(double value) { return SetDatatypeProperty ("fraction", value); }        
-        ///<summary>Gets value of fraction, returns null is the property was not set</summary>
-        public double? get_fraction() { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _fraction { get { return get_fraction(); } }
-        ///<summary>Sets value of hasBottom</summary>
-        public bool set_hasBottom(bool value) { return SetDatatypeProperty ("hasBottom", value); }        
-        ///<summary>Gets value of hasBottom, returns null is the property was not set</summary>
-        public bool? get_hasBottom() { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _hasBottom { get { return get_hasBottom(); } }
-        ///<summary>Sets value of hasTop</summary>
-        public bool set_hasTop(bool value) { return SetDatatypeProperty ("hasTop", value); }        
-        ///<summary>Gets value of hasTop, returns null is the property was not set</summary>
-        public bool? get_hasTop() { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _hasTop { get { return get_hasTop(); } }
+        ///<summary>Access value of forceSolid</summary>
+        public bool? forceSolid
+            {
+            set { SetDatatypeProperty("forceSolid", value); }
+            get { var arr = GetDatatypeProperty_bool("forceSolid"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of fraction</summary>
+        public double? fraction
+            {
+            set { SetDatatypeProperty("fraction", value); }
+            get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of hasBottom</summary>
+        public bool? hasBottom
+            {
+            set { SetDatatypeProperty("hasBottom", value); }
+            get { var arr = GetDatatypeProperty_bool("hasBottom"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
+        ///<summary>Access value of hasTop</summary>
+        public bool? hasTop
+            {
+            set { SetDatatypeProperty("hasTop", value); }
+            get { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -9013,11 +9210,12 @@ namespace GEOM
         }
 
         public Curve _topPolygon { get { return get_topPolygon(); } }
-        ///<summary>Sets value of usesAbsolutePlacement</summary>
-        public bool set_usesAbsolutePlacement(bool value) { return SetDatatypeProperty ("usesAbsolutePlacement", value); }        
-        ///<summary>Gets value of usesAbsolutePlacement, returns null is the property was not set</summary>
-        public bool? get_usesAbsolutePlacement() { var arr = GetDatatypeProperty_bool("usesAbsolutePlacement"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _usesAbsolutePlacement { get { return get_usesAbsolutePlacement(); } }
+        ///<summary>Access value of usesAbsolutePlacement</summary>
+        public bool? usesAbsolutePlacement
+            {
+            set { SetDatatypeProperty("usesAbsolutePlacement", value); }
+            get { var arr = GetDatatypeProperty_bool("usesAbsolutePlacement"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
     }
 
 
@@ -9052,11 +9250,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to SweptDiskSolid
         //
 
-        ///<summary>Sets value of innerRadius</summary>
-        public bool set_innerRadius(double value) { return SetDatatypeProperty ("innerRadius", value); }        
-        ///<summary>Gets value of innerRadius, returns null is the property was not set</summary>
-        public double? get_innerRadius() { var arr = GetDatatypeProperty_double("innerRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _innerRadius { get { return get_innerRadius(); } }
+        ///<summary>Access value of innerRadius</summary>
+        public double? innerRadius
+            {
+            set { SetDatatypeProperty("innerRadius", value); }
+            get { var arr = GetDatatypeProperty_double("innerRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -9083,16 +9282,18 @@ namespace GEOM
         }
 
         public Curve _path { get { return get_path(); } }
-        ///<summary>Sets value of radius</summary>
-        public bool set_radius(double value) { return SetDatatypeProperty ("radius", value); }        
-        ///<summary>Gets value of radius, returns null is the property was not set</summary>
-        public double? get_radius() { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radius { get { return get_radius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of radius</summary>
+        public double? radius
+            {
+            set { SetDatatypeProperty("radius", value); }
+            get { var arr = GetDatatypeProperty_double("radius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -9127,46 +9328,53 @@ namespace GEOM
         // Properties with known cardinality restrictions to Texture
         //
 
-        ///<summary>Sets value of name</summary>
-        public bool set_name(string value) { return SetDatatypeProperty ("name", value); }        
-        ///<summary>Gets value of name, returns null is the property was not set</summary>
-        public string get_name() { var arr = GetDatatypeProperty_string("name"); return (arr != null && arr.Length > 0) ? (string)arr[0] : null; }
-        public string _name { get { return get_name(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
+        ///<summary>Access value of name</summary>
+        public string name
+            {
+            set { SetDatatypeProperty("name", value); }
+            get { var arr = GetDatatypeProperty_string("name"); return (arr != null && arr.Length > 0) ? (string)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets values of origin. OWL cardinality 0..3</summary>
         public bool set_origin(double[] values) { return SetDatatypeProperty ("origin", values); }
         ///<summary>Gets values of origin. OWL cardinality 0..3</summary>
         public double[] get_origin() { return GetDatatypeProperty_double("origin"); }
         public double[] _origin { get { return get_origin(); } }
-        ///<summary>Sets value of rotation</summary>
-        public bool set_rotation(double value) { return SetDatatypeProperty ("rotation", value); }        
-        ///<summary>Gets value of rotation, returns null is the property was not set</summary>
-        public double? get_rotation() { var arr = GetDatatypeProperty_double("rotation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _rotation { get { return get_rotation(); } }
-        ///<summary>Sets value of scalingX</summary>
-        public bool set_scalingX(double value) { return SetDatatypeProperty ("scalingX", value); }        
-        ///<summary>Gets value of scalingX, returns null is the property was not set</summary>
-        public double? get_scalingX() { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingX { get { return get_scalingX(); } }
-        ///<summary>Sets value of scalingY</summary>
-        public bool set_scalingY(double value) { return SetDatatypeProperty ("scalingY", value); }        
-        ///<summary>Gets value of scalingY, returns null is the property was not set</summary>
-        public double? get_scalingY() { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _scalingY { get { return get_scalingY(); } }
-        ///<summary>Sets value of type</summary>
-        public bool set_type(Int64 value) { return SetDatatypeProperty ("type", value); }        
-        ///<summary>Gets value of type, returns null is the property was not set</summary>
-        public Int64? get_type() { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _type { get { return get_type(); } }
+        ///<summary>Access value of rotation</summary>
+        public double? rotation
+            {
+            set { SetDatatypeProperty("rotation", value); }
+            get { var arr = GetDatatypeProperty_double("rotation"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of scalingX</summary>
+        public double? scalingX
+            {
+            set { SetDatatypeProperty("scalingX", value); }
+            get { var arr = GetDatatypeProperty_double("scalingX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of scalingY</summary>
+        public double? scalingY
+            {
+            set { SetDatatypeProperty("scalingY", value); }
+            get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of type</summary>
+        public Int64? type
+            {
+            set { SetDatatypeProperty("type", value); }
+            get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -9201,21 +9409,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to ToroidalSurface
         //
 
-        ///<summary>Sets value of majorRadius</summary>
-        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }        
-        ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
-        public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _majorRadius { get { return get_majorRadius(); } }
-        ///<summary>Sets value of minorRadius</summary>
-        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }        
-        ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
-        public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _minorRadius { get { return get_minorRadius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of majorRadius</summary>
+        public double? majorRadius
+            {
+            set { SetDatatypeProperty("majorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of minorRadius</summary>
+        public double? minorRadius
+            {
+            set { SetDatatypeProperty("minorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -9250,21 +9461,24 @@ namespace GEOM
         // Properties with known cardinality restrictions to Torus
         //
 
-        ///<summary>Sets value of majorRadius</summary>
-        public bool set_majorRadius(double value) { return SetDatatypeProperty ("majorRadius", value); }        
-        ///<summary>Gets value of majorRadius, returns null is the property was not set</summary>
-        public double? get_majorRadius() { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _majorRadius { get { return get_majorRadius(); } }
-        ///<summary>Sets value of minorRadius</summary>
-        public bool set_minorRadius(double value) { return SetDatatypeProperty ("minorRadius", value); }        
-        ///<summary>Gets value of minorRadius, returns null is the property was not set</summary>
-        public double? get_minorRadius() { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _minorRadius { get { return get_minorRadius(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of majorRadius</summary>
+        public double? majorRadius
+            {
+            set { SetDatatypeProperty("majorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("majorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of minorRadius</summary>
+        public double? minorRadius
+            {
+            set { SetDatatypeProperty("minorRadius", value); }
+            get { var arr = GetDatatypeProperty_double("minorRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -9351,11 +9565,12 @@ namespace GEOM
         }
 
         public GeometricItem _object { get { return get_object(); } }
-        ///<summary>Sets value of recalculateBBox</summary>
-        public bool set_recalculateBBox(bool value) { return SetDatatypeProperty ("recalculateBBox", value); }        
-        ///<summary>Gets value of recalculateBBox, returns null is the property was not set</summary>
-        public bool? get_recalculateBBox() { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
-        public bool? _recalculateBBox { get { return get_recalculateBBox(); } }
+        ///<summary>Access value of recalculateBBox</summary>
+        public bool? recalculateBBox
+            {
+            set { SetDatatypeProperty("recalculateBBox", value); }
+            get { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }        
     }
 
 
@@ -9416,11 +9631,12 @@ namespace GEOM
         }
 
         public Vector _direction { get { return get_direction(); } }
-        ///<summary>Sets value of length</summary>
-        public bool set_length(double value) { return SetDatatypeProperty ("length", value); }        
-        ///<summary>Gets value of length, returns null is the property was not set</summary>
-        public double? get_length() { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _length { get { return get_length(); } }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { SetDatatypeProperty("length", value); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of Curve</summary>
         public bool set_path(Curve instance) { return SetObjectProperty("path", instance); }
         ///<summary>Get related instance</summary>
@@ -9447,21 +9663,24 @@ namespace GEOM
         }
 
         public Curve _path { get { return get_path(); } }
-        ///<summary>Sets value of radiusI</summary>
-        public bool set_radiusI(double value) { return SetDatatypeProperty ("radiusI", value); }        
-        ///<summary>Gets value of radiusI, returns null is the property was not set</summary>
-        public double? get_radiusI() { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusI { get { return get_radiusI(); } }
-        ///<summary>Sets value of radiusII</summary>
-        public bool set_radiusII(double value) { return SetDatatypeProperty ("radiusII", value); }        
-        ///<summary>Gets value of radiusII, returns null is the property was not set</summary>
-        public double? get_radiusII() { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _radiusII { get { return get_radiusII(); } }
-        ///<summary>Sets value of segmentationParts</summary>
-        public bool set_segmentationParts(Int64 value) { return SetDatatypeProperty ("segmentationParts", value); }        
-        ///<summary>Gets value of segmentationParts, returns null is the property was not set</summary>
-        public Int64? get_segmentationParts() { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
-        public Int64? _segmentationParts { get { return get_segmentationParts(); } }
+        ///<summary>Access value of radiusI</summary>
+        public double? radiusI
+            {
+            set { SetDatatypeProperty("radiusI", value); }
+            get { var arr = GetDatatypeProperty_double("radiusI"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of radiusII</summary>
+        public double? radiusII
+            {
+            set { SetDatatypeProperty("radiusII", value); }
+            get { var arr = GetDatatypeProperty_double("radiusII"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of segmentationParts</summary>
+        public Int64? segmentationParts
+            {
+            set { SetDatatypeProperty("segmentationParts", value); }
+            get { var arr = GetDatatypeProperty_Int64("segmentationParts"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }        
     }
 
 
@@ -9501,21 +9720,24 @@ namespace GEOM
         ///<summary>Gets values of coordinates. OWL cardinality 0..9</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets value of offsetX</summary>
-        public bool set_offsetX(double value) { return SetDatatypeProperty ("offsetX", value); }        
-        ///<summary>Gets value of offsetX, returns null is the property was not set</summary>
-        public double? get_offsetX() { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetX { get { return get_offsetX(); } }
-        ///<summary>Sets value of offsetY</summary>
-        public bool set_offsetY(double value) { return SetDatatypeProperty ("offsetY", value); }        
-        ///<summary>Gets value of offsetY, returns null is the property was not set</summary>
-        public double? get_offsetY() { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetY { get { return get_offsetY(); } }
-        ///<summary>Sets value of offsetZ</summary>
-        public bool set_offsetZ(double value) { return SetDatatypeProperty ("offsetZ", value); }        
-        ///<summary>Gets value of offsetZ, returns null is the property was not set</summary>
-        public double? get_offsetZ() { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _offsetZ { get { return get_offsetZ(); } }
+        ///<summary>Access value of offsetX</summary>
+        public double? offsetX
+            {
+            set { SetDatatypeProperty("offsetX", value); }
+            get { var arr = GetDatatypeProperty_double("offsetX"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetY</summary>
+        public double? offsetY
+            {
+            set { SetDatatypeProperty("offsetY", value); }
+            get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of offsetZ</summary>
+        public double? offsetZ
+            {
+            set { SetDatatypeProperty("offsetZ", value); }
+            get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..3</summary>
         public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..3</summary>
@@ -9606,11 +9828,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to TriangleReduction
         //
 
-        ///<summary>Sets value of innerFraction</summary>
-        public bool set_innerFraction(double value) { return SetDatatypeProperty ("innerFraction", value); }        
-        ///<summary>Gets value of innerFraction, returns null is the property was not set</summary>
-        public double? get_innerFraction() { var arr = GetDatatypeProperty_double("innerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _innerFraction { get { return get_innerFraction(); } }
+        ///<summary>Access value of innerFraction</summary>
+        public double? innerFraction
+            {
+            set { SetDatatypeProperty("innerFraction", value); }
+            get { var arr = GetDatatypeProperty_double("innerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
         ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
         public bool set_object(GeometricItem instance) { return SetObjectProperty("object", instance); }
         ///<summary>Get related instance</summary>
@@ -9637,11 +9860,12 @@ namespace GEOM
         }
 
         public GeometricItem _object { get { return get_object(); } }
-        ///<summary>Sets value of outerFraction</summary>
-        public bool set_outerFraction(double value) { return SetDatatypeProperty ("outerFraction", value); }        
-        ///<summary>Gets value of outerFraction, returns null is the property was not set</summary>
-        public double? get_outerFraction() { var arr = GetDatatypeProperty_double("outerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _outerFraction { get { return get_outerFraction(); } }
+        ///<summary>Access value of outerFraction</summary>
+        public double? outerFraction
+            {
+            set { SetDatatypeProperty("outerFraction", value); }
+            get { var arr = GetDatatypeProperty_double("outerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -9754,21 +9978,24 @@ namespace GEOM
         ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
         public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
         public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets value of x</summary>
-        public bool set_x(double value) { return SetDatatypeProperty ("x", value); }        
-        ///<summary>Gets value of x, returns null is the property was not set</summary>
-        public double? get_x() { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _x { get { return get_x(); } }
-        ///<summary>Sets value of y</summary>
-        public bool set_y(double value) { return SetDatatypeProperty ("y", value); }        
-        ///<summary>Gets value of y, returns null is the property was not set</summary>
-        public double? get_y() { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _y { get { return get_y(); } }
-        ///<summary>Sets value of z</summary>
-        public bool set_z(double value) { return SetDatatypeProperty ("z", value); }        
-        ///<summary>Gets value of z, returns null is the property was not set</summary>
-        public double? get_z() { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _z { get { return get_z(); } }
+        ///<summary>Access value of x</summary>
+        public double? x
+            {
+            set { SetDatatypeProperty("x", value); }
+            get { var arr = GetDatatypeProperty_double("x"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of y</summary>
+        public double? y
+            {
+            set { SetDatatypeProperty("y", value); }
+            get { var arr = GetDatatypeProperty_double("y"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
+        ///<summary>Access value of z</summary>
+        public double? z
+            {
+            set { SetDatatypeProperty("z", value); }
+            get { var arr = GetDatatypeProperty_double("z"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
     }
 
 
@@ -9971,10 +10198,17 @@ namespace GEOM
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, double value)
+        public bool SetDatatypeProperty(string name, double? value)
         {
             var propId = GetPropertyId(name, 1);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
+            double val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = value.Value;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -9991,10 +10225,17 @@ namespace GEOM
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, Int64 value)
+        public bool SetDatatypeProperty(string name, Int64? value)
         {
             var propId = GetPropertyId(name, 1);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
+            Int64 val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = value.Value;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -10011,11 +10252,17 @@ namespace GEOM
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, bool value)
+        public bool SetDatatypeProperty(string name, bool? value)
         {
             var propId = GetPropertyId(name, 1);
-            byte v = (byte)(value ? 1 : 0);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref v, 1);
+            byte val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = (byte)(value.Value ? 1 : 0); ;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 

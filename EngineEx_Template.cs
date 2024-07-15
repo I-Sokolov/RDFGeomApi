@@ -48,15 +48,16 @@ namespace NAMESPACE_NAME
         //
 
 //## TEMPLATE: SetDataProperty
-        ///<summary>Sets value of PROPERTY_NAME</summary>
-        public bool set_PROPERTY_NAME(double value) { return SetDatatypeProperty ("PROPERTY_NAME", value); }        
+        ///<summary>Access value of PROPERTY_NAME</summary>
+        public double? PROPERTY_NAME
+            {
+            set { SetDatatypeProperty("PROPERTY_NAME", value); }
+            get { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }        
 //## TEMPLATE SetDataArrayProperty
         ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public bool set_PROPERTY_NAME(double[] values) { return SetDatatypeProperty ("PROPERTY_NAME", values); }
 //## TEMPLATE GetDataProperty
-        ///<summary>Gets value of PROPERTY_NAME, returns null is the property was not set</summary>
-        public double? get_PROPERTY_NAME() { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-        public double? _PROPERTY_NAME { get { return get_PROPERTY_NAME(); } }
 //## TEMPLATE GetDataArrayProperty
         ///<summary>Gets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public double[] get_PROPERTY_NAMEasType() { return GetDatatypeProperty_double("PROPERTY_NAME"); }
@@ -230,10 +231,17 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, double value)
+        public bool SetDatatypeProperty(string name, double? value)
         {
             var propId = GetPropertyId(name, 1);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
+            double val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = value.Value;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -250,10 +258,17 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, Int64 value)
+        public bool SetDatatypeProperty(string name, Int64? value)
         {
             var propId = GetPropertyId(name, 1);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
+            Int64 val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = value.Value;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -270,11 +285,17 @@ namespace NAMESPACE_NAME
         /// <summary>
         /// 
         /// </summary>
-        public bool SetDatatypeProperty(string name, bool value)
+        public bool SetDatatypeProperty(string name, bool? value)
         {
             var propId = GetPropertyId(name, 1);
-            byte v = (byte)(value ? 1 : 0);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref v, 1);
+            byte val = 0;
+            Int64 card = 0;
+            if (value.HasValue)
+                {
+                val = (byte)(value.Value ? 1 : 0); ;
+                card = 1;
+                }
+            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
