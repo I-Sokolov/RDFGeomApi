@@ -55,13 +55,14 @@ namespace NAMESPACE_NAME
             get { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
 //## TEMPLATE SetDataArrayProperty
-        ///<summary>Sets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public bool set_PROPERTY_NAME(double[] values) { return SetDatatypeProperty ("PROPERTY_NAME", values); }
+        ///<summary>Access values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
+        public double[] PROPERTY_NAme
+            {
+            set { SetDatatypeProperty("PROPERTY_NAME", value); }
+            get { return GetDatatypeProperty_double("PROPERTY_NAME"); }
+            }
 //## TEMPLATE GetDataProperty
 //## TEMPLATE GetDataArrayProperty
-        ///<summary>Gets values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public double[] get_PROPERTY_NAMEasType() { return GetDatatypeProperty_double("PROPERTY_NAME"); }
-        public double[] _PROPERTY_NAMEasType { get { return get_PROPERTY_NAMEasType(); } }
 //## TEMPLATE: SetObjectProperty
         ///<summary>Sets relationship from this instance to an instance of Instance</summary>
         public bool set_PROPERTY_NAME(Instance instance) { return SetObjectProperty("PROPERTY_NAME", instance); }

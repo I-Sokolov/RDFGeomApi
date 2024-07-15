@@ -226,7 +226,7 @@ namespace RDFWrappers
 
             foreach (var r in m_replacements)
             {
-                if (r.Key.Equals(KWD_asType))
+                if (r.Key.Equals(KWD_asType) || r.Key.Equals(KWD_PROPERTY_NAME))
                 {
                     code = code.Replace(r.Key, r.Value, true, null); //ignore case
                 }

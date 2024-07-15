@@ -353,11 +353,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to AdvancedFace3D
         //
 
-        ///<summary>Sets values of isOuterBound. OWL cardinality 0..-1</summary>
-        public bool set_isOuterBound(bool[] values) { return SetDatatypeProperty ("isOuterBound", values); }
-        ///<summary>Gets values of isOuterBound. OWL cardinality 0..-1</summary>
-        public bool[] get_isOuterBound() { return GetDatatypeProperty_bool("isOuterBound"); }
-        public bool[] _isOuterBound { get { return get_isOuterBound(); } }
+        ///<summary>Access values of isOuterBound. OWL cardinality 0..-1</summary>
+        public bool[] isOuterBound
+            {
+            set { SetDatatypeProperty("isOuterBound", value); }
+            get { return GetDatatypeProperty_bool("isOuterBound"); }
+            }
     }
 
 
@@ -482,11 +483,12 @@ namespace GEOM
         }
 
         public Curve _segment { get { return get_segment(); } }
-        ///<summary>Sets values of tangentDirectionStart. OWL cardinality 3..3</summary>
-        public bool set_tangentDirectionStart(double[] values) { return SetDatatypeProperty ("tangentDirectionStart", values); }
-        ///<summary>Gets values of tangentDirectionStart. OWL cardinality 3..3</summary>
-        public double[] get_tangentDirectionStart() { return GetDatatypeProperty_double("tangentDirectionStart"); }
-        public double[] _tangentDirectionStart { get { return get_tangentDirectionStart(); } }
+        ///<summary>Access values of tangentDirectionStart. OWL cardinality 3..3</summary>
+        public double[] tangentDirectionStart
+            {
+            set { SetDatatypeProperty("tangentDirectionStart", value); }
+            get { return GetDatatypeProperty_double("tangentDirectionStart"); }
+            }
     }
 
 
@@ -1384,59 +1386,66 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets values of flags. OWL cardinality 0..-1</summary>
-        public bool set_flags(Int64[] values) { return SetDatatypeProperty ("flags", values); }
-        ///<summary>Gets values of flags. OWL cardinality 0..-1</summary>
-        public Int64[] get_flags() { return GetDatatypeProperty_Int64("flags"); }
-        public Int64[] _flags { get { return get_flags(); } }
+        ///<summary>Access values of flags. OWL cardinality 0..-1</summary>
+        public Int64[] flags
+            {
+            set { SetDatatypeProperty("flags", value); }
+            get { return GetDatatypeProperty_Int64("flags"); }
+            }
         ///<summary>Access value of fraction</summary>
         public double? fraction
             {
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        public bool set_indices(Int64[] values) { return SetDatatypeProperty ("indices", values); }
-        ///<summary>Gets values of indices. OWL cardinality 0..-1</summary>
-        public Int64[] get_indices() { return GetDatatypeProperty_Int64("indices"); }
-        public Int64[] _indices { get { return get_indices(); } }
-        ///<summary>Sets values of normalCoordinates. OWL cardinality 0..-1</summary>
-        public bool set_normalCoordinates(double[] values) { return SetDatatypeProperty ("normalCoordinates", values); }
-        ///<summary>Gets values of normalCoordinates. OWL cardinality 0..-1</summary>
-        public double[] get_normalCoordinates() { return GetDatatypeProperty_double("normalCoordinates"); }
-        public double[] _normalCoordinates { get { return get_normalCoordinates(); } }
-        ///<summary>Sets values of normalIndices. OWL cardinality 0..-1</summary>
-        public bool set_normalIndices(Int64[] values) { return SetDatatypeProperty ("normalIndices", values); }
-        ///<summary>Gets values of normalIndices. OWL cardinality 0..-1</summary>
-        public Int64[] get_normalIndices() { return GetDatatypeProperty_Int64("normalIndices"); }
-        public Int64[] _normalIndices { get { return get_normalIndices(); } }
+        ///<summary>Access values of indices. OWL cardinality 0..-1</summary>
+        public Int64[] indices
+            {
+            set { SetDatatypeProperty("indices", value); }
+            get { return GetDatatypeProperty_Int64("indices"); }
+            }
+        ///<summary>Access values of normalCoordinates. OWL cardinality 0..-1</summary>
+        public double[] normalCoordinates
+            {
+            set { SetDatatypeProperty("normalCoordinates", value); }
+            get { return GetDatatypeProperty_double("normalCoordinates"); }
+            }
+        ///<summary>Access values of normalIndices. OWL cardinality 0..-1</summary>
+        public Int64[] normalIndices
+            {
+            set { SetDatatypeProperty("normalIndices", value); }
+            get { return GetDatatypeProperty_Int64("normalIndices"); }
+            }
         ///<summary>Access value of relativeEpsilon</summary>
         public double? relativeEpsilon
             {
             set { SetDatatypeProperty("relativeEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("relativeEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of textureCoordinates. OWL cardinality 0..-1</summary>
-        public bool set_textureCoordinates(double[] values) { return SetDatatypeProperty ("textureCoordinates", values); }
-        ///<summary>Gets values of textureCoordinates. OWL cardinality 0..-1</summary>
-        public double[] get_textureCoordinates() { return GetDatatypeProperty_double("textureCoordinates"); }
-        public double[] _textureCoordinates { get { return get_textureCoordinates(); } }
-        ///<summary>Sets values of textureIndices. OWL cardinality 0..-1</summary>
-        public bool set_textureIndices(Int64[] values) { return SetDatatypeProperty ("textureIndices", values); }
-        ///<summary>Gets values of textureIndices. OWL cardinality 0..-1</summary>
-        public Int64[] get_textureIndices() { return GetDatatypeProperty_Int64("textureIndices"); }
-        public Int64[] _textureIndices { get { return get_textureIndices(); } }
+        ///<summary>Access values of textureCoordinates. OWL cardinality 0..-1</summary>
+        public double[] textureCoordinates
+            {
+            set { SetDatatypeProperty("textureCoordinates", value); }
+            get { return GetDatatypeProperty_double("textureCoordinates"); }
+            }
+        ///<summary>Access values of textureIndices. OWL cardinality 0..-1</summary>
+        public Int64[] textureIndices
+            {
+            set { SetDatatypeProperty("textureIndices", value); }
+            get { return GetDatatypeProperty_Int64("textureIndices"); }
+            }
         ///<summary>Access value of vertexEpsilon</summary>
         public double? vertexEpsilon
             {
             set { SetDatatypeProperty("vertexEpsilon", value); }
             get { var arr = GetDatatypeProperty_double("vertexEpsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of vertices. OWL cardinality 0..-1</summary>
-        public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
-        ///<summary>Gets values of vertices. OWL cardinality 0..-1</summary>
-        public double[] get_vertices() { return GetDatatypeProperty_double("vertices"); }
-        public double[] _vertices { get { return get_vertices(); } }
+        ///<summary>Access values of vertices. OWL cardinality 0..-1</summary>
+        public double[] vertices
+            {
+            set { SetDatatypeProperty("vertices", value); }
+            get { return GetDatatypeProperty_double("vertices"); }
+            }
     }
 
 
@@ -1523,16 +1532,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to BSplineCurve
         //
 
-        ///<summary>Sets values of knotMultiplicities. OWL cardinality 0..-1</summary>
-        public bool set_knotMultiplicities(Int64[] values) { return SetDatatypeProperty ("knotMultiplicities", values); }
-        ///<summary>Gets values of knotMultiplicities. OWL cardinality 0..-1</summary>
-        public Int64[] get_knotMultiplicities() { return GetDatatypeProperty_Int64("knotMultiplicities"); }
-        public Int64[] _knotMultiplicities { get { return get_knotMultiplicities(); } }
-        ///<summary>Sets values of knots. OWL cardinality 2..-1</summary>
-        public bool set_knots(double[] values) { return SetDatatypeProperty ("knots", values); }
-        ///<summary>Gets values of knots. OWL cardinality 2..-1</summary>
-        public double[] get_knots() { return GetDatatypeProperty_double("knots"); }
-        public double[] _knots { get { return get_knots(); } }
+        ///<summary>Access values of knotMultiplicities. OWL cardinality 0..-1</summary>
+        public Int64[] knotMultiplicities
+            {
+            set { SetDatatypeProperty("knotMultiplicities", value); }
+            get { return GetDatatypeProperty_Int64("knotMultiplicities"); }
+            }
+        ///<summary>Access values of knots. OWL cardinality 2..-1</summary>
+        public double[] knots
+            {
+            set { SetDatatypeProperty("knots", value); }
+            get { return GetDatatypeProperty_double("knots"); }
+            }
         ///<summary>Access value of setting</summary>
         public Int64? setting
             {
@@ -1579,26 +1590,30 @@ namespace GEOM
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
             }        
-        ///<summary>Sets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public bool set_uKnotMultiplicities(Int64[] values) { return SetDatatypeProperty ("uKnotMultiplicities", values); }
-        ///<summary>Gets values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public Int64[] get_uKnotMultiplicities() { return GetDatatypeProperty_Int64("uKnotMultiplicities"); }
-        public Int64[] _uKnotMultiplicities { get { return get_uKnotMultiplicities(); } }
-        ///<summary>Sets values of uKnots. OWL cardinality 2..-1</summary>
-        public bool set_uKnots(double[] values) { return SetDatatypeProperty ("uKnots", values); }
-        ///<summary>Gets values of uKnots. OWL cardinality 2..-1</summary>
-        public double[] get_uKnots() { return GetDatatypeProperty_double("uKnots"); }
-        public double[] _uKnots { get { return get_uKnots(); } }
-        ///<summary>Sets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public bool set_vKnotMultiplicities(Int64[] values) { return SetDatatypeProperty ("vKnotMultiplicities", values); }
-        ///<summary>Gets values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
-        public Int64[] get_vKnotMultiplicities() { return GetDatatypeProperty_Int64("vKnotMultiplicities"); }
-        public Int64[] _vKnotMultiplicities { get { return get_vKnotMultiplicities(); } }
-        ///<summary>Sets values of vKnots. OWL cardinality 2..-1</summary>
-        public bool set_vKnots(double[] values) { return SetDatatypeProperty ("vKnots", values); }
-        ///<summary>Gets values of vKnots. OWL cardinality 2..-1</summary>
-        public double[] get_vKnots() { return GetDatatypeProperty_double("vKnots"); }
-        public double[] _vKnots { get { return get_vKnots(); } }
+        ///<summary>Access values of uKnotMultiplicities. OWL cardinality 0..-1</summary>
+        public Int64[] uKnotMultiplicities
+            {
+            set { SetDatatypeProperty("uKnotMultiplicities", value); }
+            get { return GetDatatypeProperty_Int64("uKnotMultiplicities"); }
+            }
+        ///<summary>Access values of uKnots. OWL cardinality 2..-1</summary>
+        public double[] uKnots
+            {
+            set { SetDatatypeProperty("uKnots", value); }
+            get { return GetDatatypeProperty_double("uKnots"); }
+            }
+        ///<summary>Access values of vKnotMultiplicities. OWL cardinality 0..-1</summary>
+        public Int64[] vKnotMultiplicities
+            {
+            set { SetDatatypeProperty("vKnotMultiplicities", value); }
+            get { return GetDatatypeProperty_Int64("vKnotMultiplicities"); }
+            }
+        ///<summary>Access values of vKnots. OWL cardinality 2..-1</summary>
+        public double[] vKnots
+            {
+            set { SetDatatypeProperty("vKnots", value); }
+            get { return GetDatatypeProperty_double("vKnots"); }
+            }
     }
 
 
@@ -1752,16 +1767,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to ClippedPyramid
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 12..12</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 12..12</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets values of points. OWL cardinality 0..12</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..12</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 12..12</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 0..12</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
     }
 
 
@@ -3398,26 +3415,30 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
-        ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
-        public double[] get_openingPoints() { return GetDatatypeProperty_double("openingPoints"); }
-        public double[] _openingPoints { get { return get_openingPoints(); } }
-        ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        public bool set_openingSizes(Int64[] values) { return SetDatatypeProperty ("openingSizes", values); }
-        ///<summary>Gets values of openingSizes. OWL cardinality 0..-1</summary>
-        public Int64[] get_openingSizes() { return GetDatatypeProperty_Int64("openingSizes"); }
-        public Int64[] _openingSizes { get { return get_openingSizes(); } }
-        ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 6..-1</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
-        ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        public bool set_polygonDirection(double[] values) { return SetDatatypeProperty ("polygonDirection", values); }
-        ///<summary>Gets values of polygonDirection. OWL cardinality 0..3</summary>
-        public double[] get_polygonDirection() { return GetDatatypeProperty_double("polygonDirection"); }
-        public double[] _polygonDirection { get { return get_polygonDirection(); } }
+        ///<summary>Access values of openingPoints. OWL cardinality 0..-1</summary>
+        public double[] openingPoints
+            {
+            set { SetDatatypeProperty("openingPoints", value); }
+            get { return GetDatatypeProperty_double("openingPoints"); }
+            }
+        ///<summary>Access values of openingSizes. OWL cardinality 0..-1</summary>
+        public Int64[] openingSizes
+            {
+            set { SetDatatypeProperty("openingSizes", value); }
+            get { return GetDatatypeProperty_Int64("openingSizes"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 6..-1</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
+        ///<summary>Access values of polygonDirection. OWL cardinality 0..3</summary>
+        public double[] polygonDirection
+            {
+            set { SetDatatypeProperty("polygonDirection", value); }
+            get { return GetDatatypeProperty_double("polygonDirection"); }
+            }
     }
 
 
@@ -3464,41 +3485,48 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of openingPoints. OWL cardinality 0..-1</summary>
-        public bool set_openingPoints(double[] values) { return SetDatatypeProperty ("openingPoints", values); }
-        ///<summary>Gets values of openingPoints. OWL cardinality 0..-1</summary>
-        public double[] get_openingPoints() { return GetDatatypeProperty_double("openingPoints"); }
-        public double[] _openingPoints { get { return get_openingPoints(); } }
-        ///<summary>Sets values of openingPointsEnd. OWL cardinality 0..-1</summary>
-        public bool set_openingPointsEnd(double[] values) { return SetDatatypeProperty ("openingPointsEnd", values); }
-        ///<summary>Gets values of openingPointsEnd. OWL cardinality 0..-1</summary>
-        public double[] get_openingPointsEnd() { return GetDatatypeProperty_double("openingPointsEnd"); }
-        public double[] _openingPointsEnd { get { return get_openingPointsEnd(); } }
-        ///<summary>Sets values of openingSizes. OWL cardinality 0..-1</summary>
-        public bool set_openingSizes(Int64[] values) { return SetDatatypeProperty ("openingSizes", values); }
-        ///<summary>Gets values of openingSizes. OWL cardinality 0..-1</summary>
-        public Int64[] get_openingSizes() { return GetDatatypeProperty_Int64("openingSizes"); }
-        public Int64[] _openingSizes { get { return get_openingSizes(); } }
-        ///<summary>Sets values of openingSizesEnd. OWL cardinality 0..-1</summary>
-        public bool set_openingSizesEnd(Int64[] values) { return SetDatatypeProperty ("openingSizesEnd", values); }
-        ///<summary>Gets values of openingSizesEnd. OWL cardinality 0..-1</summary>
-        public Int64[] get_openingSizesEnd() { return GetDatatypeProperty_Int64("openingSizesEnd"); }
-        public Int64[] _openingSizesEnd { get { return get_openingSizesEnd(); } }
-        ///<summary>Sets values of points. OWL cardinality 6..-1</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 6..-1</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
-        ///<summary>Sets values of pointsEnd. OWL cardinality 6..-1</summary>
-        public bool set_pointsEnd(double[] values) { return SetDatatypeProperty ("pointsEnd", values); }
-        ///<summary>Gets values of pointsEnd. OWL cardinality 6..-1</summary>
-        public double[] get_pointsEnd() { return GetDatatypeProperty_double("pointsEnd"); }
-        public double[] _pointsEnd { get { return get_pointsEnd(); } }
-        ///<summary>Sets values of polygonDirection. OWL cardinality 0..3</summary>
-        public bool set_polygonDirection(double[] values) { return SetDatatypeProperty ("polygonDirection", values); }
-        ///<summary>Gets values of polygonDirection. OWL cardinality 0..3</summary>
-        public double[] get_polygonDirection() { return GetDatatypeProperty_double("polygonDirection"); }
-        public double[] _polygonDirection { get { return get_polygonDirection(); } }
+        ///<summary>Access values of openingPoints. OWL cardinality 0..-1</summary>
+        public double[] openingPoints
+            {
+            set { SetDatatypeProperty("openingPoints", value); }
+            get { return GetDatatypeProperty_double("openingPoints"); }
+            }
+        ///<summary>Access values of openingPointsEnd. OWL cardinality 0..-1</summary>
+        public double[] openingPointsEnd
+            {
+            set { SetDatatypeProperty("openingPointsEnd", value); }
+            get { return GetDatatypeProperty_double("openingPointsEnd"); }
+            }
+        ///<summary>Access values of openingSizes. OWL cardinality 0..-1</summary>
+        public Int64[] openingSizes
+            {
+            set { SetDatatypeProperty("openingSizes", value); }
+            get { return GetDatatypeProperty_Int64("openingSizes"); }
+            }
+        ///<summary>Access values of openingSizesEnd. OWL cardinality 0..-1</summary>
+        public Int64[] openingSizesEnd
+            {
+            set { SetDatatypeProperty("openingSizesEnd", value); }
+            get { return GetDatatypeProperty_Int64("openingSizesEnd"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 6..-1</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
+        ///<summary>Access values of pointsEnd. OWL cardinality 6..-1</summary>
+        public double[] pointsEnd
+            {
+            set { SetDatatypeProperty("pointsEnd", value); }
+            get { return GetDatatypeProperty_double("pointsEnd"); }
+            }
+        ///<summary>Access values of polygonDirection. OWL cardinality 0..3</summary>
+        public double[] polygonDirection
+            {
+            set { SetDatatypeProperty("polygonDirection", value); }
+            get { return GetDatatypeProperty_double("polygonDirection"); }
+            }
     }
 
 
@@ -3615,11 +3643,12 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public bool set_extrusionDirection(double[] values) { return SetDatatypeProperty ("extrusionDirection", values); }
-        ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
-        public double[] _extrusionDirection { get { return get_extrusionDirection(); } }
+        ///<summary>Access values of extrusionDirection. OWL cardinality 0..3</summary>
+        public double[] extrusionDirection
+            {
+            set { SetDatatypeProperty("extrusionDirection", value); }
+            get { return GetDatatypeProperty_double("extrusionDirection"); }
+            }
         ///<summary>Access value of extrusionLength</summary>
         public double? extrusionLength
             {
@@ -3722,11 +3751,12 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public bool set_extrusionDirection(double[] values) { return SetDatatypeProperty ("extrusionDirection", values); }
-        ///<summary>Gets values of extrusionDirection. OWL cardinality 0..3</summary>
-        public double[] get_extrusionDirection() { return GetDatatypeProperty_double("extrusionDirection"); }
-        public double[] _extrusionDirection { get { return get_extrusionDirection(); } }
+        ///<summary>Access values of extrusionDirection. OWL cardinality 0..3</summary>
+        public double[] extrusionDirection
+            {
+            set { SetDatatypeProperty("extrusionDirection", value); }
+            get { return GetDatatypeProperty_double("extrusionDirection"); }
+            }
         ///<summary>Access value of extrusionLength</summary>
         public double? extrusionLength
             {
@@ -4716,11 +4746,12 @@ namespace GEOM
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }        
-        ///<summary>Sets values of points. OWL cardinality 6..6</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 6..6</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
+        ///<summary>Access values of points. OWL cardinality 6..6</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
     }
 
 
@@ -4761,21 +4792,24 @@ namespace GEOM
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }        
-        ///<summary>Sets values of endDirection. OWL cardinality 0..3</summary>
-        public bool set_endDirection(double[] values) { return SetDatatypeProperty ("endDirection", values); }
-        ///<summary>Gets values of endDirection. OWL cardinality 0..3</summary>
-        public double[] get_endDirection() { return GetDatatypeProperty_double("endDirection"); }
-        public double[] _endDirection { get { return get_endDirection(); } }
-        ///<summary>Sets values of points. OWL cardinality 0..6</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..6</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
-        ///<summary>Sets values of startDirection. OWL cardinality 0..3</summary>
-        public bool set_startDirection(double[] values) { return SetDatatypeProperty ("startDirection", values); }
-        ///<summary>Gets values of startDirection. OWL cardinality 0..3</summary>
-        public double[] get_startDirection() { return GetDatatypeProperty_double("startDirection"); }
-        public double[] _startDirection { get { return get_startDirection(); } }
+        ///<summary>Access values of endDirection. OWL cardinality 0..3</summary>
+        public double[] endDirection
+            {
+            set { SetDatatypeProperty("endDirection", value); }
+            get { return GetDatatypeProperty_double("endDirection"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 0..6</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
+        ///<summary>Access values of startDirection. OWL cardinality 0..3</summary>
+        public double[] startDirection
+            {
+            set { SetDatatypeProperty("startDirection", value); }
+            get { return GetDatatypeProperty_double("startDirection"); }
+            }
         ///<summary>Access value of x0</summary>
         public double? x0
             {
@@ -4852,11 +4886,12 @@ namespace GEOM
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }        
-        ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
+        ///<summary>Access values of points. OWL cardinality 0..-1</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
     }
 
 
@@ -5284,11 +5319,12 @@ namespace GEOM
             set { SetDatatypeProperty("_43", value); }
             get { var arr = GetDatatypeProperty_double("_43"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of coordinates. OWL cardinality 0..12</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..12</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..12</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
     }
 
 
@@ -5559,11 +5595,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to NURBSCurve
         //
 
-        ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
-        ///<summary>Gets values of weights. OWL cardinality 2..-1</summary>
-        public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
-        public double[] _weights { get { return get_weights(); } }
+        ///<summary>Access values of weights. OWL cardinality 2..-1</summary>
+        public double[] weights
+            {
+            set { SetDatatypeProperty("weights", value); }
+            get { return GetDatatypeProperty_double("weights"); }
+            }
     }
 
 
@@ -5598,11 +5635,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to NURBSSurface
         //
 
-        ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
-        ///<summary>Gets values of weights. OWL cardinality 4..-1</summary>
-        public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
-        public double[] _weights { get { return get_weights(); } }
+        ///<summary>Access values of weights. OWL cardinality 4..-1</summary>
+        public double[] weights
+            {
+            set { SetDatatypeProperty("weights", value); }
+            get { return GetDatatypeProperty_double("weights"); }
+            }
     }
 
 
@@ -5819,16 +5857,18 @@ namespace GEOM
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }        
-        ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets values of points. OWL cardinality 0..3</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..3</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..3</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 0..3</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
         ///<summary>Access value of x</summary>
         public double? x
             {
@@ -5887,16 +5927,18 @@ namespace GEOM
             set { SetDatatypeProperty("asOpenGL", value); }
             get { var arr = GetDatatypeProperty_bool("asOpenGL"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }        
-        ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
-        ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..-1</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
+        ///<summary>Access values of points. OWL cardinality 0..-1</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
     }
 
 
@@ -6163,11 +6205,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to PointLoop
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..3</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
         ///<summary>Access value of x</summary>
         public double? x
             {
@@ -6490,11 +6533,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to PolyLine3D
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 0..-1</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..-1</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..-1</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
         ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..-1</summary>
         public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
         ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
@@ -6551,16 +6595,18 @@ namespace GEOM
                 return null;
             }
         }
-        ///<summary>Sets values of points. OWL cardinality 0..-1</summary>
-        public bool set_points(double[] values) { return SetDatatypeProperty ("points", values); }
-        ///<summary>Gets values of points. OWL cardinality 0..-1</summary>
-        public double[] get_points() { return GetDatatypeProperty_double("points"); }
-        public double[] _points { get { return get_points(); } }
-        ///<summary>Sets values of tangentArray. OWL cardinality 0..-1</summary>
-        public bool set_tangentArray(double[] values) { return SetDatatypeProperty ("tangentArray", values); }
-        ///<summary>Gets values of tangentArray. OWL cardinality 0..-1</summary>
-        public double[] get_tangentArray() { return GetDatatypeProperty_double("tangentArray"); }
-        public double[] _tangentArray { get { return get_tangentArray(); } }
+        ///<summary>Access values of points. OWL cardinality 0..-1</summary>
+        public double[] points
+            {
+            set { SetDatatypeProperty("points", value); }
+            get { return GetDatatypeProperty_double("points"); }
+            }
+        ///<summary>Access values of tangentArray. OWL cardinality 0..-1</summary>
+        public double[] tangentArray
+            {
+            set { SetDatatypeProperty("tangentArray", value); }
+            get { return GetDatatypeProperty_double("tangentArray"); }
+            }
     }
 
 
@@ -6869,11 +6915,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to RationalBezierCurve
         //
 
-        ///<summary>Sets values of weights. OWL cardinality 2..-1</summary>
-        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
-        ///<summary>Gets values of weights. OWL cardinality 2..-1</summary>
-        public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
-        public double[] _weights { get { return get_weights(); } }
+        ///<summary>Access values of weights. OWL cardinality 2..-1</summary>
+        public double[] weights
+            {
+            set { SetDatatypeProperty("weights", value); }
+            get { return GetDatatypeProperty_double("weights"); }
+            }
     }
 
 
@@ -6908,11 +6955,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to RationalBezierSurface
         //
 
-        ///<summary>Sets values of weights. OWL cardinality 4..-1</summary>
-        public bool set_weights(double[] values) { return SetDatatypeProperty ("weights", values); }
-        ///<summary>Gets values of weights. OWL cardinality 4..-1</summary>
-        public double[] get_weights() { return GetDatatypeProperty_double("weights"); }
-        public double[] _weights { get { return get_weights(); } }
+        ///<summary>Access values of weights. OWL cardinality 4..-1</summary>
+        public double[] weights
+            {
+            set { SetDatatypeProperty("weights", value); }
+            get { return GetDatatypeProperty_double("weights"); }
+            }
     }
 
 
@@ -7584,11 +7632,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to SolidLine
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 0..6</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..6</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..6</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
         ///<summary>Access value of segmentationParts</summary>
         public Int64? segmentationParts
             {
@@ -9124,16 +9173,18 @@ namespace GEOM
         }
 
         public Curve _bottomPolygon { get { return get_bottomPolygon(); } }
-        ///<summary>Sets values of connectionMap. OWL cardinality 0..-1</summary>
-        public bool set_connectionMap(Int64[] values) { return SetDatatypeProperty ("connectionMap", values); }
-        ///<summary>Gets values of connectionMap. OWL cardinality 0..-1</summary>
-        public Int64[] get_connectionMap() { return GetDatatypeProperty_Int64("connectionMap"); }
-        public Int64[] _connectionMap { get { return get_connectionMap(); } }
-        ///<summary>Sets values of forcedStaticDirection. OWL cardinality 0..3</summary>
-        public bool set_forcedStaticDirection(double[] values) { return SetDatatypeProperty ("forcedStaticDirection", values); }
-        ///<summary>Gets values of forcedStaticDirection. OWL cardinality 0..3</summary>
-        public double[] get_forcedStaticDirection() { return GetDatatypeProperty_double("forcedStaticDirection"); }
-        public double[] _forcedStaticDirection { get { return get_forcedStaticDirection(); } }
+        ///<summary>Access values of connectionMap. OWL cardinality 0..-1</summary>
+        public Int64[] connectionMap
+            {
+            set { SetDatatypeProperty("connectionMap", value); }
+            get { return GetDatatypeProperty_Int64("connectionMap"); }
+            }
+        ///<summary>Access values of forcedStaticDirection. OWL cardinality 0..3</summary>
+        public double[] forcedStaticDirection
+            {
+            set { SetDatatypeProperty("forcedStaticDirection", value); }
+            get { return GetDatatypeProperty_double("forcedStaticDirection"); }
+            }
         ///<summary>Access value of forceSolid</summary>
         public bool? forceSolid
             {
@@ -9346,11 +9397,12 @@ namespace GEOM
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }        
-        ///<summary>Sets values of origin. OWL cardinality 0..3</summary>
-        public bool set_origin(double[] values) { return SetDatatypeProperty ("origin", values); }
-        ///<summary>Gets values of origin. OWL cardinality 0..3</summary>
-        public double[] get_origin() { return GetDatatypeProperty_double("origin"); }
-        public double[] _origin { get { return get_origin(); } }
+        ///<summary>Access values of origin. OWL cardinality 0..3</summary>
+        public double[] origin
+            {
+            set { SetDatatypeProperty("origin", value); }
+            get { return GetDatatypeProperty_double("origin"); }
+            }
         ///<summary>Access value of rotation</summary>
         public double? rotation
             {
@@ -9715,11 +9767,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to TriangleCurve
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 0..9</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..9</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..9</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
             {
@@ -9900,16 +9953,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to TriangleSet
         //
 
-        ///<summary>Sets values of indices. OWL cardinality 0..-1</summary>
-        public bool set_indices(Int64[] values) { return SetDatatypeProperty ("indices", values); }
-        ///<summary>Gets values of indices. OWL cardinality 0..-1</summary>
-        public Int64[] get_indices() { return GetDatatypeProperty_Int64("indices"); }
-        public Int64[] _indices { get { return get_indices(); } }
-        ///<summary>Sets values of vertices. OWL cardinality 3..-1</summary>
-        public bool set_vertices(double[] values) { return SetDatatypeProperty ("vertices", values); }
-        ///<summary>Gets values of vertices. OWL cardinality 3..-1</summary>
-        public double[] get_vertices() { return GetDatatypeProperty_double("vertices"); }
-        public double[] _vertices { get { return get_vertices(); } }
+        ///<summary>Access values of indices. OWL cardinality 0..-1</summary>
+        public Int64[] indices
+            {
+            set { SetDatatypeProperty("indices", value); }
+            get { return GetDatatypeProperty_Int64("indices"); }
+            }
+        ///<summary>Access values of vertices. OWL cardinality 3..-1</summary>
+        public double[] vertices
+            {
+            set { SetDatatypeProperty("vertices", value); }
+            get { return GetDatatypeProperty_double("vertices"); }
+            }
     }
 
 
@@ -9973,11 +10028,12 @@ namespace GEOM
         // Properties with known cardinality restrictions to Vector3
         //
 
-        ///<summary>Sets values of coordinates. OWL cardinality 0..3</summary>
-        public bool set_coordinates(double[] values) { return SetDatatypeProperty ("coordinates", values); }
-        ///<summary>Gets values of coordinates. OWL cardinality 0..3</summary>
-        public double[] get_coordinates() { return GetDatatypeProperty_double("coordinates"); }
-        public double[] _coordinates { get { return get_coordinates(); } }
+        ///<summary>Access values of coordinates. OWL cardinality 0..3</summary>
+        public double[] coordinates
+            {
+            set { SetDatatypeProperty("coordinates", value); }
+            get { return GetDatatypeProperty_double("coordinates"); }
+            }
         ///<summary>Access value of x</summary>
         public double? x
             {

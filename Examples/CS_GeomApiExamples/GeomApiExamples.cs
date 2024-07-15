@@ -93,11 +93,11 @@ namespace CS_GeometryKernel
 			ASSERT(lseg == 0.5);
 
 			//double []
-			double[] org = texture.get_origin();
+			double[] org = texture.origin;
 			ASSERT(org == null);
 			org = new double[] { 1, 2, 3 };
-			texture.set_origin(org);
-			double[] ret_org = texture.get_origin();
+			texture.origin = org;
+			double[] ret_org = texture.origin;
 			ASSERT_ARR_EQ(org, ret_org);
 
 			//there is ability to identity property by name
@@ -108,11 +108,10 @@ namespace CS_GeometryKernel
 
 			//false b/c cardinality restriction violation
 			var tooLong = new double[] { 1, 2, 3, 4 };
-			var ok = texture.set_origin(tooLong);
-			ASSERT(!ok);
+			texture.origin = tooLong;
 
 			//false b/c wrong property name
-			ok = texture.SetDatatypeProperty("length", org);
+			var ok = texture.SetDatatypeProperty("length", org);
 			ASSERT(!ok);
 			ret_org = texture.GetDatatypeProperty_double("originnn");
 			ASSERT(ret_org == null);
@@ -125,11 +124,11 @@ namespace CS_GeometryKernel
 			ASSERT(setting == 13);
 
 			//long[]
-			long[] km = curve.get_knotMultiplicities();
+			long[] km = curve.knotMultiplicities;
 			ASSERT(km == null);
 			long[] km_ = new long[] { 3, 5, 6 };
-			curve.set_knotMultiplicities(km_);
-			km = curve.get_knotMultiplicities();
+			curve.knotMultiplicities = km_;
+			km = curve.knotMultiplicities;
 			ASSERT_ARR_EQ(km, km_);
 
 			//string 
