@@ -302,7 +302,7 @@ namespace RDFWrappers
             m_replacements[KWD_DATA_TYPE] = prop.DataType(m_cs);
             m_replacements[KWD_CARDINALITY_MIN] = classProp.min.ToString();
             m_replacements[KWD_CARDINALITY_MAX] = classProp.max.ToString();
-            
+            m_replacements[KWD_asType] = "";
             m_replacements[KWD_SUFIX] = "";
             
             if (m_cs && propName == "object")
