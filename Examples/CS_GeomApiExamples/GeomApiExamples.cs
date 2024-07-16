@@ -108,10 +108,21 @@ namespace CS_GeometryKernel
 
 			//false b/c cardinality restriction violation
 			var tooLong = new double[] { 1, 2, 3, 4 };
-			texture.origin = tooLong;
+			try
+				{
+				texture.origin = tooLong;
+				}
+			catch (SetPropertyException e)
+				{
+				Console.WriteLine("Expected exception " + e.Message);
+				}
+
+			//aletnative to avoid exception - use set function
+			var ok = texture.Set_origin(tooLong);
+			ASSERT(!ok);
 
 			//false b/c wrong property name
-			var ok = texture.SetDatatypeProperty("length", org);
+			ok = texture.SetDatatypeProperty("length", org);
 			ASSERT(!ok);
 			ret_org = texture.GetDatatypeProperty_double("originnn");
 			ASSERT(ret_org == null);

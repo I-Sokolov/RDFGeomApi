@@ -48,30 +48,35 @@ namespace NAMESPACE_NAME
         //
 
 //## TEMPLATE SetDataProperty
+        public bool Set_PROPERTY_NAME(double? value) {  return SetDatatypeProperty("PROPERTY_NAME", value); }
 //## TEMPLATE SetDataArrayProperty
+        public bool Set_PROPERTY_NAME(double[] value) {  return SetDatatypeProperty("PROPERTY_NAME", value); }
 //## TEMPLATE GetDataProperty
         ///<summary>Access value of PROPERTY_NAME</summary>
         public double? PROPERTY_NAME
             {
-            set { SetDatatypeProperty("PROPERTY_NAME", value); }
+            set { if (!SetDatatypeProperty("PROPERTY_NAME", value)) throw new SetPropertyException("PROPERTY_NAME", m_instance); }
             get { var arr = GetDatatypeProperty_double("PROPERTY_NAME"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
 //## TEMPLATE GetDataArrayProperty
         ///<summary>Access values of PROPERTY_NAME. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
         public double[] PROPERTY_NAme
             {
-            set { SetDatatypeProperty("PROPERTY_NAME", value); }
+            set { if (!SetDatatypeProperty("PROPERTY_NAME", value)) throw new SetPropertyException("PROPERTY_NAME", m_instance); }
             get { return GetDatatypeProperty_double("PROPERTY_NAME"); }
             }
 //## TEMPLATE SetObjectProperty
+        public bool Set_PROPERTY_NAME(Int64 value) {  return SetObjectProperty("PROPERTY_NAME", value); }
+
 //## TEMPLATE SetObjectArrayProperty
+        public bool Set_PROPERTY_NAME(Instance[] value) {  return SetObjectProperty("PROPERTY_NAME", value); }
 //## TEMPLATE GetObjectProperty
         ///<summary>Access relationship from this instance to an instance of Instance</summary>
         public Instance PROPERTY_NAMEasTYPE_sufix
             {
             set
                 {
-                SetObjectProperty("PROPERTY_NAME", value);
+                if (!SetObjectProperty("PROPERTY_NAME", value)) throw new SetPropertyException("PROPERTY_NAME", m_instance);
                 }
             get
                 {
@@ -101,7 +106,7 @@ namespace NAMESPACE_NAME
             {
             set
                 {
-                SetObjectProperty("PROPERTY_NAME", value);
+                if (!SetObjectProperty("PROPERTY_NAME", value)) throw new SetPropertyException("PROPERTY_NAME", m_instance);
                 }
             get
                 {
@@ -138,7 +143,7 @@ namespace NAMESPACE_NAME
         {
             set
                 {
-                SetObjectProperty("PROPERTY_NAME", value);
+                if (!SetObjectProperty("PROPERTY_NAME", value)) throw new SetPropertyException("PROPERTY_NAME", m_instance);
                 }
             get
                 {
@@ -214,6 +219,25 @@ namespace NAMESPACE_NAME
         /// Conversion to instance handle, so the object of the class can be used anywhere where a handle required
         /// </summary>
         public static implicit operator Int64(Instance instance) => instance.m_instance;
+
+        /// <summary>
+        /// Get exact name of instance class
+        /// </summary>
+        public string _className
+            {
+            get
+                {
+                if (m_instance != 0)
+                    {
+                    var cls = engine.GetInstanceClass(m_instance);
+                    if (cls!= 0)
+                        {
+                        return engine.GetNameOfClass(cls);
+                        }
+                    }
+                return null;
+                }
+            }
 
         /// <summary>
         /// Get property id from property name
@@ -558,7 +582,29 @@ namespace NAMESPACE_NAME
         {
             return m_instance.GetHashCode();
         }
+    }
+
+    /// <summary>
+    /// Rised when property can not be set
+    /// </summary>
+    public class SetPropertyException : ApplicationException
+        {
+        public SetPropertyException(string propName, Int64 instance) : base(FormatMessage(propName, instance)) { }
+        static string FormatMessage(string propName, Int64 instance)
+            {
+            string clsName = "<NULL>";
+            if (instance != 0)
+                {
+                var cls = engine.GetInstanceClass(instance);
+                if (cls != 0)
+                    {
+                    clsName = engine.GetNameOfClass(cls);
+                    }
+                }
+
+            return $"Failed to set property {propName} to instance of {clsName}";
+            }
+        }
 
     }
-}
 
