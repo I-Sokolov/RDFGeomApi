@@ -65,11 +65,9 @@ namespace NAMESPACE_NAME
             }
 //## TEMPLATE SetObjectProperty
 //## TEMPLATE SetObjectArrayProperty
-        ///<summary>Sets relationships from this instance to an array of Instance. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public bool set_PROPERTY_NAME(Instance[] instances) { return SetObjectProperty("PROPERTY_NAME", instances); }
 //## TEMPLATE GetObjectProperty
-        ///<summary>Sets relationship from this instance to an instance of Instance</summary>
-        public Instance PROPERTY_NAME_sufix
+        ///<summary>Access relationship from this instance to an instance of Instance</summary>
+        public Instance PROPERTY_NAMEasTYPE_sufix
             {
             set
                 {
@@ -98,57 +96,71 @@ namespace NAMESPACE_NAME
                 }
             }
 //## TEMPLATE GetObjectArrayProperty
-        ///<summary>Get an array of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public Instance[] get_PROPERTY_NAMEasTYPE() 
-        {
-            var propId = GetPropertyId("PROPERTY_NAME");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
+        public Instance[] PROPERTY_NAMEasType_sufix
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Instance[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Instance(values[i], null);
+                SetObjectProperty("PROPERTY_NAME", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("PROPERTY_NAME");
 
-                return ret;
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Instance[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Instance(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
             }
-            else
-            {
-                return null;
-            }
-        }
 
 //## TEMPLATE GetObjectArrayPropertyInt64
-        ///<summary>Get an array of handles of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
-        public Int64[] get_PROPERTY_NAME_Int64()  
+        ///<summary>Access an array of handles of related instances. OWL cardinality CARDINALITY_MIN..CARDINALITY_MAX</summary>
+        public Int64[] PROPERTY_NAME_h
         {
-            var propId = GetPropertyId("PROPERTY_NAME");
+            set
+                {
+                SetObjectProperty("PROPERTY_NAME", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("PROPERTY_NAME");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
 //## TEMPLATE: EndWrapperClass
     }

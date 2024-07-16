@@ -162,9 +162,9 @@ namespace CS_GeometryKernel
 			ASSERT(m2 == material);
 
 			//object []
-			Point3D[] ptg = curve.get_controlPoints();
+			Point3D[] ptg = curve.controlPoints;
 			ASSERT(ptg == null);
-			Int64[] ptg64 = curve.get_controlPoints_Int64();
+			Int64[] ptg64 = curve.controlPoints_h;
 			ASSERT(ptg64 == null);
 
 			Point3D[] pts = new Point3D[2];
@@ -172,14 +172,14 @@ namespace CS_GeometryKernel
 			pts[1] = Point3D.Create(model);
 			ASSERT(pts[0] != pts[1]);
 
-			curve.set_controlPoints(pts);
+			curve.controlPoints = pts;
 
-			ptg = curve.get_controlPoints();
+			ptg = curve.controlPoints;
 			ASSERT(ptg.Length == pts.Length);
 			for (int i = 0; i < pts.Length; i++) ASSERT(pts[i] == ptg[i]);
 			ASSERT_ARR_EQ(ptg, pts);
 
-			ptg64 = curve.get_controlPoints_Int64();
+			ptg64 = curve.controlPoints_h;
 			ASSERT(ptg64.Length == pts.Length);
 			for (int i = 0; i < pts.Length; i++) ASSERT(pts[i] == ptg64[i]);
 

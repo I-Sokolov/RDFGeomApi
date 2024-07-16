@@ -185,62 +185,72 @@ namespace GEOM
         // Properties with known cardinality restrictions to AdvancedFace
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_bounds(Curve[] instances) { return SetObjectProperty("bounds", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_bounds(Int64[] instances) { return SetObjectProperty("bounds", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_bounds() 
-        {
-            var propId = GetPropertyId("bounds");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] bounds
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("bounds", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("bounds");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_bounds_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] bounds_h
         {
-            var propId = GetPropertyId("bounds");
+            set
+                {
+                SetObjectProperty("bounds", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("bounds");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
-        ///<summary>Sets relationship from this instance to an instance of Surface</summary>
+        ///<summary>Access relationship from this instance to an instance of Surface</summary>
         public Surface surface
             {
             set
@@ -459,7 +469,7 @@ namespace GEOM
             set { SetDatatypeProperty("offsetY", value); }
             get { var arr = GetDatatypeProperty_double("offsetY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve segment
             {
             set
@@ -528,60 +538,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to AlignedSegments
         //
 
-        ///<summary>Sets relationships from this instance to an array of AlignedSegment. OWL cardinality 0..-1</summary>
-        public bool set_segments(AlignedSegment[] instances) { return SetObjectProperty("segments", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_segments(Int64[] instances) { return SetObjectProperty("segments", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public AlignedSegment[] get_segments() 
-        {
-            var propId = GetPropertyId("segments");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public AlignedSegment[] segments
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new AlignedSegment[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new AlignedSegment(values[i], null);
+                SetObjectProperty("segments", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("segments");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_segments_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new AlignedSegment[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new AlignedSegment(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] segments_h
         {
-            var propId = GetPropertyId("segments");
+            set
+                {
+                SetObjectProperty("segments", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("segments");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -617,7 +637,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Alignment
         //
 
-        ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
+        ///<summary>Access relationship from this instance to an instance of AlignedSegments</summary>
         public AlignedSegments horizontal
             {
             set
@@ -658,7 +678,7 @@ namespace GEOM
             set { SetDatatypeProperty("type", value); }
             get { var arr = GetDatatypeProperty_Int64("type"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of AlignedSegments</summary>
+        ///<summary>Access relationship from this instance to an instance of AlignedSegments</summary>
         public AlignedSegments vertical
             {
             set
@@ -941,7 +961,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Blend
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve bottomPolygon
             {
             set
@@ -1000,7 +1020,7 @@ namespace GEOM
             set { SetDatatypeProperty("height", value); }
             get { var arr = GetDatatypeProperty_double("height"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve topPolygon
             {
             set
@@ -1092,7 +1112,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to BooleanOperation
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
+        ///<summary>Access relationship from this instance to an instance of Deviation</summary>
         public Deviation deviation
             {
             set
@@ -1121,7 +1141,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem firstObject
             {
             set
@@ -1150,7 +1170,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem secondObject
             {
             set
@@ -1225,7 +1245,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to BooleanOperation2D
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
+        ///<summary>Access relationship from this instance to an instance of Deviation</summary>
         public Deviation deviation
             {
             set
@@ -1254,7 +1274,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem firstObject
             {
             set
@@ -1283,7 +1303,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem secondObject
             {
             set
@@ -1364,60 +1384,70 @@ namespace GEOM
             set { SetDatatypeProperty("epsilon", value); }
             get { var arr = GetDatatypeProperty_double("epsilon"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 0..-1</summary>
-        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Face[] get_faces() 
-        {
-            var propId = GetPropertyId("faces");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Face[] faces
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Face[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Face(values[i], null);
+                SetObjectProperty("faces", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_faces_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Face[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Face(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] faces_h
         {
-            var propId = GetPropertyId("faces");
+            set
+                {
+                SetObjectProperty("faces", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access values of flags. OWL cardinality 0..-1</summary>
         public Int64[] flags
@@ -1710,60 +1740,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to CircleByPoints
         //
 
-        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 3..3</summary>
-        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 3..3</summary>
-        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 3..3</summary>
-        public Point[] get_pointReferences() 
-        {
-            var propId = GetPropertyId("pointReferences");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 3..3</summary>
+        public Point[] pointReferences
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Point[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Point(values[i], null);
+                SetObjectProperty("pointReferences", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 3..3</summary>
-        public Int64[] get_pointReferences_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Point[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Point(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 3..3</summary>
+        public Int64[] pointReferences_h
         {
-            var propId = GetPropertyId("pointReferences");
+            set
+                {
+                SetObjectProperty("pointReferences", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -1845,7 +1885,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Clipping
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Deviation</summary>
+        ///<summary>Access relationship from this instance to an instance of Deviation</summary>
         public Deviation deviation
             {
             set
@@ -1874,7 +1914,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -1903,7 +1943,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Plane</summary>
+        ///<summary>Access relationship from this instance to an instance of Plane</summary>
         public Plane plane
             {
             set
@@ -1978,7 +2018,7 @@ namespace GEOM
             set { SetDatatypeProperty("A", value); }
             get { var arr = GetDatatypeProperty_double("A"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -2118,60 +2158,70 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
-        public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_objects(Int64[] instances) { return SetObjectProperty("objects", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public GeometricItem[] get_objects() 
-        {
-            var propId = GetPropertyId("objects");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public GeometricItem[] objects
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new GeometricItem[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new GeometricItem(values[i], null);
+                SetObjectProperty("objects", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("objects");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_objects_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new GeometricItem[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new GeometricItem(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] objects_h
         {
-            var propId = GetPropertyId("objects");
+            set
+                {
+                SetObjectProperty("objects", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("objects");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access value of recalculateBBox</summary>
         public bool? recalculateBBox
@@ -2231,7 +2281,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Color
         //
 
-        ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
+        ///<summary>Access relationship from this instance to an instance of ColorComponent</summary>
         public ColorComponent ambient
             {
             set
@@ -2266,7 +2316,7 @@ namespace GEOM
             set { SetDatatypeProperty("ambientReflectance", value); }
             get { var arr = GetDatatypeProperty_double("ambientReflectance"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
+        ///<summary>Access relationship from this instance to an instance of ColorComponent</summary>
         public ColorComponent diffuse
             {
             set
@@ -2295,7 +2345,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
+        ///<summary>Access relationship from this instance to an instance of ColorComponent</summary>
         public ColorComponent emissive
             {
             set
@@ -2324,7 +2374,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of ColorComponent</summary>
+        ///<summary>Access relationship from this instance to an instance of ColorComponent</summary>
         public ColorComponent specular
             {
             set
@@ -2619,7 +2669,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to ConvexPolyhedron
         //
 
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -2901,60 +2951,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to CurvesFromSurface
         //
 
-        ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Face[] get_faces() 
-        {
-            var propId = GetPropertyId("faces");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Face[] faces
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Face[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Face(values[i], null);
+                SetObjectProperty("faces", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_faces_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Face[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Face(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] faces_h
         {
-            var propId = GetPropertyId("faces");
+            set
+                {
+                SetObjectProperty("faces", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -3186,7 +3246,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to DirectionalLight
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -3621,7 +3681,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to ExtrusionAreaSolid
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve extrusionArea
             {
             set
@@ -3650,60 +3710,70 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_extrusionAreaOpenings(Curve[] instances) { return SetObjectProperty("extrusionAreaOpenings", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_extrusionAreaOpenings(Int64[] instances) { return SetObjectProperty("extrusionAreaOpenings", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_extrusionAreaOpenings() 
-        {
-            var propId = GetPropertyId("extrusionAreaOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] extrusionAreaOpenings
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("extrusionAreaOpenings", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("extrusionAreaOpenings");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_extrusionAreaOpenings_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] extrusionAreaOpenings_h
         {
-            var propId = GetPropertyId("extrusionAreaOpenings");
+            set
+                {
+                SetObjectProperty("extrusionAreaOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("extrusionAreaOpenings");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] extrusionDirection
@@ -3757,60 +3827,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to ExtrusionAreaSolidSet
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public bool set_extrusionAreaSet(Curve[] instances) { return SetObjectProperty("extrusionAreaSet", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_extrusionAreaSet(Int64[] instances) { return SetObjectProperty("extrusionAreaSet", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Curve[] get_extrusionAreaSet() 
-        {
-            var propId = GetPropertyId("extrusionAreaSet");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] extrusionAreaSet
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("extrusionAreaSet", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("extrusionAreaSet");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_extrusionAreaSet_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] extrusionAreaSet_h
         {
-            var propId = GetPropertyId("extrusionAreaSet");
+            set
+                {
+                SetObjectProperty("extrusionAreaSet", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("extrusionAreaSet");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access values of extrusionDirection. OWL cardinality 0..3</summary>
         public double[] extrusionDirection
@@ -3893,62 +3973,72 @@ namespace GEOM
         // Properties with known cardinality restrictions to Face2D
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_innerPolygons(Curve[] instances) { return SetObjectProperty("innerPolygons", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_innerPolygons(Int64[] instances) { return SetObjectProperty("innerPolygons", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_innerPolygons() 
-        {
-            var propId = GetPropertyId("innerPolygons");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] innerPolygons
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("innerPolygons", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("innerPolygons");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_innerPolygons_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] innerPolygons_h
         {
-            var propId = GetPropertyId("innerPolygons");
+            set
+                {
+                SetObjectProperty("innerPolygons", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("innerPolygons");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve outerPolygon
             {
             set
@@ -4017,60 +4107,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to Face2DSet
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_polygons(Curve[] instances) { return SetObjectProperty("polygons", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_polygons(Int64[] instances) { return SetObjectProperty("polygons", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_polygons() 
-        {
-            var propId = GetPropertyId("polygons");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] polygons
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("polygons", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("polygons");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_polygons_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] polygons_h
         {
-            var propId = GetPropertyId("polygons");
+            set
+                {
+                SetObjectProperty("polygons", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("polygons");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access value of setting</summary>
         public Int64? setting
@@ -4199,7 +4299,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to GeometricItem
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Material</summary>
+        ///<summary>Access relationship from this instance to an instance of Material</summary>
         public Material material
             {
             set
@@ -4389,60 +4489,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to IntersectionCurve
         //
 
-        ///<summary>Sets relationships from this instance to an array of Surface. OWL cardinality 2..2</summary>
-        public bool set_surfaces(Surface[] instances) { return SetObjectProperty("surfaces", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..2</summary>
-        public bool set_surfaces(Int64[] instances) { return SetObjectProperty("surfaces", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 2..2</summary>
-        public Surface[] get_surfaces() 
-        {
-            var propId = GetPropertyId("surfaces");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 2..2</summary>
+        public Surface[] surfaces
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Surface[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Surface(values[i], null);
+                SetObjectProperty("surfaces", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("surfaces");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 2..2</summary>
-        public Int64[] get_surfaces_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Surface[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Surface(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 2..2</summary>
+        public Int64[] surfaces_h
         {
-            var propId = GetPropertyId("surfaces");
+            set
+                {
+                SetObjectProperty("surfaces", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("surfaces");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -4478,7 +4588,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to IntersectionPoint
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve curve
             {
             set
@@ -4507,7 +4617,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Surface</summary>
+        ///<summary>Access relationship from this instance to an instance of Surface</summary>
         public Surface surface
             {
             set
@@ -4570,7 +4680,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to InverseMatrix
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
@@ -4633,7 +4743,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to InvertedCurve
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve curve
             {
             set
@@ -4696,7 +4806,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to InvertedSurface
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Surface</summary>
+        ///<summary>Access relationship from this instance to an instance of Surface</summary>
         public Surface surface
             {
             set
@@ -4759,7 +4869,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Light
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Color</summary>
+        ///<summary>Access relationship from this instance to an instance of Color</summary>
         public Color color
             {
             set
@@ -5008,7 +5118,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Line4D
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        ///<summary>Access relationship from this instance to an instance of Point</summary>
         public Point firstPoint
             {
             set
@@ -5037,7 +5147,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        ///<summary>Access relationship from this instance to an instance of Point</summary>
         public Point secondPoint
             {
             set
@@ -5100,60 +5210,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to LineByFace
         //
 
-        ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Face[] get_faces() 
-        {
-            var propId = GetPropertyId("faces");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Face[] faces
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Face[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Face(values[i], null);
+                SetObjectProperty("faces", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_faces_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Face[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Face(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] faces_h
         {
-            var propId = GetPropertyId("faces");
+            set
+                {
+                SetObjectProperty("faces", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -5189,7 +5309,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Material
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Color</summary>
+        ///<summary>Access relationship from this instance to an instance of Color</summary>
         public Color color
             {
             set
@@ -5218,60 +5338,70 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Texture. OWL cardinality 0..2</summary>
-        public bool set_textures(Texture[] instances) { return SetObjectProperty("textures", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..2</summary>
-        public bool set_textures(Int64[] instances) { return SetObjectProperty("textures", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..2</summary>
-        public Texture[] get_textures() 
-        {
-            var propId = GetPropertyId("textures");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..2</summary>
+        public Texture[] textures
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Texture[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Texture(values[i], null);
+                SetObjectProperty("textures", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("textures");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..2</summary>
-        public Int64[] get_textures_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Texture[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Texture(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..2</summary>
+        public Int64[] textures_h
         {
-            var propId = GetPropertyId("textures");
+            set
+                {
+                SetObjectProperty("textures", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("textures");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -5448,7 +5578,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to MatrixMultiplication
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix firstMatrix
             {
             set
@@ -5477,7 +5607,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix secondMatrix
             {
             set
@@ -5540,7 +5670,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Mesh
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Point3DSet</summary>
+        ///<summary>Access relationship from this instance to an instance of Point3DSet</summary>
         public Point3DSet pointSet
             {
             set
@@ -5603,60 +5733,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to Nill
         //
 
-        ///<summary>Sets relationships from this instance to an array of GeometricItem. OWL cardinality 0..-1</summary>
-        public bool set_objects(GeometricItem[] instances) { return SetObjectProperty("objects", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_objects(Int64[] instances) { return SetObjectProperty("objects", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public GeometricItem[] get_objects() 
-        {
-            var propId = GetPropertyId("objects");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public GeometricItem[] objects
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new GeometricItem[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new GeometricItem(values[i], null);
+                SetObjectProperty("objects", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("objects");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_objects_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new GeometricItem[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new GeometricItem(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] objects_h
         {
-            var propId = GetPropertyId("objects");
+            set
+                {
+                SetObjectProperty("objects", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("objects");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -5859,7 +5999,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to PlaneSurface
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Plane</summary>
+        ///<summary>Access relationship from this instance to an instance of Plane</summary>
         public Plane plane
             {
             set
@@ -6073,7 +6213,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Point3DSetByGeometricItem
         //
 
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -6136,7 +6276,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Point4D
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector3</summary>
         public Vector3 normal
             {
             set
@@ -6165,7 +6305,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Point</summary>
+        ///<summary>Access relationship from this instance to an instance of Point</summary>
         public Point point
             {
             set
@@ -6194,7 +6334,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector3</summary>
         public Vector3 tangent
             {
             set
@@ -6257,7 +6397,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to PointLight
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
+        ///<summary>Access relationship from this instance to an instance of Point3D</summary>
         public Point3D position
             {
             set
@@ -6378,60 +6518,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon2D
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Curve[] get_lineParts() 
-        {
-            var propId = GetPropertyId("lineParts");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] lineParts
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("lineParts", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_lineParts_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] lineParts_h
         {
-            var propId = GetPropertyId("lineParts");
+            set
+                {
+                SetObjectProperty("lineParts", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -6467,60 +6617,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon3D
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Curve[] get_lineParts() 
-        {
-            var propId = GetPropertyId("lineParts");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] lineParts
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("lineParts", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_lineParts_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] lineParts_h
         {
-            var propId = GetPropertyId("lineParts");
+            set
+                {
+                SetObjectProperty("lineParts", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -6556,60 +6716,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon4D
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Curve[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_lineParts(Int64[] instances) { return SetObjectProperty("lineParts", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Curve[] get_lineParts() 
-        {
-            var propId = GetPropertyId("lineParts");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] lineParts
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("lineParts", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_lineParts_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] lineParts_h
         {
-            var propId = GetPropertyId("lineParts");
+            set
+                {
+                SetObjectProperty("lineParts", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("lineParts");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -6651,60 +6821,70 @@ namespace GEOM
             set { SetDatatypeProperty("coordinates", value); }
             get { return GetDatatypeProperty_double("coordinates"); }
             }
-        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..-1</summary>
-        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Point[] get_pointReferences() 
-        {
-            var propId = GetPropertyId("pointReferences");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Point[] pointReferences
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Point[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Point(values[i], null);
+                SetObjectProperty("pointReferences", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_pointReferences_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Point[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Point(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] pointReferences_h
         {
-            var propId = GetPropertyId("pointReferences");
+            set
+                {
+                SetObjectProperty("pointReferences", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access values of points. OWL cardinality 0..-1</summary>
         public double[] points
@@ -6798,62 +6978,72 @@ namespace GEOM
         // Properties with known cardinality restrictions to Profile
         //
 
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_innerPolygons(Curve[] instances) { return SetObjectProperty("innerPolygons", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_innerPolygons(Int64[] instances) { return SetObjectProperty("innerPolygons", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_innerPolygons() 
-        {
-            var propId = GetPropertyId("innerPolygons");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] innerPolygons
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("innerPolygons", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("innerPolygons");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_innerPolygons_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] innerPolygons_h
         {
-            var propId = GetPropertyId("innerPolygons");
+            set
+                {
+                SetObjectProperty("innerPolygons", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("innerPolygons");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve outerPolygon
             {
             set
@@ -6916,7 +7106,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Projection
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
@@ -7181,7 +7371,7 @@ namespace GEOM
             set { SetDatatypeProperty("count", value); }
             get { var arr = GetDatatypeProperty_Int64("count"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
@@ -7210,7 +7400,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -7302,7 +7492,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Shadow
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector3</summary>
         public Vector3 lightDirection
             {
             set
@@ -7331,7 +7521,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Point3D</summary>
+        ///<summary>Access relationship from this instance to an instance of Point3D</summary>
         public Point3D lightPoint
             {
             set
@@ -7360,7 +7550,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -7389,7 +7579,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Plane</summary>
+        ///<summary>Access relationship from this instance to an instance of Plane</summary>
         public Plane plane
             {
             set
@@ -7418,7 +7608,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Vector3</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector3</summary>
         public Vector3 planeRefDirection
             {
             set
@@ -7679,60 +7869,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to SolidBySurface
         //
 
-        ///<summary>Sets relationships from this instance to an array of Face. OWL cardinality 1..-1</summary>
-        public bool set_faces(Face[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_faces(Int64[] instances) { return SetObjectProperty("faces", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Face[] get_faces() 
-        {
-            var propId = GetPropertyId("faces");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Face[] faces
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Face[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Face(values[i], null);
+                SetObjectProperty("faces", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_faces_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Face[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Face(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] faces_h
         {
-            var propId = GetPropertyId("faces");
+            set
+                {
+                SetObjectProperty("faces", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("faces");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -8023,60 +8223,70 @@ namespace GEOM
             set { SetDatatypeProperty("closed", value); }
             get { var arr = GetDatatypeProperty_bool("closed"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 2..-1</summary>
-        public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 2..-1</summary>
-        public bool set_controlPoints(Int64[] instances) { return SetObjectProperty("controlPoints", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 2..-1</summary>
-        public Point3D[] get_controlPoints() 
-        {
-            var propId = GetPropertyId("controlPoints");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 2..-1</summary>
+        public Point3D[] controlPoints
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Point3D[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Point3D(values[i], null);
+                SetObjectProperty("controlPoints", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("controlPoints");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 2..-1</summary>
-        public Int64[] get_controlPoints_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Point3D[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Point3D(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 2..-1</summary>
+        public Int64[] controlPoints_h
         {
-            var propId = GetPropertyId("controlPoints");
+            set
+                {
+                SetObjectProperty("controlPoints", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("controlPoints");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access value of count</summary>
         public Int64? count
@@ -8136,60 +8346,70 @@ namespace GEOM
         // Properties with known cardinality restrictions to SplineSurface
         //
 
-        ///<summary>Sets relationships from this instance to an array of Point3D. OWL cardinality 4..-1</summary>
-        public bool set_controlPoints(Point3D[] instances) { return SetObjectProperty("controlPoints", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 4..-1</summary>
-        public bool set_controlPoints(Int64[] instances) { return SetObjectProperty("controlPoints", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 4..-1</summary>
-        public Point3D[] get_controlPoints() 
-        {
-            var propId = GetPropertyId("controlPoints");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 4..-1</summary>
+        public Point3D[] controlPoints
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Point3D[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Point3D(values[i], null);
+                SetObjectProperty("controlPoints", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("controlPoints");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 4..-1</summary>
-        public Int64[] get_controlPoints_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Point3D[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Point3D(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 4..-1</summary>
+        public Int64[] controlPoints_h
         {
-            var propId = GetPropertyId("controlPoints");
+            set
+                {
+                SetObjectProperty("controlPoints", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("controlPoints");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
         ///<summary>Access value of segmentationLength</summary>
         public double? segmentationLength
@@ -8285,7 +8505,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SplitConceptualFace
         //
 
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -8406,7 +8626,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SurfaceBySweptCurve
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -8435,7 +8655,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve sweptArea
             {
             set
@@ -8464,60 +8684,70 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_sweptAreaOpenings() 
-        {
-            var propId = GetPropertyId("sweptAreaOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] sweptAreaOpenings
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("sweptAreaOpenings", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_sweptAreaOpenings_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] sweptAreaOpenings_h
         {
-            var propId = GetPropertyId("sweptAreaOpenings");
+            set
+                {
+                SetObjectProperty("sweptAreaOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -8553,7 +8783,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SurfaceOfLinearExtrusion
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector extrusion
             {
             set
@@ -8582,7 +8812,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve polygon
             {
             set
@@ -8645,7 +8875,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SurfaceOfRevolution
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -8714,7 +8944,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SweptAreaSolid
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -8749,7 +8979,7 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -8784,7 +9014,7 @@ namespace GEOM
             set { SetDatatypeProperty("setting", value); }
             get { var arr = GetDatatypeProperty_Int64("setting"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve sweptArea
             {
             set
@@ -8813,60 +9043,70 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_sweptAreaOpenings() 
-        {
-            var propId = GetPropertyId("sweptAreaOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] sweptAreaOpenings
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("sweptAreaOpenings", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_sweptAreaOpenings_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] sweptAreaOpenings_h
         {
-            var propId = GetPropertyId("sweptAreaOpenings");
+            set
+                {
+                SetObjectProperty("sweptAreaOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -8902,7 +9142,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SweptAreaSolidSet
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -8937,7 +9177,7 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -8966,60 +9206,70 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
-        public bool set_sweptAreaSet(Curve[] instances) { return SetObjectProperty("sweptAreaSet", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 1..-1</summary>
-        public bool set_sweptAreaSet(Int64[] instances) { return SetObjectProperty("sweptAreaSet", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 1..-1</summary>
-        public Curve[] get_sweptAreaSet() 
-        {
-            var propId = GetPropertyId("sweptAreaSet");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] sweptAreaSet
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("sweptAreaSet", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaSet");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] get_sweptAreaSet_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] sweptAreaSet_h
         {
-            var propId = GetPropertyId("sweptAreaSet");
+            set
+                {
+                SetObjectProperty("sweptAreaSet", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaSet");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -9055,7 +9305,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SweptAreaSolidTapered
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -9090,7 +9340,7 @@ namespace GEOM
             set { SetDatatypeProperty("fraction", value); }
             get { var arr = GetDatatypeProperty_double("fraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -9119,7 +9369,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve sweptArea
             {
             set
@@ -9148,7 +9398,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve sweptAreaEnd
             {
             set
@@ -9177,115 +9427,135 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaEndOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaEndOpenings", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaEndOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaEndOpenings", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_sweptAreaEndOpenings() 
-        {
-            var propId = GetPropertyId("sweptAreaEndOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] sweptAreaEndOpenings
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Curve(values[i], null);
+                SetObjectProperty("sweptAreaEndOpenings", value);
                 }
-
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_sweptAreaEndOpenings_Int64()  
-        {
-            var propId = GetPropertyId("sweptAreaEndOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                return values;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Curve[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..-1</summary>
-        public bool set_sweptAreaOpenings(Int64[] instances) { return SetObjectProperty("sweptAreaOpenings", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..-1</summary>
-        public Curve[] get_sweptAreaOpenings() 
-        {
-            var propId = GetPropertyId("sweptAreaOpenings");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Curve[card];
-                for (int i = 0; i < card; i++)
+            get
                 {
-                    ret[i] = new Curve(values[i], null);
+                var propId = GetPropertyId("sweptAreaEndOpenings");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
                 }
-
-                return ret;
             }
-            else
-            {
-                return null;
-            }
-        }
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..-1</summary>
-        public Int64[] get_sweptAreaOpenings_Int64()  
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] sweptAreaEndOpenings_h
         {
-            var propId = GetPropertyId("sweptAreaOpenings");
+            set
+                {
+                SetObjectProperty("sweptAreaEndOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaEndOpenings");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+        }
+        ///<summary>Access an array of related instances. OWL cardinality 0..-1</summary>
+        public Curve[] sweptAreaOpenings
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+            set
+                {
+                SetObjectProperty("sweptAreaOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
 
-                return values;
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
             }
-            else
-            {
-                return null;
-            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..-1</summary>
+        public Int64[] sweptAreaOpenings_h
+        {
+            set
+                {
+                SetObjectProperty("sweptAreaOpenings", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("sweptAreaOpenings");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -9321,7 +9591,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to SweptBlend
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve bottomPolygon
             {
             set
@@ -9386,7 +9656,7 @@ namespace GEOM
             set { SetDatatypeProperty("hasTop", value); }
             get { var arr = GetDatatypeProperty_bool("hasTop"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -9415,7 +9685,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve topPolygon
             {
             set
@@ -9490,7 +9760,7 @@ namespace GEOM
             set { SetDatatypeProperty("innerRadius", value); }
             get { var arr = GetDatatypeProperty_double("innerRadius"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -9751,7 +10021,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to Transformation
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
@@ -9780,7 +10050,7 @@ namespace GEOM
                     }
                 }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -9849,7 +10119,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to TransitionalCurve
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
         public Vector direction
             {
             set
@@ -9884,7 +10154,7 @@ namespace GEOM
             set { SetDatatypeProperty("length", value); }
             get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
         public Curve path
             {
             set
@@ -9989,60 +10259,70 @@ namespace GEOM
             set { SetDatatypeProperty("offsetZ", value); }
             get { var arr = GetDatatypeProperty_double("offsetZ"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationships from this instance to an array of Point. OWL cardinality 0..3</summary>
-        public bool set_pointReferences(Point[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Sets relationships from this instance to an array of Int64. OWL cardinality 0..3</summary>
-        public bool set_pointReferences(Int64[] instances) { return SetObjectProperty("pointReferences", instances); }
-        ///<summary>Get an array of related instances. OWL cardinality 0..3</summary>
-        public Point[] get_pointReferences() 
-        {
-            var propId = GetPropertyId("pointReferences");
-
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
-
-            if (card > 0)
+        ///<summary>Access an array of related instances. OWL cardinality 0..3</summary>
+        public Point[] pointReferences
             {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
-
-                var ret = new Point[card];
-                for (int i = 0; i < card; i++)
+            set
                 {
-                    ret[i] = new Point(values[i], null);
+                SetObjectProperty("pointReferences", value);
                 }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
-        }
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-        ///<summary>Get an array of handles of related instances. OWL cardinality 0..3</summary>
-        public Int64[] get_pointReferences_Int64()  
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Point[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Point(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 0..3</summary>
+        public Int64[] pointReferences_h
         {
-            var propId = GetPropertyId("pointReferences");
+            set
+                {
+                SetObjectProperty("pointReferences", value);
+                }
+            get
+                {
+                var propId = GetPropertyId("pointReferences");
 
-            Int64 card = 0;
-            IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
-            System.Diagnostics.Debug.Assert(res == 0);
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
 
-            if (card > 0)
-            {
-                var values = new Int64[card];
-                System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                return values;
-            }
-            else
-            {
-                return null;
-            }
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
         }
     }
 
@@ -10084,7 +10364,7 @@ namespace GEOM
             set { SetDatatypeProperty("innerFraction", value); }
             get { var arr = GetDatatypeProperty_double("innerFraction"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
-        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
         public GeometricItem object_
             {
             set
@@ -10286,7 +10566,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to View
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
@@ -10349,7 +10629,7 @@ namespace GEOM
         // Properties with known cardinality restrictions to World
         //
 
-        ///<summary>Sets relationship from this instance to an instance of Matrix</summary>
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
         public Matrix matrix
             {
             set
