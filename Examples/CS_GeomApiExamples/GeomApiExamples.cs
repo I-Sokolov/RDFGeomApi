@@ -38,15 +38,15 @@ namespace CS_GeometryKernel
 			colorComponent.G = 0;
 			colorComponent.B = 0;
 
-			//you can use instance and property handlers API
-			Int64 propW = engine.GetPropertyByName(model, "W");
+            //you can directly use early-binding objects in late-binding API engine.cs calls
+            Int64 propW = engine.GetPropertyByName(model, "W");
 			double w = 0.5;
 			engine.SetDatatypeProperty(colorComponent, propW, ref w, 1);
 			//the code above is equivalent to
 			colorComponent.W = 0.5;
 
-			//or you easy use existing instance handlers with classes
-			Int64 colorClass = engine.GetClassByName(model, "Color");
+            //transition from late- to early-binding API
+            Int64 colorClass = engine.GetClassByName(model, "Color");
 			Int64 colorInstance = engine.CreateInstance(colorClass, null as string);
 
 			//get wrapper object from instance handler
