@@ -26,6 +26,7 @@ namespace GEOM
     class BlossCurve;
     class BooleanOperation;
     class BooleanOperation2D;
+    class BothSides;
     class BoundaryRepresentation;
     class Box;
     class BSplineCurve;
@@ -88,6 +89,7 @@ namespace GEOM
     class Material;
     class Mathematics;
     class Matrix;
+    class MatrixByDistanceExpression;
     class MatrixMultiplication;
     class Mesh;
     class Nill;
@@ -141,6 +143,7 @@ namespace GEOM
     class SweptBlend;
     class SweptDiskSolid;
     class Texture;
+    class Thing;
     class ToroidalSurface;
     class Torus;
     class Transformation;
@@ -148,9 +151,11 @@ namespace GEOM
     class TriangleCurve;
     class TriangleReduction;
     class TriangleSet;
+    class Triangulation;
     class Vector;
     class Vector3;
     class View;
+    class Voxel;
     class World;
 
 
@@ -335,10 +340,49 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Thing
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class Thing : public Instance
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class Thing and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Thing Create(int64_t model, const char* name=NULL) { return Thing(Instance::Create(model, "Thing", name, NULL), "Thing");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Thing CreateW(int64_t model, const wchar_t* name = NULL) { return Thing(Instance::Create(model, "Thing", NULL, name), "Thing"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        Thing(int64_t instance = NULL)
+            : Instance(instance, "Thing")
+        {}
+
+    protected:
+        Thing(int64_t instance, const char* checkClassName)
+            : Instance(instance, checkClassName)
+        {}
+    };
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class GeometricItem
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
-    class GeometricItem : public Instance
+    class GeometricItem : public Thing
     {
     public:
         /// <summary>
@@ -364,12 +408,12 @@ namespace GEOM
         /// <param name="instance">OWL instance to interact with</param>
         ///
         GeometricItem(int64_t instance = NULL)
-            : Instance(instance, "GeometricItem")
+            : Thing(instance, "GeometricItem")
         {}
 
     protected:
         GeometricItem(int64_t instance, const char* checkClassName)
-            : Instance(instance, checkClassName)
+            : Thing(instance, checkClassName)
         {}
 
     public:
@@ -864,7 +908,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class Environment
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
-    class Environment : public Instance
+    class Environment : public Thing
     {
     public:
         /// <summary>
@@ -890,12 +934,12 @@ namespace GEOM
         /// <param name="instance">OWL instance to interact with</param>
         ///
         Environment(int64_t instance = NULL)
-            : Instance(instance, "Environment")
+            : Thing(instance, "Environment")
         {}
 
     protected:
         Environment(int64_t instance, const char* checkClassName)
-            : Instance(instance, checkClassName)
+            : Thing(instance, checkClassName)
         {}
     };
 
@@ -991,7 +1035,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class Appearance
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
-    class Appearance : public Instance
+    class Appearance : public Thing
     {
     public:
         /// <summary>
@@ -1017,12 +1061,12 @@ namespace GEOM
         /// <param name="instance">OWL instance to interact with</param>
         ///
         Appearance(int64_t instance = NULL)
-            : Instance(instance, "Appearance")
+            : Thing(instance, "Appearance")
         {}
 
     protected:
         Appearance(int64_t instance, const char* checkClassName)
-            : Instance(instance, checkClassName)
+            : Thing(instance, checkClassName)
         {}
     };
 
@@ -1806,6 +1850,55 @@ namespace GEOM
         bool set_type(int64_t value) { return SetDatatypeProperty ("type", &value, 1); }
         ///<summary>Gets a value of type, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_type() { return GetDatatypeProperty<int64_t>("type", NULL); }
+    };
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class BothSides
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class BothSides : public GeometricItem
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class BothSides and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BothSides Create(int64_t model, const char* name=NULL) { return BothSides(Instance::Create(model, "BothSides", name, NULL), "BothSides");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static BothSides CreateW(int64_t model, const wchar_t* name = NULL) { return BothSides(Instance::Create(model, "BothSides", NULL, name), "BothSides"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        BothSides(int64_t instance = NULL)
+            : GeometricItem(instance, "BothSides")
+        {}
+
+    protected:
+        BothSides(int64_t instance, const char* checkClassName)
+            : GeometricItem(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to BothSides
+       //
+
+        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
     };
 
     /// <summary>
@@ -3371,7 +3464,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class Deviation
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
-    class Deviation : public Instance
+    class Deviation : public Thing
     {
     public:
         /// <summary>
@@ -3397,12 +3490,12 @@ namespace GEOM
         /// <param name="instance">OWL instance to interact with</param>
         ///
         Deviation(int64_t instance = NULL)
-            : Instance(instance, "Deviation")
+            : Thing(instance, "Deviation")
         {}
 
     protected:
         Deviation(int64_t instance, const char* checkClassName)
-            : Instance(instance, checkClassName)
+            : Thing(instance, checkClassName)
         {}
 
     public:
@@ -4462,7 +4555,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class Mathematics
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
-    class Mathematics : public Instance
+    class Mathematics : public Thing
     {
     public:
         /// <summary>
@@ -4488,12 +4581,12 @@ namespace GEOM
         /// <param name="instance">OWL instance to interact with</param>
         ///
         Mathematics(int64_t instance = NULL)
-            : Instance(instance, "Mathematics")
+            : Thing(instance, "Mathematics")
         {}
 
     protected:
         Mathematics(int64_t instance, const char* checkClassName)
-            : Instance(instance, checkClassName)
+            : Thing(instance, checkClassName)
         {}
     };
 
@@ -5097,6 +5190,10 @@ namespace GEOM
         bool set_color(const Color& instance) { return SetObjectProperty<Color>("color", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Color* get_color() { return GetObjectProperty<Color>("color", NULL); }
+        ///<summary>Sets value of isInvisible</summary>
+        bool set_isInvisible(bool value) { return SetDatatypeProperty ("isInvisible", &value, 1); }
+        ///<summary>Gets a value of isInvisible, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const bool* get_isInvisible() { return GetDatatypeProperty<bool>("isInvisible", NULL); }
         ///<summary>Sets relationships from this instance to an array of Texture. OWL cardinality 0..2</summary>
         bool set_textures(const Texture* instances, int64_t count) { return SetObjectProperty<Texture>("textures", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 0..2</summary>
@@ -5105,6 +5202,45 @@ namespace GEOM
         const Texture* get_textures(int64_t* pCount) { return GetObjectProperty<Texture>("textures", pCount); }
         ///<summary>Get an array of related instance handles. OWL cardinality 0..2. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_textures_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("textures", pCount); }
+    };
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class MatrixByDistanceExpression
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class MatrixByDistanceExpression : public Matrix
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class MatrixByDistanceExpression and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static MatrixByDistanceExpression Create(int64_t model, const char* name=NULL) { return MatrixByDistanceExpression(Instance::Create(model, "MatrixByDistanceExpression", name, NULL), "MatrixByDistanceExpression");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static MatrixByDistanceExpression CreateW(int64_t model, const wchar_t* name = NULL) { return MatrixByDistanceExpression(Instance::Create(model, "MatrixByDistanceExpression", NULL, name), "MatrixByDistanceExpression"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        MatrixByDistanceExpression(int64_t instance = NULL)
+            : Matrix(instance, "MatrixByDistanceExpression")
+        {}
+
+    protected:
+        MatrixByDistanceExpression(int64_t instance, const char* checkClassName)
+            : Matrix(instance, checkClassName)
+        {}
     };
 
     /// <summary>
@@ -8188,6 +8324,55 @@ namespace GEOM
     };
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Triangulation
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class Triangulation : public Surface
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class Triangulation and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Triangulation Create(int64_t model, const char* name=NULL) { return Triangulation(Instance::Create(model, "Triangulation", name, NULL), "Triangulation");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Triangulation CreateW(int64_t model, const wchar_t* name = NULL) { return Triangulation(Instance::Create(model, "Triangulation", NULL, name), "Triangulation"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        Triangulation(int64_t instance = NULL)
+            : Surface(instance, "Triangulation")
+        {}
+
+    protected:
+        Triangulation(int64_t instance, const char* checkClassName)
+            : Surface(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to Triangulation
+       //
+
+        ///<summary>Sets relationship from this instance to an instance of GeometricItem</summary>
+        bool set_object(const GeometricItem& instance) { return SetObjectProperty<GeometricItem>("object", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const GeometricItem* get_object() { return GetObjectProperty<GeometricItem>("object", NULL); }
+    };
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class Vector
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -8336,6 +8521,67 @@ namespace GEOM
         bool set_matrix(const Matrix& instance) { return SetObjectProperty<Matrix>("matrix", &instance, 1); }
         ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
         const Matrix* get_matrix() { return GetObjectProperty<Matrix>("matrix", NULL); }
+    };
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class Voxel
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class Voxel : public Solid
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class Voxel and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Voxel Create(int64_t model, const char* name=NULL) { return Voxel(Instance::Create(model, "Voxel", name, NULL), "Voxel");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static Voxel CreateW(int64_t model, const wchar_t* name = NULL) { return Voxel(Instance::Create(model, "Voxel", NULL, name), "Voxel"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        Voxel(int64_t instance = NULL)
+            : Solid(instance, "Voxel")
+        {}
+
+    protected:
+        Voxel(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to Voxel
+       //
+
+        ///<summary>Sets values of quantity. OWL cardinality 1..3</summary>
+        bool set_quantity(const int64_t* values, int64_t count) { return SetDatatypeProperty ("quantity", values, count); }
+        ///<summary>Sets values of quantity from enumerable collection (std::vector, std::list, etc.) of elements convertible to int64_t. OWL cardinality 1..3</summary>
+        template <typename TList> bool set_quantity(const TList& values) { int64_t* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_quantity(arr, count); if (arr) delete[] arr; return ok; }
+        ///<summary>Gets values array of quantity. OWL cardinality 1..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const int64_t* get_quantity(int64_t* pCount) { return GetDatatypeProperty<int64_t>("quantity", pCount); }
+        ///<summary>Sets values of size. OWL cardinality 1..3</summary>
+        bool set_size(const double* values, int64_t count) { return SetDatatypeProperty ("size", values, count); }
+        ///<summary>Sets values of size from enumerable collection (std::vector, std::list, etc.) of elements convertible to double. OWL cardinality 1..3</summary>
+        template <typename TList> bool set_size(const TList& values) { double* arr = NULL; int64_t count = 0; ListToArray(values, &arr, &count); bool ok = set_size(arr, count); if (arr) delete[] arr; return ok; }
+        ///<summary>Gets values array of size. OWL cardinality 1..3. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const double* get_size(int64_t* pCount) { return GetDatatypeProperty<double>("size", pCount); }
+        ///<summary>Sets value of voxels</summary>
+        bool set_voxels(bool value) { return SetDatatypeProperty ("voxels", &value, 1); }
+        ///<summary>Gets a value of voxels, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const bool* get_voxels() { return GetDatatypeProperty<bool>("voxels", NULL); }
     };
 
     /// <summary>
