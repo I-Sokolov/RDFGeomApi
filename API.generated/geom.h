@@ -51,6 +51,7 @@ namespace GEOM
     class Cuboid;
     class Curve;
     class CurvesFromSurface;
+    class CurvesIntersectionPoints;
     class Cylinder;
     class CylindricalSurface;
     class DegenerateToroidalSurface;
@@ -95,6 +96,7 @@ namespace GEOM
     class Nill;
     class NURBSCurve;
     class NURBSSurface;
+    class OffsetCurve;
     class Parabola;
     class Plane;
     class PlaneSurface;
@@ -123,6 +125,7 @@ namespace GEOM
     class SkewedCone;
     class SkewedFrustumCone;
     class Solid;
+    class SolidByIndex;
     class SolidBySurface;
     class SolidLine;
     class Sphere;
@@ -3294,6 +3297,59 @@ namespace GEOM
     };
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class CurvesIntersectionPoints
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class CurvesIntersectionPoints : public Curve
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class CurvesIntersectionPoints and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CurvesIntersectionPoints Create(int64_t model, const char* name=NULL) { return CurvesIntersectionPoints(Instance::Create(model, "CurvesIntersectionPoints", name, NULL), "CurvesIntersectionPoints");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static CurvesIntersectionPoints CreateW(int64_t model, const wchar_t* name = NULL) { return CurvesIntersectionPoints(Instance::Create(model, "CurvesIntersectionPoints", NULL, name), "CurvesIntersectionPoints"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        CurvesIntersectionPoints(int64_t instance = NULL)
+            : Curve(instance, "CurvesIntersectionPoints")
+        {}
+
+    protected:
+        CurvesIntersectionPoints(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to CurvesIntersectionPoints
+       //
+
+        ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
+        bool set_curves(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("curves", instances, count); }
+        ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
+        bool set_curves(const int64_t* instances, int64_t count) { return SetObjectProperty<int64_t>("curves", instances, count); }
+        ///<summary>Get an array of related instances. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const Curve* get_curves(int64_t* pCount) { return GetObjectProperty<Curve>("curves", pCount); }
+        ///<summary>Get an array of related instance handles. OWL cardinality 1..-1. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const int64_t* get_curves_int64(int64_t* pCount) { return GetObjectProperty<int64_t>("curves", pCount); }
+    };
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class Cylinder
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -5501,6 +5557,59 @@ namespace GEOM
     };
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class OffsetCurve
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class OffsetCurve : public Curve
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class OffsetCurve and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static OffsetCurve Create(int64_t model, const char* name=NULL) { return OffsetCurve(Instance::Create(model, "OffsetCurve", name, NULL), "OffsetCurve");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static OffsetCurve CreateW(int64_t model, const wchar_t* name = NULL) { return OffsetCurve(Instance::Create(model, "OffsetCurve", NULL, name), "OffsetCurve"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        OffsetCurve(int64_t instance = NULL)
+            : Curve(instance, "OffsetCurve")
+        {}
+
+    protected:
+        OffsetCurve(int64_t instance, const char* checkClassName)
+            : Curve(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to OffsetCurve
+       //
+
+        ///<summary>Sets relationship from this instance to an instance of Curve</summary>
+        bool set_curve(const Curve& instance) { return SetObjectProperty<Curve>("curve", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const Curve* get_curve() { return GetObjectProperty<Curve>("curve", NULL); }
+        ///<summary>Sets relationship from this instance to an instance of Vector</summary>
+        bool set_offset(const Vector& instance) { return SetObjectProperty<Vector>("offset", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const Vector* get_offset() { return GetObjectProperty<Vector>("offset", NULL); }
+    };
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class Parabola
     /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -6083,6 +6192,10 @@ namespace GEOM
        // Properties with known cardinality restrictions to Polygon2D
        //
 
+        ///<summary>Sets value of length</summary>
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
+        ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
         bool set_lineParts(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("lineParts", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
@@ -6136,6 +6249,10 @@ namespace GEOM
        // Properties with known cardinality restrictions to Polygon3D
        //
 
+        ///<summary>Sets value of length</summary>
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
+        ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
         bool set_lineParts(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("lineParts", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
@@ -6189,6 +6306,10 @@ namespace GEOM
        // Properties with known cardinality restrictions to Polygon4D
        //
 
+        ///<summary>Sets value of length</summary>
+        bool set_length(double value) { return SetDatatypeProperty ("length", &value, 1); }
+        ///<summary>Gets a value of length, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const double* get_length() { return GetDatatypeProperty<double>("length", NULL); }
         ///<summary>Sets relationships from this instance to an array of Curve. OWL cardinality 1..-1</summary>
         bool set_lineParts(const Curve* instances, int64_t count) { return SetObjectProperty<Curve>("lineParts", instances, count); }
         ///<summary>Sets relationships from this instance to an array of int64_t. OWL cardinality 1..-1</summary>
@@ -6989,6 +7110,59 @@ namespace GEOM
         bool set_segmentationParts(int64_t value) { return SetDatatypeProperty ("segmentationParts", &value, 1); }
         ///<summary>Gets a value of segmentationParts, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
         const int64_t* get_segmentationParts() { return GetDatatypeProperty<int64_t>("segmentationParts", NULL); }
+    };
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class SolidByIndex
+    /// You also can use object of this C++ class instead of int64_t handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    class SolidByIndex : public Solid
+    {
+    public:
+        /// <summary>
+        /// Create new instace of OWL class SolidByIndex and returns object of this C++ class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SolidByIndex Create(int64_t model, const char* name=NULL) { return SolidByIndex(Instance::Create(model, "SolidByIndex", name, NULL), "SolidByIndex");}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="name">This attribute represents the name of the instance (given as wchar_t array / Unicode). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        static SolidByIndex CreateW(int64_t model, const wchar_t* name = NULL) { return SolidByIndex(Instance::Create(model, "SolidByIndex", NULL, name), "SolidByIndex"); }
+
+    public:
+        /// <summary>
+        /// Constructs object of this C++ class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        ///
+        SolidByIndex(int64_t instance = NULL)
+            : Solid(instance, "SolidByIndex")
+        {}
+
+    protected:
+        SolidByIndex(int64_t instance, const char* checkClassName)
+            : Solid(instance, checkClassName)
+        {}
+
+    public:
+       //
+       // Properties with known cardinality restrictions to SolidByIndex
+       //
+
+        ///<summary>Sets value of index</summary>
+        bool set_index(int64_t value) { return SetDatatypeProperty ("index", &value, 1); }
+        ///<summary>Gets a value of index, returns NULL is the property was not set. The method returns pointer to inernal buffer, a caller should not free or change it.</summary>
+        const int64_t* get_index() { return GetDatatypeProperty<int64_t>("index", NULL); }
+        ///<summary>Sets relationship from this instance to an instance of Solid</summary>
+        bool set_solid(const Solid& instance) { return SetObjectProperty<Solid>("solid", &instance, 1); }
+        ///<summary>Get related instance. The method returns pointer to inernal buffer, a caller should not free or change it</summary>
+        const Solid* get_solid() { return GetObjectProperty<Solid>("solid", NULL); }
     };
 
     /// <summary>

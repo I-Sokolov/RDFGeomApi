@@ -52,6 +52,7 @@ namespace GEOM
 //     Cuboid
 //     Curve
 //     CurvesFromSurface
+//     CurvesIntersectionPoints
 //     Cylinder
 //     CylindricalSurface
 //     DegenerateToroidalSurface
@@ -96,6 +97,7 @@ namespace GEOM
 //     Nill
 //     NURBSCurve
 //     NURBSSurface
+//     OffsetCurve
 //     Parabola
 //     Plane
 //     PlaneSurface
@@ -124,6 +126,7 @@ namespace GEOM
 //     SkewedCone
 //     SkewedFrustumCone
 //     Solid
+//     SolidByIndex
 //     SolidBySurface
 //     SolidLine
 //     Sphere
@@ -3231,6 +3234,107 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class CurvesIntersectionPoints
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class CurvesIntersectionPoints : Curve
+    {
+        /// <summary>
+        /// Create new instace of OWL class CurvesIntersectionPoints and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new CurvesIntersectionPoints Create(Int64 model, string name=null) { return new CurvesIntersectionPoints(Instance.Create(model, "CurvesIntersectionPoints", name), "CurvesIntersectionPoints");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public CurvesIntersectionPoints(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "CurvesIntersectionPoints") 
+        {            
+        }
+
+        public static implicit operator CurvesIntersectionPoints(Int64 instance) => new CurvesIntersectionPoints(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to CurvesIntersectionPoints
+        //
+
+        public bool Set_curves(Curve[] value) {  return SetObjectProperty("curves", value); }
+        public bool Set_curves(Int64[] value) {  return SetObjectProperty("curves", value); }
+        ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
+        public Curve[] curves
+            {
+            set
+                {
+                if (!SetObjectProperty("curves", value)) throw new SetPropertyException("curves", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("curves");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    var ret = new Curve[card];
+                    for (int i = 0; i < card; i++)
+                        {
+                        ret[i] = new Curve(values[i], null);
+                        }
+
+                    return ret;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+
+        ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
+        public Int64[] curves_h
+        {
+            set
+                {
+                if (!SetObjectProperty("curves", value)) throw new SetPropertyException("curves", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("curves");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[card];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
+
+                    return values;
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+        }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class Cylinder
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -6253,6 +6357,102 @@ namespace GEOM
 
 
     /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class OffsetCurve
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class OffsetCurve : Curve
+    {
+        /// <summary>
+        /// Create new instace of OWL class OffsetCurve and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new OffsetCurve Create(Int64 model, string name=null) { return new OffsetCurve(Instance.Create(model, "OffsetCurve", name), "OffsetCurve");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public OffsetCurve(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "OffsetCurve") 
+        {            
+        }
+
+        public static implicit operator OffsetCurve(Int64 instance) => new OffsetCurve(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to OffsetCurve
+        //
+
+        public bool Set_curve(Int64 value) {  return SetObjectProperty("curve", value); }
+
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
+        public Curve curve
+            {
+            set
+                {
+                if (!SetObjectProperty("curve", value)) throw new SetPropertyException("curve", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("curve");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+        public bool Set_offset(Int64 value) {  return SetObjectProperty("offset", value); }
+
+        ///<summary>Access relationship from this instance to an instance of Vector</summary>
+        public Vector offset
+            {
+            set
+                {
+                if (!SetObjectProperty("offset", value)) throw new SetPropertyException("offset", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("offset");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Vector(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+    }
+
+
+    /// <summary>
     /// Provides utility methods to interact with an instance of OWL class Parabola
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
@@ -6918,6 +7118,13 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon2D
         //
 
+        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -7019,6 +7226,13 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon3D
         //
 
+        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -7120,6 +7334,13 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon4D
         //
 
+        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -8291,6 +8512,78 @@ namespace GEOM
 
         public static implicit operator Solid(Int64 instance) => new Solid(instance);
 
+    }
+
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class SolidByIndex
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class SolidByIndex : Solid
+    {
+        /// <summary>
+        /// Create new instace of OWL class SolidByIndex and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new SolidByIndex Create(Int64 model, string name=null) { return new SolidByIndex(Instance.Create(model, "SolidByIndex", name), "SolidByIndex");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public SolidByIndex(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "SolidByIndex") 
+        {            
+        }
+
+        public static implicit operator SolidByIndex(Int64 instance) => new SolidByIndex(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to SolidByIndex
+        //
+
+        public bool Set_index(Int64? value) {  return SetDatatypeProperty("index", value); }
+        ///<summary>Access value of index</summary>
+        public Int64? index
+            {
+            set { if (!SetDatatypeProperty("index", value)) throw new SetPropertyException("index", m_instance); }
+            get { var arr = GetDatatypeProperty_Int64("index"); return (arr != null && arr.Length > 0) ? (Int64?)arr[0] : null; }
+            }
+        public bool Set_solid(Int64 value) {  return SetObjectProperty("solid", value); }
+
+        ///<summary>Access relationship from this instance to an instance of Solid</summary>
+        public Solid solid
+            {
+            set
+                {
+                if (!SetObjectProperty("solid", value)) throw new SetPropertyException("solid", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("solid");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Solid(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
     }
 
 
