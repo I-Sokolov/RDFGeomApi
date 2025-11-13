@@ -435,6 +435,18 @@ namespace GEOM
             set { if (!SetDatatypeProperty("scalingY", value)) throw new SetPropertyException("scalingY", m_instance); }
             get { var arr = GetDatatypeProperty_double("scalingY"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
+
+        //
+        // Properties with known cardinality restrictions to Curve
+        //
+
+        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
     }
 
 
@@ -469,13 +481,6 @@ namespace GEOM
         // Properties with known cardinality restrictions to AlignedSegment
         //
 
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }
         public bool Set_offsetX(double? value) {  return SetDatatypeProperty("offsetX", value); }
         ///<summary>Access value of offsetX</summary>
         public double? offsetX
@@ -2213,13 +2218,6 @@ namespace GEOM
                     }
                 }
             }
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }
         public bool Set_orientation(Int64? value) {  return SetDatatypeProperty("orientation", value); }
         ///<summary>Access value of orientation</summary>
         public Int64? orientation
@@ -3129,6 +3127,18 @@ namespace GEOM
 
         public static implicit operator Curve(Int64 instance) => new Curve(instance);
 
+
+        //
+        // Properties with known cardinality restrictions to Curve
+        //
+
+        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
+        ///<summary>Access value of length</summary>
+        public double? length
+            {
+            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
+            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
     }
 
 
@@ -3237,7 +3247,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class CurvesIntersectionPoints
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
-    public class CurvesIntersectionPoints : Curve
+    public class CurvesIntersectionPoints : Point
     {
         /// <summary>
         /// Create new instace of OWL class CurvesIntersectionPoints and returns object of this C# class to interact with
@@ -6009,6 +6019,49 @@ namespace GEOM
 
         public static implicit operator MatrixByDistanceExpression(Int64 instance) => new MatrixByDistanceExpression(instance);
 
+
+        //
+        // Properties with known cardinality restrictions to MatrixByDistanceExpression
+        //
+
+        public bool Set_curve(Int64 value) {  return SetObjectProperty("curve", value); }
+
+        ///<summary>Access relationship from this instance to an instance of Curve</summary>
+        public Curve curve
+            {
+            set
+                {
+                if (!SetObjectProperty("curve", value)) throw new SetPropertyException("curve", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("curve");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Curve(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+        public bool Set_distanceAlong(double? value) {  return SetDatatypeProperty("distanceAlong", value); }
+        ///<summary>Access value of distanceAlong</summary>
+        public double? distanceAlong
+            {
+            set { if (!SetDatatypeProperty("distanceAlong", value)) throw new SetPropertyException("distanceAlong", m_instance); }
+            get { var arr = GetDatatypeProperty_double("distanceAlong"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
+            }
     }
 
 
@@ -7118,13 +7171,6 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon2D
         //
 
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -7226,13 +7272,6 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon3D
         //
 
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -7334,13 +7373,6 @@ namespace GEOM
         // Properties with known cardinality restrictions to Polygon4D
         //
 
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
-            }
         public bool Set_lineParts(Curve[] value) {  return SetObjectProperty("lineParts", value); }
         public bool Set_lineParts(Int64[] value) {  return SetObjectProperty("lineParts", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
@@ -8618,18 +8650,18 @@ namespace GEOM
         // Properties with known cardinality restrictions to SolidBySurface
         //
 
-        public bool Set_faces(Face[] value) {  return SetObjectProperty("faces", value); }
-        public bool Set_faces(Int64[] value) {  return SetObjectProperty("faces", value); }
+        public bool Set_surface(Surface[] value) {  return SetObjectProperty("surface", value); }
+        public bool Set_surface(Int64[] value) {  return SetObjectProperty("surface", value); }
         ///<summary>Access an array of related instances. OWL cardinality 1..-1</summary>
-        public Face[] faces
+        public Surface[] surface
             {
             set
                 {
-                if (!SetObjectProperty("faces", value)) throw new SetPropertyException("faces", m_instance);
+                if (!SetObjectProperty("surface", value)) throw new SetPropertyException("surface", m_instance);
                 }
             get
                 {
-                var propId = GetPropertyId("faces");
+                var propId = GetPropertyId("surface");
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
@@ -8641,10 +8673,10 @@ namespace GEOM
                     var values = new Int64[card];
                     System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)card);
 
-                    var ret = new Face[card];
+                    var ret = new Surface[card];
                     for (int i = 0; i < card; i++)
                         {
-                        ret[i] = new Face(values[i], null);
+                        ret[i] = new Surface(values[i], null);
                         }
 
                     return ret;
@@ -8657,15 +8689,15 @@ namespace GEOM
             }
 
         ///<summary>Access an array of handles of related instances. OWL cardinality 1..-1</summary>
-        public Int64[] faces_h
+        public Int64[] surface_h
         {
             set
                 {
-                if (!SetObjectProperty("faces", value)) throw new SetPropertyException("faces", m_instance);
+                if (!SetObjectProperty("surface", value)) throw new SetPropertyException("surface", m_instance);
                 }
             get
                 {
-                var propId = GetPropertyId("faces");
+                var propId = GetPropertyId("surface");
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
@@ -11044,13 +11076,6 @@ namespace GEOM
                     return null;
                     }
                 }
-            }
-        public bool Set_length(double? value) {  return SetDatatypeProperty("length", value); }
-        ///<summary>Access value of length</summary>
-        public double? length
-            {
-            set { if (!SetDatatypeProperty("length", value)) throw new SetPropertyException("length", m_instance); }
-            get { var arr = GetDatatypeProperty_double("length"); return (arr != null && arr.Length > 0) ? (double?)arr[0] : null; }
             }
         public bool Set_path(Int64 value) {  return SetObjectProperty("path", value); }
 
