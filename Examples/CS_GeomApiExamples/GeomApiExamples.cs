@@ -81,7 +81,7 @@ namespace CS_GeometryKernel
 
 			ASSERT(new GeometricItem(curve) != 0);
 			ASSERT(new GeometricItem(texture) == 0);
-			//implicit cast altrenative
+			//implicit cast alternative
 			ASSERT ((GeometricItem)curve_id != 0); 
 			ASSERT ((GeometricItem)texture_id == 0); 
 
@@ -117,14 +117,14 @@ namespace CS_GeometryKernel
 				Console.WriteLine("Expected exception " + e.Message);
 				}
 
-			//aletnative to avoid exception - use set function
+			//alternative to avoid exception - use set function
 			var ok = texture.Set_origin(tooLong);
 			ASSERT(!ok);
 
 			//false b/c wrong property name
 			ok = texture.SetDatatypeProperty("length", org);
 			ASSERT(!ok);
-			ret_org = texture.GetDatatypeProperty_double("originnn");
+			ret_org = texture.GetDatatypeProperty_double("origiNNN");
 			ASSERT(ret_org == null);
 
 			//long
