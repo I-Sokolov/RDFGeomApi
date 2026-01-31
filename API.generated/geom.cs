@@ -151,6 +151,7 @@ namespace GEOM
 //     ToroidalSurface
 //     Torus
 //     Transformation
+//     TransformationOfCurve
 //     TransitionalCurve
 //     TriangleCurve
 //     TriangleReduction
@@ -10916,7 +10917,7 @@ namespace GEOM
     /// Provides utility methods to interact with an instance of OWL class Transformation
     /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
     /// </summary>
-    public class Transformation : Curve
+    public class Transformation : GeometricItem
     {
         /// <summary>
         /// Create new instace of OWL class Transformation and returns object of this C# class to interact with
@@ -10937,6 +10938,109 @@ namespace GEOM
         }
 
         public static implicit operator Transformation(Int64 instance) => new Transformation(instance);
+
+
+        //
+        // Properties with known cardinality restrictions to Transformation
+        //
+
+        public bool Set_matrix(Int64 value) {  return SetObjectProperty("matrix", value); }
+
+        ///<summary>Access relationship from this instance to an instance of Matrix</summary>
+        public Matrix matrix
+            {
+            set
+                {
+                if (!SetObjectProperty("matrix", value)) throw new SetPropertyException("matrix", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("matrix");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new Matrix(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+        public bool Set_object(Int64 value) {  return SetObjectProperty("object", value); }
+
+        ///<summary>Access relationship from this instance to an instance of GeometricItem</summary>
+        public GeometricItem object_
+            {
+            set
+                {
+                if (!SetObjectProperty("object", value)) throw new SetPropertyException("object", m_instance);
+                }
+            get
+                {
+                var propId = GetPropertyId("object");
+
+                Int64 card = 0;
+                IntPtr valuesPtr = IntPtr.Zero;
+                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                System.Diagnostics.Debug.Assert(res == 0);
+
+                if (card > 0)
+                    {
+                    var values = new Int64[1];
+                    System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int)1);
+
+                    return new GeometricItem(values[0], null);
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
+            }
+        public bool Set_recalculateBBox(bool? value) {  return SetDatatypeProperty("recalculateBBox", value); }
+        ///<summary>Access value of recalculateBBox</summary>
+        public bool? recalculateBBox
+            {
+            set { if (!SetDatatypeProperty("recalculateBBox", value)) throw new SetPropertyException("recalculateBBox", m_instance); }
+            get { var arr = GetDatatypeProperty_bool("recalculateBBox"); return (arr != null && arr.Length > 0) ? (bool?)arr[0] : null; }
+            }
+    }
+
+
+    /// <summary>
+    /// Provides utility methods to interact with an instance of OWL class TransformationOfCurve
+    /// You also can use object of this C# class instead of Int64 handle of the OWL instance in any place where the handle is required
+    /// </summary>
+    public class TransformationOfCurve : Curve
+    {
+        /// <summary>
+        /// Create new instace of OWL class TransformationOfCurve and returns object of this C# class to interact with
+        /// </summary>
+        /// <param name="model">The handle to the model</param>
+        /// <param name="name">This attribute represents the name of the instance (given as char array / ASCII). The name is given by the host and the attribute is not changed</param>
+        /// <returns></returns>
+        public static new TransformationOfCurve Create(Int64 model, string name=null) { return new TransformationOfCurve(Instance.Create(model, "TransformationOfCurve", name), "TransformationOfCurve");}
+        
+        /// <summary>
+        /// Constructs object of this C# class that wraps existing OWL instance
+        /// </summary>
+        /// <param name="instance">OWL instance to interact with</param>
+        /// <param name="checkClassName">Expected OWL class of the instance, used for diagnostic (optionally)</param>
+        public TransformationOfCurve(Int64 instance, string checkClassName = null) 
+            : base (instance, (checkClassName!=null) ? checkClassName : "TransformationOfCurve") 
+        {            
+        }
+
+        public static implicit operator TransformationOfCurve(Int64 instance) => new TransformationOfCurve(instance);
 
 
         //
