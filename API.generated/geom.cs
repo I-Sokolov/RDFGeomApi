@@ -209,7 +209,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -245,7 +245,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -276,7 +276,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -511,7 +511,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -583,7 +583,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -619,7 +619,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -684,7 +684,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -729,7 +729,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1020,7 +1020,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1086,7 +1086,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1180,7 +1180,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1211,7 +1211,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1242,7 +1242,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1321,7 +1321,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1352,7 +1352,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1383,7 +1383,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1455,7 +1455,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1534,7 +1534,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1570,7 +1570,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1913,7 +1913,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -1949,7 +1949,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2062,7 +2062,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2093,7 +2093,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2124,7 +2124,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2203,7 +2203,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2346,7 +2346,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2382,7 +2382,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2475,7 +2475,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2513,7 +2513,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2544,7 +2544,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2575,7 +2575,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -2888,7 +2888,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -3189,7 +3189,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -3225,7 +3225,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -3290,7 +3290,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -3326,7 +3326,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -3597,7 +3597,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4058,7 +4058,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4089,7 +4089,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4125,7 +4125,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4211,7 +4211,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4247,7 +4247,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4362,7 +4362,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4398,7 +4398,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4429,7 +4429,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4501,7 +4501,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4537,7 +4537,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4700,7 +4700,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4893,7 +4893,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4929,7 +4929,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -4994,7 +4994,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5025,7 +5025,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5090,7 +5090,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5155,7 +5155,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5220,7 +5220,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5285,7 +5285,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5550,7 +5550,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5581,7 +5581,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5646,7 +5646,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5682,7 +5682,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5747,7 +5747,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5785,7 +5785,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -5821,7 +5821,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6040,7 +6040,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6112,7 +6112,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6143,7 +6143,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6208,7 +6208,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6273,7 +6273,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6309,7 +6309,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6456,7 +6456,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6487,7 +6487,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6643,7 +6643,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6868,7 +6868,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6933,7 +6933,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6964,7 +6964,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -6995,7 +6995,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7060,7 +7060,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7187,7 +7187,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7223,7 +7223,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7288,7 +7288,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7324,7 +7324,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7389,7 +7389,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7425,7 +7425,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7497,7 +7497,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7533,7 +7533,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7660,7 +7660,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7696,7 +7696,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7727,7 +7727,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -7792,7 +7792,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8070,7 +8070,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8101,7 +8101,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8195,7 +8195,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8226,7 +8226,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8257,7 +8257,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8288,7 +8288,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8319,7 +8319,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8601,7 +8601,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8666,7 +8666,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -8702,7 +8702,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9037,7 +9037,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9073,7 +9073,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9166,7 +9166,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9202,7 +9202,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9337,7 +9337,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9460,7 +9460,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9491,7 +9491,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9522,7 +9522,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9558,7 +9558,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9623,7 +9623,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9654,7 +9654,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9719,7 +9719,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9791,7 +9791,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9829,7 +9829,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9867,7 +9867,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9898,7 +9898,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9934,7 +9934,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -9999,7 +9999,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10037,7 +10037,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10068,7 +10068,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10104,7 +10104,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10169,7 +10169,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10207,7 +10207,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10238,7 +10238,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10269,7 +10269,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10300,7 +10300,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10336,7 +10336,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10367,7 +10367,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10403,7 +10403,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10468,7 +10468,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10541,7 +10541,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10572,7 +10572,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10651,7 +10651,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10959,7 +10959,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -10990,7 +10990,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11062,7 +11062,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11093,7 +11093,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11165,7 +11165,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11196,7 +11196,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11310,7 +11310,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11346,7 +11346,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11418,7 +11418,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11538,7 +11538,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11694,7 +11694,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11814,7 +11814,7 @@ namespace GEOM
 
                 Int64 card = 0;
                 IntPtr valuesPtr = IntPtr.Zero;
-                var res = engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
+                var res = Engine.GetObjectProperty(m_instance, propId, out valuesPtr, out card);
                 System.Diagnostics.Debug.Assert(res == 0);
 
                 if (card > 0)
@@ -11844,10 +11844,10 @@ namespace GEOM
         /// </summary>
         public static Int64 Create(Int64 model, string className, string instanceName)
         {
-            Int64 clsid = engine.GetClassByName(model, className);
+            Int64 clsid = Engine.GetClassByName(model, className);
             System.Diagnostics.Debug.Assert(clsid != 0);
 
-            Int64 instance = engine.CreateInstance(clsid, instanceName);
+            Int64 instance = Engine.CreateInstance(clsid, instanceName);
             System.Diagnostics.Debug.Assert(instance != 0);
 
             return instance;
@@ -11869,7 +11869,7 @@ namespace GEOM
         public Instance(Int64 instance, string cls)
         {
             m_instance = instance;
-            if (cls != null && !engine.IsInstanceOfClass(instance, cls))
+            if (cls != null && !Engine.IsInstanceOfClass(instance, cls))
             {
                 m_instance = 0;
             }
@@ -11890,10 +11890,10 @@ namespace GEOM
                 {
                 if (m_instance != 0)
                     {
-                    var cls = engine.GetInstanceClass(m_instance);
+                    var cls = Engine.GetInstanceClass(m_instance);
                     if (cls!= 0)
                         {
-                        return engine.GetNameOfClass(cls);
+                        return Engine.GetNameOfClass(cls);
                         }
                     }
                 return null;
@@ -11905,13 +11905,13 @@ namespace GEOM
         /// </summary>
         public Int64 GetPropertyId(string name, Int64 checkCardinality = -1)
         {
-            var model = engine.GetModel(m_instance);
-            var propId = engine.GetPropertyByName(model, name);
+            var model = Engine.GetModel(m_instance);
+            var propId = Engine.GetPropertyByName(model, name);
             if (propId != 0)
             {
-                var clsId = engine.GetInstanceClass(m_instance);
+                var clsId = Engine.GetInstanceClass(m_instance);
                 Int64 minCard = 0, maxCard = 0;
-                engine.GetClassPropertyAggregatedCardinalityRestriction(clsId, propId, out minCard, out maxCard);
+                Engine.GetClassPropertyAggregatedCardinalityRestriction(clsId, propId, out minCard, out maxCard);
                 if (minCard < 0)
                 {
                     propId = 0; //property is not assigned to the class
@@ -11941,7 +11941,7 @@ namespace GEOM
                 val = value.Value;
                 card = 1;
                 }
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -11951,7 +11951,7 @@ namespace GEOM
         public bool SetDatatypeProperty(string name, double[] values)
         {
             var propId = GetPropertyId(name, values.Length);
-            var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
             return(res == 0);
         }
 
@@ -11968,7 +11968,7 @@ namespace GEOM
                 val = value.Value;
                 card = 1;
                 }
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -11978,7 +11978,7 @@ namespace GEOM
         public bool SetDatatypeProperty(string name, Int64[] values)
         {
             var propId = GetPropertyId(name, values.Length);
-            var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
             return(res == 0);
         }
 
@@ -11995,7 +11995,7 @@ namespace GEOM
                 val = (byte)(value.Value ? 1 : 0); ;
                 card = 1;
                 }
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref val, card);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, ref val, card);
             return(res == 0);
         }
 
@@ -12009,7 +12009,7 @@ namespace GEOM
                 bytes[i] = values[i] ? (byte)1 : (byte)0;
 
             var propId = GetPropertyId(name, values.Length);
-            var res = engine.SetDatatypeProperty(m_instance, propId, bytes, values.Length);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, bytes, values.Length);
             return(res == 0);
         }
 
@@ -12019,7 +12019,7 @@ namespace GEOM
         public bool SetDatatypeProperty(string name, string value)
         {
             var propId = GetPropertyId(name, 1);
-            var res = engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, ref value, 1);
             return(res == 0);
         }
 
@@ -12029,7 +12029,7 @@ namespace GEOM
         public bool SetDatatypeProperty(string name, string[] values)
         {
             var propId = GetPropertyId(name, values.Length);
-            var res = engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
+            var res = Engine.SetDatatypeProperty(m_instance, propId, values, values.Length);
             return(res == 0);
         }
 
@@ -12042,7 +12042,7 @@ namespace GEOM
 
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
+            var res = Engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
             if (res != 0)
             {
                 card = 0;
@@ -12070,7 +12070,7 @@ namespace GEOM
 
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
+            var res = Engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
             if(res != 0)
             {
                 card = 0;
@@ -12098,7 +12098,7 @@ namespace GEOM
 
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
+            var res = Engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
             if(res != 0)
             {
                 card = 0;
@@ -12132,7 +12132,7 @@ namespace GEOM
 
             Int64 card = 0;
             IntPtr valuesPtr = IntPtr.Zero;
-            var res = engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
+            var res = Engine.GetDatatypeProperty(m_instance, propId, out valuesPtr, out card);
             if(res != 0)
             {
                 card = 0;
@@ -12162,7 +12162,7 @@ namespace GEOM
         public bool SetObjectProperty(string name, Int64 instance)
         {
             var propId = GetPropertyId(name);
-            var res = engine.SetObjectProperty(m_instance, propId, ref instance, 1);
+            var res = Engine.SetObjectProperty(m_instance, propId, ref instance, 1);
             return (res == 0);
         }
 
@@ -12189,7 +12189,7 @@ namespace GEOM
             for (int i = 0; i < instances.Length; i++)
                 inst[i] = instances[i];
 
-            var res = engine.SetObjectProperty(m_instance, propId, ref inst[0], inst.Length);
+            var res = Engine.SetObjectProperty(m_instance, propId, ref inst[0], inst.Length);
             return(res == 0);
         }
 
@@ -12256,10 +12256,10 @@ namespace GEOM
             string clsName = "<NULL>";
             if (instance != 0)
                 {
-                var cls = engine.GetInstanceClass(instance);
+                var cls = Engine.GetInstanceClass(instance);
                 if (cls != 0)
                     {
-                    clsName = engine.GetNameOfClass(cls);
+                    clsName = Engine.GetNameOfClass(cls);
                     }
                 }
 
