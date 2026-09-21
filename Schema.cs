@@ -18,16 +18,16 @@ namespace RDFWrappers
             {
                 switch (type)
                 {
-                    case RDF.engine.OBJECTPROPERTY_TYPE:             return "Instance";
-                    case RDF.engine.DATATYPEPROPERTY_TYPE_BOOLEAN:   return "bool";
-                    case RDF.engine.DATATYPEPROPERTY_TYPE_CHAR:      return cs ? "string" : "const char* const";
-                    case RDF.engine.DATATYPEPROPERTY_TYPE_INTEGER:   return cs ? "Int64" : "int64_t";
-                    case RDF.engine.DATATYPEPROPERTY_TYPE_DOUBLE:    return "double";
+                    case RDF.Engine.OBJECTPROPERTY_TYPE:             return "Instance";
+                    case RDF.Engine.DATATYPEPROPERTY_TYPE_BOOLEAN:   return "bool";
+                    case RDF.Engine.DATATYPEPROPERTY_TYPE_CHAR:      return cs ? "string" : "const char* const";
+                    case RDF.Engine.DATATYPEPROPERTY_TYPE_INTEGER:   return cs ? "Int64" : "int64_t";
+                    case RDF.Engine.DATATYPEPROPERTY_TYPE_DOUBLE:    return "double";
                 }
                 throw new ApplicationException("Unknown property type");
             }
 
-            public bool IsObject() { return type == RDF.engine.OBJECTPROPERTY_TYPE; }
+            public bool IsObject() { return type == RDF.Engine.OBJECTPROPERTY_TYPE; }
         }
 
         public class ClassProperty
@@ -64,13 +64,13 @@ namespace RDFWrappers
         public string GetNameOfClass (Int64 clsid)
         {
             IntPtr namePtr = IntPtr.Zero;
-            RDF.engine.GetNameOfClass(clsid, out namePtr);
+            RDF.Engine.GetNameOfClass(clsid, out namePtr);
             return System.Runtime.InteropServices.Marshal.PtrToStringAnsi(namePtr);
         }
 
         private void CollectClasses ()
         {
-            Int64 clsid = RDF.engine.GetClassesByIterator(m_model, 0);
+            Int64 clsid = RDF.Engine.GetClassesByIterator(m_model, 0);
             while (clsid != 0)
             {
                 string name = GetNameOfClass(clsid);
@@ -84,17 +84,17 @@ namespace RDFWrappers
 
                 m_classes.Add(name, cls);
 
-                clsid = RDF.engine.GetClassesByIterator(m_model, clsid);
+                clsid = RDF.Engine.GetClassesByIterator(m_model, clsid);
             }
         }
 
         private void CollectClassParents (Class cls)
         {
-            Int64 parent = RDF.engine.GetClassParentsByIterator(cls.id, 0);
+            Int64 parent = RDF.Engine.GetClassParentsByIterator(cls.id, 0);
             while (parent!=0)
             {
                 cls.parents.Add(parent);
-                parent = RDF.engine.GetClassParentsByIterator(cls.id, parent);
+                parent = RDF.Engine.GetClassParentsByIterator(cls.id, parent);
             }
         }
 
@@ -103,7 +103,7 @@ namespace RDFWrappers
             foreach (var prop in m_properties)
             {
                 Int64 min, max;
-                RDF.engine.GetClassPropertyCardinalityRestriction(cls.id, prop.Value.id, out min, out max);
+                RDF.Engine.GetClassPropertyCardinalityRestriction(cls.id, prop.Value.id, out min, out max);
 
                 if (min >= 0)
                 {
@@ -120,23 +120,23 @@ namespace RDFWrappers
 
         private void CollectProperties()
         {
-            Int64 propid = RDF.engine.GetPropertiesByIterator(m_model, 0);
+            Int64 propid = RDF.Engine.GetPropertiesByIterator(m_model, 0);
             while (propid != 0)
             {
                 IntPtr namePtr = IntPtr.Zero;
-                RDF.engine.GetNameOfProperty(propid, out namePtr);
+                RDF.Engine.GetNameOfProperty(propid, out namePtr);
 
                 string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(namePtr);
 
                 Property prop = new Property();
                 prop.id = propid;
-                prop.type = RDF.engine.GetPropertyType(prop.id);
+                prop.type = RDF.Engine.GetPropertyType(prop.id);
 
-                var restrict = RDF.engine.GetRangeRestrictionsByIterator(prop.id, 0);
+                var restrict = RDF.Engine.GetRangeRestrictionsByIterator(prop.id, 0);
                 while (restrict != 0)
                 {
                     prop.resrtictions.Add(restrict);
-                    restrict = RDF.engine.GetRangeRestrictionsByIterator(prop.id, restrict);
+                    restrict = RDF.Engine.GetRangeRestrictionsByIterator(prop.id, restrict);
                 }
                 System.Diagnostics.Debug.Assert( //other cases not testes
                     prop.resrtictions.Count == 0 && !prop.IsObject()
@@ -144,7 +144,7 @@ namespace RDFWrappers
 
                 m_properties.Add(name, prop);
 
-                propid = RDF.engine.GetPropertiesByIterator(m_model, propid);
+                propid = RDF.Engine.GetPropertiesByIterator(m_model, propid);
             }
         }
 

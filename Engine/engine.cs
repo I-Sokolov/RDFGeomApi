@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Linq;
+using System.Xml.Linq;
+
 
 namespace RDF
 {
@@ -19,56 +21,56 @@ namespace RDF
 
 		//	control vertex data
 		///	<summary>Vertex contains 3D point info</summary>
-		public const Int64 VERTEX_POINT = (1<<4); 
+		public const Int64 VERTEX_POINT = (1<<4);
 		///	<summary>Vertex contains normal info</summary>
-		public const Int64 VERTEX_NORMAL = (1<<5); 
+		public const Int64 VERTEX_NORMAL = (1<<5);
 		///	<summary>Vertex contains first 2D texture info</summary>
-		public const Int64 VERTEX_TEXTURE_UV = (1<<6); 
+		public const Int64 VERTEX_TEXTURE_UV = (1<<6);
 		///	<summary>Vertex does contain tangent vector for first texture</summary>
-		public const Int64 VERTEX_TEXTURE_TANGENT = (1<<28); 
+		public const Int64 VERTEX_TEXTURE_TANGENT = (1<<28);
 		///	<summary>Vertex does contain binormal vector for first texture</summary>
-		public const Int64 VERTEX_TEXTURE_BINORMAL = (1<<29); 
+		public const Int64 VERTEX_TEXTURE_BINORMAL = (1<<29);
 		///	<summary>Vertex contains second 2D texture info</summary>
-		public const Int64 VERTEX_TEXTURE2_UV = (1<<7); 
+		public const Int64 VERTEX_TEXTURE2_UV = (1<<7);
 		///	<summary>Vertex does contain tangent vector for second texture (only 64 bit platform)</summary>
-		public const Int64 VERTEX_TEXTURE2_TANGENT = (1<<30); 
+		public const Int64 VERTEX_TEXTURE2_TANGENT = (1<<30);
 		///	<summary>Vertex does contain binormal vector for second texture (only 64 bit platform)</summary>
-		public const Int64 VERTEX_TEXTURE2_BINORMAL = (1<<31); 
+		public const Int64 VERTEX_TEXTURE2_BINORMAL = (1<<31);
 		///	<summary>Vertex does contain Ambient color information</summary>
-		public const Int64 VERTEX_COLOR_AMBIENT = (1<<24); 
+		public const Int64 VERTEX_COLOR_AMBIENT = (1<<24);
 		///	<summary>Vertex does contain Diffuse color information</summary>
-		public const Int64 VERTEX_COLOR_DIFFUSE = (1<<25); 
+		public const Int64 VERTEX_COLOR_DIFFUSE = (1<<25);
 		///	<summary>Vertex does contain Emissive color information</summary>
-		public const Int64 VERTEX_COLOR_EMISSIVE = (1<<26); 
+		public const Int64 VERTEX_COLOR_EMISSIVE = (1<<26);
 		///	<summary>Vertex does contain Specular color information</summary>
-		public const Int64 VERTEX_COLOR_SPECULAR = (1<<27); 
+		public const Int64 VERTEX_COLOR_SPECULAR = (1<<27);
 		//	control CalculateInstance behaviour
 		///	<summary>Object form triangles are exported (effective if instance contains faces and/or solids)(triangulated surface representation)</summary>
 		public const Int64 EXPORT_TRIANGLES = (1<<8);
 		///	<summary>Object polygon lines are exported (effective if instance contains line representations)</summary>
 		public const Int64 EXPORT_LINES = (1<<9);
 		///	<summary>Object points are exported (effective if instance contains point representations)</summary>
-		public const Int64 EXPORT_POINTS = (1<<10); 
+		public const Int64 EXPORT_POINTS = (1<<10);
 		///	<summary>Object face polygon lines (dense wireframe) are exported (requires FORMAT_FLAG_CONTAINS_TRIANGLES)</summary>
-		public const Int64 EXPORT_FACE_POLYGONS = (1<<12); 
+		public const Int64 EXPORT_FACE_POLYGONS = (1<<12);
 		///	<summary>Object conceptual face polygon lines (wireframe) are exported </summary>
-		public const Int64 EXPORT_CONCEPTUAL_FACE_POLYGONS = (1<<13); 
+		public const Int64 EXPORT_CONCEPTUAL_FACE_POLYGONS = (1<<13);
 		///	<summary>Polygon lines (wireframe) exported as tuples (edges) - else as list (loop)</summary>
-		public const Int64 EXPORT_POLYGONS_AS_TUPLES = (1<<14); 
+		public const Int64 EXPORT_POLYGONS_AS_TUPLES = (1<<14);
 		///	<summary>Normals are exported to be in line with the original semantic form description (orthogonal to conceprual face, could be non orthogonal to the planar face or triangle) - else all normals of triangles are transformed orthogonal to the palnar face or triangle they belong to</summary>
-		public const Int64 EXPORT_ADVANCED_NORMALS = (1<<15); 
+		public const Int64 EXPORT_ADVANCED_NORMALS = (1<<15);
 		///	<summary>Where possible DirectX compatibility is given to exported data. Unsets FORMAT_FLAG_OPENGL, FORMAT_FLAG_VERSION_0001, FORMAT_FLAG_VERSION_0010</summary>
-		public const Int64 EXPORT_DIRECTX = (1<<16); 
+		public const Int64 EXPORT_DIRECTX = (1<<16);
 		///	<summary>Where possible OpenGL compatibility is given to exported data. Unsets FORMAT_FLAG_DIRECTX. Sets FORMAT_FLAG_VERSION_0001, FORMAT_FLAG_VERSION_0010</summary>
-		public const Int64 EXPORT_OPENGL = (1<<17); 
+		public const Int64 EXPORT_OPENGL = (1<<17);
 		///	<summary>Every face has exactly one opposite face (normally both index and vertex array are doubled in size)</summary>
-		public const Int64 EXPORT_DOUBLE_SIDED = (1<<18); 
+		public const Int64 EXPORT_DOUBLE_SIDED = (1<<18);
 		///	<summary>Opposite Triangle Rotation (RHS as expected by OpenGL) - else  Standard Triangle Rotation (LHS as expected by DirectX)</summary>
-		public const Int64 EXPORT_VERSION_0001 = (1<<20); 
+		public const Int64 EXPORT_VERSION_0001 = (1<<20);
 		///	<summary>X, Y, Z (nX, nY, nZ) formatted as , i.e. X, -Z, Y (nX, -nZ, nY) considering internal concepts (OpenGL) - else X, Y, Z (nX, nY, nZ) formatted as considering internal concepts</summary>
-		public const Int64 EXPORT_VERSION_0010 = (1<<21); 
-		public const Int64 EXPORT_VERSION_0100 = (1<<22); 
-		public const Int64 EXPORT_VERSION_1000 = (1<<23); 
+		public const Int64 EXPORT_VERSION_0010 = (1<<21);
+		public const Int64 EXPORT_VERSION_0100 = (1<<22);
+		public const Int64 EXPORT_VERSION_1000 = (1<<23);
 	}
 
 	///	<summary>
@@ -115,27 +117,27 @@ namespace RDF
 		///	<summary>get color comonents in range 0..255 to arry of 4 elements</summary>
 		public static byte[] GET_COMPONENTS255(UInt32 clr)
 		{
-			var	r = new byte[4]; 
-			r[0] = GET_R255(clr); 
-			r[1] = GET_G255(clr); 
-			r[2] = GET_B255(clr); 
-			r[3] = GET_W255(clr); 
-			return	r; 
+			var	r = new byte[4];
+			r[0] = GET_R255(clr);
+			r[1] = GET_G255(clr);
+			r[2] = GET_B255(clr);
+			r[3] = GET_W255(clr);
+			return	r;
 		}
 
 		///	<summary>get color comonents in range 0..1 to arry of 4 elements</summary>
 		public static double[] GET_COMPONENTS(UInt32 clr)
 		{
-			var	r = new double[4]; 
-			r[0] = GET_R(clr); 
-			r[1] = GET_G(clr); 
-			r[2] = GET_B(clr); 
-			r[3] = GET_W(clr); 
+			var	r = new double[4];
+			r[0] = GET_R(clr);
+			r[1] = GET_G(clr);
+			r[2] = GET_B(clr);
+			r[3] = GET_W(clr);
 			return	r;
 		}
 	}//COLOR
 
-	class engine
+	class Engine
 	{
 		public const Int64 OBJECTPROPERTY_TYPE             = 1;
 		public const Int64 DATATYPEPROPERTY_TYPE_BOOLEAN   = 2;
@@ -186,9 +188,15 @@ namespace RDF
 
 		public const string enginedll = @"engine.dll";
 
-        //
-        //  Meta information API Calls
-        //
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate Int64 ReadCallBackFunction(IntPtr value);
+
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
+
+		//
+		//  Meta information API Calls
+		//
 
 		/// <summary>
 		///		GetRevision                                             (https://rdf.bg/gkdoc/CS64/GetRevision.html)
@@ -371,7 +379,7 @@ namespace RDF
 		///	The return value is the size of a single character in bits, i.e. 1 byte is 8 bits, the value for a wchar_t can be 16 or 32 depending on settings and operating system
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetCharacterSerialization")]
-		public static extern Int64 SetCharacterSerialization(Int64 model, Int64 encoding, Int64 wcharBitSizeOverride, byte ascii);
+		public static extern Int64 SetCharacterSerialization(Int64 model, Int64 encoding, Int64 wcharBitSizeOverride, [param: MarshalAs(UnmanagedType.U1)] bool ascii);
 
 		/// <summary>
 		///		GetCharacterSerialization                               (https://rdf.bg/gkdoc/CS64/GetCharacterSerialization.html)
@@ -381,7 +389,7 @@ namespace RDF
 		///	The returns the size of a single character in bits, i.e. 1 byte is 8 bits, this can be 8, 16 or 32 depending on settings and operating system
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetCharacterSerialization")]
-		public static extern Int64 GetCharacterSerialization(Int64 model, out Int64 encoding, out byte ascii);
+		public static extern Int64 GetCharacterSerialization(Int64 model, out Int64 encoding, [param: MarshalAs(UnmanagedType.U1)] out bool ascii);
 
 		/// <summary>
 		///		SetModellingStyle                                       (https://rdf.bg/gkdoc/CS64/SetModellingStyle.html)
@@ -611,6 +619,15 @@ namespace RDF
 		public static extern void GetInternalCheckIssueW(Int64 model, out IntPtr name, out IntPtr description, out Int64 relatedOwlInstance);
 
 		/// <summary>
+		///		ValidateResource                                        (https://rdf.bg/gkdoc/CS64/ValidateResource.html)
+		///
+		///	This function starts an internal validation on a resource. Any rdfsResource can be used as input.
+		///	If nothing unexpected is found the return value is 0.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "ValidateResource")]
+		public static extern Int64 ValidateResource(Int64 rdfsResource);
+
+		/// <summary>
 		///		CloseSession                                            (https://rdf.bg/gkdoc/CS64/CloseSession.html)
 		///
 		///	This function closes the session, after this call the geometry kernel cannot be used anymore.
@@ -655,7 +672,7 @@ namespace RDF
 		/// <summary>
 		///		GetExternalReferenceData                                (https://rdf.bg/gkdoc/CS64/GetExternalReferenceData.html)
 		///
-		///	Gets application data from model, class, property, instance that were previosly set by SetExternalReferenceData
+		///	Gets application data from model, class, property, instance that were previously set by SetExternalReferenceData
 		///	Returns 0 on error, 1 on success
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetExternalReferenceData")]
@@ -674,15 +691,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetExternalReferenceDataId")]
 		public static extern Int64 GetExternalReferenceDataId(Int64 model, byte[] uniqueAppName);
 
-        //
-        //  File IO/Stream/Copy API Calls
-        //
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate Int64 ReadCallBackFunction(IntPtr value);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
+		//
+		//  File IO/Stream/Copy API Calls
+		//
 
 		/// <summary>
 		///		CreateModel                                             (https://rdf.bg/gkdoc/CS64/CreateModel.html)
@@ -798,6 +809,10 @@ namespace RDF
 		///		SaveInstanceTree                                        (https://rdf.bg/gkdoc/CS64/SaveInstanceTree.html)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceTree")]
 		public static extern Int64 SaveInstanceTree(Int64 owlInstance, string fileName);
@@ -809,6 +824,10 @@ namespace RDF
 		///		SaveInstanceTreeW                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeW.html)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeW")]
 		public static extern Int64 SaveInstanceTreeW(Int64 owlInstance, string fileName);
@@ -820,6 +839,10 @@ namespace RDF
 		///		SaveInstanceTreeS                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeS.html)
 		///
 		///	This function saves the selected instance and its dependencies in a stream.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - callback unknown or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeS")]
 		public static extern Int64 SaveInstanceTreeS(Int64 owlInstance, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
@@ -828,6 +851,10 @@ namespace RDF
 		///		SaveInstanceTreeA                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeA.html)
 		///
 		///	This function saves the selected instance and its dependencies in an array.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - content or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeA")]
 		public static extern Int64 SaveInstanceTreeA(Int64 owlInstance, byte[] content, out Int64 size);
@@ -836,44 +863,66 @@ namespace RDF
 		///		SaveInstanceNetwork                                     (https://rdf.bg/gkdoc/CS64/SaveInstanceNetwork.html)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetwork")]
-		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, byte includeInverseRelations, string fileName);
+		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, string fileName);
 
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetwork")]
-		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, byte includeInverseRelations, byte[] fileName);
+		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
 		///		SaveInstanceNetworkW                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkW.html)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkW")]
-		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, byte includeInverseRelations, string fileName);
+		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, string fileName);
 
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkW")]
-		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, byte includeInverseRelations, byte[] fileName);
+		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
 		///		SaveInstanceNetworkS                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkS.html)
 		///
 		///	This function saves the selected instance and its dependencies in a stream.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - callback unknown or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkS")]
-		public static extern Int64 SaveInstanceNetworkS(Int64 owlInstance, byte includeInverseRelations, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
+		public static extern Int64 SaveInstanceNetworkS(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
 		///		SaveInstanceNetworkA                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkA.html)
 		///
 		///	This function saves the selected instance and its dependencies in an array.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - content or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkA")]
-		public static extern Int64 SaveInstanceNetworkA(Int64 owlInstance, byte includeInverseRelations, byte[] content, out Int64 size);
+		public static extern Int64 SaveInstanceNetworkA(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] content, out Int64 size);
 
 		/// <summary>
 		///		SaveModel                                               (https://rdf.bg/gkdoc/CS64/SaveModel.html)
 		///
 		///	This function saves the current model on location file name.
+		///
+		///	It is allowed to use a class, property or instance handle instead of the model handle.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - model is NULL or not recognized as an model (or class/property/instance) handle
+		///		2 - content or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveModel")]
 		public static extern Int64 SaveModel(Int64 model, string fileName);
@@ -885,6 +934,12 @@ namespace RDF
 		///		SaveModelW                                              (https://rdf.bg/gkdoc/CS64/SaveModelW.html)
 		///
 		///	This function saves the current model on location file name.
+		///
+		///	It is allowed to use a class, property or instance handle instead of the model handle.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - model is NULL or not recognized as an model (or class/property/instance) handle
+		///		2 - content or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveModelW")]
 		public static extern Int64 SaveModelW(Int64 model, string fileName);
@@ -896,6 +951,12 @@ namespace RDF
 		///		SaveModelS                                              (https://rdf.bg/gkdoc/CS64/SaveModelS.html)
 		///
 		///	This function saves the current model in a stream.
+		///
+		///	It is allowed to use a class, property or instance handle instead of the model handle.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - callback unknown or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveModelS")]
 		public static extern Int64 SaveModelS(Int64 model, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
@@ -904,6 +965,12 @@ namespace RDF
 		///		SaveModelA                                              (https://rdf.bg/gkdoc/CS64/SaveModelA.html)
 		///
 		///	This function saves the current model in an array.
+		///
+		///	It is allowed to use a class, property or instance handle instead of the model handle.
+		///
+		///	If save operation finished succesfully the return value will be 0, in case of non-zero value:
+		///		1 - owlInstance is NULL or not recognized as an instance handle
+		///		2 - content or size is zero
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SaveModelA")]
 		public static extern Int64 SaveModelA(Int64 model, byte[] content, out Int64 size);
@@ -1011,7 +1078,7 @@ namespace RDF
 		///	The return value is the handle to the copied owlInstance in the model of choice.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "CopyInstanceNetwork")]
-		public static extern Int64 CopyInstanceNetwork(Int64 owlInstance, byte includeInverseRelations, Int64 targetModel);
+		public static extern Int64 CopyInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, Int64 targetModel);
 
 		/// <summary>
 		///		EncodeBase64                                            (https://rdf.bg/gkdoc/CS64/EncodeBase64.html)
@@ -1025,10 +1092,10 @@ namespace RDF
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "EncodeBase64")]
-		public static extern Int64 EncodeBase64(string output, byte[] input, Int64 size, byte terminator);
+		public static extern Int64 EncodeBase64(string output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		[DllImport(enginedll, EntryPoint = "EncodeBase64")]
-		public static extern Int64 EncodeBase64(byte[] output, byte[] input, Int64 size, byte terminator);
+		public static extern Int64 EncodeBase64(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
 		///		EncodeBase64W                                           (https://rdf.bg/gkdoc/CS64/EncodeBase64W.html)
@@ -1042,10 +1109,10 @@ namespace RDF
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "EncodeBase64W")]
-		public static extern Int64 EncodeBase64W(string output, byte[] input, Int64 size, byte terminator);
+		public static extern Int64 EncodeBase64W(string output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		[DllImport(enginedll, EntryPoint = "EncodeBase64W")]
-		public static extern Int64 EncodeBase64W(byte[] output, byte[] input, Int64 size, byte terminator);
+		public static extern Int64 EncodeBase64W(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
 		///		DecodeBase64                                            (https://rdf.bg/gkdoc/CS64/DecodeBase64.html)
@@ -1115,9 +1182,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "IsModel")]
 		public static extern Int64 IsModel(Int64 rdfsResource);
 
-        //
-        //  Design Tree Classes API Calls
-        //
+		//
+		//  Design Tree Classes API Calls
+		//
 
 		/// <summary>
 		///		CreateClass                                             (https://rdf.bg/gkdoc/CS64/CreateClass.html)
@@ -1213,7 +1280,7 @@ namespace RDF
 		///		parentOwlClass became a direct parent of owlClass and they were not related this manner before
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetClassParent")]
-		public static extern Int64 SetClassParent(Int64 owlClass, Int64 parentOwlClass, Int64 setting);
+		public static extern Int64 SetClassParent(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
 		///		SetClassParentEx                                        (https://rdf.bg/gkdoc/CS64/SetClassParentEx.html)
@@ -1240,7 +1307,50 @@ namespace RDF
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetClassParentEx")]
-		public static extern Int64 SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass, Int64 setting);
+		public static extern Int64 SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
+
+		/// <summary>
+		///		UnsetClassParent                                        (https://rdf.bg/gkdoc/CS64/UnsetClassParent.html)
+		///
+		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
+		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
+		///	object properties (relations).
+		///
+		///	It removes parentOwlClass as immediate parents of owlClass if result is consistent.
+		///
+		///	It will return 0 in case:
+		///		owlClass and/or parentOwlClass are 0
+		///		owlClass equals parentOwlClass
+		///		parentOwlClass was not a direct parent of owlClass (could be as another parent class of owlClass has parentOwlClass as parent)
+		///
+		///	It will return owlClass in case:
+		///		parentOwlClass was a direct parent of owlClass and is now removed
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "UnsetClassParent")]
+		public static extern Int64 UnsetClassParent(Int64 owlClass, Int64 parentOwlClass);
+
+		/// <summary>
+		///		UnsetClassParentEx                                      (https://rdf.bg/gkdoc/CS64/UnsetClassParentEx.html)
+		///
+		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
+		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
+		///	object properties (relations).
+		///
+		///	It removes parentOwlClass as immediate parents of owlClass if result is consistent.
+		///
+		///	It will return 0 in case:
+		///		owlClass and/or parentOwlClass are 0
+		///		owlClass equals parentOwlClass
+		///		parentOwlClass was not a direct parent of owlClass (could be as another parent class of owlClass has parentOwlClass as parent)
+		///
+		///	It will return owlClass in case:
+		///		parentOwlClass was a direct parent of owlClass and is now removed
+		///
+		///	This call has the same behavior as SetClassParent, however needs to be
+		///	used in case classes are exchanged as a successive series of integers.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "UnsetClassParentEx")]
+		public static extern Int64 UnsetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
 		///		IsClassAncestor                                         (https://rdf.bg/gkdoc/CS64/IsClassAncestor.html)
@@ -1590,9 +1700,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "IsClass")]
 		public static extern Int64 IsClass(Int64 rdfsResource);
 
-        //
-        //  Design Tree Properties API Calls
-        //
+		//
+		//  Design Tree Properties API Calls
+		//
 
 		/// <summary>
 		///		CreateProperty                                          (https://rdf.bg/gkdoc/CS64/CreateProperty.html)
@@ -1958,9 +2068,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "IsProperty")]
 		public static extern Int64 IsProperty(Int64 rdfsResource);
 
-        //
-        //  Design Tree Instances API Calls
-        //
+		//
+		//  Design Tree Instances API Calls
+		//
 
 		/// <summary>
 		///		CreateInstance                                          (https://rdf.bg/gkdoc/CS64/CreateInstance.html)
@@ -2140,6 +2250,52 @@ namespace RDF
 		public static extern Int64 GetInstanceGeometryClassEx(Int64 model, Int64 owlInstance);
 
 		/// <summary>
+		///		SetInstanceClass                                        (https://rdf.bg/gkdoc/CS64/SetInstanceClass.html)
+		///
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "SetInstanceClass")]
+		public static extern Int64 SetInstanceClass(Int64 owlInstance, Int64 owlClass);
+
+		/// <summary>
+		///		SetInstanceClassEx                                      (https://rdf.bg/gkdoc/CS64/SetInstanceClassEx.html)
+		///
+		///	In case the instance is not yet (indirectly) defined as an instance of this class, the instance will
+		///	be an instance of this class as well as the existing classes.
+		///
+		///	In case the instance dependency on classes has changed this function will return the instance given as input.
+		///
+		///	This call has the same behavior as SetInstanceClass, however needs to be
+		///	used in case instance or class are exchanged as a successive series of integers.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "SetInstanceClassEx")]
+		public static extern Int64 SetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
+
+		/// <summary>
+		///		UnsetInstanceClass                                      (https://rdf.bg/gkdoc/CS64/UnsetInstanceClass.html)
+		///
+		///	In case the instance is a direct instance of this class, the instance will not
+		///	be an instance of this class anymore, if there are no classes left it automatically becomes an instance of Thing.
+		///
+		///	In case the instance dependency on classes has changed this function will return the instance given as input.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "UnsetInstanceClass")]
+		public static extern Int64 UnsetInstanceClass(Int64 owlInstance, Int64 owlClass);
+
+		/// <summary>
+		///		UnsetInstanceClassEx                                    (https://rdf.bg/gkdoc/CS64/UnsetInstanceClassEx.html)
+		///
+		///	In case the instance is a direct instance of this class, the instance will not
+		///	be an instance of this class anymore, if there are no classes left it automatically becomes an instance of Thing.
+		///
+		///	In case the instance dependency on classes has changed this function will return the instance given as input.
+		///
+		///	This call has the same behavior as UnsetInstanceClass, however needs to be
+		///	used in case instance or class are exchanged as a successive series of integers.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "UnsetInstanceClassEx")]
+		public static extern Int64 UnsetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
+
+		/// <summary>
 		///		GetInstancePropertyByIterator                           (https://rdf.bg/gkdoc/CS64/GetInstancePropertyByIterator.html)
 		///
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty connected to
@@ -2148,7 +2304,7 @@ namespace RDF
 		///	and the exact cardinality in context of its instance.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetInstancePropertyByIterator")]
-		public static extern Int64 GetInstancePropertyByIterator(Int64 owlInstance, Int64 rdfProperty);
+		public static extern Int64 GetInstancePropertyByIterator(Int64 rdfsResource, Int64 rdfProperty);
 
 		/// <summary>
 		///		GetInstancePropertyByIteratorEx                         (https://rdf.bg/gkdoc/CS64/GetInstancePropertyByIteratorEx.html)
@@ -2172,6 +2328,16 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetInstanceReferencesByIterator")]
 		public static extern Int64 GetInstanceReferencesByIterator(Int64 owlInstance, Int64 referencedOwlInstance);
+
+		/// <summary>
+		///		ConsolidateInstanceTree                                 (https://rdf.bg/gkdoc/CS64/ConsolidateInstanceTree.html)
+		///
+		///	All technically unnecessary structures within the tree referenced by the owlInstance will be removed.
+		///	These structures could be relevant for semantical representation, such semantic meaning is lost. The resulting
+		///	geometry will however be the same.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "ConsolidateInstanceTree")]
+		public static extern Int64 ConsolidateInstanceTree(Int64 owlInstance);
 
 		/// <summary>
 		///		SetNameOfInstance                                       (https://rdf.bg/gkdoc/CS64/SetNameOfInstance.html)
@@ -2337,28 +2503,28 @@ namespace RDF
 		///		  the property is within the boundaries.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref byte values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref byte values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, byte[] values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, byte[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref double values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref double values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, double[] values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, double[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref string values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref string values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
-		public static extern Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, string[] values, Int64 card);
+		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, bool value)
 		{
@@ -2453,34 +2619,33 @@ namespace RDF
 		///		  the property is within the boundaries.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, ref byte values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref byte values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, byte[] values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, byte[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, ref double values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref double values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, double[] values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, double[] values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, ref string values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref string values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
-		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, string[] values, Int64 card);
+		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		/// <summary>
 		///		GetDatatypeProperty                                     (https://rdf.bg/gkdoc/CS64/GetDatatypeProperty.html)
 		///
-		///	This function gets the value(s) of a certain datatypeTypeProperty
-		///	in the context of an instance.
+		///	This function gets the value(s) of a certain datatypeTypeProperty of an instance, class or model.
 		///	The value of card gives the actual card of the values list.
 		///	The list values of undefined (void) items is a list of booleans, chars, integers
 		///	or doubles, this list has a length as given in the value card. The actual used type
@@ -2488,7 +2653,7 @@ namespace RDF
 		///	The return value always should be 0, if not something is wrong in the way this property is called.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetDatatypeProperty")]
-		public static extern Int64 GetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
+		public static extern Int64 GetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		public static bool[] GetDatatypeProperty_inBool(Int64 owlInstance, Int64 owlDatatypeProperty)
 		{
@@ -2606,7 +2771,7 @@ namespace RDF
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetDatatypePropertyEx")]
-		public static extern Int64 GetDatatypePropertyEx(Int64 model, Int64 owlInstance, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
+		public static extern Int64 GetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
 		///		SetObjectProperty                                       (https://rdf.bg/gkdoc/CS64/SetObjectProperty.html)
@@ -2622,10 +2787,10 @@ namespace RDF
 		///		  the property is within the boundaries.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetObjectProperty")]
-		public static extern Int64 SetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, ref Int64 values, Int64 card);
+		public static extern Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, ref Int64 values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetObjectProperty")]
-		public static extern Int64 SetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64[] values, Int64 card);
+		public static extern Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		public static Int64 SetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64 value)
 		{
@@ -2658,10 +2823,10 @@ namespace RDF
 		///		  the property is within the boundaries.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetObjectPropertyEx")]
-		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 owlInstance, Int64 owlObjectProperty, ref Int64 values, Int64 card);
+		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, ref Int64 values, Int64 card);
 
 		[DllImport(enginedll, EntryPoint = "SetObjectPropertyEx")]
-		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 owlInstance, Int64 owlObjectProperty, Int64[] values, Int64 card);
+		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		/// <summary>
 		///		GetObjectProperty                                       (https://rdf.bg/gkdoc/CS64/GetObjectProperty.html)
@@ -2674,7 +2839,7 @@ namespace RDF
 		///	The return value always should be 0, if not something is wrong in the way this property is called.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetObjectProperty")]
-		public static extern Int64 GetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
+		public static extern Int64 GetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		public static Int64[] GetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty)
 		{
@@ -2708,7 +2873,7 @@ namespace RDF
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetObjectPropertyEx")]
-		public static extern Int64 GetObjectPropertyEx(Int64 model, Int64 owlInstance, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
+		public static extern Int64 GetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
 		///		CreateInstanceInContextStructure                        (https://rdf.bg/gkdoc/CS64/CreateInstanceInContextStructure.html)
@@ -2845,9 +3010,9 @@ namespace RDF
 			return GetInstanceClass(owlInstance) == GetClassByName(GetModel(owlInstance), name);
 		}
 
-        //
-        //  Retrieve Geometry API Calls
-        //
+		//
+		//  Retrieve Geometry API Calls
+		//
 
 		/// <summary>
 		///		CalculateInstance                                       (https://rdf.bg/gkdoc/CS64/CalculateInstance.html)
@@ -2893,12 +3058,60 @@ namespace RDF
 		///
 		///	This function prepares the content to be ready without filling the buffers
 		///	as done within CalculateInstance(). CalculateInstance calls this function as a start.
-		///	This function will also set the 'derived' values for the instance passed as argument.
+		///	This function will also set the derived values for the instance passed as argument.
 		///	For example the coordinates values of a MultiplicationMatrix will be set if the array is
 		///	defined.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "UpdateInstance")]
 		public static extern Int64 UpdateInstance(Int64 owlInstance);
+
+		/// <summary>
+		///		IsUpToDate                                              (https://rdf.bg/gkdoc/CS64/IsUpToDate.html)
+		///
+		///	This function returns if an instance has geometry derived and if this
+		///	geometry is still up-to-date. It could return false if geometry has never been updated
+		///	or in case a property has been updated, or a (recursively) related instance has an updated property since
+		///	last calculation of geometry.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "IsUpToDate")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool IsUpToDate(Int64 owlInstance);
+
+		/// <summary>
+		///		SetPropertyDerived                                      (https://rdf.bg/gkdoc/CS64/SetPropertyDerived.html)
+		///
+		///	This function sets if the property of an instance, class or model is derived.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "SetPropertyDerived")]
+		public static extern void SetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty, [param: MarshalAs(UnmanagedType.U1)] bool derived);
+
+		/// <summary>
+		///		GetPropertyDerived                                      (https://rdf.bg/gkdoc/CS64/GetPropertyDerived.html)
+		///
+		///	This function returns true if instance, class or model has the property set as derived.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetPropertyDerived")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty);
+
+		/// <summary>
+		///		GetClassModificationMark                                (https://rdf.bg/gkdoc/CS64/GetClassModificationMark.html)
+		///
+		///	This function returns value that indicated class modification time but it is not the time.
+		///	If a class or any of its parents have been modified the value will increase.
+		///	If a class or any of its parents have been modified later then another the value will be bigger.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetClassModificationMark")]
+		public static extern Int64 GetClassModificationMark(Int64 owlClass);
+
+		/// <summary>
+		///		UpdateClassModificationMark                             (https://rdf.bg/gkdoc/CS64/UpdateClassModificationMark.html)
+		///
+		///	This function informs class it has been changed externally.
+		///	Application may want to call it when it changed its class external reference data. 
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "UpdateClassModificationMark")]
+		public static extern void UpdateClassModificationMark(Int64 owlClass);
 
 		/// <summary>
 		///		InferenceInstance                                       (https://rdf.bg/gkdoc/CS64/InferenceInstance.html)
@@ -2931,7 +3144,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, out double vertexBuffer);
 
 		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBuffer")]
-		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, double[] vertexBuffer);
+		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, [Out] double[] vertexBuffer);
 
 		/// <summary>
 		///		UpdateInstanceVertexBufferTrimmed                       (https://rdf.bg/gkdoc/CS64/UpdateInstanceVertexBufferTrimmed.html)
@@ -2951,7 +3164,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, out double vertexBuffer, Int64 offset, Int64 size);
 
 		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
-		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, double[] vertexBuffer, Int64 offset, Int64 size);
+		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, [Out] double[] vertexBuffer, Int64 offset, Int64 size);
 
 		/// <summary>
 		///		UpdateInstanceIndexBuffer                               (https://rdf.bg/gkdoc/CS64/UpdateInstanceIndexBuffer.html)
@@ -3013,7 +3226,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, out double transformationBuffer);
 
 		[DllImport(enginedll, EntryPoint = "UpdateInstanceTransformationBuffer")]
-		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, double[] transformationBuffer);
+		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, [Out] double[] transformationBuffer);
 
 		/// <summary>
 		///		ClearedInstanceExternalBuffers                          (https://rdf.bg/gkdoc/CS64/ClearedInstanceExternalBuffers.html)
@@ -3045,6 +3258,34 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetConceptualFaceCnt")]
 		public static extern Int64 GetConceptualFaceCnt(Int64 owlInstance);
+
+		/// <summary>
+		///		GetConceptualFaceDiscriminator                          (https://rdf.bg/gkdoc/CS64/GetConceptualFaceDiscriminator.html)
+		///
+		///	This function returns a unique name for the conceptualFace.
+		///	The name will be the same for each recalculation of the geometry.
+		///	The return value (and optional argument name) have a valid content till the next call of this
+		///	function or till the model is closed.
+		///
+		///	Note: This allows to keep track of conceptual faces if te number of conceptual faces changes.
+		///	For example in case of a boolean operation where the type of placement of objects is changing. 
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceDiscriminator")]
+		public static extern IntPtr GetConceptualFaceDiscriminator(Int64 owlInstance, Int64 index, out IntPtr name);
+
+		/// <summary>
+		///		GetConceptualFaceDiscriminatorW                         (https://rdf.bg/gkdoc/CS64/GetConceptualFaceDiscriminatorW.html)
+		///
+		///	This function returns a unique name for the conceptualFace.
+		///	The name will be the same for each recalculation of the geometry.
+		///	The return value (and optional argument name) have a valid content till the next call of this
+		///	function or till the model is closed.
+		///
+		///	Note: This allows to keep track of conceptual faces if te number of conceptual faces changes.
+		///	For example in case of a boolean operation where the type of placement of objects is changing. 
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceDiscriminatorW")]
+		public static extern IntPtr GetConceptualFaceDiscriminatorW(Int64 owlInstance, Int64 index, out IntPtr name);
 
 		/// <summary>
 		///		GetConceptualFace                                       (https://rdf.bg/gkdoc/CS64/GetConceptualFace.html)
@@ -3160,6 +3401,21 @@ namespace RDF
 		}
 
 		/// <summary>
+		///		GetConceptualFaceMatrix                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceMatrix.html)
+		///
+		///	This function returns the transformation matrix of the conceptual face.
+		///
+		///	The matrix is defined as a 12 element matrix.
+		///
+		///	In case matrix is not allocated by the host the matrix is outdated the moment the same call is called again.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceMatrix")]
+		public static extern double[] GetConceptualFaceMatrix(Int64 owlInstance, Int64 index, out double matrix);
+
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceMatrix")]
+		public static extern double[] GetConceptualFaceMatrix(Int64 owlInstance, Int64 index, [Out] double[] matrix);
+
+		/// <summary>
 		///		GetConceptualFaceMaterial                               (https://rdf.bg/gkdoc/CS64/GetConceptualFaceMaterial.html)
 		///
 		///	This function returns the material instance relevant for this
@@ -3192,6 +3448,42 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetConceptualFaceOriginEx")]
 		public static extern void GetConceptualFaceOriginEx(Int64 conceptualFace, Int64 index, out Int64 originatingOwlInstance, out Int64 originatingConceptualFace);
+
+		/// <summary>
+		///		GetConceptualFaceXYZ2UV                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceXYZ2UV.html)
+		///
+		///	This function returns UV coordinates for a specific conceptualFace given its real world coordinates.
+		///	The UV coordinates are expected to be both (inclusive) between 0. and 1., i.e. [0..1].
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceXYZ2UV")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetConceptualFaceXYZ2UV(Int64 owlInstance, Int64 index, out double u, out double v, double x, double y, double z);
+
+		/// <summary>
+		///		GetConceptualFaceUV2XYZ                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceUV2XYZ.html)
+		///
+		///	This function returns real world coordinates for a specific conceptualFace given its UV coordinates.
+		///	The UV coordinates are expected to be both (inclusive) between 0. and 1., i.e. [0..1].
+		///
+		///	Note: the returned value is the exact location within the 3D model space
+		///	    according to the internal definition. This can slightly differ from the
+		///	    generated geometry because of segmentation.
+		///
+		///	Therefore the following code returns the same values for u and v (if proper values, i.e. both within range [0..1]):
+		///	    double  u = .., v = ..;
+		///	    double  x, y, z;
+		///	    GetConceptualFaceUV2XYZ(conceptualFace, &x, &y, &z, u, v);
+		///	    GetConceptualFaceUV2XYZ(conceptualFace, &u, &v, x, y, z);
+		///
+		///	The following code returns potentially not exactly the same values for x, y, z (if values are from resutling geometry):
+		///	    double  x = .., y = .., z = ..;
+		///	    double  u, v;
+		///	    GetConceptualFaceUV2XYZ(conceptualFace, &u, &v, x, y, z);
+		///	    GetConceptualFaceUV2XYZ(conceptualFace, &x, &y, &z, u, v);
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetConceptualFaceUV2XYZ")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetConceptualFaceUV2XYZ(Int64 owlInstance, Int64 index, out double x, out double y, out double z, out double Nx, out double Ny, out double Nz, double u, double v);
 
 		/// <summary>
 		///		GetFaceCnt                                              (https://rdf.bg/gkdoc/CS64/GetFaceCnt.html)
@@ -3228,7 +3520,7 @@ namespace RDF
 		///	of influence on the form. It also returns the handle to instance this property
 		///	belongs to.
 		///
-		///	Note: the returned property is always a datatypeProperty
+		///	Note: the returned property is always a property
 		///	Note: if input is incorrect (for example index is in wrong domain) _property and
 		///		  instance will be both zero.
 		///	Note: BE AWARE, THIS FUNCTION EXPECTS A TREE, NOT A NETWORK, IN CASE OF A NETWORK THIS FUNCTION CAN LOCK THE ENGINE
@@ -3292,8 +3584,8 @@ namespace RDF
 		///			1	Polygon lines (wireframe) exported as tuples, i.e. typical 4 point polygon exported as 0 1 1 2 2 3 3 0
 		///
 		///		bit 15:	(FORMAT_EXPORT_ADVANCED_NORMALS)
-		///			0	All normals of triangles are transformed orthogonal to the 2D face they belong to
-		///			1	Normals are exported to be in line with the original semantic form description (could be non orthogonal to the 2D face) 
+		///			0	All normal vectors of triangles are transformed orthogonal to the 2D face they belong to
+		///			1	Normal vectors are exported to be in line with the original semantic form description (could be non orthogonal to the 2D face) 
 		///
 		///		bit 16:	(FORMAT_EXPORT_DIRECTX)
 		///			0	no specific behavior
@@ -3465,7 +3757,7 @@ namespace RDF
 		public static extern void GetVertexBufferTransformation(Int64 model, out double matrix);
 
 		[DllImport(enginedll, EntryPoint = "GetVertexBufferTransformation")]
-		public static extern void GetVertexBufferTransformation(Int64 model, double[] matrix);
+		public static extern void GetVertexBufferTransformation(Int64 model, [Out] double[] matrix);
 
 		/// <summary>
 		///		SetIndexBufferOffset                                    (https://rdf.bg/gkdoc/CS64/SetIndexBufferOffset.html)
@@ -3631,14 +3923,16 @@ namespace RDF
 		///	The parameter duplicateMatrix is optional and can be left to zero.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "IsDuplicate")]
-		public static extern byte IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, out double duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, byte checkMaterial);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, out double duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, [param: MarshalAs(UnmanagedType.U1)] bool checkMaterial);
 
 		[DllImport(enginedll, EntryPoint = "IsDuplicate")]
-		public static extern byte IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, double[] duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, byte checkMaterial);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, [Out] double[] duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, [param: MarshalAs(UnmanagedType.U1)] bool checkMaterial);
 
-        //
-        //  Derived Geometry API Calls
-        //
+		//
+		//  Derived Geometry API Calls
+		//
 
 		/// <summary>
 		///		GetPerimeter                                            (https://rdf.bg/gkdoc/CS64/GetPerimeter.html)
@@ -3647,7 +3941,7 @@ namespace RDF
 		///
 		///	Note: internally the call does not store its results, any optimization based on known
 		///		  dependencies between instances need to be implemented on the client.
-		///	Note: due to internal structure using already calculated vertex buffer / index buffer does not
+		///	Note: due to internal structure using already calculated vertex buffer/index buffer does not
 		///		  give any performance benefits, in opposite to GetVolume and GetArea
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetPerimeter")]
@@ -3763,31 +4057,31 @@ namespace RDF
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, out double center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
-		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, double[] center);
+		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, [Out] double[] center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, out double center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
-		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, double[] center);
+		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, [Out] double[] center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, out double center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
-		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, double[] center);
+		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, [Out] double[] center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, out double center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
-		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, double[] center);
+		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, [Out] double[] center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, out double center);
 
 		[DllImport(enginedll, EntryPoint = "GetCenter")]
-		public static extern void GetCenter(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, double[] center);
+		public static extern void GetCenter(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, [Out] double[] center);
 
 		public static void GetCenter(Int64 owlInstance, out double center)
 		{
@@ -3802,31 +4096,31 @@ namespace RDF
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, out double centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
-		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, double[] centroid);
+		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, [Out] double[] centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, out double centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
-		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, double[] centroid);
+		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, [Out] double[] centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, out double centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
-		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, double[] centroid);
+		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, [Out] double[] centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, out double centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
-		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, double[] centroid);
+		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, [Out] double[] centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, out double centroid);
 
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
-		public static extern double GetCentroid(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, double[] centroid);
+		public static extern double GetCentroid(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, [Out] double[] centroid);
 
 		public static double GetCentroid(Int64 owlInstance, out double centroid)
 		{
@@ -3883,28 +4177,32 @@ namespace RDF
 		public static extern void SetBoundingBoxReference(Int64 owlInstance, out double transformationMatrix, out double startVector, out double endVector);
 
 		[DllImport(enginedll, EntryPoint = "SetBoundingBoxReference")]
-		public static extern void SetBoundingBoxReference(Int64 owlInstance, double[] transformationMatrix, double[] startVector, double[] endVector);
+		public static extern void SetBoundingBoxReference(Int64 owlInstance, [Out] double[] transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
 		/// <summary>
 		///		GetBoundingBox                                          (https://rdf.bg/gkdoc/CS64/GetBoundingBox.html)
 		///
 		///	When the transformationMatrix is given, it will fill an array of 12 double values.
 		///	When the transformationMatrix is left empty and both startVector and endVector are
-		///	given the boundingbox without transformation is calculated and returned.
+		///	given the bounding box without transformation is calculated and returned.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
-		public static extern byte GetBoundingBox(Int64 owlInstance, out double transformationMatrix, out double startVector, out double endVector);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetBoundingBox(Int64 owlInstance, out double transformationMatrix, out double startVector, out double endVector);
 
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
-		public static extern byte GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, out double startVector, out double endVector);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, out double startVector, out double endVector);
 
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
-		public static extern byte GetBoundingBox(Int64 owlInstance, double[] transformationMatrix, double[] startVector, double[] endVector);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetBoundingBox(Int64 owlInstance, double[] transformationMatrix, double[] startVector, double[] endVector);
 
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
-		public static extern byte GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, double[] startVector, double[] endVector);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, double[] startVector, double[] endVector);
 
-		public static byte GetBoundingBox(Int64 owlInstance, out double startVector, out double endVector)
+		public static bool GetBoundingBox(Int64 owlInstance, out double startVector, out double endVector)
 		{
 			return GetBoundingBox(owlInstance, IntPtr.Zero, out startVector, out endVector);
 		}
@@ -3912,7 +4210,7 @@ namespace RDF
 		/// <summary>
 		///		GetRelativeTransformation                               (https://rdf.bg/gkdoc/CS64/GetRelativeTransformation.html)
 		///
-		///	This function returns the relative transformation matrix between two instances, i.e. in practise
+		///	This function returns the relative transformation matrix between two instances, i.e. in practice
 		///	this means the matrices connected to the Transformation instances in the path in between.
 		///	The matrix is only given when a unique path through inverse relations can be found,
 		///	otherwise the identity matrix is returned.
@@ -3922,7 +4220,7 @@ namespace RDF
 		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, out double transformationMatrix);
 
 		[DllImport(enginedll, EntryPoint = "GetRelativeTransformation")]
-		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, double[] transformationMatrix);
+		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, [Out] double[] transformationMatrix);
 
 		/// <summary>
 		///		GetDistance                                             (https://rdf.bg/gkdoc/CS64/GetDistance.html)
@@ -3930,24 +4228,24 @@ namespace RDF
 		///	This function returns the shortest distance between two instances.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetDistance")]
-		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, out double pointFirstInstance, out double pointSecondInstance, byte allowCalculateInstance);
+		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, out double pointFirstInstance, out double pointSecondInstance, [param: MarshalAs(UnmanagedType.U1)] bool allowCalculateInstance);
 
 		[DllImport(enginedll, EntryPoint = "GetDistance")]
-		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, IntPtr pointFirstInstance, IntPtr pointSecondInstance, byte allowCalculateInstance);
+		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, IntPtr pointFirstInstance, IntPtr pointSecondInstance, [param: MarshalAs(UnmanagedType.U1)] bool allowCalculateInstance);
 
 		public static double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, out double pointFirstInstance, out double pointSecondInstance)
 		{
-			return GetDistance(firstOwlInstance, secondOwlInstance, out pointFirstInstance, out pointSecondInstance, 1);
+			return GetDistance(firstOwlInstance, secondOwlInstance, out pointFirstInstance, out pointSecondInstance, true);
 		}
 
 		public static double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, IntPtr pointFirstInstance, IntPtr pointSecondInstance)
 		{
-			return GetDistance(firstOwlInstance, secondOwlInstance, pointFirstInstance, pointSecondInstance, 1);
+			return GetDistance(firstOwlInstance, secondOwlInstance, pointFirstInstance, pointSecondInstance, true);
 		}
 
 		public static double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance)
 		{
-			return GetDistance(firstOwlInstance, secondOwlInstance, IntPtr.Zero, IntPtr.Zero, 1);
+			return GetDistance(firstOwlInstance, secondOwlInstance, IntPtr.Zero, IntPtr.Zero, true);
 		}
 
 		/// <summary>
@@ -4387,9 +4685,9 @@ namespace RDF
 			return specular;
 		}
 
-        //
-        //  Deprecated API Calls
-        //
+		//
+		//  Deprecated API Calls
+		//
 
 		/// <summary>
 		///		GetConceptualFaceEx                                     (https://rdf.bg/gkdoc/CS64/GetConceptualFaceEx___.html)
@@ -4534,7 +4832,8 @@ namespace RDF
 		///	and interpret non-zero as true and zero as false.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "IsGeometryType")]
-		public static extern byte IsGeometryType(Int64 owlClass);
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static extern bool IsGeometryType(Int64 owlClass);
 
 		/// <summary>
 		///		SetObjectTypeProperty                                   (https://rdf.bg/gkdoc/CS64/SetObjectTypeProperty___.html)
@@ -4604,7 +4903,7 @@ namespace RDF
 		///		GetPropertyByNameAndType                                (https://rdf.bg/gkdoc/CS64/GetPropertyByNameAndType___.html)
 		///
 		///	This call is deprecated and will be removed by end of 2022.
-		///	Please use the call GetPropertyByName(Ex) / GetPropertyByNameW(Ex) + GetPropertyType(Ex) instead, just rename the function name.
+		///	Please use the call GetPropertyByName(Ex)/GetPropertyByNameW(Ex) + GetPropertyType(Ex) instead, just rename the function name.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetPropertyByNameAndType")]
 		public static extern Int64 GetPropertyByNameAndType(Int64 model, string name, Int64 rdfPropertyType);

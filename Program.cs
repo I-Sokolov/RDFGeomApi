@@ -81,7 +81,7 @@ namespace RDFWrappers
                 // Main course
                 //
                 Console.WriteLine("Generating classes for " + baseNameCapital);
-                var model = RDF.engine.OpenModel(options.modelFile);
+                var model = RDF.Engine.OpenModel(options.modelFile);
                 Console.WriteLine();
 
                 var schema = new Schema(model);
@@ -117,7 +117,7 @@ namespace RDFWrappers
                 }
                 System.Console.WriteLine();
 
-                RDF.engine.CloseModel(model);
+                RDF.Engine.CloseModel(model);
                 return 0;
             }
             catch (Exception e)
