@@ -7,7 +7,7 @@
 #include    <assert.h>
 #include	"engine.h"
 
-namespace GEOM
+namespace Goem
 {
     class AdvancedFace;
     class AdvancedFace2D;

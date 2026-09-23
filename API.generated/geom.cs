@@ -7,7 +7,7 @@
 using System;
 using RDF;
 
-namespace GEOM
+namespace Geom
 {
 // Classes list:
 //     AdvancedFace

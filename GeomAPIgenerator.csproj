@@ -44,7 +44,7 @@
   </ItemGroup>
 
     <ItemGroup>
-      <None Include="API.generated\geom.cs" />
+      <None Include="API.generated\Geom.cs" />
     </ItemGroup>
 
   <ItemGroup>
