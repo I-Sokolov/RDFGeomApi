@@ -79,22 +79,22 @@ namespace RDF
 	public class COLOR
 	{
 		///	<summary> get color from its components in range 0..255 </summary>
-		public static UInt32 RGBW255(byte r, byte g, byte b, byte w) { return (UInt32)r << 24 | (UInt32)g << 16 | (UInt32)b << 8 | (UInt32)w; }
+		public static UInt32 RGBW255(byte r, byte g, byte b, byte w) { return (UInt32) r << 24 | (UInt32) g << 16 | (UInt32) b << 8 | (UInt32) w; }
 
 		///	<summary>get color from its components in range 0..1</summary>
-		public static UInt32 RGBW(double r, double g, double b, double w) { return RGBW255((byte)(r * 255), (byte)(g * 255), (byte)(b * 255), (byte)(w * 255)); }
+		public static UInt32 RGBW(double r, double g, double b, double w) { return RGBW255((byte) (r * 255), (byte) (g * 255), (byte) (b * 255), (byte) (w * 255)); }
 
 		///	<summary>get color red component in range 0..255</summary>
-		public static byte GET_R255(UInt32 clr) { return (byte)((clr >> 24) & 0xFF); }
+		public static byte GET_R255(UInt32 clr) { return (byte) ((clr >> 24) & 0xFF); }
 
 		///	<summary>get color green component in range 0..255</summary>
-		public static byte GET_G255(UInt32 clr) { return (byte)((clr >> 16) & 0xFF); }
+		public static byte GET_G255(UInt32 clr) { return (byte) ((clr >> 16) & 0xFF); }
 
 		///	<summary>get color blue component in range 0..255</summary>
-		public static byte GET_B255(UInt32 clr) { return (byte)((clr >> 8) & 0xFF); }
+		public static byte GET_B255(UInt32 clr) { return (byte) ((clr >> 8) & 0xFF); }
 
 		///	<summary>get color transparency in range 0..255</summary>
-		public static byte GET_W255(UInt32 clr) { return (byte)(clr & 0xFF); }
+		public static byte GET_W255(UInt32 clr) { return (byte) (clr & 0xFF); }
 
 		///	<summary>get color red component in range 0..1</summary>
 		public static double GET_R(UInt32 clr) { return GET_R255(clr) / 255.0; }
@@ -1619,6 +1619,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestriction")]
 		public static extern void GetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
+		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestriction")]
+		public static extern void GetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
+
 		/// <summary>
 		///		GetClassPropertyCardinalityRestrictionEx                (https://rdf.bg/gkdoc/CS64/GetClassPropertyCardinalityRestrictionEx.html)
 		///
@@ -1638,6 +1641,9 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
+		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
+		public static extern void GetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
+
 		/// <summary>
 		///		GetClassPropertyAggregatedCardinalityRestriction        (https://rdf.bg/gkdoc/CS64/GetClassPropertyAggregatedCardinalityRestriction.html)
 		///
@@ -1648,6 +1654,9 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
+
+		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
+		public static extern void GetClassPropertyAggregatedCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
 		///		GetClassPropertyAggregatedCardinalityRestrictionEx      (https://rdf.bg/gkdoc/CS64/GetClassPropertyAggregatedCardinalityRestrictionEx.html)
@@ -1662,6 +1671,9 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
+
+		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
+		public static extern void GetClassPropertyAggregatedCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
 		///		GetGeometryClass                                        (https://rdf.bg/gkdoc/CS64/GetGeometryClass.html)
@@ -2526,43 +2538,43 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, bool value)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, [param: MarshalAs(UnmanagedType.U1)] bool value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BOOLEAN);
 			const Int64 card = 1;
 			byte value_inByte = Convert.ToByte(value);
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, ref value_inByte, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, ref value_inByte, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, byte value)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, byte value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BYTE);
 			const Int64 card = 1;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, ref value, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, ref value, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, Int64 value)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, Int64 value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_INTEGER);
 			const Int64 card = 1;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, ref value, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, ref value, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, double value)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, double value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_DOUBLE);
 			const Int64 card = 1;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, ref value, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, ref value, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, string value)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, string value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_CHAR);
 			const Int64 card = 1;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, ref value, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, ref value, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, bool[] values)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, [param: MarshalAs(UnmanagedType.U1)] bool[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BOOLEAN);
 			Int64 card = values.Length;
@@ -2570,35 +2582,35 @@ namespace RDF
 				{
 					return Convert.ToByte(v);
 				}).ToArray();
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, values_inByte, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, values_inByte, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, byte[] values)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, byte[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BYTE);
 			Int64 card = values.Length;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, values, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, values, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, Int64[] values)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, Int64[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_INTEGER);
 			Int64 card = values.Length;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, values, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, values, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, double[] values)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, double[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_DOUBLE);
 			Int64 card = values.Length;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, values, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, values, card);
 		}
 
-		public static Int64 SetDatatypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, string[] values)
+		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_CHAR);
 			Int64 card = values.Length;
-			return SetDatatypeProperty(owlInstance, owlDatatypeProperty, values, card);
+			return SetDatatypeProperty(rdfsResource, owlDatatypeProperty, values, card);
 		}
 
 		/// <summary>
@@ -2655,13 +2667,14 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetDatatypeProperty")]
 		public static extern Int64 GetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
-		public static bool[] GetDatatypeProperty_inBool(Int64 owlInstance, Int64 owlDatatypeProperty)
+		[return: MarshalAs(UnmanagedType.U1)]
+		public static bool[] GetDatatypeProperty_inBool(Int64 rdfsResource, Int64 owlDatatypeProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BOOLEAN);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetDatatypeProperty(owlInstance, owlDatatypeProperty, out valuesPtr, out card);
+			GetDatatypeProperty(rdfsResource, owlDatatypeProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -2677,13 +2690,13 @@ namespace RDF
 			return null;
 		}
 
-		public static byte[] GetDatatypeProperty_inByte(Int64 owlInstance, Int64 owlDatatypeProperty)
+		public static byte[] GetDatatypeProperty_inByte(Int64 rdfsResource, Int64 owlDatatypeProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_BYTE);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetDatatypeProperty(owlInstance, owlDatatypeProperty, out valuesPtr, out card);
+			GetDatatypeProperty(rdfsResource, owlDatatypeProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -2695,13 +2708,13 @@ namespace RDF
 			return null;
 		}
 
-		public static Int64[] GetDatatypeProperty_inInt64(Int64 owlInstance, Int64 owlDatatypeProperty)
+		public static Int64[] GetDatatypeProperty_inInt64(Int64 rdfsResource, Int64 owlDatatypeProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_INTEGER);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetDatatypeProperty(owlInstance, owlDatatypeProperty, out valuesPtr, out card);
+			GetDatatypeProperty(rdfsResource, owlDatatypeProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -2713,13 +2726,13 @@ namespace RDF
 			return null;
 		}
 
-		public static double[] GetDatatypeProperty_inDouble(Int64 owlInstance, Int64 owlDatatypeProperty)
+		public static double[] GetDatatypeProperty_inDouble(Int64 rdfsResource, Int64 owlDatatypeProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_DOUBLE);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetDatatypeProperty(owlInstance, owlDatatypeProperty, out valuesPtr, out card);
+			GetDatatypeProperty(rdfsResource, owlDatatypeProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -2731,13 +2744,13 @@ namespace RDF
 			return null;
 		}
 
-		public static string[] GetDatatypeProperty_inString(Int64 owlInstance, Int64 owlDatatypeProperty)
+		public static string[] GetDatatypeProperty_inString(Int64 rdfsResource, Int64 owlDatatypeProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlDatatypeProperty) == DATATYPEPROPERTY_TYPE_CHAR);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetDatatypeProperty(owlInstance, owlDatatypeProperty, out valuesPtr, out card);
+			GetDatatypeProperty(rdfsResource, owlDatatypeProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -2792,18 +2805,18 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "SetObjectProperty")]
 		public static extern Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
-		public static Int64 SetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64 value)
+		public static Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64 value)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlObjectProperty) == OBJECTPROPERTY_TYPE);
 			const Int64	card = 1;
-			return SetObjectProperty(owlInstance, owlObjectProperty, ref value, card);
+			return SetObjectProperty(rdfsResource, owlObjectProperty, ref value, card);
 		}
 
-		public static Int64 SetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64[] values)
+		public static Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlObjectProperty) == OBJECTPROPERTY_TYPE);
 			Int64 card = values.Length;
-			return SetObjectProperty(owlInstance, owlObjectProperty, values, card);
+			return SetObjectProperty(rdfsResource, owlObjectProperty, values, card);
 		}
 
 		/// <summary>
@@ -2841,13 +2854,13 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "GetObjectProperty")]
 		public static extern Int64 GetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
-		public static Int64[] GetObjectProperty(Int64 owlInstance, Int64 owlObjectProperty)
+		public static Int64[] GetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty)
 		{
 			System.Diagnostics.Debug.Assert(GetPropertyType(owlObjectProperty) == OBJECTPROPERTY_TYPE);
 
 			Int64 card = 0;
 			IntPtr valuesPtr = IntPtr.Zero;
-			GetObjectProperty(owlInstance, owlObjectProperty, out valuesPtr, out card);
+			GetObjectProperty(rdfsResource, owlObjectProperty, out valuesPtr, out card);
 
 			if (card > 0)
 			{
@@ -3788,7 +3801,8 @@ namespace RDF
 
 		public static void SetVertexBufferOffset(Int64 model, ref double[] offset)
 		{
-			if (offset != null) {
+			if (offset != null)
+			{
 				SetVertexBufferOffset(
 						model,
 						offset[0],
@@ -3796,7 +3810,8 @@ namespace RDF
 						offset[2]
 					);
 			}
-			else {
+			else
+			{
 				SetVertexBufferOffset(
 						model,
 						0.0,
@@ -4196,12 +4211,13 @@ namespace RDF
 
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
-		public static extern bool GetBoundingBox(Int64 owlInstance, double[] transformationMatrix, double[] startVector, double[] endVector);
+		public static extern bool GetBoundingBox(Int64 owlInstance, [Out] double[] transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
 		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
-		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, double[] startVector, double[] endVector);
+		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
+		[return: MarshalAs(UnmanagedType.U1)]
 		public static bool GetBoundingBox(Int64 owlInstance, out double startVector, out double endVector)
 		{
 			return GetBoundingBox(owlInstance, IntPtr.Zero, out startVector, out endVector);
@@ -4249,6 +4265,26 @@ namespace RDF
 		}
 
 		/// <summary>
+		///		SetColorOfComponent                                     (https://rdf.bg/gkdoc/CS64/SetColorOfComponent.html)
+		///
+		///	...
+		/// </summary>
+		public static void SetColorOfComponent(Int64 owlInstanceColorComponent, UInt32 color)
+		{
+			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceColorComponent, "ColorComponent"));
+
+			Int64 model = GetModel(owlInstanceColorComponent);
+
+			string[] rgbwNames = { "R", "G", "B", "W" };
+			double[] rgbwValues = RDF.COLOR.GET_COMPONENTS(color);
+
+			for (int i = 0; i < 4; i++)
+			{
+				SetDatatypeProperty(owlInstanceColorComponent, GetPropertyByName(model, rgbwNames[i]), rgbwValues[i]);
+			}
+		}
+
+		/// <summary>
 		///		GetColorOfComponent                                     (https://rdf.bg/gkdoc/CS64/GetColorOfComponent.html)
 		///
 		///	...
@@ -4275,59 +4311,6 @@ namespace RDF
 			}
 
 			return RDF.COLOR.RGBW(rgbwValues);
-		}
-
-		/// <summary>
-		///		SetColorOfComponent                                     (https://rdf.bg/gkdoc/CS64/SetColorOfComponent.html)
-		///
-		///	...
-		/// </summary>
-		public static void SetColorOfComponent(Int64 owlInstanceColorComponent, UInt32 color)
-		{
-			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceColorComponent, "ColorComponent"));
-
-			Int64 model = GetModel(owlInstanceColorComponent);
-
-			string[] rgbwNames = { "R", "G", "B", "W" };
-			double[] rgbwValues = RDF.COLOR.GET_COMPONENTS(color);
-
-			for (int i = 0; i < 4; i++)
-			{
-				SetDatatypeProperty(owlInstanceColorComponent, GetPropertyByName(model, rgbwNames[i]), rgbwValues[i]);
-			}
-		}
-
-		/// <summary>
-		///		GetColor                                                (https://rdf.bg/gkdoc/CS64/GetColor.html)
-		///
-		///	...
-		/// </summary>
-		public static void GetColor(Int64 owlInstanceColor, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular)
-		{
-			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceColor, "Color"));
-
-			GetDefaultColor(GetModel(owlInstanceColor), out ambient, out diffuse, out emissive, out specular);
-
-			string[] componentNames = { "ambient", "diffuse", "emissive", "specular" };
-			UInt32[] componentColors = { ambient, diffuse, emissive, specular };
-
-			for (int i = 0; i < 4; i++)
-			{
-				if (componentColors[i] != 0)
-				{
-					Int64 card = 0;
-					IntPtr valuesPtr = IntPtr.Zero;
-					GetObjectProperty(owlInstanceColor, GetPropertyByName(GetModel(owlInstanceColor), componentNames[i]), out valuesPtr, out card);
-
-					if (card == 1)
-					{
-						Int64[] values = new Int64[card];
-						System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int) card);
-						Int64 owlInstanceColorComponent = values[0];
-						componentColors[i] = GetColorOfComponent(owlInstanceColorComponent);
-					}
-				}
-			}
 		}
 
 		/// <summary>
@@ -4409,28 +4392,34 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColor                                        (https://rdf.bg/gkdoc/CS64/GetMaterialColor.html)
+		///		GetColor                                                (https://rdf.bg/gkdoc/CS64/GetColor.html)
 		///
-		///	This function returns the color definition of any material instance. It will return default material
-		///	in case the material does not have that specific color component defined.
+		///	...
 		/// </summary>
-		public static void GetMaterialColor(Int64 owlInstanceMaterial, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular)
+		public static void GetColor(Int64 owlInstanceColor, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular)
 		{
-			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceMaterial, "Material"));
+			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceColor, "Color"));
 
-			GetDefaultColor(GetModel(owlInstanceMaterial), out ambient, out diffuse, out emissive, out specular);
+			GetDefaultColor(GetModel(owlInstanceColor), out ambient, out diffuse, out emissive, out specular);
 
-			Int64 card = 0;
-			IntPtr valuesPtr = IntPtr.Zero;
-			GetObjectProperty(owlInstanceMaterial, GetPropertyByName(GetModel(owlInstanceMaterial), "color"), out valuesPtr, out card);
+			string[] componentNames = { "ambient", "diffuse", "emissive", "specular" };
+			UInt32[] componentColors = { ambient, diffuse, emissive, specular };
 
-			if (card == 1)
+			for (int i = 0; i < 4; i++)
 			{
-				Int64[] values = new Int64[card];
-				System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int) card);
-				if (values[0] != 0)
+				if (componentColors[i] != 0)
 				{
-					GetColor(values[0], out ambient, out diffuse, out emissive, out specular);
+					Int64 card = 0;
+					IntPtr valuesPtr = IntPtr.Zero;
+					GetObjectProperty(owlInstanceColor, GetPropertyByName(GetModel(owlInstanceColor), componentNames[i]), out valuesPtr, out card);
+
+					if (card == 1)
+					{
+						Int64[] values = new Int64[card];
+						System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int) card);
+						Int64 owlInstanceColorComponent = values[0];
+						componentColors[i] = GetColorOfComponent(owlInstanceColorComponent);
+					}
 				}
 			}
 		}
@@ -4455,6 +4444,33 @@ namespace RDF
 			else
 			{
 				SetColor(CreateInstance(GetClassByName(GetModel(owlInstanceMaterial), "color")), ambient, diffuse, emissive, specular);
+			}
+		}
+
+		/// <summary>
+		///		GetMaterialColor                                        (https://rdf.bg/gkdoc/CS64/GetMaterialColor.html)
+		///
+		///	This function returns the color definition of any material instance. It will return default material
+		///	in case the material does not have that specific color component defined.
+		/// </summary>
+		public static void GetMaterialColor(Int64 owlInstanceMaterial, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular)
+		{
+			System.Diagnostics.Debug.Assert(IsInstanceOfClass(owlInstanceMaterial, "Material"));
+
+			GetDefaultColor(GetModel(owlInstanceMaterial), out ambient, out diffuse, out emissive, out specular);
+
+			Int64 card = 0;
+			IntPtr valuesPtr = IntPtr.Zero;
+			GetObjectProperty(owlInstanceMaterial, GetPropertyByName(GetModel(owlInstanceMaterial), "color"), out valuesPtr, out card);
+
+			if (card == 1)
+			{
+				Int64[] values = new Int64[card];
+				System.Runtime.InteropServices.Marshal.Copy(valuesPtr, values, 0, (int) card);
+				if (values[0] != 0)
+				{
+					GetColor(values[0], out ambient, out diffuse, out emissive, out specular);
+				}
 			}
 		}
 
@@ -4824,6 +4840,9 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetPropertyRestrictionsConsolidated")]
 		public static extern void GetPropertyRestrictionsConsolidated(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
+
+		[DllImport(enginedll, EntryPoint = "GetPropertyRestrictionsConsolidated")]
+		public static extern void GetPropertyRestrictionsConsolidated(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
 		///		IsGeometryType                                          (https://rdf.bg/gkdoc/CS64/IsGeometryType___.html)
