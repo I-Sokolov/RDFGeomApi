@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Linq;
 using System.Xml.Linq;
 
+
 namespace RDF
 {
 	///	<summary>
@@ -56,7 +57,7 @@ namespace RDF
 		public const Int64 EXPORT_CONCEPTUAL_FACE_POLYGONS = (1<<13);
 		///	<summary>Polygon lines (wireframe) exported as tuples (edges) - else as list (loop)</summary>
 		public const Int64 EXPORT_POLYGONS_AS_TUPLES = (1<<14);
-		///	<summary>Normal's are exported to be in line with the original semantic form description (orthogonal to conceptual face, could be non orthogonal to the planar face or triangle) - else all normal vectors of triangles are transformed orthogonal to the planar face or triangle they belong to</summary>
+		///	<summary>Normals are exported to be in line with the original semantic form description (orthogonal to conceprual face, could be non orthogonal to the planar face or triangle) - else all normals of triangles are transformed orthogonal to the palnar face or triangle they belong to</summary>
 		public const Int64 EXPORT_ADVANCED_NORMALS = (1<<15);
 		///	<summary>Where possible DirectX compatibility is given to exported data. Unsets FORMAT_FLAG_OPENGL, FORMAT_FLAG_VERSION_0001, FORMAT_FLAG_VERSION_0010</summary>
 		public const Int64 EXPORT_DIRECTX = (1<<16);
@@ -104,7 +105,7 @@ namespace RDF
 		///	<summary>get color blue component in range 0..1</summary>
 		public static double GET_B(UInt32 clr) { return GET_B255(clr) / 255.0; }
 
-		///	<summary>get color transparency in range 0..1</summary>
+		///	<summary>get color trancparency in range 0..1</summary>
 		public static double GET_W(UInt32 clr) { return GET_W255(clr) / 255.0; }
 
 		///	<summary>get color from array of 4 components in range 0..255</summary>
@@ -113,7 +114,7 @@ namespace RDF
 		///	<summary>get color from array of 4 components in range 0..1</summary>
 		public static UInt32 RGBW(double[] r) { return RGBW(r[0], r[1], r[2], r[3]); }
 
-		///	<summary>get color components in range 0..255 to array of 4 elements</summary>
+		///	<summary>get color comonents in range 0..255 to arry of 4 elements</summary>
 		public static byte[] GET_COMPONENTS255(UInt32 clr)
 		{
 			var	r = new byte[4];
@@ -124,7 +125,7 @@ namespace RDF
 			return	r;
 		}
 
-		///	<summary>get color components in range 0..1 to array of 4 elements</summary>
+		///	<summary>get color comonents in range 0..1 to arry of 4 elements</summary>
 		public static double[] GET_COMPONENTS(UInt32 clr)
 		{
 			var	r = new double[4];
@@ -186,6 +187,12 @@ namespace RDF
 		public const UInt64 flagbit31 = 2147483648;		// 2^^31   1000.0000..0000.0000  0000.0000..0000.0000
 
 		public const string enginedll = @"engine.dll";
+
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate Int64 ReadCallBackFunction(IntPtr value);
+
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
 
 		//
 		//  Meta information API Calls
@@ -687,12 +694,6 @@ namespace RDF
 		//
 		//  File IO/Stream/Copy API Calls
 		//
-
-		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-		public delegate Int64 ReadCallBackFunction(IntPtr value);
-
-		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-		public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
 
 		/// <summary>
 		///		CreateModel                                             (https://rdf.bg/gkdoc/CS64/CreateModel.html)
