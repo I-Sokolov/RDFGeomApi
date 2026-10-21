@@ -255,7 +255,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		SetSPFFHeader                                           (https://rdf.bg/ifcdoc/CS64/SetSPFFHeader.html)
+		///		SetSPFFHeader                                           (https://rdf.bg/ifcdoc/index.html?topic=SetSPFFHeader&lang=CS64)
 		///
 		///	This call is an aggregate of several SetSPFFHeaderItem calls. In several cases the header can be set easily with this call. In case an argument is zero, this argument will not be updated, i.e. it will not be filled with 0.
 		/// </summary>
@@ -266,7 +266,7 @@ namespace RDF
 		public static extern void SetSPFFHeader(int_t model, byte[] description, byte[] implementationLevel, byte[] name, byte[] timeStamp, byte[] author, byte[] organization, byte[] preprocessorVersion, byte[] originatingSystem, byte[] authorization, byte[] fileSchema);
 
 		/// <summary>
-		///		SetSPFFHeaderItem                                       (https://rdf.bg/ifcdoc/CS64/SetSPFFHeaderItem.html)
+		///		SetSPFFHeaderItem                                       (https://rdf.bg/ifcdoc/index.html?topic=SetSPFFHeaderItem&lang=CS64)
 		///
 		///	This call can be used to write a specific header item, the source code example is larger to show and explain how this call can be used.
 		/// </summary>
@@ -277,7 +277,7 @@ namespace RDF
 		public static extern int_t SetSPFFHeaderItem(int_t model, int_t itemIndex, int_t itemSubIndex, int_t valueType, byte[] value);
 
 		/// <summary>
-		///		GetSPFFHeaderItem                                       (https://rdf.bg/ifcdoc/CS64/GetSPFFHeaderItem.html)
+		///		GetSPFFHeaderItem                                       (https://rdf.bg/ifcdoc/index.html?topic=GetSPFFHeaderItem&lang=CS64)
 		///
 		///	This call can be used to read a specific header item, the source code example is larger to show and explain how this call can be used.
 		/// </summary>
@@ -285,7 +285,7 @@ namespace RDF
 		public static extern int_t GetSPFFHeaderItem(int_t model, int_t itemIndex, int_t itemSubIndex, int_t valueType, out IntPtr value);
 
 		/// <summary>
-		///		GetDateTime                                             (https://rdf.bg/ifcdoc/CS64/GetDateTime.html)
+		///		GetDateTime                                             (https://rdf.bg/ifcdoc/index.html?topic=GetDateTime&lang=CS64)
 		///
 		///	Returns an current date and time according to ISO 8601 without time zone, i.e. formatted as '2099-12-31T23:59:59'.
 		/// </summary>
@@ -300,7 +300,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetDateTimeW                                            (https://rdf.bg/ifcdoc/CS64/GetDateTimeW.html)
+		///		GetDateTimeW                                            (https://rdf.bg/ifcdoc/index.html?topic=GetDateTimeW&lang=CS64)
 		///
 		///	Returns an current date and time according to ISO 8601 without time zone, i.e. formatted as '2099-12-31T23:59:59'.
 		/// </summary>
@@ -315,7 +315,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetLibraryIdentifier                                    (https://rdf.bg/ifcdoc/CS64/GetLibraryIdentifier.html)
+		///		GetLibraryIdentifier                                    (https://rdf.bg/ifcdoc/index.html?topic=GetLibraryIdentifier&lang=CS64)
 		///
 		///	Returns an identifier for the current instance of this library including date stamp and revision number.
 		/// </summary>
@@ -330,7 +330,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetLibraryIdentifierW                                   (https://rdf.bg/ifcdoc/CS64/GetLibraryIdentifierW.html)
+		///		GetLibraryIdentifierW                                   (https://rdf.bg/ifcdoc/index.html?topic=GetLibraryIdentifierW&lang=CS64)
 		///
 		///	Returns an identifier for the current instance of this library including date stamp and revision number.
 		/// </summary>
@@ -345,7 +345,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetSchemaName                                           (https://rdf.bg/ifcdoc/CS64/GetSchemaName.html)
+		///		GetSchemaName                                           (https://rdf.bg/ifcdoc/index.html?topic=GetSchemaName&lang=CS64)
 		///
 		///	Returns the value as defined by SCHEMA in the loaded EXPRESS schema.
 		/// </summary>
@@ -360,7 +360,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetSchemaNameW                                          (https://rdf.bg/ifcdoc/CS64/GetSchemaNameW.html)
+		///		GetSchemaNameW                                          (https://rdf.bg/ifcdoc/index.html?topic=GetSchemaNameW&lang=CS64)
 		///
 		///	Returns the value as defined by SCHEMA in the loaded EXPRESS schema.
 		/// </summary>
@@ -375,7 +375,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiSetMappingSupport                                   (https://rdf.bg/ifcdoc/CS64/engiSetMappingSupport.html)
+		///		engiSetMappingSupport                                   (https://rdf.bg/ifcdoc/index.html?topic=engiSetMappingSupport&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -384,7 +384,7 @@ namespace RDF
 		public static extern bool engiSetMappingSupport(int_t entity, [param: MarshalAs(UnmanagedType.U1)] bool enable);
 
 		/// <summary>
-		///		engiGetMappingSupport                                   (https://rdf.bg/ifcdoc/CS64/engiGetMappingSupport.html)
+		///		engiGetMappingSupport                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetMappingSupport&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -403,7 +403,7 @@ namespace RDF
 		public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
 
 		/// <summary>
-		///		sdaiCreateModelBN                                       (https://rdf.bg/ifcdoc/CS64/sdaiCreateModelBN.html)
+		///		sdaiCreateModelBN                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateModelBN&lang=CS64)
 		///
 		///	This function creates and empty model (we expect with a schema file given).
 		///	Attributes repository and fileName will be ignored, they are their because of backward compatibility.
@@ -594,7 +594,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiCreateModelBNUnicode                                (https://rdf.bg/ifcdoc/CS64/sdaiCreateModelBNUnicode.html)
+		///		sdaiCreateModelBNUnicode                                (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateModelBNUnicode&lang=CS64)
 		///
 		///	This function creates and empty model (we expect with a schema file given).
 		///	Attributes repository and fileName will be ignored, they are their because of backward compatibility.
@@ -785,7 +785,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiOpenModelBN                                         (https://rdf.bg/ifcdoc/CS64/sdaiOpenModelBN.html)
+		///		sdaiOpenModelBN                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiOpenModelBN&lang=CS64)
 		///
 		///	This function opens the model on location fileName.
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
@@ -804,7 +804,7 @@ namespace RDF
 		public static extern int_t sdaiOpenModelBN(int_t repository, byte[] fileName, byte[] schemaName);
 
 		/// <summary>
-		///		sdaiOpenModelBNUnicode                                  (https://rdf.bg/ifcdoc/CS64/sdaiOpenModelBNUnicode.html)
+		///		sdaiOpenModelBNUnicode                                  (https://rdf.bg/ifcdoc/index.html?topic=sdaiOpenModelBNUnicode&lang=CS64)
 		///
 		///	This function opens the model on location fileName.
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
@@ -823,7 +823,7 @@ namespace RDF
 		public static extern int_t sdaiOpenModelBNUnicode(int_t repository, byte[] fileName, byte[] schemaName);
 
 		/// <summary>
-		///		engiOpenModelByStream                                   (https://rdf.bg/ifcdoc/CS64/engiOpenModelByStream.html)
+		///		engiOpenModelByStream                                   (https://rdf.bg/ifcdoc/index.html?topic=engiOpenModelByStream&lang=CS64)
 		///
 		///	This function opens the model via a stream.
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
@@ -836,7 +836,7 @@ namespace RDF
 		public static extern int_t engiOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, byte[] schemaName);
 
 		/// <summary>
-		///		engiOpenModelByArray                                    (https://rdf.bg/ifcdoc/CS64/engiOpenModelByArray.html)
+		///		engiOpenModelByArray                                    (https://rdf.bg/ifcdoc/index.html?topic=engiOpenModelByArray&lang=CS64)
 		///
 		///	This function opens the model via an array.
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
@@ -849,7 +849,7 @@ namespace RDF
 		public static extern int_t engiOpenModelByArray(int_t repository, byte[] content, int_t size, byte[] schemaName);
 
 		/// <summary>
-		///		sdaiSaveModelBN                                         (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelBN.html)
+		///		sdaiSaveModelBN                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelBN&lang=CS64)
 		///
 		///	This function saves the model (char file name).
 		///
@@ -864,7 +864,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelBN(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelBNUnicode                                  (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelBNUnicode.html)
+		///		sdaiSaveModelBNUnicode                                  (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelBNUnicode&lang=CS64)
 		///
 		///	This function saves the model (wchar, i.e. Unicode file name).
 		///
@@ -879,7 +879,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		engiSaveModelByStream                                   (https://rdf.bg/ifcdoc/CS64/engiSaveModelByStream.html)
+		///		engiSaveModelByStream                                   (https://rdf.bg/ifcdoc/index.html?topic=engiSaveModelByStream&lang=CS64)
 		///
 		///	This function saves the model as a stream.
 		///
@@ -891,7 +891,7 @@ namespace RDF
 		public static extern int_t engiSaveModelByStream(int_t model, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, int_t size);
 
 		/// <summary>
-		///		engiSaveModelByArray                                    (https://rdf.bg/ifcdoc/CS64/engiSaveModelByArray.html)
+		///		engiSaveModelByArray                                    (https://rdf.bg/ifcdoc/index.html?topic=engiSaveModelByArray&lang=CS64)
 		///
 		///	This function saves the model as an array.
 		///
@@ -903,7 +903,7 @@ namespace RDF
 		public static extern int_t engiSaveModelByArray(int_t model, byte[] content, out int_t size);
 
 		/// <summary>
-		///		sdaiSaveModelAsXmlBN                                    (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsXmlBN.html)
+		///		sdaiSaveModelAsXmlBN                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsXmlBN&lang=CS64)
 		///
 		///	This function saves the model as XML according to IFC2x3's way of XML serialization (char file name).
 		///
@@ -918,7 +918,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsXmlBN(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelAsXmlBNUnicode                             (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsXmlBNUnicode.html)
+		///		sdaiSaveModelAsXmlBNUnicode                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsXmlBNUnicode&lang=CS64)
 		///
 		///	This function saves the model as XML according to IFC2x3's way of XML serialization (wchar, i.e. Unicode file name).
 		///
@@ -933,7 +933,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsXmlBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelAsSimpleXmlBN                              (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsSimpleXmlBN.html)
+		///		sdaiSaveModelAsSimpleXmlBN                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsSimpleXmlBN&lang=CS64)
 		///
 		///	This function saves the model as XML according to IFC4's way of XML serialization (char file name).
 		///
@@ -948,7 +948,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsSimpleXmlBN(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelAsSimpleXmlBNUnicode                       (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsSimpleXmlBNUnicode.html)
+		///		sdaiSaveModelAsSimpleXmlBNUnicode                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsSimpleXmlBNUnicode&lang=CS64)
 		///
 		///	This function saves the model as XML according to IFC4's way of XML serialization (wchar, i.e. Unicode file name).
 		///
@@ -963,7 +963,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsSimpleXmlBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelAsJsonBN                                   (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsJsonBN.html)
+		///		sdaiSaveModelAsJsonBN                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsJsonBN&lang=CS64)
 		///
 		///	This function saves the model as JSON according to IFC4's way of JSON serialization (char file name).
 		///
@@ -978,7 +978,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsJsonBN(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		sdaiSaveModelAsJsonBNUnicode                            (https://rdf.bg/ifcdoc/CS64/sdaiSaveModelAsJsonBNUnicode.html)
+		///		sdaiSaveModelAsJsonBNUnicode                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiSaveModelAsJsonBNUnicode&lang=CS64)
 		///
 		///	This function saves the model as JSON according to IFC4's way of JSON serialization (wchar, i.e. Unicode file name).
 		///
@@ -993,7 +993,7 @@ namespace RDF
 		public static extern int_t sdaiSaveModelAsJsonBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
-		///		engiSaveSchemaBN                                        (https://rdf.bg/ifcdoc/CS64/engiSaveSchemaBN.html)
+		///		engiSaveSchemaBN                                        (https://rdf.bg/ifcdoc/index.html?topic=engiSaveSchemaBN&lang=CS64)
 		///
 		///	This function saves the schema.
 		///
@@ -1008,7 +1008,7 @@ namespace RDF
 		public static extern int_t engiSaveSchemaBN(int_t model, byte[] filePath);
 
 		/// <summary>
-		///		engiSaveSchemaBNUnicode                                 (https://rdf.bg/ifcdoc/CS64/engiSaveSchemaBNUnicode.html)
+		///		engiSaveSchemaBNUnicode                                 (https://rdf.bg/ifcdoc/index.html?topic=engiSaveSchemaBNUnicode&lang=CS64)
 		///
 		///	This function saves the schema (wchar, i.e. Unicode file name).
 		///
@@ -1023,7 +1023,7 @@ namespace RDF
 		public static extern int_t engiSaveSchemaBNUnicode(int_t model, byte[] filePath);
 
 		/// <summary>
-		///		sdaiCloseModel                                          (https://rdf.bg/ifcdoc/CS64/sdaiCloseModel.html)
+		///		sdaiCloseModel                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiCloseModel&lang=CS64)
 		///
 		///	This function closes the model. After this call no instance handles will be available including all
 		///	handles referencing the geometry of this specific file, in default compilation the model itself will
@@ -1037,7 +1037,7 @@ namespace RDF
 		public static extern int_t sdaiCloseModel(int_t model);
 
 		/// <summary>
-		///		setPrecisionDoubleExport                                (https://rdf.bg/ifcdoc/CS64/setPrecisionDoubleExport.html)
+		///		setPrecisionDoubleExport                                (https://rdf.bg/ifcdoc/index.html?topic=setPrecisionDoubleExport&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -1049,7 +1049,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		engiGetNextTypeDeclarationIterator                      (https://rdf.bg/ifcdoc/CS64/engiGetNextTypeDeclarationIterator.html)
+		///		engiGetNextTypeDeclarationIterator                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetNextTypeDeclarationIterator&lang=CS64)
 		///
 		///	This call returns next iterator of EXPRESS schema declarations for entities and types.
 		///	If the input iterator is NULL it returns first iterator.
@@ -1061,7 +1061,7 @@ namespace RDF
 		public static extern int_t engiGetNextTypeDeclarationIterator(int_t model, int_t iterator);
 
 		/// <summary>
-		///		engiGetTypeDeclarationFromIterator                      (https://rdf.bg/ifcdoc/CS64/engiGetTypeDeclarationFromIterator.html)
+		///		engiGetTypeDeclarationFromIterator                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetTypeDeclarationFromIterator&lang=CS64)
 		///
 		///	This call returns handle to the EXPRESS schema declaration from iterator.
 		///	The declaration can be ENTITY, TYPE ENUM, TYPE SELECT, or defined TYPE.
@@ -1072,7 +1072,7 @@ namespace RDF
 		public static extern int_t engiGetTypeDeclarationFromIterator(int_t model, int_t iterator);
 
 		/// <summary>
-		///		engiGetSchemaScriptDeclarationByIterator                (https://rdf.bg/ifcdoc/CS64/engiGetSchemaScriptDeclarationByIterator.html)
+		///		engiGetSchemaScriptDeclarationByIterator                (https://rdf.bg/ifcdoc/index.html?topic=engiGetSchemaScriptDeclarationByIterator&lang=CS64)
 		///
 		///	This call iterates EXPRESS schema declarations of FUNCTION, PROCEDURE or RULE.
 		///	If prev is NULL it returns first declaration of above kinds.
@@ -1083,7 +1083,7 @@ namespace RDF
 		public static extern int_t engiGetSchemaScriptDeclarationByIterator(int_t model, int_t prev);
 
 		/// <summary>
-		///		engiGetDeclarationType                                  (https://rdf.bg/ifcdoc/CS64/engiGetDeclarationType.html)
+		///		engiGetDeclarationType                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetDeclarationType&lang=CS64)
 		///
 		///	This call returns a type of the EXPRESS schema declarations from its handle.
 		///
@@ -1100,7 +1100,7 @@ namespace RDF
 		public static extern enum_express_declaration engiGetDeclarationType(int_t declaration);
 
 		/// <summary>
-		///		engiGetEnumerationElement                               (https://rdf.bg/ifcdoc/CS64/engiGetEnumerationElement.html)
+		///		engiGetEnumerationElement                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetEnumerationElement&lang=CS64)
 		///
 		///	This call returns a name of the enumeration element with the given index (zero based).
 		///	It returns NULL if the index out of range.
@@ -1109,7 +1109,7 @@ namespace RDF
 		public static extern IntPtr engiGetEnumerationElement(int_t enumeration, int_t index);
 
 		/// <summary>
-		///		engiGetSelectElement                                    (https://rdf.bg/ifcdoc/CS64/engiGetSelectElement.html)
+		///		engiGetSelectElement                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetSelectElement&lang=CS64)
 		///
 		///	This call returns a declaration handle of the select element with the given index (zero based).
 		///	It returns 0 if the index out of range.
@@ -1118,7 +1118,7 @@ namespace RDF
 		public static extern int_t engiGetSelectElement(int_t select, int_t index);
 
 		/// <summary>
-		///		engiGetDefinedType                                      (https://rdf.bg/ifcdoc/CS64/engiGetDefinedType.html)
+		///		engiGetDefinedType                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetDefinedType&lang=CS64)
 		///
 		///	This call returns a simple type for defined type handle and can inquire referenced type, if any.
 		/// </summary>
@@ -1126,7 +1126,7 @@ namespace RDF
 		public static extern enum_express_data_type engiGetDefinedType(int_t definedType, out int_t referencedDeclaration, out int_t aggregationDefinition);
 
 		/// <summary>
-		///		engiGetScriptText                                       (https://rdf.bg/ifcdoc/CS64/engiGetScriptText.html)
+		///		engiGetScriptText                                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetScriptText&lang=CS64)
 		///
 		///	This call returns name and body text for entity local (where) rule, schema rule, function or procedure.
 		/// </summary>
@@ -1145,7 +1145,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiEvaluateScriptExpression                            (https://rdf.bg/ifcdoc/CS64/engiEvaluateScriptExpression.html)
+		///		engiEvaluateScriptExpression                            (https://rdf.bg/ifcdoc/index.html?topic=engiEvaluateScriptExpression&lang=CS64)
 		///
 		///	This function can evaluate EXPRESS expression for entity where rule or derived attribute,
 		///	valueType, value and return type work similary to sdaiGetAttr.
@@ -1180,7 +1180,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiGetEntity                                           (https://rdf.bg/ifcdoc/CS64/sdaiGetEntity.html)
+		///		sdaiGetEntity                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetEntity&lang=CS64)
 		///
 		///	This call retrieves a handle to an entity based on a given entity name.
 		/// </summary>
@@ -1191,7 +1191,7 @@ namespace RDF
 		public static extern int_t sdaiGetEntity(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		sdaiGetComplexEntity                                    (https://rdf.bg/ifcdoc/CS64/sdaiGetComplexEntity.html)
+		///		sdaiGetComplexEntity                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetComplexEntity&lang=CS64)
 		///
 		///	This call retrieves a handle to an entity composed of the supplied simple entity types.
 		/// </summary>
@@ -1199,7 +1199,7 @@ namespace RDF
 		public static extern int_t sdaiGetComplexEntity(int_t model, int_t entityList);
 
 		/// <summary>
-		///		sdaiGetComplexEntityBN                                  (https://rdf.bg/ifcdoc/CS64/sdaiGetComplexEntityBN.html)
+		///		sdaiGetComplexEntityBN                                  (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetComplexEntityBN&lang=CS64)
 		///
 		///	This call retrieves a handle to an entity composed of the supplied simple entity types.
 		/// </summary>
@@ -1207,7 +1207,7 @@ namespace RDF
 		public static extern int_t sdaiGetComplexEntityBN(int_t model, int_t nameNumber, out IntPtr nameVector);
 
 		/// <summary>
-		///		engiGetEntityModel                                      (https://rdf.bg/ifcdoc/CS64/engiGetEntityModel.html)
+		///		engiGetEntityModel                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityModel&lang=CS64)
 		///
 		///	This call retrieves a model based on a given entity handle.
 		/// </summary>
@@ -1215,7 +1215,7 @@ namespace RDF
 		public static extern int_t engiGetEntityModel(int_t entity);
 
 		/// <summary>
-		///		engiGetEntityAttributePosition                          (https://rdf.bg/ifcdoc/CS64/engiGetEntityAttributePosition.html)
+		///		engiGetEntityAttributePosition                          (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityAttributePosition&lang=CS64)
 		///
 		///	Get a position in a step file record where the value of the attribute is stored for simple instance or for component of complex instance.
 		///	In case of complex entities 'entity' is a component of the complex entity.
@@ -1226,7 +1226,7 @@ namespace RDF
 		public static extern int_t engiGetEntityAttributePosition(int_t entity, int_t attribute, [param: MarshalAs(UnmanagedType.U1)] bool forSimpleInstance);
 
 		/// <summary>
-		///		engiGetEntityCount                                      (https://rdf.bg/ifcdoc/CS64/engiGetEntityCount.html)
+		///		engiGetEntityCount                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityCount&lang=CS64)
 		///
 		///	Returns the total number of entities within the loaded schema.
 		/// </summary>
@@ -1234,7 +1234,7 @@ namespace RDF
 		public static extern int_t engiGetEntityCount(int_t model);
 
 		/// <summary>
-		///		engiGetEntityElement                                    (https://rdf.bg/ifcdoc/CS64/engiGetEntityElement.html)
+		///		engiGetEntityElement                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityElement&lang=CS64)
 		///
 		///	This call returns a specific entity based on an index, the index needs to be 0 or higher but lower then the number of entities in the loaded schema.
 		/// </summary>
@@ -1242,7 +1242,7 @@ namespace RDF
 		public static extern int_t engiGetEntityElement(int_t model, int_t index);
 
 		/// <summary>
-		///		sdaiGetEntityExtent                                     (https://rdf.bg/ifcdoc/CS64/sdaiGetEntityExtent.html)
+		///		sdaiGetEntityExtent                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetEntityExtent&lang=CS64)
 		///
 		///	This call retrieves an aggregation that contains all instances of the entity given.
 		/// </summary>
@@ -1250,7 +1250,7 @@ namespace RDF
 		public static extern int_t sdaiGetEntityExtent(int_t model, int_t entity);
 
 		/// <summary>
-		///		sdaiGetEntityExtentBN                                   (https://rdf.bg/ifcdoc/CS64/sdaiGetEntityExtentBN.html)
+		///		sdaiGetEntityExtentBN                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetEntityExtentBN&lang=CS64)
 		///
 		///	This call retrieves an aggregation that contains all instances of the entity given.
 		///
@@ -1270,7 +1270,7 @@ namespace RDF
 		public static extern int_t sdaiGetEntityExtentBN(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		engiGetEntityNameEx                                     (https://rdf.bg/ifcdoc/CS64/engiGetEntityNameEx.html)
+		///		engiGetEntityNameEx                                     (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityNameEx&lang=CS64)
 		///
 		///	This call can be used to get the name of the given entity.
 		/// </summary>
@@ -1278,7 +1278,7 @@ namespace RDF
 		public static extern IntPtr engiGetEntityNameEx(int_t entity, int_t valueType, out IntPtr entityName, [param: MarshalAs(UnmanagedType.U1)] bool displayName);
 
 		/// <summary>
-		///		engiGetEntityName                                       (https://rdf.bg/ifcdoc/CS64/engiGetEntityName.html)
+		///		engiGetEntityName                                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityName&lang=CS64)
 		///
 		///	This call can be used to get the name of the given entity.
 		/// </summary>
@@ -1293,7 +1293,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetEntityNoAttributes                               (https://rdf.bg/ifcdoc/CS64/engiGetEntityNoAttributes.html)
+		///		engiGetEntityNoAttributes                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityNoAttributes&lang=CS64)
 		///
 		///	This call returns the number of arguments, this includes the arguments of its (nested) parents and inverse arguments.
 		/// </summary>
@@ -1301,7 +1301,7 @@ namespace RDF
 		public static extern int_t engiGetEntityNoAttributes(int_t entity);
 
 		/// <summary>
-		///		engiGetEntityNoAttributesEx                             (https://rdf.bg/ifcdoc/CS64/engiGetEntityNoAttributesEx.html)
+		///		engiGetEntityNoAttributesEx                             (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityNoAttributesEx&lang=CS64)
 		///
 		///	This call returns the number of attributes, inclusion of parents and inverse depends on includeParent and includeInverse values.
 		/// </summary>
@@ -1309,7 +1309,7 @@ namespace RDF
 		public static extern int_t engiGetEntityNoAttributesEx(int_t entity, [param: MarshalAs(UnmanagedType.U1)] bool includeParent, [param: MarshalAs(UnmanagedType.U1)] bool includeInverse);
 
 		/// <summary>
-		///		engiGetEntityParent                                     (https://rdf.bg/ifcdoc/CS64/engiGetEntityParent.html)
+		///		engiGetEntityParent                                     (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityParent&lang=CS64)
 		///
 		///	Returns the first parent entity, for example the parent of IfcObject is IfcObjectDefinition, of IfcObjectDefinition is IfcRoot and of IfcRoot is 0.
 		/// </summary>
@@ -1317,7 +1317,7 @@ namespace RDF
 		public static extern int_t engiGetEntityParent(int_t entity);
 
 		/// <summary>
-		///		engiGetEntityNoParents                                  (https://rdf.bg/ifcdoc/CS64/engiGetEntityNoParents.html)
+		///		engiGetEntityNoParents                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityNoParents&lang=CS64)
 		///
 		///	Returns number of parent entities.
 		/// </summary>
@@ -1325,7 +1325,7 @@ namespace RDF
 		public static extern int_t engiGetEntityNoParents(int_t entity);
 
 		/// <summary>
-		///		engiGetEntityParentEx                                   (https://rdf.bg/ifcdoc/CS64/engiGetEntityParentEx.html)
+		///		engiGetEntityParentEx                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityParentEx&lang=CS64)
 		///
 		///	Returns the N-th parent of entity or NULL if index exceeds number of parents.
 		/// </summary>
@@ -1333,7 +1333,7 @@ namespace RDF
 		public static extern int_t engiGetEntityParentEx(int_t entity, int_t index);
 
 		/// <summary>
-		///		engiIsParentOf                                          (https://rdf.bg/ifcdoc/CS64/engiIsParentOf.html)
+		///		engiIsParentOf                                          (https://rdf.bg/ifcdoc/index.html?topic=engiIsParentOf&lang=CS64)
 		///
 		///	Checks if the entity is a supertype of another entity.
 		///	An entity is supertype of itself.
@@ -1343,7 +1343,7 @@ namespace RDF
 		public static extern bool engiIsParentOf(int_t superType, int_t subType);
 
 		/// <summary>
-		///		engiGetAttrDerived                                      (https://rdf.bg/ifcdoc/CS64/engiGetAttrDerived.html)
+		///		engiGetAttrDerived                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDerived&lang=CS64)
 		///
 		///	This function checks if the attribute is derived and returns a script to be used to calculate the value of the attribute.
 		///	If entity is NULL it checks declaration in defining entity (the most common supertype where the attribute is first declared), 
@@ -1353,7 +1353,7 @@ namespace RDF
 		public static extern int_t engiGetAttrDerived(int_t entity, int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrDerivedBN                                    (https://rdf.bg/ifcdoc/CS64/engiGetAttrDerivedBN.html)
+		///		engiGetAttrDerivedBN                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDerivedBN&lang=CS64)
 		///
 		///	This call can be used to check if an attribute is defined schema wise in the context of a certain entity.
 		///
@@ -1373,7 +1373,7 @@ namespace RDF
 		public static extern int_t engiGetAttrDerivedBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiIsAttrInverse                                       (https://rdf.bg/ifcdoc/CS64/engiIsAttrInverse.html)
+		///		engiIsAttrInverse                                       (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrInverse&lang=CS64)
 		///
 		///	This call can be used to check if an attribute is an inverse relation
 		/// </summary>
@@ -1382,7 +1382,7 @@ namespace RDF
 		public static extern bool engiIsAttrInverse(int_t attribute);
 
 		/// <summary>
-		///		engiIsAttrInverseBN                                     (https://rdf.bg/ifcdoc/CS64/engiIsAttrInverseBN.html)
+		///		engiIsAttrInverseBN                                     (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrInverseBN&lang=CS64)
 		///
 		///	This call can be used to check if an attribute is an inverse relation.
 		///
@@ -1403,7 +1403,7 @@ namespace RDF
 		public static extern bool engiIsAttrInverseBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiIsAttrOptional                                      (https://rdf.bg/ifcdoc/CS64/engiIsAttrOptional.html)
+		///		engiIsAttrOptional                                      (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrOptional&lang=CS64)
 		///
 		///	This call can be used to check if an attribute is optional.
 		/// </summary>
@@ -1412,7 +1412,7 @@ namespace RDF
 		public static extern bool engiIsAttrOptional(int_t attribute);
 
 		/// <summary>
-		///		engiIsAttrOptionalBN                                    (https://rdf.bg/ifcdoc/CS64/engiIsAttrOptionalBN.html)
+		///		engiIsAttrOptionalBN                                    (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrOptionalBN&lang=CS64)
 		///
 		///	This call can be used to check if an attribute is optional.
 		///
@@ -1433,7 +1433,7 @@ namespace RDF
 		public static extern bool engiIsAttrOptionalBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetAttrRedeclarationByIterator                      (https://rdf.bg/ifcdoc/CS64/engiGetAttrRedeclarationByIterator.html)
+		///		engiGetAttrRedeclarationByIterator                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrRedeclarationByIterator&lang=CS64)
 		///
 		///	Iterates actual attribute redeclarations for given entity.
 		///	sdaiGetAttrDefinition and other functions returns the first definition in the most common supertype. This function allow to explore redeclarations by subtypes.
@@ -1442,7 +1442,7 @@ namespace RDF
 		public static extern int_t engiGetAttrRedeclarationByIterator(int_t entity, int_t attribute, int_t prevRedeclaration);
 
 		/// <summary>
-		///		engiGetAttrDomainName                                   (https://rdf.bg/ifcdoc/CS64/engiGetAttrDomainName.html)
+		///		engiGetAttrDomainName                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDomainName&lang=CS64)
 		///
 		///	This call can be used to get the domain of an attribute.
 		/// </summary>
@@ -1460,7 +1460,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetAttrDomainNameBN                                 (https://rdf.bg/ifcdoc/CS64/engiGetAttrDomainNameBN.html)
+		///		engiGetAttrDomainNameBN                                 (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDomainNameBN&lang=CS64)
 		///
 		///	This call can be used to get the domain of an attribute.
 		///
@@ -1494,7 +1494,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiIsEntityAbstract                                    (https://rdf.bg/ifcdoc/CS64/engiIsEntityAbstract.html)
+		///		engiIsEntityAbstract                                    (https://rdf.bg/ifcdoc/index.html?topic=engiIsEntityAbstract&lang=CS64)
 		///
 		///	This call can be used to check if an entity is abstract.
 		/// </summary>
@@ -1502,7 +1502,7 @@ namespace RDF
 		public static extern int_t engiIsEntityAbstract(int_t entity);
 
 		/// <summary>
-		///		engiIsEntityAbstractBN                                  (https://rdf.bg/ifcdoc/CS64/engiIsEntityAbstractBN.html)
+		///		engiIsEntityAbstractBN                                  (https://rdf.bg/ifcdoc/index.html?topic=engiIsEntityAbstractBN&lang=CS64)
 		///
 		///	This call can be used to check if an entity is abstract.
 		///
@@ -1521,7 +1521,7 @@ namespace RDF
 		public static extern int_t engiIsEntityAbstractBN(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		engiGetEnumerationValue                                 (https://rdf.bg/ifcdoc/CS64/engiGetEnumerationValue.html)
+		///		engiGetEnumerationValue                                 (https://rdf.bg/ifcdoc/index.html?topic=engiGetEnumerationValue&lang=CS64)
 		///
 		///	Allows to retrieve enumeration values of an attribute by index.
 		/// </summary>
@@ -1536,7 +1536,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetEntityAttributeByIterator                        (https://rdf.bg/ifcdoc/CS64/engiGetEntityAttributeByIterator.html)
+		///		engiGetEntityAttributeByIterator                        (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityAttributeByIterator&lang=CS64)
 		///
 		///	Iterates attribute definition of the entity.
 		///	Includes explicit, inverse and derived attributes defined by this or parent entities.
@@ -1548,7 +1548,7 @@ namespace RDF
 		public static extern int_t engiGetEntityAttributeByIterator(int_t entity, int_t prev);
 
 		/// <summary>
-		///		engiGetAggregationDefinition                            (https://rdf.bg/ifcdoc/CS64/engiGetAggregationDefinition.html)
+		///		engiGetAggregationDefinition                            (https://rdf.bg/ifcdoc/index.html?topic=engiGetAggregationDefinition&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -1556,7 +1556,7 @@ namespace RDF
 		public static extern void engiGetAggregationDefinition(int_t aggregationDefinition, out enum_express_aggr aggregationType, out int_t cardinalityMin, out int_t cardinalityMax, [param: MarshalAs(UnmanagedType.U1)] out bool optional, [param: MarshalAs(UnmanagedType.U1)] out bool unique, out int_t nextAggregationLevel);
 
 		/// <summary>
-		///		engiGetEntityUniqueRuleByIterator                       (https://rdf.bg/ifcdoc/CS64/engiGetEntityUniqueRuleByIterator.html)
+		///		engiGetEntityUniqueRuleByIterator                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityUniqueRuleByIterator&lang=CS64)
 		///
 		///	Iterates unique rules of the entity.
 		///	Includes this but not parent entities.
@@ -1577,7 +1577,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetEntityUniqueRuleAttributeByIterator              (https://rdf.bg/ifcdoc/CS64/engiGetEntityUniqueRuleAttributeByIterator.html)
+		///		engiGetEntityUniqueRuleAttributeByIterator              (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityUniqueRuleAttributeByIterator&lang=CS64)
 		///
 		///	Iterates attributes of unique rule.
 		///	Returns first attribute name if prev is NULL.
@@ -1602,7 +1602,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetEntityWhereRuleByIterator                        (https://rdf.bg/ifcdoc/CS64/engiGetEntityWhereRuleByIterator.html)
+		///		engiGetEntityWhereRuleByIterator                        (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityWhereRuleByIterator&lang=CS64)
 		///
 		///	Iterates where rules of the entity or defined type.
 		///	Declaration can be ENTITY or DEFINED_TYPE.
@@ -1629,7 +1629,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		sdaiGetADBType                                          (https://rdf.bg/ifcdoc/CS64/sdaiGetADBType.html)
+		///		sdaiGetADBType                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetADBType&lang=CS64)
 		///
 		///	This call can be used to get the used type within this ADB type.
 		/// </summary>
@@ -1637,7 +1637,7 @@ namespace RDF
 		public static extern int_t sdaiGetADBType(int_t ADB);
 
 		/// <summary>
-		///		sdaiGetADBTypePath                                      (https://rdf.bg/ifcdoc/CS64/sdaiGetADBTypePath.html)
+		///		sdaiGetADBTypePath                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetADBTypePath&lang=CS64)
 		///
 		///	This call can be used to get the path of an ADB type.
 		/// </summary>
@@ -1645,7 +1645,7 @@ namespace RDF
 		public static extern IntPtr sdaiGetADBTypePath(int_t ADB, int_t typeNameNumber);
 
 		/// <summary>
-		///		sdaiGetADBValue                                         (https://rdf.bg/ifcdoc/CS64/sdaiGetADBValue.html)
+		///		sdaiGetADBValue                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetADBValue&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to get and
 		///	value argument where the caller should provide a buffer, and the function will write the result to.
@@ -1768,7 +1768,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiPutADBValue                                         (https://rdf.bg/ifcdoc/CS64/sdaiPutADBValue.html)
+		///		sdaiPutADBValue                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutADBValue&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPutADBValue, and it works similarly for all put-functions.
@@ -1876,7 +1876,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiCreateEmptyADB                                      (https://rdf.bg/ifcdoc/CS64/sdaiCreateEmptyADB.html)
+		///		sdaiCreateEmptyADB                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateEmptyADB&lang=CS64)
 		///
 		///	Creates an empty ADB (Attribute Data Block).
 		/// </summary>
@@ -1884,7 +1884,7 @@ namespace RDF
 		public static extern int_t sdaiCreateEmptyADB();
 
 		/// <summary>
-		///		sdaiDeleteADB                                           (https://rdf.bg/ifcdoc/CS64/sdaiDeleteADB.html)
+		///		sdaiDeleteADB                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiDeleteADB&lang=CS64)
 		///
 		///	Deletes an ADB (Attribute Data Block).
 		/// </summary>
@@ -1892,7 +1892,7 @@ namespace RDF
 		public static extern void sdaiDeleteADB(int_t ADB);
 
 		/// <summary>
-		///		sdaiGetAggrByIndex                                      (https://rdf.bg/ifcdoc/CS64/sdaiGetAggrByIndex.html)
+		///		sdaiGetAggrByIndex                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAggrByIndex&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to get and
 		///	value argument where the caller should provide a buffer, and the function will write the result to.
@@ -2015,7 +2015,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiPutAggrByIndex                                      (https://rdf.bg/ifcdoc/CS64/sdaiPutAggrByIndex.html)
+		///		sdaiPutAggrByIndex                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutAggrByIndex&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPutAggrByIndex, and it works similarly for all put-functions.
@@ -2123,7 +2123,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetAggrType                                         (https://rdf.bg/ifcdoc/CS64/engiGetAggrType.html)
+		///		engiGetAggrType                                         (https://rdf.bg/ifcdoc/index.html?topic=engiGetAggrType&lang=CS64)
 		///
 		///	This call returns the type used within an aggregation according to the instance (independent of the schema definition)
 		/// </summary>
@@ -2131,7 +2131,7 @@ namespace RDF
 		public static extern void engiGetAggrType(int_t aggregate, out int_t aggregateType);
 
 		/// <summary>
-		///		engiGetAggrTypex                                        (https://rdf.bg/ifcdoc/CS64/engiGetAggrTypex.html)
+		///		engiGetAggrTypex                                        (https://rdf.bg/ifcdoc/index.html?topic=engiGetAggrTypex&lang=CS64)
 		///
 		///	This call returns the type used within an aggregation according to the instance (independent of the schema definition)
 		/// </summary>
@@ -2139,7 +2139,7 @@ namespace RDF
 		public static extern void engiGetAggrTypex(int_t aggregate, out int_t aggregateType);
 
 		/// <summary>
-		///		sdaiGetAttr                                             (https://rdf.bg/ifcdoc/CS64/sdaiGetAttr.html)
+		///		sdaiGetAttr                                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAttr&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to get and
 		///	value argument where the caller should provide a buffer, and the function will write the result to.
@@ -2262,7 +2262,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiGetAttrBN                                           (https://rdf.bg/ifcdoc/CS64/sdaiGetAttrBN.html)
+		///		sdaiGetAttrBN                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAttrBN&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to get and
 		///	value argument where the caller should provide a buffer, and the function will write the result to.
@@ -2410,7 +2410,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiGetAttrBNUnicode                                    (https://rdf.bg/ifcdoc/CS64/sdaiGetAttrBNUnicode.html)
+		///		sdaiGetAttrBNUnicode                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAttrBNUnicode&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2421,7 +2421,7 @@ namespace RDF
 		public static extern int_t sdaiGetAttrBNUnicode(int_t instance, byte[] attributeName, byte[] buffer, int_t bufferLength);
 
 		/// <summary>
-		///		sdaiGetStringAttrBN                                     (https://rdf.bg/ifcdoc/CS64/sdaiGetStringAttrBN.html)
+		///		sdaiGetStringAttrBN                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetStringAttrBN&lang=CS64)
 		///
 		///	This function is a specific version of sdaiGetAttrBN(..), where the valueType is sdaiSTRING.
 		///	This call can be useful in case of specific programming languages that cannot map towards sdaiGetAttrBN(..) directly,
@@ -2449,7 +2449,7 @@ namespace RDF
 		public static extern IntPtr sdaiGetStringAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiGetInstanceAttrBN                                   (https://rdf.bg/ifcdoc/CS64/sdaiGetInstanceAttrBN.html)
+		///		sdaiGetInstanceAttrBN                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetInstanceAttrBN&lang=CS64)
 		///
 		///	This function is a specific version of sdaiGetAttrBN(..), where the valueType is sdaiINSTANCE.
 		///	This call can be useful in case of specific programming languages that cannot map towards sdaiGetAttrBN(..) directly,
@@ -2477,7 +2477,7 @@ namespace RDF
 		public static extern int_t sdaiGetInstanceAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiGetAggregationAttrBN                                (https://rdf.bg/ifcdoc/CS64/sdaiGetAggregationAttrBN.html)
+		///		sdaiGetAggregationAttrBN                                (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAggregationAttrBN&lang=CS64)
 		///
 		///	This function is a specific version of sdaiGetAttrBN(..), where the valueType is sdaiAGGR.
 		///	This call can be useful in case of specific programming languages that cannot map towards sdaiGetAttrBN(..) directly,
@@ -2505,7 +2505,7 @@ namespace RDF
 		public static extern int_t sdaiGetAggregationAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiGetAttrDefinition                                   (https://rdf.bg/ifcdoc/CS64/sdaiGetAttrDefinition.html)
+		///		sdaiGetAttrDefinition                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAttrDefinition&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2516,7 +2516,7 @@ namespace RDF
 		public static extern int_t sdaiGetAttrDefinition(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetAttrTraits                                       (https://rdf.bg/ifcdoc/CS64/engiGetAttrTraits.html)
+		///		engiGetAttrTraits                                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrTraits&lang=CS64)
 		///
 		///	The function returns information how the attribute is declared in the schema.
 		///	'attribute' may by a base declaration received by sdaiGetAttrDefinition, engiGetEntityAttributeByIterator, etc. or redeclaration by engiGetAttrRedeclarationByIterator.
@@ -2533,7 +2533,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetAttrName                                         (https://rdf.bg/ifcdoc/CS64/engiGetAttrName.html)
+		///		engiGetAttrName                                         (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrName&lang=CS64)
 		///
 		///	This call can be used to get the name of the given attribute.
 		/// </summary>
@@ -2554,7 +2554,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetAttrDefiningEntity                               (https://rdf.bg/ifcdoc/CS64/engiGetAttrDefiningEntity.html)
+		///		engiGetAttrDefiningEntity                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDefiningEntity&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2562,7 +2562,7 @@ namespace RDF
 		public static extern int_t engiGetAttrDefiningEntity(int_t attribute);
 
 		/// <summary>
-		///		engiIsAttrExplicit                                      (https://rdf.bg/ifcdoc/CS64/engiIsAttrExplicit.html)
+		///		engiIsAttrExplicit                                      (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrExplicit&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2571,7 +2571,7 @@ namespace RDF
 		public static extern bool engiIsAttrExplicit(int_t attribute);
 
 		/// <summary>
-		///		engiIsAttrExplicitBN                                    (https://rdf.bg/ifcdoc/CS64/engiIsAttrExplicitBN.html)
+		///		engiIsAttrExplicitBN                                    (https://rdf.bg/ifcdoc/index.html?topic=engiIsAttrExplicitBN&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2584,7 +2584,7 @@ namespace RDF
 		public static extern bool engiIsAttrExplicitBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiGetInstanceModel                                    (https://rdf.bg/ifcdoc/CS64/sdaiGetInstanceModel.html)
+		///		sdaiGetInstanceModel                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetInstanceModel&lang=CS64)
 		///
 		///	Returns the model based on an instance.
 		/// </summary>
@@ -2592,7 +2592,7 @@ namespace RDF
 		public static extern int_t sdaiGetInstanceModel(int_t instance);
 
 		/// <summary>
-		///		sdaiGetInstanceType                                     (https://rdf.bg/ifcdoc/CS64/sdaiGetInstanceType.html)
+		///		sdaiGetInstanceType                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetInstanceType&lang=CS64)
 		///
 		///	Returns the entity based on an instance.
 		/// </summary>
@@ -2600,7 +2600,7 @@ namespace RDF
 		public static extern int_t sdaiGetInstanceType(int_t instance);
 
 		/// <summary>
-		///		sdaiGetMemberCount                                      (https://rdf.bg/ifcdoc/CS64/sdaiGetMemberCount.html)
+		///		sdaiGetMemberCount                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetMemberCount&lang=CS64)
 		///
 		///	Returns the number of elements within an aggregation.
 		/// </summary>
@@ -2608,7 +2608,7 @@ namespace RDF
 		public static extern int_t sdaiGetMemberCount(int_t aggregate);
 
 		/// <summary>
-		///		sdaiIsKindOf                                            (https://rdf.bg/ifcdoc/CS64/sdaiIsKindOf.html)
+		///		sdaiIsKindOf                                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsKindOf&lang=CS64)
 		///
 		///	This call checks if an instance is a type of a certain given entity.
 		/// </summary>
@@ -2616,7 +2616,7 @@ namespace RDF
 		public static extern int_t sdaiIsKindOf(int_t instance, int_t entity);
 
 		/// <summary>
-		///		sdaiIsKindOfBN                                          (https://rdf.bg/ifcdoc/CS64/sdaiIsKindOfBN.html)
+		///		sdaiIsKindOfBN                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsKindOfBN&lang=CS64)
 		///
 		///	This call checks if an instance is a type of a certain given entity.
 		///
@@ -2639,7 +2639,7 @@ namespace RDF
 		public static extern int_t sdaiIsKindOfBN(int_t instance, byte[] entityName);
 
 		/// <summary>
-		///		engiGetAttrType                                         (https://rdf.bg/ifcdoc/CS64/engiGetAttrType.html)
+		///		engiGetAttrType                                         (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrType&lang=CS64)
 		///
 		///	Returns primitive SDAI data type for the attribute according to schema, e.g. sdaiINTEGER
 		///
@@ -2657,7 +2657,7 @@ namespace RDF
 		public static extern int_t engiGetAttrType(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrTypeBN                                       (https://rdf.bg/ifcdoc/CS64/engiGetAttrTypeBN.html)
+		///		engiGetAttrTypeBN                                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrTypeBN&lang=CS64)
 		///
 		///	Combines sdaiGetAttrDefinition and engiGetAttrType.
 		///
@@ -2676,7 +2676,7 @@ namespace RDF
 		public static extern int_t engiGetAttrTypeBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetExpressAttrType                                  (https://rdf.bg/ifcdoc/CS64/engiGetExpressAttrType.html)
+		///		engiGetExpressAttrType                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetExpressAttrType&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2684,7 +2684,7 @@ namespace RDF
 		public static extern enum_express_data_type engiGetExpressAttrType(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrAggregation                                  (https://rdf.bg/ifcdoc/CS64/engiGetAttrAggregation.html)
+		///		engiGetAttrAggregation                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrAggregation&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2692,7 +2692,7 @@ namespace RDF
 		public static extern int_t engiGetAttrAggregation(int_t attribute);
 
 		/// <summary>
-		///		engiGetInstanceAttrType                                 (https://rdf.bg/ifcdoc/CS64/engiGetInstanceAttrType.html)
+		///		engiGetInstanceAttrType                                 (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceAttrType&lang=CS64)
 		///
 		///	Returns SDAI type for actual data stored in the instance for the attribute,
 		///	compare with engiGetAttrType that returns type according to schema.
@@ -2703,7 +2703,7 @@ namespace RDF
 		public static extern int_t engiGetInstanceAttrType(int_t instance, int_t attribute);
 
 		/// <summary>
-		///		engiGetInstanceAttrTypeBN                               (https://rdf.bg/ifcdoc/CS64/engiGetInstanceAttrTypeBN.html)
+		///		engiGetInstanceAttrTypeBN                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceAttrTypeBN&lang=CS64)
 		///
 		///	Combines sdaiGetAttrDefinition and engiGetInstanceAttrType.
 		///
@@ -2725,7 +2725,7 @@ namespace RDF
 		public static extern int_t engiGetInstanceAttrTypeBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiIsInstanceOf                                        (https://rdf.bg/ifcdoc/CS64/sdaiIsInstanceOf.html)
+		///		sdaiIsInstanceOf                                        (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsInstanceOf&lang=CS64)
 		///
 		///	This call checks if an instance is an exact instance of a given entity.
 		/// </summary>
@@ -2733,7 +2733,7 @@ namespace RDF
 		public static extern int_t sdaiIsInstanceOf(int_t instance, int_t entity);
 
 		/// <summary>
-		///		sdaiIsInstanceOfBN                                      (https://rdf.bg/ifcdoc/CS64/sdaiIsInstanceOfBN.html)
+		///		sdaiIsInstanceOfBN                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsInstanceOfBN&lang=CS64)
 		///
 		///	This call checks if an instance is an exact instance of a given entity.
 		///
@@ -2757,7 +2757,7 @@ namespace RDF
 		public static extern int_t sdaiIsInstanceOfBN(int_t instance, byte[] entityName);
 
 		/// <summary>
-		///		sdaiIsEqual                                             (https://rdf.bg/ifcdoc/CS64/sdaiIsEqual.html)
+		///		sdaiIsEqual                                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsEqual&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2766,7 +2766,7 @@ namespace RDF
 		public static extern bool sdaiIsEqual(int_t instanceI, int_t instanceII);
 
 		/// <summary>
-		///		sdaiValidateAttribute                                   (https://rdf.bg/ifcdoc/CS64/sdaiValidateAttribute.html)
+		///		sdaiValidateAttribute                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiValidateAttribute&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2774,7 +2774,7 @@ namespace RDF
 		public static extern int_t sdaiValidateAttribute(int_t instance, int_t attribute);
 
 		/// <summary>
-		///		sdaiValidateAttributeBN                                 (https://rdf.bg/ifcdoc/CS64/sdaiValidateAttributeBN.html)
+		///		sdaiValidateAttributeBN                                 (https://rdf.bg/ifcdoc/index.html?topic=sdaiValidateAttributeBN&lang=CS64)
 		///
 		///	Technically it will transform into the following call
 		///		sdaiValidateAttribute(
@@ -2794,7 +2794,7 @@ namespace RDF
 		public static extern int_t sdaiValidateAttributeBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetInstanceClassInfo                                (https://rdf.bg/ifcdoc/CS64/engiGetInstanceClassInfo.html)
+		///		engiGetInstanceClassInfo                                (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceClassInfo&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2802,7 +2802,7 @@ namespace RDF
 		public static extern IntPtr engiGetInstanceClassInfo(int_t instance);
 
 		/// <summary>
-		///		engiGetInstanceClassInfoUC                              (https://rdf.bg/ifcdoc/CS64/engiGetInstanceClassInfoUC.html)
+		///		engiGetInstanceClassInfoUC                              (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceClassInfoUC&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2810,7 +2810,7 @@ namespace RDF
 		public static extern IntPtr engiGetInstanceClassInfoUC(int_t instance);
 
 		/// <summary>
-		///		engiGetInstanceMetaInfo                                 (https://rdf.bg/ifcdoc/CS64/engiGetInstanceMetaInfo.html)
+		///		engiGetInstanceMetaInfo                                 (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceMetaInfo&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -2818,7 +2818,7 @@ namespace RDF
 		public static extern int_t engiGetInstanceMetaInfo(int_t instance, out int_t localId, out IntPtr entityName, out IntPtr entityNameUC);
 
 		/// <summary>
-		///		sdaiFindInstanceUsers                                   (https://rdf.bg/ifcdoc/CS64/sdaiFindInstanceUsers.html)
+		///		sdaiFindInstanceUsers                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiFindInstanceUsers&lang=CS64)
 		///
 		///	The function returns the identifiers of all the entity instances in the defined domain
 		///	that reference the specified entity instance.
@@ -2827,7 +2827,7 @@ namespace RDF
 		public static extern int_t sdaiFindInstanceUsers(int_t instance, int_t domain, int_t resultList);
 
 		/// <summary>
-		///		sdaiFindInstanceUsedIn                                  (https://rdf.bg/ifcdoc/CS64/sdaiFindInstanceUsedIn.html)
+		///		sdaiFindInstanceUsedIn                                  (https://rdf.bg/ifcdoc/index.html?topic=sdaiFindInstanceUsedIn&lang=CS64)
 		///
 		///	The function returns the identifiers of all the entity instances in the defined domain
 		///	that reference the specified entity instance by the specified attribute (role).
@@ -2836,7 +2836,7 @@ namespace RDF
 		public static extern int_t sdaiFindInstanceUsedIn(int_t instance, int_t role, int_t domain, int_t resultList);
 
 		/// <summary>
-		///		sdaiFindInstanceUsedInBN                                (https://rdf.bg/ifcdoc/CS64/sdaiFindInstanceUsedInBN.html)
+		///		sdaiFindInstanceUsedInBN                                (https://rdf.bg/ifcdoc/index.html?topic=sdaiFindInstanceUsedInBN&lang=CS64)
 		///
 		///	The function returns the identifiers of all the entity instances in the defined domain
 		///	that reference the specified entity instance by the specified attribute (with roleName).
@@ -2865,7 +2865,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		sdaiPrepend                                             (https://rdf.bg/ifcdoc/CS64/sdaiPrepend.html)
+		///		sdaiPrepend                                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiPrepend&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPrepend, and it works similarly for all put-functions.
@@ -2973,7 +2973,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiAppend                                              (https://rdf.bg/ifcdoc/CS64/sdaiAppend.html)
+		///		sdaiAppend                                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiAppend&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiAppend, and it works similarly for all put-functions.
@@ -3081,7 +3081,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiAdd                                                 (https://rdf.bg/ifcdoc/CS64/sdaiAdd.html)
+		///		sdaiAdd                                                 (https://rdf.bg/ifcdoc/index.html?topic=sdaiAdd&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiAdd, and it works similarly for all put-functions.
@@ -3189,7 +3189,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiInsertByIndex                                       (https://rdf.bg/ifcdoc/CS64/sdaiInsertByIndex.html)
+		///		sdaiInsertByIndex                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertByIndex&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiInsertByIndex, and it works similarly for all put-functions.
@@ -3297,7 +3297,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiInsertBefore                                        (https://rdf.bg/ifcdoc/CS64/sdaiInsertBefore.html)
+		///		sdaiInsertBefore                                        (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertBefore&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiInsertBefore, and it works similarly for all put-functions.
@@ -3405,7 +3405,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiInsertAfter                                         (https://rdf.bg/ifcdoc/CS64/sdaiInsertAfter.html)
+		///		sdaiInsertAfter                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertAfter&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiInsertAfter, and it works similarly for all put-functions.
@@ -3513,7 +3513,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiCreateADB                                           (https://rdf.bg/ifcdoc/CS64/sdaiCreateADB.html)
+		///		sdaiCreateADB                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateADB&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiCreateADB, and it works similarly for all put-functions.
@@ -3616,7 +3616,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiCreateAggr                                          (https://rdf.bg/ifcdoc/CS64/sdaiCreateAggr.html)
+		///		sdaiCreateAggr                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateAggr&lang=CS64)
 		///
 		///	This call creates an aggregation.
 		///	The instance has to be present,
@@ -3627,7 +3627,7 @@ namespace RDF
 		public static extern int_t sdaiCreateAggr(int_t instance, int_t attribute);
 
 		/// <summary>
-		///		sdaiCreateAggrBN                                        (https://rdf.bg/ifcdoc/CS64/sdaiCreateAggrBN.html)
+		///		sdaiCreateAggrBN                                        (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateAggrBN&lang=CS64)
 		///
 		///	This call creates an aggregation.
 		///	The instance has to be present,
@@ -3657,7 +3657,7 @@ namespace RDF
 		public static extern int_t sdaiCreateAggrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiCreateNPL                                           (https://rdf.bg/ifcdoc/CS64/sdaiCreateNPL.html)
+		///		sdaiCreateNPL                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNPL&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -3665,7 +3665,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNPL();
 
 		/// <summary>
-		///		sdaiDeleteNPL                                           (https://rdf.bg/ifcdoc/CS64/sdaiDeleteNPL.html)
+		///		sdaiDeleteNPL                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiDeleteNPL&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -3673,7 +3673,7 @@ namespace RDF
 		public static extern void sdaiDeleteNPL(int_t list);
 
 		/// <summary>
-		///		sdaiCreateNestedAggr                                    (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggr.html)
+		///		sdaiCreateNestedAggr                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggr&lang=CS64)
 		///
 		///	This call creates an aggregation within an aggregation.
 		/// </summary>
@@ -3681,7 +3681,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggr(int_t aggregate);
 
 		/// <summary>
-		///		sdaiCreateNestedAggrByIndex                             (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggrByIndex.html)
+		///		sdaiCreateNestedAggrByIndex                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggrByIndex&lang=CS64)
 		///
 		///	The function creates an aggregate instance and replaces the existing member of the specified ordered aggregate instance
 		///	referenced by the specified index.
@@ -3690,7 +3690,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggrByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrByIndex                             (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrByIndex.html)
+		///		sdaiInsertNestedAggrByIndex                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrByIndex&lang=CS64)
 		///
 		///	The function creates an aggregate instance as a member of the specified ordered aggregate instance.
 		///	The newly created aggregate is inserted into the aggregate at the position referenced by the specified index.
@@ -3699,7 +3699,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
-		///		sdaiCreateNestedAggrByItr                               (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggrByItr.html)
+		///		sdaiCreateNestedAggrByItr                               (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggrByItr&lang=CS64)
 		///
 		///	The function creates an aggregate instance replacing the current member of the aggregate instance
 		///	referenced by the specified iterator.
@@ -3708,7 +3708,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggrByItr(int_t iterator);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrBefore                              (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrBefore.html)
+		///		sdaiInsertNestedAggrBefore                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrBefore&lang=CS64)
 		///
 		///	The function creates an aggregate instance as a member of a list instance.
 		///	The newly created aggregate is inserted into the list instance before the member referenced by the specified iterator.
@@ -3717,7 +3717,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrBefore(int_t iterator);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrAfter                               (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrAfter.html)
+		///		sdaiInsertNestedAggrAfter                               (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrAfter&lang=CS64)
 		///
 		///	The function creates an aggregate instance as a member of a list instance.
 		///	The newly created aggregate is inserted into the list instance after the member referenced by the specified iterator.
@@ -3726,7 +3726,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrAfter(int_t iterator);
 
 		/// <summary>
-		///		sdaiCreateNestedAggrADB                                 (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggrADB.html)
+		///		sdaiCreateNestedAggrADB                                 (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggrADB&lang=CS64)
 		///
 		///	The CreateNestedAggrABD function creates an aggregate instance as a member of (an unordered)
 		///	aggregate instance in the case where the type of the aggregate to create is a SELECT TYPE and
@@ -3738,7 +3738,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggrADB(int_t aggregate, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiCreateNestedAggrByIndexADB                          (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggrByIndexADB.html)
+		///		sdaiCreateNestedAggrByIndexADB                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggrByIndexADB&lang=CS64)
 		///
 		///	The function creates an aggregate instance and replaces the existing member of the specified ordered aggregate instance 
 		///	referenced by the specified index.
@@ -3749,7 +3749,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggrByIndexADB(int_t aggregate, int_t index, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrByIndexADB                          (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrByIndexADB.html)
+		///		sdaiInsertNestedAggrByIndexADB                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrByIndexADB&lang=CS64)
 		///
 		///	The function creates an aggregate instance as member of the specified ordered aggregate instance. 
 		///	The newly created aggregate is inserted into the aggregate at the position referenced by the specified index.
@@ -3760,7 +3760,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrByIndexADB(int_t aggregate, int_t index, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiCreateNestedAggrByItrADB                            (https://rdf.bg/ifcdoc/CS64/sdaiCreateNestedAggrByItrADB.html)
+		///		sdaiCreateNestedAggrByItrADB                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateNestedAggrByItrADB&lang=CS64)
 		///
 		///	The function creates an aggregate instance replacing the current member of the aggregate instance 
 		///	referenced by the specified iterator where the type of the aggregate to create is a SELECT TYPE and ambiguous,
@@ -3771,7 +3771,7 @@ namespace RDF
 		public static extern int_t sdaiCreateNestedAggrByItrADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrBeforeADB                           (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrBeforeADB.html)
+		///		sdaiInsertNestedAggrBeforeADB                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrBeforeADB&lang=CS64)
 		///
 		///	The function creates an aggregate instance as a member of a list instance where the type of the aggregate to create is a SELECT TYPE and ambiguous.
 		///	The newly created aggregate is inserted into the list instance before the member referenced by the specified iterator.
@@ -3782,7 +3782,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrBeforeADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiInsertNestedAggrAfterADB                            (https://rdf.bg/ifcdoc/CS64/sdaiInsertNestedAggrAfterADB.html)
+		///		sdaiInsertNestedAggrAfterADB                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiInsertNestedAggrAfterADB&lang=CS64)
 		///
 		///	The function creates an aggregate instance as a member of a list instance where the type of the aggregate to create is a SELECT TYPE and ambiguous.
 		///	The newly created aggregate is inserted into the list instance after the member referenced by the specified iterator.
@@ -3793,7 +3793,7 @@ namespace RDF
 		public static extern int_t sdaiInsertNestedAggrAfterADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
-		///		sdaiRemoveByIndex                                       (https://rdf.bg/ifcdoc/CS64/sdaiRemoveByIndex.html)
+		///		sdaiRemoveByIndex                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiRemoveByIndex&lang=CS64)
 		///
 		///	The function removes the member of the specified list referenced by the specified index.
 		/// </summary>
@@ -3801,7 +3801,7 @@ namespace RDF
 		public static extern void sdaiRemoveByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
-		///		sdaiRemoveByIterator                                    (https://rdf.bg/ifcdoc/CS64/sdaiRemoveByIterator.html)
+		///		sdaiRemoveByIterator                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiRemoveByIterator&lang=CS64)
 		///
 		///	The function removes the current member of an aggregate instance, that is not an array, referenced by the specified iterator.
 		///	After executing the function, the iterator position set as if the sdaiNext function had been invoked before the member was removed.
@@ -3810,7 +3810,7 @@ namespace RDF
 		public static extern void sdaiRemoveByIterator(int_t iterator);
 
 		/// <summary>
-		///		sdaiRemove                                              (https://rdf.bg/ifcdoc/CS64/sdaiRemove.html)
+		///		sdaiRemove                                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiRemove&lang=CS64)
 		///
 		///	The function removes one occurrence of the specified value from the specified unordered aggregate instance.
 		///
@@ -3913,7 +3913,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiTestArrayByIndex                                    (https://rdf.bg/ifcdoc/CS64/sdaiTestArrayByIndex.html)
+		///		sdaiTestArrayByIndex                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiTestArrayByIndex&lang=CS64)
 		///
 		///	The function tests whether the member of the specified array referenced by the specified index position has a value.
 		/// </summary>
@@ -3922,7 +3922,7 @@ namespace RDF
 		public static extern bool sdaiTestArrayByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
-		///		sdaiTestArrayByItr                                      (https://rdf.bg/ifcdoc/CS64/sdaiTestArrayByItr.html)
+		///		sdaiTestArrayByItr                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiTestArrayByItr&lang=CS64)
 		///
 		///	The function tests whether the member of the specified array referenced by the specified index position has a value.
 		/// </summary>
@@ -3931,7 +3931,7 @@ namespace RDF
 		public static extern bool sdaiTestArrayByItr(int_t iterator);
 
 		/// <summary>
-		///		sdaiCreateInstance                                      (https://rdf.bg/ifcdoc/CS64/sdaiCreateInstance.html)
+		///		sdaiCreateInstance                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateInstance&lang=CS64)
 		///
 		///	This call creates an instance of the given entity.
 		/// </summary>
@@ -3939,7 +3939,7 @@ namespace RDF
 		public static extern int_t sdaiCreateInstance(int_t model, int_t entity);
 
 		/// <summary>
-		///		sdaiCreateInstanceBN                                    (https://rdf.bg/ifcdoc/CS64/sdaiCreateInstanceBN.html)
+		///		sdaiCreateInstanceBN                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateInstanceBN&lang=CS64)
 		///
 		///	This call creates an instance of the given entity.
 		///
@@ -3959,7 +3959,7 @@ namespace RDF
 		public static extern int_t sdaiCreateInstanceBN(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		sdaiCreateComplexInstance                               (https://rdf.bg/ifcdoc/CS64/sdaiCreateComplexInstance.html)
+		///		sdaiCreateComplexInstance                               (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateComplexInstance&lang=CS64)
 		///
 		///	This call creates a new application instance of the specified type, as determined by a constructed entity type
 		///	that is made up of the supplied simple entity types, in the specified SDAI model.
@@ -3968,7 +3968,7 @@ namespace RDF
 		public static extern int_t sdaiCreateComplexInstance(int_t model, int_t entityList);
 
 		/// <summary>
-		///		sdaiCreateComplexInstanceBN                             (https://rdf.bg/ifcdoc/CS64/sdaiCreateComplexInstanceBN.html)
+		///		sdaiCreateComplexInstanceBN                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateComplexInstanceBN&lang=CS64)
 		///
 		///	This call creates a new application instance of the specified type, as determined by a constructed entity type
 		///	that is made up of the supplied simple entity types, in the specified SDAI model.
@@ -3977,7 +3977,7 @@ namespace RDF
 		public static extern int_t sdaiCreateComplexInstanceBN(int_t model, int_t nameNumber, out IntPtr nameVector);
 
 		/// <summary>
-		///		sdaiDeleteInstance                                      (https://rdf.bg/ifcdoc/CS64/sdaiDeleteInstance.html)
+		///		sdaiDeleteInstance                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiDeleteInstance&lang=CS64)
 		///
 		///	This call will delete an existing instance.
 		/// </summary>
@@ -3985,7 +3985,7 @@ namespace RDF
 		public static extern void sdaiDeleteInstance(int_t instance);
 
 		/// <summary>
-		///		sdaiPutADBTypePath                                      (https://rdf.bg/ifcdoc/CS64/sdaiPutADBTypePath.html)
+		///		sdaiPutADBTypePath                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutADBTypePath&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -3996,7 +3996,7 @@ namespace RDF
 		public static extern void sdaiPutADBTypePath(int_t ADB, int_t pathCount, byte[] path);
 
 		/// <summary>
-		///		sdaiPutAttr                                             (https://rdf.bg/ifcdoc/CS64/sdaiPutAttr.html)
+		///		sdaiPutAttr                                             (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutAttr&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPutAttr, and it works similarly for all put-functions.
@@ -4104,7 +4104,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiPutAttrBN                                           (https://rdf.bg/ifcdoc/CS64/sdaiPutAttrBN.html)
+		///		sdaiPutAttrBN                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutAttrBN&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPutAttrBN, and it works similarly for all put-functions.
@@ -4243,7 +4243,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiUnsetAttr                                           (https://rdf.bg/ifcdoc/CS64/sdaiUnsetAttr.html)
+		///		sdaiUnsetAttr                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiUnsetAttr&lang=CS64)
 		///
 		///	This call removes all data from a specific attribute for the given instance.
 		/// </summary>
@@ -4251,7 +4251,7 @@ namespace RDF
 		public static extern void sdaiUnsetAttr(int_t instance, int_t attribute);
 
 		/// <summary>
-		///		sdaiUnsetAttrBN                                         (https://rdf.bg/ifcdoc/CS64/sdaiUnsetAttrBN.html)
+		///		sdaiUnsetAttrBN                                         (https://rdf.bg/ifcdoc/index.html?topic=sdaiUnsetAttrBN&lang=CS64)
 		///
 		///	This call removes all data from a specific attribute for the given instance.
 		///
@@ -4273,7 +4273,7 @@ namespace RDF
 		public static extern void sdaiUnsetAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		engiSetComment                                          (https://rdf.bg/ifcdoc/CS64/engiSetComment.html)
+		///		engiSetComment                                          (https://rdf.bg/ifcdoc/index.html?topic=engiSetComment&lang=CS64)
 		///
 		///	This call can be used to add a comment to an instance when exporting the content. The comment is available in the exported/saved IFC file.
 		/// </summary>
@@ -4284,7 +4284,7 @@ namespace RDF
 		public static extern void engiSetComment(int_t instance, byte[] comment);
 
 		/// <summary>
-		///		engiGetInstanceLocalId                                  (https://rdf.bg/ifcdoc/CS64/engiGetInstanceLocalId.html)
+		///		engiGetInstanceLocalId                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetInstanceLocalId&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4292,7 +4292,7 @@ namespace RDF
 		public static extern Int64 engiGetInstanceLocalId(int_t instance);
 
 		/// <summary>
-		///		sdaiTestAttr                                            (https://rdf.bg/ifcdoc/CS64/sdaiTestAttr.html)
+		///		sdaiTestAttr                                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiTestAttr&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4300,7 +4300,7 @@ namespace RDF
 		public static extern int_t sdaiTestAttr(int_t instance, int_t attribute);
 
 		/// <summary>
-		///		sdaiTestAttrBN                                          (https://rdf.bg/ifcdoc/CS64/sdaiTestAttrBN.html)
+		///		sdaiTestAttrBN                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiTestAttrBN&lang=CS64)
 		///
 		///	Technically it will transform into the following call
 		///		sdaiGetAttrDefinition(
@@ -4317,7 +4317,7 @@ namespace RDF
 		public static extern int_t sdaiTestAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
-		///		sdaiCreateInstanceEI                                    (https://rdf.bg/ifcdoc/CS64/sdaiCreateInstanceEI.html)
+		///		sdaiCreateInstanceEI                                    (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateInstanceEI&lang=CS64)
 		///
 		///	This call creates an instance at a specific given express ID, the instance is only created if the express ID was not used yet.
 		/// </summary>
@@ -4325,7 +4325,7 @@ namespace RDF
 		public static extern int_t sdaiCreateInstanceEI(int_t model, int_t entity, Int64 expressID);
 
 		/// <summary>
-		///		sdaiCreateInstanceBNEI                                  (https://rdf.bg/ifcdoc/CS64/sdaiCreateInstanceBNEI.html)
+		///		sdaiCreateInstanceBNEI                                  (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateInstanceBNEI&lang=CS64)
 		///
 		///	This call creates an instance at a specific given express ID, the instance is only created if the express ID was not used yet.
 		/// </summary>
@@ -4336,7 +4336,7 @@ namespace RDF
 		public static extern int_t sdaiCreateInstanceBNEI(int_t model, byte[] entityName, Int64 expressID);
 
 		/// <summary>
-		///		sdaiCreateIterator                                      (https://rdf.bg/ifcdoc/CS64/sdaiCreateIterator.html)
+		///		sdaiCreateIterator                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiCreateIterator&lang=CS64)
 		///
 		///	This function creates an iterator associated with the specified aggregate instance.
 		///	The iterator is positioned as if the sdaiBeginning function had been executed such that so that no
@@ -4346,7 +4346,7 @@ namespace RDF
 		public static extern int_t sdaiCreateIterator(int_t aggregate);
 
 		/// <summary>
-		///		sdaiDeleteIterator                                      (https://rdf.bg/ifcdoc/CS64/sdaiDeleteIterator.html)
+		///		sdaiDeleteIterator                                      (https://rdf.bg/ifcdoc/index.html?topic=sdaiDeleteIterator&lang=CS64)
 		///
 		///	This function deletes the specified iterator.
 		/// </summary>
@@ -4354,7 +4354,7 @@ namespace RDF
 		public static extern void sdaiDeleteIterator(int_t iterator);
 
 		/// <summary>
-		///		sdaiBeginning                                           (https://rdf.bg/ifcdoc/CS64/sdaiBeginning.html)
+		///		sdaiBeginning                                           (https://rdf.bg/ifcdoc/index.html?topic=sdaiBeginning&lang=CS64)
 		///
 		///	The function positions the iterator at the beginning of its associated aggregate instance such that there is no current member.
 		/// </summary>
@@ -4362,7 +4362,7 @@ namespace RDF
 		public static extern void sdaiBeginning(int_t iterator);
 
 		/// <summary>
-		///		sdaiNext                                                (https://rdf.bg/ifcdoc/CS64/sdaiNext.html)
+		///		sdaiNext                                                (https://rdf.bg/ifcdoc/index.html?topic=sdaiNext&lang=CS64)
 		///
 		///	This function positions the iterator to the succeeding member of the associated aggregate instance.
 		/// </summary>
@@ -4371,7 +4371,7 @@ namespace RDF
 		public static extern bool sdaiNext(int_t iterator);
 
 		/// <summary>
-		///		sdaiPrevious                                            (https://rdf.bg/ifcdoc/CS64/sdaiPrevious.html)
+		///		sdaiPrevious                                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiPrevious&lang=CS64)
 		///
 		///	This function positions the specified iterator so that the preceding member of its subject
 		///	ordered aggregate instance shall become the current member.
@@ -4383,7 +4383,7 @@ namespace RDF
 		public static extern int_t sdaiPrevious(int_t iterator);
 
 		/// <summary>
-		///		sdaiEnd                                                 (https://rdf.bg/ifcdoc/CS64/sdaiEnd.html)
+		///		sdaiEnd                                                 (https://rdf.bg/ifcdoc/index.html?topic=sdaiEnd&lang=CS64)
 		///
 		///	This function positions the specified iterator at the end of the ordered aggregate instance members such that there is no current member.
 		/// </summary>
@@ -4391,7 +4391,7 @@ namespace RDF
 		public static extern void sdaiEnd(int_t iterator);
 
 		/// <summary>
-		///		sdaiIsMember                                            (https://rdf.bg/ifcdoc/CS64/sdaiIsMember.html)
+		///		sdaiIsMember                                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiIsMember&lang=CS64)
 		///
 		///	The function determines whether the specified primitive or instance value is contained
 		///	in the aggregate. In the case of aggregate members represented by ADBs, both the data value and data
@@ -4504,7 +4504,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiGetAggrElementBoundByItr                            (https://rdf.bg/ifcdoc/CS64/sdaiGetAggrElementBoundByItr.html)
+		///		sdaiGetAggrElementBoundByItr                            (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAggrElementBoundByItr&lang=CS64)
 		///
 		///	The function returns the current value of the real precision, the string width, or the binary width
 		///	for the current member referenced by the specified iterator.
@@ -4513,7 +4513,7 @@ namespace RDF
 		public static extern int_t sdaiGetAggrElementBoundByItr(int_t iterator);
 
 		/// <summary>
-		///		sdaiGetAggrElementBoundByIndex                          (https://rdf.bg/ifcdoc/CS64/sdaiGetAggrElementBoundByIndex.html)
+		///		sdaiGetAggrElementBoundByIndex                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAggrElementBoundByIndex&lang=CS64)
 		///
 		///	The function returns the current value of the real precision, the string width, or the binary width 
 		///	of the aggregate element at the specified index position in the specified ordered aggregate instance.
@@ -4522,7 +4522,7 @@ namespace RDF
 		public static extern int_t sdaiGetAggrElementBoundByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
-		///		sdaiGetLowerBound                                       (https://rdf.bg/ifcdoc/CS64/sdaiGetLowerBound.html)
+		///		sdaiGetLowerBound                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetLowerBound&lang=CS64)
 		///
 		///	The function returns the current value of the lower bound, or index, of the specified aggregate instance.
 		/// </summary>
@@ -4530,7 +4530,7 @@ namespace RDF
 		public static extern int_t sdaiGetLowerBound(int_t aggregate);
 
 		/// <summary>
-		///		sdaiGetUpperBound                                       (https://rdf.bg/ifcdoc/CS64/sdaiGetUpperBound.html)
+		///		sdaiGetUpperBound                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetUpperBound&lang=CS64)
 		///
 		///	The function returns the current value of the upper bound, or index, of the specified aggregate instance.
 		/// </summary>
@@ -4538,7 +4538,7 @@ namespace RDF
 		public static extern int_t sdaiGetUpperBound(int_t aggregate);
 
 		/// <summary>
-		///		sdaiGetLowerIndex                                       (https://rdf.bg/ifcdoc/CS64/sdaiGetLowerIndex.html)
+		///		sdaiGetLowerIndex                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetLowerIndex&lang=CS64)
 		///
 		///	The function returns the value of the lower index of the specified array instance when it was created.
 		/// </summary>
@@ -4546,7 +4546,7 @@ namespace RDF
 		public static extern int_t sdaiGetLowerIndex(int_t aggregate);
 
 		/// <summary>
-		///		sdaiGetUpperIndex                                       (https://rdf.bg/ifcdoc/CS64/sdaiGetUpperIndex.html)
+		///		sdaiGetUpperIndex                                       (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetUpperIndex&lang=CS64)
 		///
 		///	The function returns the value of the upper index of the specified array instance when it was created.
 		/// </summary>
@@ -4554,7 +4554,7 @@ namespace RDF
 		public static extern int_t sdaiGetUpperIndex(int_t aggregate);
 
 		/// <summary>
-		///		sdaiUnsetArrayByIndex                                   (https://rdf.bg/ifcdoc/CS64/sdaiUnsetArrayByIndex.html)
+		///		sdaiUnsetArrayByIndex                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiUnsetArrayByIndex&lang=CS64)
 		///
 		///	The function restores the unset (not assigned a value) status of the member
 		///	of the specified array at the specified index position.
@@ -4563,7 +4563,7 @@ namespace RDF
 		public static extern void sdaiUnsetArrayByIndex(int_t array, int_t index);
 
 		/// <summary>
-		///		sdaiUnsetArrayByItr                                     (https://rdf.bg/ifcdoc/CS64/sdaiUnsetArrayByItr.html)
+		///		sdaiUnsetArrayByItr                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiUnsetArrayByItr&lang=CS64)
 		///
 		///	The function restores the unset (not assigned a value) status of a member at the
 		///	position identified by the iterator in the array associated with the iterator.
@@ -4572,7 +4572,7 @@ namespace RDF
 		public static extern void sdaiUnsetArrayByItr(int_t iterator);
 
 		/// <summary>
-		///		sdaiReindexArray                                        (https://rdf.bg/ifcdoc/CS64/sdaiReindexArray.html)
+		///		sdaiReindexArray                                        (https://rdf.bg/ifcdoc/index.html?topic=sdaiReindexArray&lang=CS64)
 		///
 		///	The function resizes the specified array instance setting the lower, or upper index,
 		///	or both, based upon the current population of the application schema.
@@ -4581,7 +4581,7 @@ namespace RDF
 		public static extern void sdaiReindexArray(int_t array);
 
 		/// <summary>
-		///		sdaiResetArrayIndex                                     (https://rdf.bg/ifcdoc/CS64/sdaiResetArrayIndex.html)
+		///		sdaiResetArrayIndex                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiResetArrayIndex&lang=CS64)
 		///
 		///	The function shall resizes the specified array instance setting the lower and upper
 		///	index with the specified values.
@@ -4590,7 +4590,7 @@ namespace RDF
 		public static extern void sdaiResetArrayIndex(int_t array, int_t lower, int_t upper);
 
 		/// <summary>
-		///		engiEnableDerivedAttributes                             (https://rdf.bg/ifcdoc/CS64/engiEnableDerivedAttributes.html)
+		///		engiEnableDerivedAttributes                             (https://rdf.bg/ifcdoc/index.html?topic=engiEnableDerivedAttributes&lang=CS64)
 		///
 		///	The function enables calculation of derived attributes for sdaiGetAttr(BN) and other get value functions and dynamic aggregation indexes.
 		///	Returns success flag.
@@ -4600,7 +4600,7 @@ namespace RDF
 		public static extern bool engiEnableDerivedAttributes(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool enable);
 
 		/// <summary>
-		///		engiEvaluateAllDerivedAttributes                        (https://rdf.bg/ifcdoc/CS64/engiEvaluateAllDerivedAttributes.html)
+		///		engiEvaluateAllDerivedAttributes                        (https://rdf.bg/ifcdoc/index.html?topic=engiEvaluateAllDerivedAttributes&lang=CS64)
 		///
 		///	The function evaluates and replaces all * with values, optionally can handle $ values as derived attributes.
 		/// </summary>
@@ -4608,7 +4608,7 @@ namespace RDF
 		public static extern void engiEvaluateAllDerivedAttributes(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool includeNullValues);
 
 		/// <summary>
-		///		engiIsComplexEntity                                     (https://rdf.bg/ifcdoc/CS64/engiIsComplexEntity.html)
+		///		engiIsComplexEntity                                     (https://rdf.bg/ifcdoc/index.html?topic=engiIsComplexEntity&lang=CS64)
 		///
 		///	The function checks if instances of the specified entity are complex instances.
 		///	You can use engiGetEntityParentEx to list components.
@@ -4618,7 +4618,7 @@ namespace RDF
 		public static extern bool engiIsComplexEntity(int_t entity);
 
 		/// <summary>
-		///		setSegmentation                                         (https://rdf.bg/ifcdoc/CS64/setSegmentation.html)
+		///		setSegmentation                                         (https://rdf.bg/ifcdoc/index.html?topic=setSegmentation&lang=CS64)
 		///
 		///	This call sets the segmentation for any curved part of an object in case it is defined by a circle, ellipse, nurbs etc.
 		///
@@ -4633,7 +4633,7 @@ namespace RDF
 		public static extern void setSegmentation(int_t model, int_t segmentationParts, double segmentationLength);
 
 		/// <summary>
-		///		getSegmentation                                         (https://rdf.bg/ifcdoc/CS64/getSegmentation.html)
+		///		getSegmentation                                         (https://rdf.bg/ifcdoc/index.html?topic=getSegmentation&lang=CS64)
 		///
 		///	This returns the set values for segmentationParts and segmentationLength. Both attributes are optional.
 		///	The values can be changed through the API call setSegmentation().
@@ -4645,7 +4645,7 @@ namespace RDF
 		public static extern void getSegmentation(int_t model, out int_t segmentationParts, out double segmentationLength);
 
 		/// <summary>
-		///		setEpsilon                                              (https://rdf.bg/ifcdoc/CS64/setEpsilon.html)
+		///		setEpsilon                                              (https://rdf.bg/ifcdoc/index.html?topic=setEpsilon&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4653,7 +4653,7 @@ namespace RDF
 		public static extern void setEpsilon(int_t model, int_t mask, double absoluteEpsilon, double relativeEpsilon);
 
 		/// <summary>
-		///		getEpsilon                                              (https://rdf.bg/ifcdoc/CS64/getEpsilon.html)
+		///		getEpsilon                                              (https://rdf.bg/ifcdoc/index.html?topic=getEpsilon&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4665,7 +4665,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		circleSegments                                          (https://rdf.bg/ifcdoc/CS64/circleSegments.html)
+		///		circleSegments                                          (https://rdf.bg/ifcdoc/index.html?topic=circleSegments&lang=CS64)
 		///
 		///	Please use the setSegmentation call, note it is now a call that is model dependent.
 		///
@@ -4678,7 +4678,7 @@ namespace RDF
 		public static extern void circleSegments(int_t circles, int_t smallCircles);
 
 		/// <summary>
-		///		setMaximumSegmentationLength                            (https://rdf.bg/ifcdoc/CS64/setMaximumSegmentationLength.html)
+		///		setMaximumSegmentationLength                            (https://rdf.bg/ifcdoc/index.html?topic=setMaximumSegmentationLength&lang=CS64)
 		///
 		///	Please use setSegmentation call
 		///
@@ -4691,7 +4691,7 @@ namespace RDF
 		public static extern void setMaximumSegmentationLength(int_t model, double length);
 
 		/// <summary>
-		///		getProjectUnitConversionFactor                          (https://rdf.bg/ifcdoc/CS64/getProjectUnitConversionFactor.html)
+		///		getProjectUnitConversionFactor                          (https://rdf.bg/ifcdoc/index.html?topic=getProjectUnitConversionFactor&lang=CS64)
 		///
 		///	This function will return the conversion factor compared to the base SI unit.
 		///
@@ -4708,7 +4708,7 @@ namespace RDF
 		public static extern double getProjectUnitConversionFactor(int_t model, byte[] unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
-		///		getProjectUnitConversionFactorW                         (https://rdf.bg/ifcdoc/CS64/getProjectUnitConversionFactorW.html)
+		///		getProjectUnitConversionFactorW                         (https://rdf.bg/ifcdoc/index.html?topic=getProjectUnitConversionFactorW&lang=CS64)
 		///
 		///	This function will return the conversion factor compared to the base SI unit.
 		///
@@ -4725,7 +4725,7 @@ namespace RDF
 		public static extern double getProjectUnitConversionFactorW(int_t model, byte[] unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
-		///		getUnitInstanceConversionFactor                         (https://rdf.bg/ifcdoc/CS64/getUnitInstanceConversionFactor.html)
+		///		getUnitInstanceConversionFactor                         (https://rdf.bg/ifcdoc/index.html?topic=getUnitInstanceConversionFactor&lang=CS64)
 		///
 		///	This function will return the conversion factor compared to the base SI unit.
 		///
@@ -4739,7 +4739,7 @@ namespace RDF
 		public static extern double getUnitInstanceConversionFactor(int_t unitInstance, out IntPtr unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
-		///		getUnitInstanceConversionFactorW                        (https://rdf.bg/ifcdoc/CS64/getUnitInstanceConversionFactorW.html)
+		///		getUnitInstanceConversionFactorW                        (https://rdf.bg/ifcdoc/index.html?topic=getUnitInstanceConversionFactorW&lang=CS64)
 		///
 		///	This function will return the conversion factor compared to the base SI unit.
 		///
@@ -4753,7 +4753,7 @@ namespace RDF
 		public static extern double getUnitInstanceConversionFactorW(int_t unitInstance, out IntPtr unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
-		///		setBRepProperties                                       (https://rdf.bg/ifcdoc/CS64/setBRepProperties.html)
+		///		setBRepProperties                                       (https://rdf.bg/ifcdoc/index.html?topic=setBRepProperties&lang=CS64)
 		///
 		///	This call can be used to optimize Boundary Representation or Mesh geometries.
 		///
@@ -4792,7 +4792,7 @@ namespace RDF
 		public static extern void setBRepProperties(int_t model, Int64 consistencyCheck, double fraction, double epsilon, int_t maxVerticesSize);
 
 		/// <summary>
-		///		cleanMemory                                             (https://rdf.bg/ifcdoc/CS64/cleanMemory.html)
+		///		cleanMemory                                             (https://rdf.bg/ifcdoc/index.html?topic=cleanMemory&lang=CS64)
 		///
 		///	This call forces cleaning of memory allocated.
 		///	The following mode values are effected:
@@ -4805,7 +4805,7 @@ namespace RDF
 		public static extern void cleanMemory(int_t model, int_t mode);
 
 		/// <summary>
-		///		internalGetP21Line                                      (https://rdf.bg/ifcdoc/CS64/internalGetP21Line.html)
+		///		internalGetP21Line                                      (https://rdf.bg/ifcdoc/index.html?topic=internalGetP21Line&lang=CS64)
 		///
 		///	Returns the line STEP/Express ID of an instance
 		/// </summary>
@@ -4813,7 +4813,7 @@ namespace RDF
 		public static extern Int64 internalGetP21Line(int_t instance);
 
 		/// <summary>
-		///		internalForceInstanceFromP21Line                        (https://rdf.bg/ifcdoc/CS64/internalForceInstanceFromP21Line.html)
+		///		internalForceInstanceFromP21Line                        (https://rdf.bg/ifcdoc/index.html?topic=internalForceInstanceFromP21Line&lang=CS64)
 		///
 		///	Returns an instance based on the model and STEP/Express ID (even when the instance itself might be non-existant).
 		/// </summary>
@@ -4821,7 +4821,7 @@ namespace RDF
 		public static extern int_t internalForceInstanceFromP21Line(int_t model, Int64 P21Line);
 
 		/// <summary>
-		///		internalGetInstanceFromP21Line                          (https://rdf.bg/ifcdoc/CS64/internalGetInstanceFromP21Line.html)
+		///		internalGetInstanceFromP21Line                          (https://rdf.bg/ifcdoc/index.html?topic=internalGetInstanceFromP21Line&lang=CS64)
 		///
 		///	Returns an instance based on the model and STEP/Express ID
 		/// </summary>
@@ -4829,7 +4829,7 @@ namespace RDF
 		public static extern int_t internalGetInstanceFromP21Line(int_t model, Int64 P21Line);
 
 		/// <summary>
-		///		internalGetXMLID                                        (https://rdf.bg/ifcdoc/CS64/internalGetXMLID.html)
+		///		internalGetXMLID                                        (https://rdf.bg/ifcdoc/index.html?topic=internalGetXMLID&lang=CS64)
 		///
 		///	In case an XML file is loaded the XML ID values are kept in memory and can be retrieved through this API call.
 		/// </summary>
@@ -4844,7 +4844,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		setStringUnicode                                        (https://rdf.bg/ifcdoc/CS64/setStringUnicode.html)
+		///		setStringUnicode                                        (https://rdf.bg/ifcdoc/index.html?topic=setStringUnicode&lang=CS64)
 		///
 		///	Set mode of interpretation for arguments of type char*
 		///		0 - char* (default)
@@ -4856,7 +4856,7 @@ namespace RDF
 		public static extern int_t setStringUnicode(int_t unicode);
 
 		/// <summary>
-		///		getStringUnicode                                        (https://rdf.bg/ifcdoc/CS64/getStringUnicode.html)
+		///		getStringUnicode                                        (https://rdf.bg/ifcdoc/index.html?topic=getStringUnicode&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4864,7 +4864,7 @@ namespace RDF
 		public static extern int_t getStringUnicode();
 
 		/// <summary>
-		///		engiSetStringEncoding                                   (https://rdf.bg/ifcdoc/CS64/engiSetStringEncoding.html)
+		///		engiSetStringEncoding                                   (https://rdf.bg/ifcdoc/index.html?topic=engiSetStringEncoding&lang=CS64)
 		///
 		///	Sets encoding for sdaiSTRING data type in put and get functions
 		///	if model is NULL it will set codepage for models, created after the call or for contexts when model is not known
@@ -4874,7 +4874,7 @@ namespace RDF
 		public static extern int_t engiSetStringEncoding(int_t model, byte encoding);
 
 		/// <summary>
-		///		setFilter                                               (https://rdf.bg/ifcdoc/CS64/setFilter.html)
+		///		setFilter                                               (https://rdf.bg/ifcdoc/index.html?topic=setFilter&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4882,7 +4882,7 @@ namespace RDF
 		public static extern void setFilter(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
-		///		getFilter                                               (https://rdf.bg/ifcdoc/CS64/getFilter.html)
+		///		getFilter                                               (https://rdf.bg/ifcdoc/index.html?topic=getFilter&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4890,7 +4890,7 @@ namespace RDF
 		public static extern int_t getFilter(int_t model, int_t mask);
 
 		/// <summary>
-		///		setSerialization                                        (https://rdf.bg/ifcdoc/CS64/setSerialization.html)
+		///		setSerialization                                        (https://rdf.bg/ifcdoc/index.html?topic=setSerialization&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4898,7 +4898,7 @@ namespace RDF
 		public static extern void setSerialization(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
-		///		getSerialization                                        (https://rdf.bg/ifcdoc/CS64/getSerialization.html)
+		///		getSerialization                                        (https://rdf.bg/ifcdoc/index.html?topic=getSerialization&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4910,7 +4910,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		xxxxGetEntityAndSubTypesExtent                          (https://rdf.bg/ifcdoc/CS64/xxxxGetEntityAndSubTypesExtent.html)
+		///		xxxxGetEntityAndSubTypesExtent                          (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetEntityAndSubTypesExtent&lang=CS64)
 		///
 		///	Model input parameter is irrelevant, but is required for backwards compatibility.
 		/// </summary>
@@ -4918,7 +4918,7 @@ namespace RDF
 		public static extern int_t xxxxGetEntityAndSubTypesExtent(int_t model, int_t entity);
 
 		/// <summary>
-		///		xxxxGetEntityAndSubTypesExtentBN                        (https://rdf.bg/ifcdoc/CS64/xxxxGetEntityAndSubTypesExtentBN.html)
+		///		xxxxGetEntityAndSubTypesExtentBN                        (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetEntityAndSubTypesExtentBN&lang=CS64)
 		///
 		///	Technically xxxxGetEntityAndSubTypesExtentBN will transform into the following call
 		///		xxxxGetEntityAndSubTypesExtent(
@@ -4936,7 +4936,7 @@ namespace RDF
 		public static extern int_t xxxxGetEntityAndSubTypesExtentBN(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		xxxxGetAllInstances                                     (https://rdf.bg/ifcdoc/CS64/xxxxGetAllInstances.html)
+		///		xxxxGetAllInstances                                     (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetAllInstances&lang=CS64)
 		///
 		///	This call returns an aggregation containing all instances.
 		/// </summary>
@@ -4944,7 +4944,7 @@ namespace RDF
 		public static extern int_t xxxxGetAllInstances(int_t model);
 
 		/// <summary>
-		///		xxxxGetInstancesUsing                                   (https://rdf.bg/ifcdoc/CS64/xxxxGetInstancesUsing.html)
+		///		xxxxGetInstancesUsing                                   (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetInstancesUsing&lang=CS64)
 		///
 		///	This call returns an aggregation containing all instances referencing the given instance.
 		///
@@ -4954,7 +4954,7 @@ namespace RDF
 		public static extern int_t xxxxGetInstancesUsing(int_t instance);
 
 		/// <summary>
-		///		xxxxDeleteFromAggregation                               (https://rdf.bg/ifcdoc/CS64/xxxxDeleteFromAggregation.html)
+		///		xxxxDeleteFromAggregation                               (https://rdf.bg/ifcdoc/index.html?topic=xxxxDeleteFromAggregation&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4962,7 +4962,7 @@ namespace RDF
 		public static extern int_t xxxxDeleteFromAggregation(int_t instance, int_t aggregate, int_t elementIndex);
 
 		/// <summary>
-		///		xxxxGetAttrDefinitionByValue                            (https://rdf.bg/ifcdoc/CS64/xxxxGetAttrDefinitionByValue.html)
+		///		xxxxGetAttrDefinitionByValue                            (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetAttrDefinitionByValue&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -4970,7 +4970,7 @@ namespace RDF
 		public static extern int_t xxxxGetAttrDefinitionByValue(int_t instance, out IntPtr value);
 
 		/// <summary>
-		///		iterateOverInstances                                    (https://rdf.bg/ifcdoc/CS64/iterateOverInstances.html)
+		///		iterateOverInstances                                    (https://rdf.bg/ifcdoc/index.html?topic=iterateOverInstances&lang=CS64)
 		///
 		///	This function iterates over all available instances loaded in memory, it is the fastest way to find all instances.
 		///	Argument entity and entityName are both optional and if non-zero are filled with respectively the entity handle and entity name as char array.
@@ -4979,7 +4979,7 @@ namespace RDF
 		public static extern int_t iterateOverInstances(int_t model, int_t instance, out int_t entity, out IntPtr entityName);
 
 		/// <summary>
-		///		sdaiGetAggrByIterator                                   (https://rdf.bg/ifcdoc/CS64/sdaiGetAggrByIterator.html)
+		///		sdaiGetAggrByIterator                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetAggrByIterator&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to get and
 		///	value argument where the caller should provide a buffer, and the function will write the result to.
@@ -5102,7 +5102,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		sdaiPutAggrByIterator                                   (https://rdf.bg/ifcdoc/CS64/sdaiPutAggrByIterator.html)
+		///		sdaiPutAggrByIterator                                   (https://rdf.bg/ifcdoc/index.html?topic=sdaiPutAggrByIterator&lang=CS64)
 		///
 		///	valueType argument to specify what type of data caller wants to put
 		///	Table 1 shows type of buffer the caller should provide depending on the valueType for sdaiPutAggrByIterator, and it works similarly for all put-functions.
@@ -5210,7 +5210,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		internalSetLink                                         (https://rdf.bg/ifcdoc/CS64/internalSetLink.html)
+		///		internalSetLink                                         (https://rdf.bg/ifcdoc/index.html?topic=internalSetLink&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5221,7 +5221,7 @@ namespace RDF
 		public static extern void internalSetLink(int_t instance, byte[] attributeName, int_t linked_id);
 
 		/// <summary>
-		///		internalAddAggrLink                                     (https://rdf.bg/ifcdoc/CS64/internalAddAggrLink.html)
+		///		internalAddAggrLink                                     (https://rdf.bg/ifcdoc/index.html?topic=internalAddAggrLink&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5229,7 +5229,7 @@ namespace RDF
 		public static extern void internalAddAggrLink(int_t aggregate, int_t linked_id);
 
 		/// <summary>
-		///		engiGetNotReferedAggr                                   (https://rdf.bg/ifcdoc/CS64/engiGetNotReferedAggr.html)
+		///		engiGetNotReferedAggr                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetNotReferedAggr&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5237,7 +5237,7 @@ namespace RDF
 		public static extern void engiGetNotReferedAggr(int_t model, out int_t value);
 
 		/// <summary>
-		///		engiGetAttributeAggr                                    (https://rdf.bg/ifcdoc/CS64/engiGetAttributeAggr.html)
+		///		engiGetAttributeAggr                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttributeAggr&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5245,7 +5245,7 @@ namespace RDF
 		public static extern void engiGetAttributeAggr(int_t instance, out int_t value);
 
 		/// <summary>
-		///		sdaiErrorQuery                                          (https://rdf.bg/ifcdoc/CS64/sdaiErrorQuery.html)
+		///		sdaiErrorQuery                                          (https://rdf.bg/ifcdoc/index.html?topic=sdaiErrorQuery&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5257,7 +5257,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		InitializeMultiThreading                                (https://rdf.bg/ifcdoc/CS64/InitializeMultiThreading.html)
+		///		InitializeMultiThreading                                (https://rdf.bg/ifcdoc/index.html?topic=InitializeMultiThreading&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5265,7 +5265,7 @@ namespace RDF
 		public static extern int_t InitializeMultiThreading(int_t model, int_t threadCount);
 
 		/// <summary>
-		///		CreateOwlModelMultiThreadingWrapper                     (https://rdf.bg/ifcdoc/CS64/CreateOwlModelMultiThreadingWrapper.html)
+		///		CreateOwlModelMultiThreadingWrapper                     (https://rdf.bg/ifcdoc/index.html?topic=CreateOwlModelMultiThreadingWrapper&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5273,7 +5273,7 @@ namespace RDF
 		public static extern int_t CreateOwlModelMultiThreadingWrapper(int_t model, Int64 owlModel, int_t threadIndex);
 
 		/// <summary>
-		///		owlGetModel                                             (https://rdf.bg/ifcdoc/CS64/owlGetModel.html)
+		///		owlGetModel                                             (https://rdf.bg/ifcdoc/index.html?topic=owlGetModel&lang=CS64)
 		///
 		///	Returns a handle to the model within the Geometry Kernel.
 		///
@@ -5285,7 +5285,7 @@ namespace RDF
 		public static extern void owlGetModel(int_t model, out Int64 owlModel);
 
 		/// <summary>
-		///		owlConnectModel                                         (https://rdf.bg/ifcdoc/CS64/owlConnectModel.html)
+		///		owlConnectModel                                         (https://rdf.bg/ifcdoc/index.html?topic=owlConnectModel&lang=CS64)
 		///
 		///	By default a model for the Geometry Modelling Kernel will be created once required on-the-fly.
 		///
@@ -5297,7 +5297,7 @@ namespace RDF
 		public static extern bool owlConnectModel(int_t model, Int64 owlModel);
 
 		/// <summary>
-		///		owlGetInstance                                          (https://rdf.bg/ifcdoc/CS64/owlGetInstance.html)
+		///		owlGetInstance                                          (https://rdf.bg/ifcdoc/index.html?topic=owlGetInstance&lang=CS64)
 		///
 		///	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
 		///
@@ -5309,7 +5309,7 @@ namespace RDF
 		public static extern void owlGetInstance(int_t model, int_t instance, out Int64 owlInstance);
 
 		/// <summary>
-		///		owlMaterialInstance                                     (https://rdf.bg/ifcdoc/CS64/owlMaterialInstance.html)
+		///		owlMaterialInstance                                     (https://rdf.bg/ifcdoc/index.html?topic=owlMaterialInstance&lang=CS64)
 		///
 		///	deprecated, if you use this call, please contact us
 		/// </summary>
@@ -5317,7 +5317,7 @@ namespace RDF
 		public static extern void owlMaterialInstance(int_t instanceBase, int_t instanceContext, out Int64 owlInstance);
 
 		/// <summary>
-		///		owlBuildInstance                                        (https://rdf.bg/ifcdoc/CS64/owlBuildInstance.html)
+		///		owlBuildInstance                                        (https://rdf.bg/ifcdoc/index.html?topic=owlBuildInstance&lang=CS64)
 		///
 		///	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
 		///	If no design tree is created yet it will be created on-the-fly.
@@ -5330,7 +5330,7 @@ namespace RDF
 		public static extern void owlBuildInstance(int_t model, int_t instance, out Int64 owlInstance);
 
 		/// <summary>
-		///		owlBuildInstanceMT                                      (https://rdf.bg/ifcdoc/CS64/owlBuildInstanceMT.html)
+		///		owlBuildInstanceMT                                      (https://rdf.bg/ifcdoc/index.html?topic=owlBuildInstanceMT&lang=CS64)
 		///
 		///	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
 		///	If no design tree is created yet it will be created on-the-fly.
@@ -5343,7 +5343,7 @@ namespace RDF
 		public static extern Int64 owlBuildInstanceMT(int_t instance, int_t model);
 
 		/// <summary>
-		///		owlBuildInstanceInContext                               (https://rdf.bg/ifcdoc/CS64/owlBuildInstanceInContext.html)
+		///		owlBuildInstanceInContext                               (https://rdf.bg/ifcdoc/index.html?topic=owlBuildInstanceInContext&lang=CS64)
 		///
 		///	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
 		///	If no design tree is created yet it will be created on-the-fly.
@@ -5356,7 +5356,7 @@ namespace RDF
 		public static extern void owlBuildInstanceInContext(int_t instanceBase, int_t instanceContext, out Int64 owlInstance);
 
 		/// <summary>
-		///		owlBuildInstanceInContextMT                             (https://rdf.bg/ifcdoc/CS64/owlBuildInstanceInContextMT.html)
+		///		owlBuildInstanceInContextMT                             (https://rdf.bg/ifcdoc/index.html?topic=owlBuildInstanceInContextMT&lang=CS64)
 		///
 		///	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
 		///	If no design tree is created yet it will be created on-the-fly.
@@ -5369,7 +5369,7 @@ namespace RDF
 		public static extern Int64 owlBuildInstanceInContextMT(int_t instanceBase, int_t instanceContext, int_t model);
 
 		/// <summary>
-		///		engiInstanceUsesSegmentation                            (https://rdf.bg/ifcdoc/CS64/engiInstanceUsesSegmentation.html)
+		///		engiInstanceUsesSegmentation                            (https://rdf.bg/ifcdoc/index.html?topic=engiInstanceUsesSegmentation&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5378,7 +5378,7 @@ namespace RDF
 		public static extern bool engiInstanceUsesSegmentation(int_t instance);
 
 		/// <summary>
-		///		owlBuildInstances                                       (https://rdf.bg/ifcdoc/CS64/owlBuildInstances.html)
+		///		owlBuildInstances                                       (https://rdf.bg/ifcdoc/index.html?topic=owlBuildInstances&lang=CS64)
 		///
 		///	deprecated, if you use this call, please contact us
 		/// </summary>
@@ -5386,7 +5386,7 @@ namespace RDF
 		public static extern void owlBuildInstances(int_t model, int_t instance, out Int64 owlInstanceComplete, out Int64 owlInstanceSolids, out Int64 owlInstanceVoids);
 
 		/// <summary>
-		///		owlGetMappedItem                                        (https://rdf.bg/ifcdoc/CS64/owlGetMappedItem.html)
+		///		owlGetMappedItem                                        (https://rdf.bg/ifcdoc/index.html?topic=owlGetMappedItem&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5394,7 +5394,7 @@ namespace RDF
 		public static extern void owlGetMappedItem(int_t model, int_t instance, out Int64 owlInstance, out double transformationMatrix);
 
 		/// <summary>
-		///		getInstanceDerivedPropertiesInModelling                 (https://rdf.bg/ifcdoc/CS64/getInstanceDerivedPropertiesInModelling.html)
+		///		getInstanceDerivedPropertiesInModelling                 (https://rdf.bg/ifcdoc/index.html?topic=getInstanceDerivedPropertiesInModelling&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5402,7 +5402,7 @@ namespace RDF
 		public static extern int_t getInstanceDerivedPropertiesInModelling(int_t model, int_t instance, out double height, out double width, out double thickness);
 
 		/// <summary>
-		///		getInstanceDerivedBoundingBox                           (https://rdf.bg/ifcdoc/CS64/getInstanceDerivedBoundingBox.html)
+		///		getInstanceDerivedBoundingBox                           (https://rdf.bg/ifcdoc/index.html?topic=getInstanceDerivedBoundingBox&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5410,7 +5410,7 @@ namespace RDF
 		public static extern int_t getInstanceDerivedBoundingBox(int_t model, int_t instance, out double Ox, out double Oy, out double Oz, out double Vx, out double Vy, out double Vz);
 
 		/// <summary>
-		///		getInstanceTransformationMatrix                         (https://rdf.bg/ifcdoc/CS64/getInstanceTransformationMatrix.html)
+		///		getInstanceTransformationMatrix                         (https://rdf.bg/ifcdoc/index.html?topic=getInstanceTransformationMatrix&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5418,7 +5418,7 @@ namespace RDF
 		public static extern int_t getInstanceTransformationMatrix(int_t model, int_t instance, out double _11, out double _12, out double _13, out double _14, out double _21, out double _22, out double _23, out double _24, out double _31, out double _32, out double _33, out double _34, out double _41, out double _42, out double _43, out double _44);
 
 		/// <summary>
-		///		getInstanceDerivedTransformationMatrix                  (https://rdf.bg/ifcdoc/CS64/getInstanceDerivedTransformationMatrix.html)
+		///		getInstanceDerivedTransformationMatrix                  (https://rdf.bg/ifcdoc/index.html?topic=getInstanceDerivedTransformationMatrix&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5426,7 +5426,7 @@ namespace RDF
 		public static extern int_t getInstanceDerivedTransformationMatrix(int_t model, int_t instance, out double _11, out double _12, out double _13, out double _14, out double _21, out double _22, out double _23, out double _24, out double _31, out double _32, out double _33, out double _34, out double _41, out double _42, out double _43, out double _44);
 
 		/// <summary>
-		///		internalGetBoundingBox                                  (https://rdf.bg/ifcdoc/CS64/internalGetBoundingBox.html)
+		///		internalGetBoundingBox                                  (https://rdf.bg/ifcdoc/index.html?topic=internalGetBoundingBox&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5434,7 +5434,7 @@ namespace RDF
 		public static extern int_t internalGetBoundingBox(int_t model, int_t instance);
 
 		/// <summary>
-		///		internalGetCenter                                       (https://rdf.bg/ifcdoc/CS64/internalGetCenter.html)
+		///		internalGetCenter                                       (https://rdf.bg/ifcdoc/index.html?topic=internalGetCenter&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5442,7 +5442,7 @@ namespace RDF
 		public static extern int_t internalGetCenter(int_t model, int_t instance);
 
 		/// <summary>
-		///		getRootAxis2Placement                                   (https://rdf.bg/ifcdoc/CS64/getRootAxis2Placement.html)
+		///		getRootAxis2Placement                                   (https://rdf.bg/ifcdoc/index.html?topic=getRootAxis2Placement&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5450,7 +5450,7 @@ namespace RDF
 		public static extern int_t getRootAxis2Placement(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool exclusiveIfHasGeometry);
 
 		/// <summary>
-		///		getGlobalPlacement                                      (https://rdf.bg/ifcdoc/CS64/getGlobalPlacement.html)
+		///		getGlobalPlacement                                      (https://rdf.bg/ifcdoc/index.html?topic=getGlobalPlacement&lang=CS64)
 		///
 		///	The call getGlobalPlacement is meant to be used together with setGlobalPlacement(..) and allows you to get and adjust the placement of a model.
 		///	This is all done semantically, i.e. it can be seen as a derived call representing a small SDAI function adjust (in case of set) the
@@ -5463,7 +5463,7 @@ namespace RDF
 		public static extern int_t getGlobalPlacement(int_t model, [Out] double[] origin);
 
 		/// <summary>
-		///		setGlobalPlacement                                      (https://rdf.bg/ifcdoc/CS64/setGlobalPlacement.html)
+		///		setGlobalPlacement                                      (https://rdf.bg/ifcdoc/index.html?topic=setGlobalPlacement&lang=CS64)
 		///
 		///	The call setGlobalPlacement allows you to adjust the placement of a model.
 		///	This is all done semantically, i.e. it can be seen as a derived call representing a small SDAI function adjust the origin of a model. 
@@ -5475,7 +5475,7 @@ namespace RDF
 		public static extern int_t setGlobalPlacement(int_t model, double[] origin, [param: MarshalAs(UnmanagedType.U1)] bool includeRotation);
 
 		/// <summary>
-		///		getTimeStamp                                            (https://rdf.bg/ifcdoc/CS64/getTimeStamp.html)
+		///		getTimeStamp                                            (https://rdf.bg/ifcdoc/index.html?topic=getTimeStamp&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5483,7 +5483,7 @@ namespace RDF
 		public static extern int_t getTimeStamp(int_t model);
 
 		/// <summary>
-		///		setInstanceReference                                    (https://rdf.bg/ifcdoc/CS64/setInstanceReference.html)
+		///		setInstanceReference                                    (https://rdf.bg/ifcdoc/index.html?topic=setInstanceReference&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5491,7 +5491,7 @@ namespace RDF
 		public static extern int_t setInstanceReference(int_t instance, int_t value);
 
 		/// <summary>
-		///		getInstanceReference                                    (https://rdf.bg/ifcdoc/CS64/getInstanceReference.html)
+		///		getInstanceReference                                    (https://rdf.bg/ifcdoc/index.html?topic=getInstanceReference&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5499,7 +5499,7 @@ namespace RDF
 		public static extern int_t getInstanceReference(int_t instance);
 
 		/// <summary>
-		///		inferenceInstance                                       (https://rdf.bg/ifcdoc/CS64/inferenceInstance.html)
+		///		inferenceInstance                                       (https://rdf.bg/ifcdoc/index.html?topic=inferenceInstance&lang=CS64)
 		///
 		///	This call allows certain constructs to complete implicitly already available data.
 		///	Specifically for IFC4.3 and higher calls using the instances of the following entities are supported:
@@ -5515,7 +5515,7 @@ namespace RDF
 		public static extern int_t inferenceInstance(int_t instance);
 
 		/// <summary>
-		///		sdaiValidateSchemaInstance                              (https://rdf.bg/ifcdoc/CS64/sdaiValidateSchemaInstance.html)
+		///		sdaiValidateSchemaInstance                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiValidateSchemaInstance&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -5527,7 +5527,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		engiGetAggrUnknownElement                               (https://rdf.bg/ifcdoc/CS64/engiGetAggrUnknownElement.html)
+		///		engiGetAggrUnknownElement                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetAggrUnknownElement&lang=CS64)
 		///
 		///	This call is deprecated, please use engiGetAggrType, the index is irrelevant.
 		/// </summary>
@@ -5544,7 +5544,7 @@ namespace RDF
 		public static extern int_t engiGetAggrUnknownElement(int_t aggregate, int_t elementIndex, out int_t valueType, out IntPtr value);
 
 		/// <summary>
-		///		engiGetEntityAttributeByIndex                           (https://rdf.bg/ifcdoc/CS64/engiGetEntityAttributeByIndex.html)
+		///		engiGetEntityAttributeByIndex                           (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityAttributeByIndex&lang=CS64)
 		///
 		///	Return attribute definition from attribute index.
 		///
@@ -5554,7 +5554,7 @@ namespace RDF
 		public static extern int_t engiGetEntityAttributeByIndex(int_t entity, int_t index, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
-		///		iterateOverProperties                                   (https://rdf.bg/ifcdoc/CS64/iterateOverProperties.html)
+		///		iterateOverProperties                                   (https://rdf.bg/ifcdoc/index.html?topic=iterateOverProperties&lang=CS64)
 		///
 		///	This function iterated over all available attributes of a specific given entity.
 		///	This call is typically used in combination with iterateOverInstances(..).
@@ -5565,7 +5565,7 @@ namespace RDF
 		public static extern int_t iterateOverProperties(int_t entity, int_t index);
 
 		/// <summary>
-		///		engiGetEntityAttributeIndex                             (https://rdf.bg/ifcdoc/CS64/engiGetEntityAttributeIndex.html)
+		///		engiGetEntityAttributeIndex                             (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityAttributeIndex&lang=CS64)
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition.
 		/// </summary>
@@ -5576,7 +5576,7 @@ namespace RDF
 		public static extern int_t engiGetEntityAttributeIndex(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetEntityAttributeIndexEx                           (https://rdf.bg/ifcdoc/CS64/engiGetEntityAttributeIndexEx.html)
+		///		engiGetEntityAttributeIndexEx                           (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityAttributeIndexEx&lang=CS64)
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition.
 		/// </summary>
@@ -5587,7 +5587,7 @@ namespace RDF
 		public static extern int_t engiGetEntityAttributeIndexEx(int_t entity, byte[] attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
-		///		engiGetEntityArgumentName                               (https://rdf.bg/ifcdoc/CS64/engiGetEntityArgumentName.html)
+		///		engiGetEntityArgumentName                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityArgumentName&lang=CS64)
 		///
 		///	This call is deprecated, use engiGetEntityAttributeByIterator, engiGetAttrName.
 		/// </summary>
@@ -5595,7 +5595,7 @@ namespace RDF
 		public static extern IntPtr engiGetEntityArgumentName(int_t entity, int_t index, int_t valueType, out IntPtr attributeName);
 
 		/// <summary>
-		///		engiGetEntityArgumentType                               (https://rdf.bg/ifcdoc/CS64/engiGetEntityArgumentType.html)
+		///		engiGetEntityArgumentType                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityArgumentType&lang=CS64)
 		///
 		///	This call is deprecated, use engiGetEntityAttributeByIterator, engiGetAttrType.
 		/// </summary>
@@ -5603,7 +5603,7 @@ namespace RDF
 		public static extern void engiGetEntityArgumentType(int_t entity, int_t index, out int_t attributeType);
 
 		/// <summary>
-		///		engiGetAttrOptional                                     (https://rdf.bg/ifcdoc/CS64/engiGetAttrOptional.html)
+		///		engiGetAttrOptional                                     (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrOptional&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsAttrOptional(..) instead.
 		/// </summary>
@@ -5611,7 +5611,7 @@ namespace RDF
 		public static extern int_t engiGetAttrOptional(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrOptionalBN                                   (https://rdf.bg/ifcdoc/CS64/engiGetAttrOptionalBN.html)
+		///		engiGetAttrOptionalBN                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrOptionalBN&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsAttrOptionalBN(..) instead.
 		///
@@ -5630,7 +5630,7 @@ namespace RDF
 		public static extern int_t engiGetAttrOptionalBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetAttrInverse                                      (https://rdf.bg/ifcdoc/CS64/engiGetAttrInverse.html)
+		///		engiGetAttrInverse                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrInverse&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsAttrInverse(..) instead.
 		/// </summary>
@@ -5638,7 +5638,7 @@ namespace RDF
 		public static extern int_t engiGetAttrInverse(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrInverseBN                                    (https://rdf.bg/ifcdoc/CS64/engiGetAttrInverseBN.html)
+		///		engiGetAttrInverseBN                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrInverseBN&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsAttrInverseBN(..) instead.
 		///
@@ -5657,7 +5657,7 @@ namespace RDF
 		public static extern int_t engiGetAttrInverseBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiAttrIsInverse                                       (https://rdf.bg/ifcdoc/CS64/engiAttrIsInverse.html)
+		///		engiAttrIsInverse                                       (https://rdf.bg/ifcdoc/index.html?topic=engiAttrIsInverse&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsAttrInverse(..) instead.
 		/// </summary>
@@ -5665,7 +5665,7 @@ namespace RDF
 		public static extern int_t engiAttrIsInverse(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrDomain                                       (https://rdf.bg/ifcdoc/CS64/engiGetAttrDomain.html)
+		///		engiGetAttrDomain                                       (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDomain&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrDomainName(..) instead.
 		/// </summary>
@@ -5673,7 +5673,7 @@ namespace RDF
 		public static extern IntPtr engiGetAttrDomain(int_t attribute, out IntPtr domainName);
 
 		/// <summary>
-		///		engiGetAttrDomainBN                                     (https://rdf.bg/ifcdoc/CS64/engiGetAttrDomainBN.html)
+		///		engiGetAttrDomainBN                                     (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrDomainBN&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrDomainNameBN(..) instead.
 		///
@@ -5693,7 +5693,7 @@ namespace RDF
 		public static extern IntPtr engiGetAttrDomainBN(int_t entity, byte[] attributeName, out IntPtr domainName);
 
 		/// <summary>
-		///		engiGetEntityIsAbstract                                 (https://rdf.bg/ifcdoc/CS64/engiGetEntityIsAbstract.html)
+		///		engiGetEntityIsAbstract                                 (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityIsAbstract&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsEntityAbstract(..) instead.
 		/// </summary>
@@ -5701,7 +5701,7 @@ namespace RDF
 		public static extern int_t engiGetEntityIsAbstract(int_t entity);
 
 		/// <summary>
-		///		engiGetEntityIsAbstractBN                               (https://rdf.bg/ifcdoc/CS64/engiGetEntityIsAbstractBN.html)
+		///		engiGetEntityIsAbstractBN                               (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityIsAbstractBN&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiIsEntityAbstractBN(..) instead.
 		///
@@ -5720,7 +5720,7 @@ namespace RDF
 		public static extern int_t engiGetEntityIsAbstractBN(int_t model, byte[] entityName);
 
 		/// <summary>
-		///		engiGetAttributeTraits                                  (https://rdf.bg/ifcdoc/CS64/engiGetAttributeTraits.html)
+		///		engiGetAttributeTraits                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttributeTraits&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrTraits(..) instead.
 		/// </summary>
@@ -5728,7 +5728,7 @@ namespace RDF
 		public static extern void engiGetAttributeTraits(int_t attribute, out IntPtr name, out int_t definingEntity, [param: MarshalAs(UnmanagedType.U1)] out bool isExplicit, [param: MarshalAs(UnmanagedType.U1)] out bool isInverse, out enum_express_data_type attrType, out int_t domainEntity, out int_t aggregationDefinition, [param: MarshalAs(UnmanagedType.U1)] out bool isOptional);
 
 		/// <summary>
-		///		engiGetEntityNoArguments                                (https://rdf.bg/ifcdoc/CS64/engiGetEntityNoArguments.html)
+		///		engiGetEntityNoArguments                                (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityNoArguments&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetEntityNoAttributes(..) instead.
 		/// </summary>
@@ -5736,7 +5736,7 @@ namespace RDF
 		public static extern int_t engiGetEntityNoArguments(int_t entity);
 
 		/// <summary>
-		///		engiGetArgumentType                                     (https://rdf.bg/ifcdoc/CS64/engiGetArgumentType.html)
+		///		engiGetArgumentType                                     (https://rdf.bg/ifcdoc/index.html?topic=engiGetArgumentType&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
@@ -5744,7 +5744,7 @@ namespace RDF
 		public static extern int_t engiGetArgumentType(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttributeType                                    (https://rdf.bg/ifcdoc/CS64/engiGetAttributeType.html)
+		///		engiGetAttributeType                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttributeType&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
@@ -5752,7 +5752,7 @@ namespace RDF
 		public static extern int_t engiGetAttributeType(int_t attribute);
 
 		/// <summary>
-		///		engiGetEntityArgumentIndex                              (https://rdf.bg/ifcdoc/CS64/engiGetEntityArgumentIndex.html)
+		///		engiGetEntityArgumentIndex                              (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityArgumentIndex&lang=CS64)
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition instead.
 		/// </summary>
@@ -5763,7 +5763,7 @@ namespace RDF
 		public static extern int_t engiGetEntityArgumentIndex(int_t entity, byte[] argumentName);
 
 		/// <summary>
-		///		engiGetAggrElement                                      (https://rdf.bg/ifcdoc/CS64/engiGetAggrElement.html)
+		///		engiGetAggrElement                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAggrElement&lang=CS64)
 		///
 		///	This call is deprecated, please use call sdaiGetAggrByIndex(..) instead.
 		/// </summary>
@@ -5797,7 +5797,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetEntityArgument                                   (https://rdf.bg/ifcdoc/CS64/engiGetEntityArgument.html)
+		///		engiGetEntityArgument                                   (https://rdf.bg/ifcdoc/index.html?topic=engiGetEntityArgument&lang=CS64)
 		///
 		///	This call is deprecated, please use call sdaiGetAttrDefinition(..) instead.
 		/// </summary>
@@ -5808,7 +5808,7 @@ namespace RDF
 		public static extern int_t engiGetEntityArgument(int_t entity, byte[] argumentName);
 
 		/// <summary>
-		///		sdaiGetADBTypePathx                                     (https://rdf.bg/ifcdoc/CS64/sdaiGetADBTypePathx.html)
+		///		sdaiGetADBTypePathx                                     (https://rdf.bg/ifcdoc/index.html?topic=sdaiGetADBTypePathx&lang=CS64)
 		///
 		///	This call is deprecated, please use call sdaiGetADBTypePath(..) instead.
 		/// </summary>
@@ -5825,7 +5825,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		xxxxOpenModelByStream                                   (https://rdf.bg/ifcdoc/CS64/xxxxOpenModelByStream.html)
+		///		xxxxOpenModelByStream                                   (https://rdf.bg/ifcdoc/index.html?topic=xxxxOpenModelByStream&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiOpenModelByStream(..) instead.
 		/// </summary>
@@ -5836,7 +5836,7 @@ namespace RDF
 		public static extern int_t xxxxOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, byte[] schemaName);
 
 		/// <summary>
-		///		sdaiplusGetAggregationType                              (https://rdf.bg/ifcdoc/CS64/sdaiplusGetAggregationType.html)
+		///		sdaiplusGetAggregationType                              (https://rdf.bg/ifcdoc/index.html?topic=sdaiplusGetAggregationType&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
@@ -5844,7 +5844,7 @@ namespace RDF
 		public static extern int_t sdaiplusGetAggregationType(int_t instance, int_t aggregate);
 
 		/// <summary>
-		///		xxxxGetAttrType                                         (https://rdf.bg/ifcdoc/CS64/xxxxGetAttrType.html)
+		///		xxxxGetAttrType                                         (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetAttrType&lang=CS64)
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
@@ -5852,7 +5852,7 @@ namespace RDF
 		public static extern int_t xxxxGetAttrType(int_t instance, int_t attribute, out IntPtr attributeType);
 
 		/// <summary>
-		///		xxxxGetAttrTypeBN                                       (https://rdf.bg/ifcdoc/CS64/xxxxGetAttrTypeBN.html)
+		///		xxxxGetAttrTypeBN                                       (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetAttrTypeBN&lang=CS64)
 		///
 		///	This call is deprecated, please use calls engiGetAttrTypeBN(..) instead.
 		///
@@ -5875,7 +5875,7 @@ namespace RDF
 		public static extern int_t xxxxGetAttrTypeBN(int_t instance, byte[] attributeName, out IntPtr attributeType);
 
 		/// <summary>
-		///		GetSPFFHeaderItemUnicode                                (https://rdf.bg/ifcdoc/CS64/GetSPFFHeaderItemUnicode.html)
+		///		GetSPFFHeaderItemUnicode                                (https://rdf.bg/ifcdoc/index.html?topic=GetSPFFHeaderItemUnicode&lang=CS64)
 		///
 		///	This call is deprecated, please use call GetSPFFHeaderItem instead
 		/// </summary>
@@ -5883,7 +5883,7 @@ namespace RDF
 		public static extern int_t GetSPFFHeaderItemUnicode(int_t model, int_t itemIndex, int_t itemSubIndex, byte[] buffer, int_t bufferLength);
 
 		/// <summary>
-		///		engiGetAttrIndex                                        (https://rdf.bg/ifcdoc/CS64/engiGetAttrIndex.html)
+		///		engiGetAttrIndex                                        (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrIndex&lang=CS64)
 		///
 		///	This call works for non-complex entities and entities without multiple inheritance,
 		///	it is advised not to use this call for other schemas.
@@ -5894,7 +5894,7 @@ namespace RDF
 		public static extern int_t engiGetAttrIndex(int_t attribute);
 
 		/// <summary>
-		///		engiGetAttrIndexBN                                      (https://rdf.bg/ifcdoc/CS64/engiGetAttrIndexBN.html)
+		///		engiGetAttrIndexBN                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrIndexBN&lang=CS64)
 		///
 		///	This call works for non-complex entities and entities without multiple inheritance,
 		///	it is advised not to use this call for other schemas.
@@ -5916,7 +5916,7 @@ namespace RDF
 		public static extern int_t engiGetAttrIndexBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
-		///		engiGetAttrIndexEx                                      (https://rdf.bg/ifcdoc/CS64/engiGetAttrIndexEx.html)
+		///		engiGetAttrIndexEx                                      (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrIndexEx&lang=CS64)
 		///
 		///	This call works for non-complex entities and entities without multiple inheritance,
 		///	it is advised not to use this call for other schemas.
@@ -5927,7 +5927,7 @@ namespace RDF
 		public static extern int_t engiGetAttrIndexEx(int_t attribute, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
-		///		engiGetAttrIndexExBN                                    (https://rdf.bg/ifcdoc/CS64/engiGetAttrIndexExBN.html)
+		///		engiGetAttrIndexExBN                                    (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrIndexExBN&lang=CS64)
 		///
 		///	This call works for non-complex entities and entities without multiple inheritance,
 		///	it is advised not to use this call for other schemas.
@@ -5951,7 +5951,7 @@ namespace RDF
 		public static extern int_t engiGetAttrIndexExBN(int_t entity, byte[] attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
-		///		engiGetAttrNameByIndex                                  (https://rdf.bg/ifcdoc/CS64/engiGetAttrNameByIndex.html)
+		///		engiGetAttrNameByIndex                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrNameByIndex&lang=CS64)
 		///
 		///	This call can be used to retrieve the name of the n-th argument of the given entity. Arguments of parent entities are included in the index. Both explicit and inverse attributes are included.
 		///
@@ -5970,7 +5970,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		engiGetAttrTypeByIndex                                  (https://rdf.bg/ifcdoc/CS64/engiGetAttrTypeByIndex.html)
+		///		engiGetAttrTypeByIndex                                  (https://rdf.bg/ifcdoc/index.html?topic=engiGetAttrTypeByIndex&lang=CS64)
 		///
 		///	This call can be used to retrieve the type of the n-th argument of the given entity. In case of a select argument no relevant information is given by this call as it depends on the instance.
 		///	Arguments of parent entities are included in the index. Both explicit and inverse attributes are included.
@@ -5981,7 +5981,7 @@ namespace RDF
 		public static extern void engiGetAttrTypeByIndex(int_t entity, int_t index, out int_t attributeType);
 
 		/// <summary>
-		///		xxxxGetAttrNameByIndex                                  (https://rdf.bg/ifcdoc/CS64/xxxxGetAttrNameByIndex.html)
+		///		xxxxGetAttrNameByIndex                                  (https://rdf.bg/ifcdoc/index.html?topic=xxxxGetAttrNameByIndex&lang=CS64)
 		///
 		///	This call is deprecated, use SdaiAttr or attribute name as primary data and engiGetEntityAttributePosition, engiGetEntityAttributeByIterator, engiGetAttrName.
 		/// </summary>
@@ -5993,7 +5993,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		validateSetOptions                                      (https://rdf.bg/ifcdoc/CS64/validateSetOptions.html)
+		///		validateSetOptions                                      (https://rdf.bg/ifcdoc/index.html?topic=validateSetOptions&lang=CS64)
 		///
 		///	Allows to set a time limit in seconds, setting to 0 means no time limit.
 		///	Allows to set a count limit, setting to 0 means no count limit.
@@ -6021,7 +6021,7 @@ namespace RDF
 		public static extern void validateSetOptions(int_t timeLimitSeconds, int_t issueCntLimit, [param: MarshalAs(UnmanagedType.U1)] bool showEachIssueOnce, UInt64 issueTypes, UInt64 mask);
 
 		/// <summary>
-		///		validateGetOptions                                      (https://rdf.bg/ifcdoc/CS64/validateGetOptions.html)
+		///		validateGetOptions                                      (https://rdf.bg/ifcdoc/index.html?topic=validateGetOptions&lang=CS64)
 		///
 		///	Allows to get the time limit in seconds, value 0 means no time limit, input can be left to NULL if not relevant.
 		///	Allows to get the count limit, value 0 means no count limit, input can be left to NULL if not relevant.
@@ -6050,7 +6050,7 @@ namespace RDF
 		public static extern UInt64 validateGetOptions(out int_t timeLimitSeconds, out int_t issueCntLimit, [param: MarshalAs(UnmanagedType.U1)] out bool showEachIssueOnce, UInt64 mask);
 
 		/// <summary>
-		///		validateModel                                           (https://rdf.bg/ifcdoc/CS64/validateModel.html)
+		///		validateModel                                           (https://rdf.bg/ifcdoc/index.html?topic=validateModel&lang=CS64)
 		///
 		///	Apply validation of a model
 		/// </summary>
@@ -6058,7 +6058,7 @@ namespace RDF
 		public static extern int_t validateModel(int_t model);
 
 		/// <summary>
-		///		validateInstance                                        (https://rdf.bg/ifcdoc/CS64/validateInstance.html)
+		///		validateInstance                                        (https://rdf.bg/ifcdoc/index.html?topic=validateInstance&lang=CS64)
 		///
 		///	Apply validation of an instance
 		/// </summary>
@@ -6066,7 +6066,7 @@ namespace RDF
 		public static extern int_t validateInstance(int_t instance);
 
 		/// <summary>
-		///		validateFreeResults                                     (https://rdf.bg/ifcdoc/CS64/validateFreeResults.html)
+		///		validateFreeResults                                     (https://rdf.bg/ifcdoc/index.html?topic=validateFreeResults&lang=CS64)
 		///
 		///	Clean validation results
 		/// </summary>
@@ -6074,7 +6074,7 @@ namespace RDF
 		public static extern void validateFreeResults(int_t results);
 
 		/// <summary>
-		///		validateGetFirstIssue                                   (https://rdf.bg/ifcdoc/CS64/validateGetFirstIssue.html)
+		///		validateGetFirstIssue                                   (https://rdf.bg/ifcdoc/index.html?topic=validateGetFirstIssue&lang=CS64)
 		///
 		///	Get first issue from validation results.
 		///	If no issues inside validation results or validation results is NULL it will return NULL.
@@ -6083,7 +6083,7 @@ namespace RDF
 		public static extern int_t validateGetFirstIssue(int_t results);
 
 		/// <summary>
-		///		validateGetNextIssue                                    (https://rdf.bg/ifcdoc/CS64/validateGetNextIssue.html)
+		///		validateGetNextIssue                                    (https://rdf.bg/ifcdoc/index.html?topic=validateGetNextIssue&lang=CS64)
 		///
 		///	Get next issue based on a given issue.
 		///	If no issues left or validation issue is NULL it will return NULL.
@@ -6092,7 +6092,7 @@ namespace RDF
 		public static extern int_t validateGetNextIssue(int_t issue);
 
 		/// <summary>
-		///		validateGetStatus                                       (https://rdf.bg/ifcdoc/CS64/validateGetStatus.html)
+		///		validateGetStatus                                       (https://rdf.bg/ifcdoc/index.html?topic=validateGetStatus&lang=CS64)
 		///
 		///	Return value is the issueStatus (enum_validation_status):
 		///
@@ -6106,7 +6106,7 @@ namespace RDF
 		public static extern enum_validation_status validateGetStatus(int_t results);
 
 		/// <summary>
-		///		validateGetIssueType                                    (https://rdf.bg/ifcdoc/CS64/validateGetIssueType.html)
+		///		validateGetIssueType                                    (https://rdf.bg/ifcdoc/index.html?topic=validateGetIssueType&lang=CS64)
 		///
 		///	Return value is the issueType (enum_validation_type):
 		///
@@ -6132,7 +6132,7 @@ namespace RDF
 		public static extern enum_validation_type validateGetIssueType(int_t issue);
 
 		/// <summary>
-		///		validateGetInstance                                     (https://rdf.bg/ifcdoc/CS64/validateGetInstance.html)
+		///		validateGetInstance                                     (https://rdf.bg/ifcdoc/index.html?topic=validateGetInstance&lang=CS64)
 		///
 		///	Returns the (first) instance related to the given issue.
 		/// </summary>
@@ -6140,7 +6140,7 @@ namespace RDF
 		public static extern int_t validateGetInstance(int_t issue);
 
 		/// <summary>
-		///		validateGetInstanceRelated                              (https://rdf.bg/ifcdoc/CS64/validateGetInstanceRelated.html)
+		///		validateGetInstanceRelated                              (https://rdf.bg/ifcdoc/index.html?topic=validateGetInstanceRelated&lang=CS64)
 		///
 		///	Returns the second instance related to the given issue (if relevant).
 		/// </summary>
@@ -6148,7 +6148,7 @@ namespace RDF
 		public static extern int_t validateGetInstanceRelated(int_t issue);
 
 		/// <summary>
-		///		validateGetEntity                                       (https://rdf.bg/ifcdoc/CS64/validateGetEntity.html)
+		///		validateGetEntity                                       (https://rdf.bg/ifcdoc/index.html?topic=validateGetEntity&lang=CS64)
 		///
 		///	Returns the entity handle related to the given issue (if relevant).
 		/// </summary>
@@ -6156,7 +6156,7 @@ namespace RDF
 		public static extern int_t validateGetEntity(int_t issue);
 
 		/// <summary>
-		///		validateGetAttr                                         (https://rdf.bg/ifcdoc/CS64/validateGetAttr.html)
+		///		validateGetAttr                                         (https://rdf.bg/ifcdoc/index.html?topic=validateGetAttr&lang=CS64)
 		///
 		///	Returns the attribute handle related to the given issue (if relevant).
 		/// </summary>
@@ -6164,7 +6164,7 @@ namespace RDF
 		public static extern int_t validateGetAttr(int_t issue);
 
 		/// <summary>
-		///		validateGetAggrLevel                                    (https://rdf.bg/ifcdoc/CS64/validateGetAggrLevel.html)
+		///		validateGetAggrLevel                                    (https://rdf.bg/ifcdoc/index.html?topic=validateGetAggrLevel&lang=CS64)
 		///
 		///	Specifies nesting level of aggregation or 0.
 		/// </summary>
@@ -6172,7 +6172,7 @@ namespace RDF
 		public static extern int_t validateGetAggrLevel(int_t issue);
 
 		/// <summary>
-		///		validateGetAggrIndArray                                 (https://rdf.bg/ifcdoc/CS64/validateGetAggrIndArray.html)
+		///		validateGetAggrIndArray                                 (https://rdf.bg/ifcdoc/index.html?topic=validateGetAggrIndArray&lang=CS64)
 		///
 		///	Array of indices for each aggregation size is aggrLevel.
 		/// </summary>
@@ -6180,7 +6180,7 @@ namespace RDF
 		public static extern int_t validateGetAggrIndArray(int_t issue);
 
 		/// <summary>
-		///		validateGetIssueLevel                                   (https://rdf.bg/ifcdoc/CS64/validateGetIssueLevel.html)
+		///		validateGetIssueLevel                                   (https://rdf.bg/ifcdoc/index.html?topic=validateGetIssueLevel&lang=CS64)
 		///
 		///	Returns the issue level (i.e. severity of the issue) of the issue given as input.
 		/// </summary>
@@ -6188,7 +6188,7 @@ namespace RDF
 		public static extern int_t validateGetIssueLevel(int_t issue);
 
 		/// <summary>
-		///		validateGetDescription                                  (https://rdf.bg/ifcdoc/CS64/validateGetDescription.html)
+		///		validateGetDescription                                  (https://rdf.bg/ifcdoc/index.html?topic=validateGetDescription&lang=CS64)
 		///
 		///	Returns the description text of the issue given as input.
 		/// </summary>
@@ -6206,7 +6206,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		initializeModellingInstance                             (https://rdf.bg/ifcdoc/CS64/initializeModellingInstance.html)
+		///		initializeModellingInstance                             (https://rdf.bg/ifcdoc/index.html?topic=initializeModellingInstance&lang=CS64)
 		///
 		///	This call is deprecated, please use call CalculateInstance().
 		/// </summary>
@@ -6214,7 +6214,7 @@ namespace RDF
 		public static extern int_t initializeModellingInstance(int_t model, out int_t noVertices, out int_t noIndices, double scale, int_t instance);
 
 		/// <summary>
-		///		finalizeModelling                                       (https://rdf.bg/ifcdoc/CS64/finalizeModelling.html)
+		///		finalizeModelling                                       (https://rdf.bg/ifcdoc/index.html?topic=finalizeModelling&lang=CS64)
 		///
 		///	This call is deprecated, please use call UpdateInstanceVertexBuffer() and UpdateInstanceIndexBuffer().
 		/// </summary>
@@ -6222,7 +6222,7 @@ namespace RDF
 		public static extern int_t finalizeModelling(int_t model, out float vertices, out int_t indices, int_t FVF);
 
 		/// <summary>
-		///		getInstanceInModelling                                  (https://rdf.bg/ifcdoc/CS64/getInstanceInModelling.html)
+		///		getInstanceInModelling                                  (https://rdf.bg/ifcdoc/index.html?topic=getInstanceInModelling&lang=CS64)
 		///
 		///	This call is deprecated, there is no direct/easy replacement although the functionality is present. If you still use this call please contact RDF to find a solution together.
 		/// </summary>
@@ -6230,7 +6230,7 @@ namespace RDF
 		public static extern int_t getInstanceInModelling(int_t model, int_t instance, int_t mode, out int_t startVertex, out int_t startIndex, out int_t primitiveCount);
 
 		/// <summary>
-		///		setVertexOffset                                         (https://rdf.bg/ifcdoc/CS64/setVertexOffset.html)
+		///		setVertexOffset                                         (https://rdf.bg/ifcdoc/index.html?topic=setVertexOffset&lang=CS64)
 		///
 		///	This call is deprecated, please use call SetVertexBufferOffset().
 		/// </summary>
@@ -6238,7 +6238,7 @@ namespace RDF
 		public static extern void setVertexOffset(int_t model, double x, double y, double z);
 
 		/// <summary>
-		///		setFormat                                               (https://rdf.bg/ifcdoc/CS64/setFormat.html)
+		///		setFormat                                               (https://rdf.bg/ifcdoc/index.html?topic=setFormat&lang=CS64)
 		///
 		///	This call is deprecated, please use call SetFormat().
 		/// </summary>
@@ -6246,7 +6246,7 @@ namespace RDF
 		public static extern void setFormat(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
-		///		getConceptualFaceCnt                                    (https://rdf.bg/ifcdoc/CS64/getConceptualFaceCnt.html)
+		///		getConceptualFaceCnt                                    (https://rdf.bg/ifcdoc/index.html?topic=getConceptualFaceCnt&lang=CS64)
 		///
 		///	This call is deprecated, please use call GetConceptualFaceCnt().
 		/// </summary>
@@ -6254,7 +6254,7 @@ namespace RDF
 		public static extern int_t getConceptualFaceCnt(int_t instance);
 
 		/// <summary>
-		///		getConceptualFaceEx                                     (https://rdf.bg/ifcdoc/CS64/getConceptualFaceEx.html)
+		///		getConceptualFaceEx                                     (https://rdf.bg/ifcdoc/index.html?topic=getConceptualFaceEx&lang=CS64)
 		///
 		///	This call is deprecated, please use call GetConceptualFaceEx().
 		/// </summary>
@@ -6262,7 +6262,7 @@ namespace RDF
 		public static extern int_t getConceptualFaceEx(int_t instance, int_t index, out int_t startIndexTriangles, out int_t noIndicesTriangles, out int_t startIndexLines, out int_t noIndicesLines, out int_t startIndexPoints, out int_t noIndicesPoints, out int_t startIndexFacePolygons, out int_t noIndicesFacePolygons, out int_t startIndexConceptualFacePolygons, out int_t noIndicesConceptualFacePolygons);
 
 		/// <summary>
-		///		createGeometryConversion                                (https://rdf.bg/ifcdoc/CS64/createGeometryConversion.html)
+		///		createGeometryConversion                                (https://rdf.bg/ifcdoc/index.html?topic=createGeometryConversion&lang=CS64)
 		///
 		///	This call is deprecated, please use call owlBuildInstance.
 		/// </summary>
@@ -6270,7 +6270,7 @@ namespace RDF
 		public static extern void createGeometryConversion(int_t instance, out Int64 owlInstance);
 
 		/// <summary>
-		///		convertInstance                                         (https://rdf.bg/ifcdoc/CS64/convertInstance.html)
+		///		convertInstance                                         (https://rdf.bg/ifcdoc/index.html?topic=convertInstance&lang=CS64)
 		///
 		///	This call is deprecated, please use call owlBuildInstance.
 		/// </summary>
@@ -6278,7 +6278,7 @@ namespace RDF
 		public static extern void convertInstance(int_t instance);
 
 		/// <summary>
-		///		initializeModellingInstanceEx                           (https://rdf.bg/ifcdoc/CS64/initializeModellingInstanceEx.html)
+		///		initializeModellingInstanceEx                           (https://rdf.bg/ifcdoc/index.html?topic=initializeModellingInstanceEx&lang=CS64)
 		///
 		///	This call is deprecated, please use call CalculateInstance().
 		/// </summary>
@@ -6286,7 +6286,7 @@ namespace RDF
 		public static extern int_t initializeModellingInstanceEx(int_t model, out int_t noVertices, out int_t noIndices, double scale, int_t instance, int_t instanceList);
 
 		/// <summary>
-		///		exportModellingAsOWL                                    (https://rdf.bg/ifcdoc/CS64/exportModellingAsOWL.html)
+		///		exportModellingAsOWL                                    (https://rdf.bg/ifcdoc/index.html?topic=exportModellingAsOWL&lang=CS64)
 		///
 		///	This call is deprecated, please contact us if you use this call.
 		/// </summary>
@@ -6435,7 +6435,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		GetRevision                                             (https://rdf.bg/gkdoc/CS64/GetRevision.html)
+		///		GetRevision                                             (https://rdf.bg/gkdoc/index.html?topic=GetRevision&lang=CS64)
 		///
 		///	Returns the revision number.
 		///	The timeStamp is generated by the SVN system used during development.
@@ -6450,7 +6450,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetRevisionW                                            (https://rdf.bg/gkdoc/CS64/GetRevisionW.html)
+		///		GetRevisionW                                            (https://rdf.bg/gkdoc/index.html?topic=GetRevisionW&lang=CS64)
 		///
 		///	Returns the revision number.
 		///	The timeStamp is generated by the SVN system used during development.
@@ -6465,7 +6465,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetProtection                                           (https://rdf.bg/gkdoc/CS64/GetProtection.html)
+		///		GetProtection                                           (https://rdf.bg/gkdoc/index.html?topic=GetProtection&lang=CS64)
 		///
 		///	This call is required to be called to enable the DLL to work if protection is active.
 		///
@@ -6476,7 +6476,7 @@ namespace RDF
 		public static extern Int64 GetProtection();
 
 		/// <summary>
-		///		GetEnvironment                                          (https://rdf.bg/gkdoc/CS64/GetEnvironment.html)
+		///		GetEnvironment                                          (https://rdf.bg/gkdoc/index.html?topic=GetEnvironment&lang=CS64)
 		///
 		///	Returns the revision number similar to the call GetRevision.
 		///	The environment variables will show known environment variables
@@ -6491,7 +6491,7 @@ namespace RDF
 		public static extern Int64 GetEnvironment(out IntPtr environmentVariables, out IntPtr developmentVariables);
 
 		/// <summary>
-		///		GetEnvironmentW                                         (https://rdf.bg/gkdoc/CS64/GetEnvironmentW.html)
+		///		GetEnvironmentW                                         (https://rdf.bg/gkdoc/index.html?topic=GetEnvironmentW&lang=CS64)
 		///
 		///	Returns the revision number similar to the call GetRevision[W].
 		///	The environment variables will show known environment variables
@@ -6506,7 +6506,7 @@ namespace RDF
 		public static extern Int64 GetEnvironmentW(out IntPtr environmentVariables, out IntPtr developmentVariables);
 
 		/// <summary>
-		///		SetAssertionFile                                        (https://rdf.bg/gkdoc/CS64/SetAssertionFile.html)
+		///		SetAssertionFile                                        (https://rdf.bg/gkdoc/index.html?topic=SetAssertionFile&lang=CS64)
 		///
 		///	This function sets the file location where internal assertions should be written to.
 		///	If the file name is not set (default) many internal control procedures are not executed
@@ -6519,7 +6519,7 @@ namespace RDF
 		public static extern void SetAssertionFile(byte[] fileName);
 
 		/// <summary>
-		///		SetAssertionFileW                                       (https://rdf.bg/gkdoc/CS64/SetAssertionFileW.html)
+		///		SetAssertionFileW                                       (https://rdf.bg/gkdoc/index.html?topic=SetAssertionFileW&lang=CS64)
 		///
 		///	This function sets the file location where internal assertions should be written to.
 		///	If the file name is not set (default) many internal control procedures are not executed
@@ -6532,7 +6532,7 @@ namespace RDF
 		public static extern void SetAssertionFileW(byte[] fileName);
 
 		/// <summary>
-		///		GetAssertionFile                                        (https://rdf.bg/gkdoc/CS64/GetAssertionFile.html)
+		///		GetAssertionFile                                        (https://rdf.bg/gkdoc/index.html?topic=GetAssertionFile&lang=CS64)
 		///
 		///	This function gets the file location as stored/set internally where internal assertions should be written to.
 		///	It works independent if the file location is set through SetAssertionFile() or SetAssertionFileW().
@@ -6548,7 +6548,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetAssertionFileW                                       (https://rdf.bg/gkdoc/CS64/GetAssertionFileW.html)
+		///		GetAssertionFileW                                       (https://rdf.bg/gkdoc/index.html?topic=GetAssertionFileW&lang=CS64)
 		///
 		///	This function gets the file location as stored/set internally where internal assertions should be written to.
 		///	It works independent if the file location is set through SetAssertionFile() or SetAssertionFileW().
@@ -6564,7 +6564,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetCharacterSerialization                               (https://rdf.bg/gkdoc/CS64/SetCharacterSerialization.html)
+		///		SetCharacterSerialization                               (https://rdf.bg/gkdoc/index.html?topic=SetCharacterSerialization&lang=CS64)
 		///
 		///	This call defines how characters for names, strings will be serialized and how
 		///	they are expected to be serialized. An exception are the Open/Import/Save calls,
@@ -6618,7 +6618,7 @@ namespace RDF
 		public static extern Int64 SetCharacterSerialization(Int64 model, Int64 encoding, Int64 wcharBitSizeOverride, [param: MarshalAs(UnmanagedType.U1)] bool ascii);
 
 		/// <summary>
-		///		GetCharacterSerialization                               (https://rdf.bg/gkdoc/CS64/GetCharacterSerialization.html)
+		///		GetCharacterSerialization                               (https://rdf.bg/gkdoc/index.html?topic=GetCharacterSerialization&lang=CS64)
 		///
 		///	This call retrieves the values as set by 
 		///
@@ -6628,7 +6628,7 @@ namespace RDF
 		public static extern Int64 GetCharacterSerialization(Int64 model, out Int64 encoding, [param: MarshalAs(UnmanagedType.U1)] out bool ascii);
 
 		/// <summary>
-		///		SetModellingStyle                                       (https://rdf.bg/gkdoc/CS64/SetModellingStyle.html)
+		///		SetModellingStyle                                       (https://rdf.bg/gkdoc/index.html?topic=SetModellingStyle&lang=CS64)
 		///
 		///	This call sets the modelling style.
 		/// </summary>
@@ -6636,7 +6636,7 @@ namespace RDF
 		public static extern void SetModellingStyle(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
-		///		GetModellingStyle                                       (https://rdf.bg/gkdoc/CS64/GetModellingStyle.html)
+		///		GetModellingStyle                                       (https://rdf.bg/gkdoc/index.html?topic=GetModellingStyle&lang=CS64)
 		///
 		///	This call gets the modelling style.
 		/// </summary>
@@ -6644,7 +6644,7 @@ namespace RDF
 		public static extern UInt64 GetModellingStyle(Int64 model, UInt64 mask);
 
 		/// <summary>
-		///		AbortModel                                              (https://rdf.bg/gkdoc/CS64/AbortModel.html)
+		///		AbortModel                                              (https://rdf.bg/gkdoc/index.html?topic=AbortModel&lang=CS64)
 		///
 		///	This function abort running processes for a model. It can be used when a task takes more time than
 		///	expected/available, or in case the requested results are not relevant anymore.
@@ -6653,7 +6653,7 @@ namespace RDF
 		public static extern Int64 AbortModel(Int64 model, Int64 setting);
 
 		/// <summary>
-		///		GetSessionMetaInfo                                      (https://rdf.bg/gkdoc/CS64/GetSessionMetaInfo.html)
+		///		GetSessionMetaInfo                                      (https://rdf.bg/gkdoc/index.html?topic=GetSessionMetaInfo&lang=CS64)
 		///
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active models within the session (or zero if the model was not recognized).
@@ -6662,7 +6662,7 @@ namespace RDF
 		public static extern Int64 GetSessionMetaInfo(out Int64 allocatedBlocks, out Int64 allocatedBytes, out Int64 nonUsedBlocks, out Int64 nonUsedBytes);
 
 		/// <summary>
-		///		GetModelMetaInfo                                        (https://rdf.bg/gkdoc/CS64/GetModelMetaInfo.html)
+		///		GetModelMetaInfo                                        (https://rdf.bg/gkdoc/index.html?topic=GetModelMetaInfo&lang=CS64)
 		///
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active models within the session (or zero if the model was not recognized).
@@ -6692,7 +6692,7 @@ namespace RDF
 		public static extern Int64 GetModelMetaInfo(Int64 model, IntPtr activeClasses, IntPtr removedClasses, IntPtr activeProperties, IntPtr removedProperties, IntPtr activeInstances, IntPtr removedInstances, IntPtr inactiveInstances);
 
 		/// <summary>
-		///		GetInstanceMetaInfo                                     (https://rdf.bg/gkdoc/CS64/GetInstanceMetaInfo.html)
+		///		GetInstanceMetaInfo                                     (https://rdf.bg/gkdoc/index.html?topic=GetInstanceMetaInfo&lang=CS64)
 		///
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active instances within the model (or zero if the instance was not recognized).
@@ -6710,7 +6710,7 @@ namespace RDF
 		public static extern Int64 GetInstanceMetaInfo(Int64 owlInstance, IntPtr allocatedBlocks, IntPtr allocatedBytes);
 
 		/// <summary>
-		///		GetSmoothness                                           (https://rdf.bg/gkdoc/CS64/GetSmoothness.html)
+		///		GetSmoothness                                           (https://rdf.bg/gkdoc/index.html?topic=GetSmoothness&lang=CS64)
 		///
 		///	This function returns the smoothness of a line or surface.
 		///	In case the smoothness can be defined the degree will get assigned either
@@ -6726,7 +6726,7 @@ namespace RDF
 		public static extern Int64 GetSmoothness(Int64 owlInstance, out Int64 degree);
 
 		/// <summary>
-		///		AddState                                                (https://rdf.bg/gkdoc/CS64/AddState.html)
+		///		AddState                                                (https://rdf.bg/gkdoc/index.html?topic=AddState&lang=CS64)
 		///
 		///	This call will integrate the current state information into the model.
 		///
@@ -6739,7 +6739,7 @@ namespace RDF
 		public static extern void AddState(Int64 model, Int64 owlInstance);
 
 		/// <summary>
-		///		GetModel                                                (https://rdf.bg/gkdoc/CS64/GetModel.html)
+		///		GetModel                                                (https://rdf.bg/gkdoc/index.html?topic=GetModel&lang=CS64)
 		///
 		///	Returns model for any resource, i.e. class, property, instance
 		/// </summary>
@@ -6747,7 +6747,7 @@ namespace RDF
 		public static extern Int64 GetModel(Int64 rdfsResource);
 
 		/// <summary>
-		///		OrderedHandles                                          (https://rdf.bg/gkdoc/CS64/OrderedHandles.html)
+		///		OrderedHandles                                          (https://rdf.bg/gkdoc/index.html?topic=OrderedHandles&lang=CS64)
 		///
 		///	This call can be used in two ways. The optional arguments classCnt,
 		///	propertyCnt and instanceCnt can be used to get the total amount of active classes,
@@ -6793,7 +6793,7 @@ namespace RDF
 		public static extern void OrderedHandles(Int64 model, IntPtr classCnt, IntPtr propertyCnt, IntPtr instanceCnt, UInt64 setting, UInt64 mask);
 
 		/// <summary>
-		///		PeelArray                                               (https://rdf.bg/gkdoc/CS64/PeelArray.html)
+		///		PeelArray                                               (https://rdf.bg/gkdoc/index.html?topic=PeelArray&lang=CS64)
 		///
 		///	This function introduces functionality that is missing or complicated in some programming languages.
 		///	The attribute inValue is a reference to an array of references. The attribute outValue is a reference to the same array,
@@ -6804,7 +6804,7 @@ namespace RDF
 		public static extern void PeelArray(ref IntPtr inValue, out IntPtr outValue, Int64 elementSize);
 
 		/// <summary>
-		///		SetInternalCheck                                        (https://rdf.bg/gkdoc/CS64/SetInternalCheck.html)
+		///		SetInternalCheck                                        (https://rdf.bg/gkdoc/index.html?topic=SetInternalCheck&lang=CS64)
 		///
 		///	This function allows to enable or disable several active consistency checks. Enabling the checks can 
 		///	introduce performance effects; it is helpful for and meant for debugging on client side.
@@ -6814,7 +6814,7 @@ namespace RDF
 		public static extern void SetInternalCheck(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
-		///		GetInternalCheck                                        (https://rdf.bg/gkdoc/CS64/GetInternalCheck.html)
+		///		GetInternalCheck                                        (https://rdf.bg/gkdoc/index.html?topic=GetInternalCheck&lang=CS64)
 		///
 		///	This function returns all current enabled active consistency checks given the mask the function is 
 		///	called for.
@@ -6824,7 +6824,7 @@ namespace RDF
 		public static extern UInt64 GetInternalCheck(Int64 model, UInt64 mask);
 
 		/// <summary>
-		///		GetInternalCheckIssueCnt                                (https://rdf.bg/gkdoc/CS64/GetInternalCheckIssueCnt.html)
+		///		GetInternalCheckIssueCnt                                (https://rdf.bg/gkdoc/index.html?topic=GetInternalCheckIssueCnt&lang=CS64)
 		///
 		///	This function returns all issues found and not retrieved by the hosting application through 
 		///	GetInternalCheckIssue()/GetInternalCheckIssueW().
@@ -6833,7 +6833,7 @@ namespace RDF
 		public static extern Int64 GetInternalCheckIssueCnt(Int64 model);
 
 		/// <summary>
-		///		GetInternalCheckIssue                                   (https://rdf.bg/gkdoc/CS64/GetInternalCheckIssue.html)
+		///		GetInternalCheckIssue                                   (https://rdf.bg/gkdoc/index.html?topic=GetInternalCheckIssue&lang=CS64)
 		///
 		///	This function returns the oldest issues in the list of issues and reduces the list of issues with 1.
 		///	The name and description represent the issue as ASCII string, if relevant the relating owlInstance
@@ -6844,7 +6844,7 @@ namespace RDF
 		public static extern void GetInternalCheckIssue(Int64 model, out IntPtr name, out IntPtr description, out Int64 relatedOwlInstance);
 
 		/// <summary>
-		///		GetInternalCheckIssueW                                  (https://rdf.bg/gkdoc/CS64/GetInternalCheckIssueW.html)
+		///		GetInternalCheckIssueW                                  (https://rdf.bg/gkdoc/index.html?topic=GetInternalCheckIssueW&lang=CS64)
 		///
 		///	This function returns the oldest issues in the list of issues and reduces the list of issues with 1.
 		///	The name and description represent the issue as Unicode string, if relevant the relating owlInstance
@@ -6855,7 +6855,7 @@ namespace RDF
 		public static extern void GetInternalCheckIssueW(Int64 model, out IntPtr name, out IntPtr description, out Int64 relatedOwlInstance);
 
 		/// <summary>
-		///		ValidateResource                                        (https://rdf.bg/gkdoc/CS64/ValidateResource.html)
+		///		ValidateResource                                        (https://rdf.bg/gkdoc/index.html?topic=ValidateResource&lang=CS64)
 		///
 		///	This function starts an internal validation on a resource. Any rdfsResource can be used as input.
 		///	If nothing unexpected is found the return value is 0.
@@ -6864,7 +6864,7 @@ namespace RDF
 		public static extern Int64 ValidateResource(Int64 rdfsResource);
 
 		/// <summary>
-		///		CloseSession                                            (https://rdf.bg/gkdoc/CS64/CloseSession.html)
+		///		CloseSession                                            (https://rdf.bg/gkdoc/index.html?topic=CloseSession&lang=CS64)
 		///
 		///	This function closes the session, after this call the geometry kernel cannot be used anymore.
 		/// </summary>
@@ -6872,7 +6872,7 @@ namespace RDF
 		public static extern Int64 CloseSession();
 
 		/// <summary>
-		///		CleanMemory                                             (https://rdf.bg/gkdoc/CS64/CleanMemory.html)
+		///		CleanMemory                                             (https://rdf.bg/gkdoc/index.html?topic=CleanMemory&lang=CS64)
 		///
 		///		This function ..
 		/// </summary>
@@ -6880,7 +6880,7 @@ namespace RDF
 		public static extern void CleanMemory();
 
 		/// <summary>
-		///		ClearCache                                              (https://rdf.bg/gkdoc/CS64/ClearCache.html)
+		///		ClearCache                                              (https://rdf.bg/gkdoc/index.html?topic=ClearCache&lang=CS64)
 		///
 		///		This function ..
 		/// </summary>
@@ -6888,7 +6888,7 @@ namespace RDF
 		public static extern void ClearCache(Int64 model);
 
 		/// <summary>
-		///		AllocModelMemory                                        (https://rdf.bg/gkdoc/CS64/AllocModelMemory.html)
+		///		AllocModelMemory                                        (https://rdf.bg/gkdoc/index.html?topic=AllocModelMemory&lang=CS64)
 		///
 		///	Allocates model associated memory.
 		///	Memory is disposed when model is closed
@@ -6897,7 +6897,7 @@ namespace RDF
 		public static extern Int64 AllocModelMemory(Int64 model, Int64 size);
 
 		/// <summary>
-		///		SetExternalReferenceData                                (https://rdf.bg/gkdoc/CS64/SetExternalReferenceData.html)
+		///		SetExternalReferenceData                                (https://rdf.bg/gkdoc/index.html?topic=SetExternalReferenceData&lang=CS64)
 		///
 		///	Sets application data on model, class, property, instance
 		///	Returns 0 on error, 1 on success
@@ -6906,7 +6906,7 @@ namespace RDF
 		public static extern Int64 SetExternalReferenceData(Int64 rdfsResource, Int64 identifier, out IntPtr data);
 
 		/// <summary>
-		///		GetExternalReferenceData                                (https://rdf.bg/gkdoc/CS64/GetExternalReferenceData.html)
+		///		GetExternalReferenceData                                (https://rdf.bg/gkdoc/index.html?topic=GetExternalReferenceData&lang=CS64)
 		///
 		///	Gets application data from model, class, property, instance that were previously set by SetExternalReferenceData
 		///	Returns 0 on error, 1 on success
@@ -6915,7 +6915,7 @@ namespace RDF
 		public static extern Int64 GetExternalReferenceData(Int64 rdfsResource, Int64 identifier);
 
 		/// <summary>
-		///		GetExternalReferenceDataId                              (https://rdf.bg/gkdoc/CS64/GetExternalReferenceDataId.html)
+		///		GetExternalReferenceDataId                              (https://rdf.bg/gkdoc/index.html?topic=GetExternalReferenceDataId&lang=CS64)
 		///
 		///	Returns a key id can be used in calls to Get/SetExternalReferenceData to keep application data on GK entities
 		///	During model lifetime the id is the same for given string and different for different strings
@@ -6938,7 +6938,7 @@ namespace RDF
 		public delegate void WriteCallBackFunction(IntPtr value, Int64 size);
 
 		/// <summary>
-		///		CreateModel                                             (https://rdf.bg/gkdoc/CS64/CreateModel.html)
+		///		CreateModel                                             (https://rdf.bg/gkdoc/index.html?topic=CreateModel&lang=CS64)
 		///
 		///	This function creates and empty model.
 		///	References inside to other ontologies will be included.
@@ -6948,7 +6948,7 @@ namespace RDF
 		public static extern Int64 CreateModel();
 
 		/// <summary>
-		///		OpenModel                                               (https://rdf.bg/gkdoc/CS64/OpenModel.html)
+		///		OpenModel                                               (https://rdf.bg/gkdoc/index.html?topic=OpenModel&lang=CS64)
 		///
 		///	This function opens the model on location file name.
 		///	References inside to other ontologies will be included.
@@ -6961,7 +6961,7 @@ namespace RDF
 		public static extern Int64 OpenModel(byte[] fileName);
 
 		/// <summary>
-		///		OpenModelW                                              (https://rdf.bg/gkdoc/CS64/OpenModelW.html)
+		///		OpenModelW                                              (https://rdf.bg/gkdoc/index.html?topic=OpenModelW&lang=CS64)
 		///
 		///	This function opens the model on location file name.
 		///	References inside to other ontologies will be included.
@@ -6974,7 +6974,7 @@ namespace RDF
 		public static extern Int64 OpenModelW(byte[] fileName);
 
 		/// <summary>
-		///		OpenModelS                                              (https://rdf.bg/gkdoc/CS64/OpenModelS.html)
+		///		OpenModelS                                              (https://rdf.bg/gkdoc/index.html?topic=OpenModelS&lang=CS64)
 		///
 		///	This function opens the model via a stream.
 		///	References inside to other ontologies will be included.
@@ -6984,7 +6984,7 @@ namespace RDF
 		public static extern Int64 OpenModelS([MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback);
 
 		/// <summary>
-		///		OpenModelA                                              (https://rdf.bg/gkdoc/CS64/OpenModelA.html)
+		///		OpenModelA                                              (https://rdf.bg/gkdoc/index.html?topic=OpenModelA&lang=CS64)
 		///
 		///	This function opens the model via an array.
 		///	References inside to other ontologies will be included.
@@ -6994,7 +6994,7 @@ namespace RDF
 		public static extern Int64 OpenModelA(byte[] content, Int64 size);
 
 		/// <summary>
-		///		ImportModel                                             (https://rdf.bg/gkdoc/CS64/ImportModel.html)
+		///		ImportModel                                             (https://rdf.bg/gkdoc/index.html?topic=ImportModel&lang=CS64)
 		///
 		///	This function imports a design tree on location file name.
 		///	The design tree will be added to the given existing model.
@@ -7009,7 +7009,7 @@ namespace RDF
 		public static extern Int64 ImportModel(Int64 model, byte[] fileName);
 
 		/// <summary>
-		///		ImportModelW                                            (https://rdf.bg/gkdoc/CS64/ImportModelW.html)
+		///		ImportModelW                                            (https://rdf.bg/gkdoc/index.html?topic=ImportModelW&lang=CS64)
 		///
 		///	This function imports a design tree on location file name.
 		///	The design tree will be added to the given existing model.
@@ -7024,7 +7024,7 @@ namespace RDF
 		public static extern Int64 ImportModelW(Int64 model, byte[] fileName);
 
 		/// <summary>
-		///		ImportModelS                                            (https://rdf.bg/gkdoc/CS64/ImportModelS.html)
+		///		ImportModelS                                            (https://rdf.bg/gkdoc/index.html?topic=ImportModelS&lang=CS64)
 		///
 		///	This function imports a design tree via a stream.
 		///	The design tree will be added to the given existing model.
@@ -7036,7 +7036,7 @@ namespace RDF
 		public static extern Int64 ImportModelS(Int64 model, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback);
 
 		/// <summary>
-		///		ImportModelA                                            (https://rdf.bg/gkdoc/CS64/ImportModelA.html)
+		///		ImportModelA                                            (https://rdf.bg/gkdoc/index.html?topic=ImportModelA&lang=CS64)
 		///
 		///	This function imports a design tree via an array.
 		///	The design tree will be added to the given existing model.
@@ -7048,7 +7048,7 @@ namespace RDF
 		public static extern Int64 ImportModelA(Int64 model, byte[] content, Int64 size);
 
 		/// <summary>
-		///		SaveInstanceTree                                        (https://rdf.bg/gkdoc/CS64/SaveInstanceTree.html)
+		///		SaveInstanceTree                                        (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceTree&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
 		///
@@ -7063,7 +7063,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceTree(Int64 owlInstance, byte[] fileName);
 
 		/// <summary>
-		///		SaveInstanceTreeW                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeW.html)
+		///		SaveInstanceTreeW                                       (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceTreeW&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
 		///
@@ -7078,7 +7078,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceTreeW(Int64 owlInstance, byte[] fileName);
 
 		/// <summary>
-		///		SaveInstanceTreeS                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeS.html)
+		///		SaveInstanceTreeS                                       (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceTreeS&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies in a stream.
 		///
@@ -7090,7 +7090,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceTreeS(Int64 owlInstance, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
-		///		SaveInstanceTreeA                                       (https://rdf.bg/gkdoc/CS64/SaveInstanceTreeA.html)
+		///		SaveInstanceTreeA                                       (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceTreeA&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies in an array.
 		///
@@ -7102,7 +7102,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceTreeA(Int64 owlInstance, byte[] content, out Int64 size);
 
 		/// <summary>
-		///		SaveInstanceNetwork                                     (https://rdf.bg/gkdoc/CS64/SaveInstanceNetwork.html)
+		///		SaveInstanceNetwork                                     (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceNetwork&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
 		///
@@ -7117,7 +7117,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
-		///		SaveInstanceNetworkW                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkW.html)
+		///		SaveInstanceNetworkW                                    (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceNetworkW&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies on location file name.
 		///
@@ -7132,7 +7132,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
-		///		SaveInstanceNetworkS                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkS.html)
+		///		SaveInstanceNetworkS                                    (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceNetworkS&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies in a stream.
 		///
@@ -7144,7 +7144,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceNetworkS(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
-		///		SaveInstanceNetworkA                                    (https://rdf.bg/gkdoc/CS64/SaveInstanceNetworkA.html)
+		///		SaveInstanceNetworkA                                    (https://rdf.bg/gkdoc/index.html?topic=SaveInstanceNetworkA&lang=CS64)
 		///
 		///	This function saves the selected instance and its dependencies in an array.
 		///
@@ -7156,7 +7156,7 @@ namespace RDF
 		public static extern Int64 SaveInstanceNetworkA(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] content, out Int64 size);
 
 		/// <summary>
-		///		SaveModel                                               (https://rdf.bg/gkdoc/CS64/SaveModel.html)
+		///		SaveModel                                               (https://rdf.bg/gkdoc/index.html?topic=SaveModel&lang=CS64)
 		///
 		///	This function saves the current model on location file name.
 		///
@@ -7173,7 +7173,7 @@ namespace RDF
 		public static extern Int64 SaveModel(Int64 model, byte[] fileName);
 
 		/// <summary>
-		///		SaveModelW                                              (https://rdf.bg/gkdoc/CS64/SaveModelW.html)
+		///		SaveModelW                                              (https://rdf.bg/gkdoc/index.html?topic=SaveModelW&lang=CS64)
 		///
 		///	This function saves the current model on location file name.
 		///
@@ -7190,7 +7190,7 @@ namespace RDF
 		public static extern Int64 SaveModelW(Int64 model, byte[] fileName);
 
 		/// <summary>
-		///		SaveModelS                                              (https://rdf.bg/gkdoc/CS64/SaveModelS.html)
+		///		SaveModelS                                              (https://rdf.bg/gkdoc/index.html?topic=SaveModelS&lang=CS64)
 		///
 		///	This function saves the current model in a stream.
 		///
@@ -7204,7 +7204,7 @@ namespace RDF
 		public static extern Int64 SaveModelS(Int64 model, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
-		///		SaveModelA                                              (https://rdf.bg/gkdoc/CS64/SaveModelA.html)
+		///		SaveModelA                                              (https://rdf.bg/gkdoc/index.html?topic=SaveModelA&lang=CS64)
 		///
 		///	This function saves the current model in an array.
 		///
@@ -7218,7 +7218,7 @@ namespace RDF
 		public static extern Int64 SaveModelA(Int64 model, byte[] content, out Int64 size);
 
 		/// <summary>
-		///		SetOverrideFileIO                                       (https://rdf.bg/gkdoc/CS64/SetOverrideFileIO.html)
+		///		SetOverrideFileIO                                       (https://rdf.bg/gkdoc/index.html?topic=SetOverrideFileIO&lang=CS64)
 		///
 		///	This function overrides the type of file saved/exported independent of the extension given.
 		///	By default the extension of the file name will define the type saved/exported:
@@ -7253,7 +7253,7 @@ namespace RDF
 		public static extern void SetOverrideFileIO(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
-		///		GetOverrideFileIO                                       (https://rdf.bg/gkdoc/CS64/GetOverrideFileIO.html)
+		///		GetOverrideFileIO                                       (https://rdf.bg/gkdoc/index.html?topic=GetOverrideFileIO&lang=CS64)
 		///
 		///	This function get the current overrides for type of file saved/exported independent of the extension given.
 		///	By default the extension of the file name will define the type saved/exported:
@@ -7288,7 +7288,7 @@ namespace RDF
 		public static extern UInt64 GetOverrideFileIO(Int64 model, UInt64 mask);
 
 		/// <summary>
-		///		CopyInstanceTree                                        (https://rdf.bg/gkdoc/CS64/CopyInstanceTree.html)
+		///		CopyInstanceTree                                        (https://rdf.bg/gkdoc/index.html?topic=CopyInstanceTree&lang=CS64)
 		///
 		///	This function copies the instance tree towards a new model.
 		///	In case model is empty a new model will be created (the handle to this new model can be retrieved through
@@ -7303,7 +7303,7 @@ namespace RDF
 		public static extern Int64 CopyInstanceTree(Int64 owlInstance, Int64 targetModel);
 
 		/// <summary>
-		///		CopyInstanceNetwork                                     (https://rdf.bg/gkdoc/CS64/CopyInstanceNetwork.html)
+		///		CopyInstanceNetwork                                     (https://rdf.bg/gkdoc/index.html?topic=CopyInstanceNetwork&lang=CS64)
 		///
 		///	This function copies the instance network towards a new model.
 		///	An instance network is different from an instance tree in that it can contain 'loops', the performance
@@ -7323,7 +7323,7 @@ namespace RDF
 		public static extern Int64 CopyInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, Int64 targetModel);
 
 		/// <summary>
-		///		EncodeBase64                                            (https://rdf.bg/gkdoc/CS64/EncodeBase64.html)
+		///		EncodeBase64                                            (https://rdf.bg/gkdoc/index.html?topic=EncodeBase64&lang=CS64)
 		///
 		///	Function to encode any data input array into a BASE64 string.
 		///
@@ -7340,7 +7340,7 @@ namespace RDF
 		public static extern Int64 EncodeBase64(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
-		///		EncodeBase64W                                           (https://rdf.bg/gkdoc/CS64/EncodeBase64W.html)
+		///		EncodeBase64W                                           (https://rdf.bg/gkdoc/index.html?topic=EncodeBase64W&lang=CS64)
 		///
 		///	Function to encode any data input array into a BASE64 string.
 		///
@@ -7357,7 +7357,7 @@ namespace RDF
 		public static extern Int64 EncodeBase64W(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
-		///		DecodeBase64                                            (https://rdf.bg/gkdoc/CS64/DecodeBase64.html)
+		///		DecodeBase64                                            (https://rdf.bg/gkdoc/index.html?topic=DecodeBase64&lang=CS64)
 		///
 		///	Function to decode a BASE64 string into any data output array.
 		///
@@ -7372,7 +7372,7 @@ namespace RDF
 		public static extern Int64 DecodeBase64(byte[] output, byte[] input, Int64 size);
 
 		/// <summary>
-		///		DecodeBase64W                                           (https://rdf.bg/gkdoc/CS64/DecodeBase64W.html)
+		///		DecodeBase64W                                           (https://rdf.bg/gkdoc/index.html?topic=DecodeBase64W&lang=CS64)
 		///
 		///	Function to decode a BASE64 string into any data output array.
 		///
@@ -7387,7 +7387,7 @@ namespace RDF
 		public static extern Int64 DecodeBase64W(byte[] output, byte[] input, Int64 size);
 
 		/// <summary>
-		///		CopyModel                                               (https://rdf.bg/gkdoc/CS64/CopyModel.html)
+		///		CopyModel                                               (https://rdf.bg/gkdoc/index.html?topic=CopyModel&lang=CS64)
 		///
 		///	This function copies the complete structure of a model towards another or new model.
 		///	In case the targetModel is empty a new model will be created.
@@ -7404,7 +7404,7 @@ namespace RDF
 		public static extern Int64 CopyModel(Int64 sourceModel, Int64 targetModel, out Int64 values, Int64 card);
 
 		/// <summary>
-		///		CloseModel                                              (https://rdf.bg/gkdoc/CS64/CloseModel.html)
+		///		CloseModel                                              (https://rdf.bg/gkdoc/index.html?topic=CloseModel&lang=CS64)
 		///
 		///	This function closes the model. After this call none of the instances and classes within the model
 		///	can be used anymore, also garbage collection is not allowed anymore, in default compilation the
@@ -7415,7 +7415,7 @@ namespace RDF
 		public static extern Int64 CloseModel(Int64 model);
 
 		/// <summary>
-		///		IsModel                                                 (https://rdf.bg/gkdoc/CS64/IsModel.html)
+		///		IsModel                                                 (https://rdf.bg/gkdoc/index.html?topic=IsModel&lang=CS64)
 		///
 		///	Returns OwlModel if the argument rdfsResource is an actual active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed or the session is closed.
@@ -7429,7 +7429,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		CreateClass                                             (https://rdf.bg/gkdoc/CS64/CreateClass.html)
+		///		CreateClass                                             (https://rdf.bg/gkdoc/index.html?topic=CreateClass&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created class, however when
 		///	a class with this name already exists the handle of existing class will be returned.
@@ -7448,7 +7448,7 @@ namespace RDF
 		public static extern Int64 CreateClass(Int64 model, byte[] name);
 
 		/// <summary>
-		///		CreateClassW                                            (https://rdf.bg/gkdoc/CS64/CreateClassW.html)
+		///		CreateClassW                                            (https://rdf.bg/gkdoc/index.html?topic=CreateClassW&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created class, however when
 		///	a class with this name already exists the handle of existing class will be returned.
@@ -7467,7 +7467,7 @@ namespace RDF
 		public static extern Int64 CreateClassW(Int64 model, byte[] name);
 
 		/// <summary>
-		///		GetClassByName                                          (https://rdf.bg/gkdoc/CS64/GetClassByName.html)
+		///		GetClassByName                                          (https://rdf.bg/gkdoc/index.html?topic=GetClassByName&lang=CS64)
 		///
 		///	Returns a handle to the class as stored inside.
 		///	When there is no class with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
@@ -7479,7 +7479,7 @@ namespace RDF
 		public static extern Int64 GetClassByName(Int64 model, byte[] name);
 
 		/// <summary>
-		///		GetClassByNameW                                         (https://rdf.bg/gkdoc/CS64/GetClassByNameW.html)
+		///		GetClassByNameW                                         (https://rdf.bg/gkdoc/index.html?topic=GetClassByNameW&lang=CS64)
 		///
 		///	Returns a handle to the class as stored inside.
 		///	When there is no class with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
@@ -7491,7 +7491,7 @@ namespace RDF
 		public static extern Int64 GetClassByNameW(Int64 model, byte[] name);
 
 		/// <summary>
-		///		GetClassesByIterator                                    (https://rdf.bg/gkdoc/CS64/GetClassesByIterator.html)
+		///		GetClassesByIterator                                    (https://rdf.bg/gkdoc/index.html?topic=GetClassesByIterator&lang=CS64)
 		///
 		///	Returns a handle to an class.
 		///	If input class is zero, the handle will point to the first relevant class.
@@ -7501,7 +7501,7 @@ namespace RDF
 		public static extern Int64 GetClassesByIterator(Int64 model, Int64 owlClass);
 
 		/// <summary>
-		///		SetClassParent                                          (https://rdf.bg/gkdoc/CS64/SetClassParent.html)
+		///		SetClassParent                                          (https://rdf.bg/gkdoc/index.html?topic=SetClassParent&lang=CS64)
 		///
 		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
 		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
@@ -7525,7 +7525,7 @@ namespace RDF
 		public static extern Int64 SetClassParent(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
-		///		SetClassParentEx                                        (https://rdf.bg/gkdoc/CS64/SetClassParentEx.html)
+		///		SetClassParentEx                                        (https://rdf.bg/gkdoc/index.html?topic=SetClassParentEx&lang=CS64)
 		///
 		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
 		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
@@ -7552,7 +7552,7 @@ namespace RDF
 		public static extern Int64 SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
-		///		UnsetClassParent                                        (https://rdf.bg/gkdoc/CS64/UnsetClassParent.html)
+		///		UnsetClassParent                                        (https://rdf.bg/gkdoc/index.html?topic=UnsetClassParent&lang=CS64)
 		///
 		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
 		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
@@ -7572,7 +7572,7 @@ namespace RDF
 		public static extern Int64 UnsetClassParent(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
-		///		UnsetClassParentEx                                      (https://rdf.bg/gkdoc/CS64/UnsetClassParentEx.html)
+		///		UnsetClassParentEx                                      (https://rdf.bg/gkdoc/index.html?topic=UnsetClassParentEx&lang=CS64)
 		///
 		///	Defines a parent class relation of a given class. Multiple-inheritance is supported and behavior
 		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
@@ -7595,7 +7595,7 @@ namespace RDF
 		public static extern Int64 UnsetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
-		///		IsClassAncestor                                         (https://rdf.bg/gkdoc/CS64/IsClassAncestor.html)
+		///		IsClassAncestor                                         (https://rdf.bg/gkdoc/index.html?topic=IsClassAncestor&lang=CS64)
 		///
 		///	Checks if the class has given ancestor
 		///	Returns 0 if not or minimal generation number (1 for direct parent)
@@ -7604,7 +7604,7 @@ namespace RDF
 		public static extern Int64 IsClassAncestor(Int64 owlClass, Int64 ancestorOwlClass);
 
 		/// <summary>
-		///		GetClassParentsByIterator                               (https://rdf.bg/gkdoc/CS64/GetClassParentsByIterator.html)
+		///		GetClassParentsByIterator                               (https://rdf.bg/gkdoc/index.html?topic=GetClassParentsByIterator&lang=CS64)
 		///
 		///	Returns the next parent of the class.
 		///	If input parent is zero, the handle will point to the first relevant parent.
@@ -7614,7 +7614,7 @@ namespace RDF
 		public static extern Int64 GetClassParentsByIterator(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
-		///		SetNameOfClass                                          (https://rdf.bg/gkdoc/CS64/SetNameOfClass.html)
+		///		SetNameOfClass                                          (https://rdf.bg/gkdoc/index.html?topic=SetNameOfClass&lang=CS64)
 		///
 		///	Sets or updates the name of the class, it returns 0 on success.
 		///
@@ -7635,7 +7635,7 @@ namespace RDF
 		public static extern Int64 SetNameOfClass(Int64 owlClass, byte[] name);
 
 		/// <summary>
-		///		SetNameOfClassW                                         (https://rdf.bg/gkdoc/CS64/SetNameOfClassW.html)
+		///		SetNameOfClassW                                         (https://rdf.bg/gkdoc/index.html?topic=SetNameOfClassW&lang=CS64)
 		///
 		///	Sets or updates the name of the class, it returns 0 on success.
 		///
@@ -7656,7 +7656,7 @@ namespace RDF
 		public static extern Int64 SetNameOfClassW(Int64 owlClass, byte[] name);
 
 		/// <summary>
-		///		SetNameOfClassEx                                        (https://rdf.bg/gkdoc/CS64/SetNameOfClassEx.html)
+		///		SetNameOfClassEx                                        (https://rdf.bg/gkdoc/index.html?topic=SetNameOfClassEx&lang=CS64)
 		///
 		///	Sets or updates the name of the class, it returns 0 on success.
 		///
@@ -7680,7 +7680,7 @@ namespace RDF
 		public static extern Int64 SetNameOfClassEx(Int64 model, Int64 owlClass, byte[] name);
 
 		/// <summary>
-		///		SetNameOfClassWEx                                       (https://rdf.bg/gkdoc/CS64/SetNameOfClassWEx.html)
+		///		SetNameOfClassWEx                                       (https://rdf.bg/gkdoc/index.html?topic=SetNameOfClassWEx&lang=CS64)
 		///
 		///	Sets or updates the name of the class, it returns 0 on success.
 		///
@@ -7704,7 +7704,7 @@ namespace RDF
 		public static extern Int64 SetNameOfClassWEx(Int64 model, Int64 owlClass, byte[] name);
 
 		/// <summary>
-		///		GetNameOfClass                                          (https://rdf.bg/gkdoc/CS64/GetNameOfClass.html)
+		///		GetNameOfClass                                          (https://rdf.bg/gkdoc/index.html?topic=GetNameOfClass&lang=CS64)
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		/// </summary>
@@ -7719,7 +7719,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfClassW                                         (https://rdf.bg/gkdoc/CS64/GetNameOfClassW.html)
+		///		GetNameOfClassW                                         (https://rdf.bg/gkdoc/index.html?topic=GetNameOfClassW&lang=CS64)
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		/// </summary>
@@ -7734,7 +7734,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfClassEx                                        (https://rdf.bg/gkdoc/CS64/GetNameOfClassEx.html)
+		///		GetNameOfClassEx                                        (https://rdf.bg/gkdoc/index.html?topic=GetNameOfClassEx&lang=CS64)
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		///
@@ -7752,7 +7752,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfClassWEx                                       (https://rdf.bg/gkdoc/CS64/GetNameOfClassWEx.html)
+		///		GetNameOfClassWEx                                       (https://rdf.bg/gkdoc/index.html?topic=GetNameOfClassWEx&lang=CS64)
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		///
@@ -7770,7 +7770,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetClassPropertyByIterator                              (https://rdf.bg/gkdoc/CS64/GetClassPropertyByIterator.html)
+		///		GetClassPropertyByIterator                              (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyByIterator&lang=CS64)
 		///
 		///	Returns a handle to a property.
 		///	If input property is zero, the handle will point to the first property having cardinality restriction to the class.
@@ -7792,7 +7792,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetClassPropertyByIteratorEx                            (https://rdf.bg/gkdoc/CS64/GetClassPropertyByIteratorEx.html)
+		///		GetClassPropertyByIteratorEx                            (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyByIteratorEx&lang=CS64)
 		///
 		///	Returns a handle to a property.
 		///	If input property is zero, the handle will point to the first property having cardinality restriction to the class.
@@ -7817,7 +7817,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetClassPropertyCardinalityRestriction                  (https://rdf.bg/gkdoc/CS64/SetClassPropertyCardinalityRestriction.html)
+		///		SetClassPropertyCardinalityRestriction                  (https://rdf.bg/gkdoc/index.html?topic=SetClassPropertyCardinalityRestriction&lang=CS64)
 		///
 		///	This function sets the minCard and maxCard of a certain property in the context of a class.
 		///	The cardinality of a property in an instance has to be between minCard and maxCard (as well 
@@ -7830,7 +7830,7 @@ namespace RDF
 		public static extern void SetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, Int64 minCard, Int64 maxCard);
 
 		/// <summary>
-		///		SetClassPropertyCardinalityRestrictionEx                (https://rdf.bg/gkdoc/CS64/SetClassPropertyCardinalityRestrictionEx.html)
+		///		SetClassPropertyCardinalityRestrictionEx                (https://rdf.bg/gkdoc/index.html?topic=SetClassPropertyCardinalityRestrictionEx&lang=CS64)
 		///
 		///	This function sets the minCard and maxCard of a certain property in the context of a class.
 		///	The cardinality of a property in an instance has to be between minCard and maxCard (as well 
@@ -7846,7 +7846,7 @@ namespace RDF
 		public static extern void SetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, Int64 minCard, Int64 maxCard);
 
 		/// <summary>
-		///		GetClassPropertyCardinalityRestriction                  (https://rdf.bg/gkdoc/CS64/GetClassPropertyCardinalityRestriction.html)
+		///		GetClassPropertyCardinalityRestriction                  (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyCardinalityRestriction&lang=CS64)
 		///
 		///	This function returns the minCard and maxCard of a certain
 		///	property in the context of a class. The cardinality of a property in 
@@ -7865,7 +7865,7 @@ namespace RDF
 		public static extern void GetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
-		///		GetClassPropertyCardinalityRestrictionEx                (https://rdf.bg/gkdoc/CS64/GetClassPropertyCardinalityRestrictionEx.html)
+		///		GetClassPropertyCardinalityRestrictionEx                (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyCardinalityRestrictionEx&lang=CS64)
 		///
 		///	This function returns the minCard and maxCard of a certain
 		///	property in the context of a class. The cardinality of a property in 
@@ -7887,7 +7887,7 @@ namespace RDF
 		public static extern void GetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
-		///		GetClassPropertyAggregatedCardinalityRestriction        (https://rdf.bg/gkdoc/CS64/GetClassPropertyAggregatedCardinalityRestriction.html)
+		///		GetClassPropertyAggregatedCardinalityRestriction        (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyAggregatedCardinalityRestriction&lang=CS64)
 		///
 		///	This function returns the minCard and maxCard of a certain
 		///	property in the context of a class. This function does return inherited restrictions.
@@ -7901,7 +7901,7 @@ namespace RDF
 		public static extern void GetClassPropertyAggregatedCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
-		///		GetClassPropertyAggregatedCardinalityRestrictionEx      (https://rdf.bg/gkdoc/CS64/GetClassPropertyAggregatedCardinalityRestrictionEx.html)
+		///		GetClassPropertyAggregatedCardinalityRestrictionEx      (https://rdf.bg/gkdoc/index.html?topic=GetClassPropertyAggregatedCardinalityRestrictionEx&lang=CS64)
 		///
 		///	This function returns the minCard and maxCard of a certain
 		///	property in the context of a class. This function does return inherited restrictions.
@@ -7918,7 +7918,7 @@ namespace RDF
 		public static extern void GetClassPropertyAggregatedCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
-		///		GetGeometryClass                                        (https://rdf.bg/gkdoc/CS64/GetGeometryClass.html)
+		///		GetGeometryClass                                        (https://rdf.bg/gkdoc/index.html?topic=GetGeometryClass&lang=CS64)
 		///
 		///	Returns non-zero if the owlClass is a geometry type. This call will return the input class
 		///	for all classes initially available. It will return as well non-for all classes created by the
@@ -7930,7 +7930,7 @@ namespace RDF
 		public static extern Int64 GetGeometryClass(Int64 owlClass);
 
 		/// <summary>
-		///		GetGeometryClassEx                                      (https://rdf.bg/gkdoc/CS64/GetGeometryClassEx.html)
+		///		GetGeometryClassEx                                      (https://rdf.bg/gkdoc/index.html?topic=GetGeometryClassEx&lang=CS64)
 		///
 		///	Returns non-zero if the owlClass is a geometry type. This call will return the input class
 		///	for all classes initially available. It will return as well non-for all classes created by the
@@ -7945,7 +7945,7 @@ namespace RDF
 		public static extern Int64 GetGeometryClassEx(Int64 model, Int64 owlClass);
 
 		/// <summary>
-		///		IsClass                                                 (https://rdf.bg/gkdoc/CS64/IsClass.html)
+		///		IsClass                                                 (https://rdf.bg/gkdoc/index.html?topic=IsClass&lang=CS64)
 		///
 		///	Returns OwlClass if the argument rdfsResource is an actual active class in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the class is inactive or removed or the session is closed.
@@ -7959,7 +7959,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		CreateProperty                                          (https://rdf.bg/gkdoc/CS64/CreateProperty.html)
+		///		CreateProperty                                          (https://rdf.bg/gkdoc/index.html?topic=CreateProperty&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created property, however when
 		///	a property with this name already exists the handle of existing property will be returned.
@@ -7978,7 +7978,7 @@ namespace RDF
 		public static extern Int64 CreateProperty(Int64 model, Int64 rdfPropertyType, byte[] name);
 
 		/// <summary>
-		///		CreatePropertyW                                         (https://rdf.bg/gkdoc/CS64/CreatePropertyW.html)
+		///		CreatePropertyW                                         (https://rdf.bg/gkdoc/index.html?topic=CreatePropertyW&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created property, however when
 		///	a property with this name already exists the handle of existing property will be returned.
@@ -7997,7 +7997,7 @@ namespace RDF
 		public static extern Int64 CreatePropertyW(Int64 model, Int64 rdfPropertyType, byte[] name);
 
 		/// <summary>
-		///		GetPropertyByName                                       (https://rdf.bg/gkdoc/CS64/GetPropertyByName.html)
+		///		GetPropertyByName                                       (https://rdf.bg/gkdoc/index.html?topic=GetPropertyByName&lang=CS64)
 		///
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty as stored inside.
 		///	When there is no property with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
@@ -8009,7 +8009,7 @@ namespace RDF
 		public static extern Int64 GetPropertyByName(Int64 model, byte[] name);
 
 		/// <summary>
-		///		GetPropertyByNameW                                      (https://rdf.bg/gkdoc/CS64/GetPropertyByNameW.html)
+		///		GetPropertyByNameW                                      (https://rdf.bg/gkdoc/index.html?topic=GetPropertyByNameW&lang=CS64)
 		///
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty as stored inside.
 		///	When there is no property with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
@@ -8021,7 +8021,7 @@ namespace RDF
 		public static extern Int64 GetPropertyByNameW(Int64 model, byte[] name);
 
 		/// <summary>
-		///		GetPropertiesByIterator                                 (https://rdf.bg/gkdoc/CS64/GetPropertiesByIterator.html)
+		///		GetPropertiesByIterator                                 (https://rdf.bg/gkdoc/index.html?topic=GetPropertiesByIterator&lang=CS64)
 		///
 		///	Returns a handle to a property.
 		///	If input property is zero, the handle will point to the first relevant property.
@@ -8031,7 +8031,7 @@ namespace RDF
 		public static extern Int64 GetPropertiesByIterator(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
-		///		SetPropertyRangeRestriction                             (https://rdf.bg/gkdoc/CS64/SetPropertyRangeRestriction.html)
+		///		SetPropertyRangeRestriction                             (https://rdf.bg/gkdoc/index.html?topic=SetPropertyRangeRestriction&lang=CS64)
 		///
 		///	Sets or unsets a specific owlClass as range restriction to an property. The property is expected to
 		///	be an object[property, i.e. relation.]
@@ -8041,7 +8041,7 @@ namespace RDF
 		public static extern void SetPropertyRangeRestriction(Int64 rdfProperty, Int64 owlClass, Int64 setting);
 
 		/// <summary>
-		///		SetPropertyRangeRestrictionEx                           (https://rdf.bg/gkdoc/CS64/SetPropertyRangeRestrictionEx.html)
+		///		SetPropertyRangeRestrictionEx                           (https://rdf.bg/gkdoc/index.html?topic=SetPropertyRangeRestrictionEx&lang=CS64)
 		///
 		///	Sets or unsets a specific owlClass as range restriction to an property. The property is expected to
 		///	be an object[property, i.e. relation.]
@@ -8051,7 +8051,7 @@ namespace RDF
 		public static extern void SetPropertyRangeRestrictionEx(Int64 model, Int64 rdfProperty, Int64 owlClass, Int64 setting);
 
 		/// <summary>
-		///		GetRangeRestrictionsByIterator                          (https://rdf.bg/gkdoc/CS64/GetRangeRestrictionsByIterator.html)
+		///		GetRangeRestrictionsByIterator                          (https://rdf.bg/gkdoc/index.html?topic=GetRangeRestrictionsByIterator&lang=CS64)
 		///
 		///	Returns the next class the property is restricted to.
 		///	If input class is zero, the handle will point to the first relevant class.
@@ -8061,7 +8061,7 @@ namespace RDF
 		public static extern Int64 GetRangeRestrictionsByIterator(Int64 rdfProperty, Int64 owlClass);
 
 		/// <summary>
-		///		GetRangeRestrictionsByIteratorEx                        (https://rdf.bg/gkdoc/CS64/GetRangeRestrictionsByIteratorEx.html)
+		///		GetRangeRestrictionsByIteratorEx                        (https://rdf.bg/gkdoc/index.html?topic=GetRangeRestrictionsByIteratorEx&lang=CS64)
 		///
 		///	Returns the next class the property is restricted to.
 		///	If input class is zero, the handle will point to the first relevant class.
@@ -8071,7 +8071,7 @@ namespace RDF
 		public static extern Int64 GetRangeRestrictionsByIteratorEx(Int64 model, Int64 rdfProperty, Int64 owlClass);
 
 		/// <summary>
-		///		GetPropertyParentsByIterator                            (https://rdf.bg/gkdoc/CS64/GetPropertyParentsByIterator.html)
+		///		GetPropertyParentsByIterator                            (https://rdf.bg/gkdoc/index.html?topic=GetPropertyParentsByIterator&lang=CS64)
 		///
 		///	Returns the next parent of the property.
 		///	If input parent is zero, the handle will point to the first relevant parent.
@@ -8081,7 +8081,7 @@ namespace RDF
 		public static extern Int64 GetPropertyParentsByIterator(Int64 rdfProperty, Int64 parentRdfProperty);
 
 		/// <summary>
-		///		SetNameOfProperty                                       (https://rdf.bg/gkdoc/CS64/SetNameOfProperty.html)
+		///		SetNameOfProperty                                       (https://rdf.bg/gkdoc/index.html?topic=SetNameOfProperty&lang=CS64)
 		///
 		///	Sets or updates the name of the property, it returns 0 on success.
 		///
@@ -8102,7 +8102,7 @@ namespace RDF
 		public static extern Int64 SetNameOfProperty(Int64 rdfProperty, byte[] name);
 
 		/// <summary>
-		///		SetNameOfPropertyW                                      (https://rdf.bg/gkdoc/CS64/SetNameOfPropertyW.html)
+		///		SetNameOfPropertyW                                      (https://rdf.bg/gkdoc/index.html?topic=SetNameOfPropertyW&lang=CS64)
 		///
 		///	Sets or updates the name of the property, it returns 0 on success.
 		///
@@ -8123,7 +8123,7 @@ namespace RDF
 		public static extern Int64 SetNameOfPropertyW(Int64 rdfProperty, byte[] name);
 
 		/// <summary>
-		///		SetNameOfPropertyEx                                     (https://rdf.bg/gkdoc/CS64/SetNameOfPropertyEx.html)
+		///		SetNameOfPropertyEx                                     (https://rdf.bg/gkdoc/index.html?topic=SetNameOfPropertyEx&lang=CS64)
 		///
 		///	Sets or updates the name of the property, it returns 0 on success.
 		///
@@ -8147,7 +8147,7 @@ namespace RDF
 		public static extern Int64 SetNameOfPropertyEx(Int64 model, Int64 rdfProperty, byte[] name);
 
 		/// <summary>
-		///		SetNameOfPropertyWEx                                    (https://rdf.bg/gkdoc/CS64/SetNameOfPropertyWEx.html)
+		///		SetNameOfPropertyWEx                                    (https://rdf.bg/gkdoc/index.html?topic=SetNameOfPropertyWEx&lang=CS64)
 		///
 		///	Sets or updates the name of the property, it returns 0 on success.
 		///
@@ -8171,7 +8171,7 @@ namespace RDF
 		public static extern Int64 SetNameOfPropertyWEx(Int64 model, Int64 rdfProperty, byte[] name);
 
 		/// <summary>
-		///		GetNameOfProperty                                       (https://rdf.bg/gkdoc/CS64/GetNameOfProperty.html)
+		///		GetNameOfProperty                                       (https://rdf.bg/gkdoc/index.html?topic=GetNameOfProperty&lang=CS64)
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
@@ -8186,7 +8186,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfPropertyW                                      (https://rdf.bg/gkdoc/CS64/GetNameOfPropertyW.html)
+		///		GetNameOfPropertyW                                      (https://rdf.bg/gkdoc/index.html?topic=GetNameOfPropertyW&lang=CS64)
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
@@ -8201,7 +8201,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfPropertyEx                                     (https://rdf.bg/gkdoc/CS64/GetNameOfPropertyEx.html)
+		///		GetNameOfPropertyEx                                     (https://rdf.bg/gkdoc/index.html?topic=GetNameOfPropertyEx&lang=CS64)
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
@@ -8216,7 +8216,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfPropertyWEx                                    (https://rdf.bg/gkdoc/CS64/GetNameOfPropertyWEx.html)
+		///		GetNameOfPropertyWEx                                    (https://rdf.bg/gkdoc/index.html?topic=GetNameOfPropertyWEx&lang=CS64)
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
@@ -8231,7 +8231,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetPropertyType                                         (https://rdf.bg/gkdoc/CS64/SetPropertyType.html)
+		///		SetPropertyType                                         (https://rdf.bg/gkdoc/index.html?topic=SetPropertyType&lang=CS64)
 		///
 		///	This function sets the type of the property. This is only allowed
 		///	if the type of the property was not set before.
@@ -8250,14 +8250,14 @@ namespace RDF
 		public static extern Int64 SetPropertyType(Int64 rdfProperty, Int64 propertyType);
 
 		/// <summary>
-		///		SetPropertyTypeEx                                       (https://rdf.bg/gkdoc/CS64/SetPropertyTypeEx.html)
+		///		SetPropertyTypeEx                                       (https://rdf.bg/gkdoc/index.html?topic=SetPropertyTypeEx&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetPropertyTypeEx")]
 		public static extern Int64 SetPropertyTypeEx(Int64 model, Int64 rdfProperty, Int64 propertyType);
 
 		/// <summary>
-		///		GetPropertyType                                         (https://rdf.bg/gkdoc/CS64/GetPropertyType.html)
+		///		GetPropertyType                                         (https://rdf.bg/gkdoc/index.html?topic=GetPropertyType&lang=CS64)
 		///
 		///	This function returns the type of the property.
 		///	The following return values are possible:
@@ -8272,7 +8272,7 @@ namespace RDF
 		public static extern Int64 GetPropertyType(Int64 rdfProperty);
 
 		/// <summary>
-		///		GetPropertyTypeEx                                       (https://rdf.bg/gkdoc/CS64/GetPropertyTypeEx.html)
+		///		GetPropertyTypeEx                                       (https://rdf.bg/gkdoc/index.html?topic=GetPropertyTypeEx&lang=CS64)
 		///
 		///	This call has the same behavior as GetPropertyType, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
@@ -8281,7 +8281,7 @@ namespace RDF
 		public static extern Int64 GetPropertyTypeEx(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
-		///		RemoveProperty                                          (https://rdf.bg/gkdoc/CS64/RemoveProperty.html)
+		///		RemoveProperty                                          (https://rdf.bg/gkdoc/index.html?topic=RemoveProperty&lang=CS64)
 		///
 		///	Removes property from model.
 		///
@@ -8296,7 +8296,7 @@ namespace RDF
 		public static extern Int64 RemoveProperty(Int64 rdfProperty);
 
 		/// <summary>
-		///		RemovePropertyEx                                        (https://rdf.bg/gkdoc/CS64/RemovePropertyEx.html)
+		///		RemovePropertyEx                                        (https://rdf.bg/gkdoc/index.html?topic=RemovePropertyEx&lang=CS64)
 		///
 		///	Removes property from model.
 		///	This call has the same behavior as RemoveProperty, however needs to be
@@ -8313,7 +8313,7 @@ namespace RDF
 		public static extern Int64 RemovePropertyEx(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
-		///		IsProperty                                              (https://rdf.bg/gkdoc/CS64/IsProperty.html)
+		///		IsProperty                                              (https://rdf.bg/gkdoc/index.html?topic=IsProperty&lang=CS64)
 		///
 		///	Returns property if the argument rdfsResource is an actual active property in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the property is inactive or removed or the session is closed.
@@ -8327,7 +8327,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		CreateInstance                                          (https://rdf.bg/gkdoc/CS64/CreateInstance.html)
+		///		CreateInstance                                          (https://rdf.bg/gkdoc/index.html?topic=CreateInstance&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
@@ -8345,7 +8345,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		CreateInstanceW                                         (https://rdf.bg/gkdoc/CS64/CreateInstanceW.html)
+		///		CreateInstanceW                                         (https://rdf.bg/gkdoc/index.html?topic=CreateInstanceW&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
@@ -8363,7 +8363,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		CreateInstanceEx                                        (https://rdf.bg/gkdoc/CS64/CreateInstanceEx.html)
+		///		CreateInstanceEx                                        (https://rdf.bg/gkdoc/index.html?topic=CreateInstanceEx&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
@@ -8381,7 +8381,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		CreateInstanceWEx                                       (https://rdf.bg/gkdoc/CS64/CreateInstanceWEx.html)
+		///		CreateInstanceWEx                                       (https://rdf.bg/gkdoc/index.html?topic=CreateInstanceWEx&lang=CS64)
 		///
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
@@ -8399,7 +8399,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetInstancesByIterator                                  (https://rdf.bg/gkdoc/CS64/GetInstancesByIterator.html)
+		///		GetInstancesByIterator                                  (https://rdf.bg/gkdoc/index.html?topic=GetInstancesByIterator&lang=CS64)
 		///
 		///	Returns a handle to an instance.
 		///	If input instance is zero, the handle will point to the first relevant instance.
@@ -8409,7 +8409,7 @@ namespace RDF
 		public static extern Int64 GetInstancesByIterator(Int64 model, Int64 owlInstance);
 
 		/// <summary>
-		///		GetInstanceClass                                        (https://rdf.bg/gkdoc/CS64/GetInstanceClass.html)
+		///		GetInstanceClass                                        (https://rdf.bg/gkdoc/index.html?topic=GetInstanceClass&lang=CS64)
 		///
 		///	Returns the handle to the class of which the instance is instantiated. In case the instance 
 		///	is instantiated on more than one class it will return 0.
@@ -8418,7 +8418,7 @@ namespace RDF
 		public static extern Int64 GetInstanceClass(Int64 owlInstance);
 
 		/// <summary>
-		///		GetInstanceClassEx                                      (https://rdf.bg/gkdoc/CS64/GetInstanceClassEx.html)
+		///		GetInstanceClassEx                                      (https://rdf.bg/gkdoc/index.html?topic=GetInstanceClassEx&lang=CS64)
 		///
 		///	Returns the handle to the class of which the instance is instantiated. In case the instance 
 		///	is instantiated on more than one class it will return 0.
@@ -8427,7 +8427,7 @@ namespace RDF
 		public static extern Int64 GetInstanceClassEx(Int64 model, Int64 owlInstance);
 
 		/// <summary>
-		///		GetInstanceClassByIterator                              (https://rdf.bg/gkdoc/CS64/GetInstanceClassByIterator.html)
+		///		GetInstanceClassByIterator                              (https://rdf.bg/gkdoc/index.html?topic=GetInstanceClassByIterator&lang=CS64)
 		///
 		///	Iterates over the classes the instance is instantiated from.
 		/// </summary>
@@ -8435,7 +8435,7 @@ namespace RDF
 		public static extern Int64 GetInstanceClassByIterator(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		GetInstanceClassByIteratorEx                            (https://rdf.bg/gkdoc/CS64/GetInstanceClassByIteratorEx.html)
+		///		GetInstanceClassByIteratorEx                            (https://rdf.bg/gkdoc/index.html?topic=GetInstanceClassByIteratorEx&lang=CS64)
 		///
 		///	Iterates over the classes the instance is instantiated from.
 		/// </summary>
@@ -8443,7 +8443,7 @@ namespace RDF
 		public static extern Int64 GetInstanceClassByIteratorEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		GetInstancePropertyCardinalityRestriction               (https://rdf.bg/gkdoc/CS64/GetInstancePropertyCardinalityRestriction.html)
+		///		GetInstancePropertyCardinalityRestriction               (https://rdf.bg/gkdoc/index.html?topic=GetInstancePropertyCardinalityRestriction&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -8483,7 +8483,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetInstanceGeometryClass                                (https://rdf.bg/gkdoc/CS64/GetInstanceGeometryClass.html)
+		///		GetInstanceGeometryClass                                (https://rdf.bg/gkdoc/index.html?topic=GetInstanceGeometryClass&lang=CS64)
 		///
 		///	If one of the classes this instance is instantiated from or one of its parents is a geometry class,
 		///	this class is returned. In all other cases the return value is 0.
@@ -8492,7 +8492,7 @@ namespace RDF
 		public static extern Int64 GetInstanceGeometryClass(Int64 owlInstance);
 
 		/// <summary>
-		///		GetInstanceGeometryClassEx                              (https://rdf.bg/gkdoc/CS64/GetInstanceGeometryClassEx.html)
+		///		GetInstanceGeometryClassEx                              (https://rdf.bg/gkdoc/index.html?topic=GetInstanceGeometryClassEx&lang=CS64)
 		///
 		///	If one of the classes this instance is instantiated from or one of its parents is a geometry class,
 		///	this class is returned. In all other cases the return value is 0.
@@ -8504,14 +8504,14 @@ namespace RDF
 		public static extern Int64 GetInstanceGeometryClassEx(Int64 model, Int64 owlInstance);
 
 		/// <summary>
-		///		SetInstanceClass                                        (https://rdf.bg/gkdoc/CS64/SetInstanceClass.html)
+		///		SetInstanceClass                                        (https://rdf.bg/gkdoc/index.html?topic=SetInstanceClass&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetInstanceClass")]
 		public static extern Int64 SetInstanceClass(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		SetInstanceClassEx                                      (https://rdf.bg/gkdoc/CS64/SetInstanceClassEx.html)
+		///		SetInstanceClassEx                                      (https://rdf.bg/gkdoc/index.html?topic=SetInstanceClassEx&lang=CS64)
 		///
 		///	In case the instance is not yet (indirectly) defined as an instance of this class, the instance will
 		///	be an instance of this class as well as the existing classes.
@@ -8525,7 +8525,7 @@ namespace RDF
 		public static extern Int64 SetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		UnsetInstanceClass                                      (https://rdf.bg/gkdoc/CS64/UnsetInstanceClass.html)
+		///		UnsetInstanceClass                                      (https://rdf.bg/gkdoc/index.html?topic=UnsetInstanceClass&lang=CS64)
 		///
 		///	In case the instance is a direct instance of this class, the instance will not
 		///	be an instance of this class anymore, if there are no classes left it automatically becomes an instance of Thing.
@@ -8536,7 +8536,7 @@ namespace RDF
 		public static extern Int64 UnsetInstanceClass(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		UnsetInstanceClassEx                                    (https://rdf.bg/gkdoc/CS64/UnsetInstanceClassEx.html)
+		///		UnsetInstanceClassEx                                    (https://rdf.bg/gkdoc/index.html?topic=UnsetInstanceClassEx&lang=CS64)
 		///
 		///	In case the instance is a direct instance of this class, the instance will not
 		///	be an instance of this class anymore, if there are no classes left it automatically becomes an instance of Thing.
@@ -8550,7 +8550,7 @@ namespace RDF
 		public static extern Int64 UnsetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
-		///		GetInstancePropertyByIterator                           (https://rdf.bg/gkdoc/CS64/GetInstancePropertyByIterator.html)
+		///		GetInstancePropertyByIterator                           (https://rdf.bg/gkdoc/index.html?topic=GetInstancePropertyByIterator&lang=CS64)
 		///
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty connected to
 		///	the instance, class or model. This property can also contain a value, but for example also
@@ -8561,14 +8561,14 @@ namespace RDF
 		public static extern Int64 GetInstancePropertyByIterator(Int64 rdfsResource, Int64 rdfProperty);
 
 		/// <summary>
-		///		GetInstancePropertyByIteratorEx                         (https://rdf.bg/gkdoc/CS64/GetInstancePropertyByIteratorEx.html)
+		///		GetInstancePropertyByIteratorEx                         (https://rdf.bg/gkdoc/index.html?topic=GetInstancePropertyByIteratorEx&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetInstancePropertyByIteratorEx")]
 		public static extern Int64 GetInstancePropertyByIteratorEx(Int64 model, Int64 owlInstance, Int64 rdfProperty);
 
 		/// <summary>
-		///		GetInstanceInverseReferencesByIterator                  (https://rdf.bg/gkdoc/CS64/GetInstanceInverseReferencesByIterator.html)
+		///		GetInstanceInverseReferencesByIterator                  (https://rdf.bg/gkdoc/index.html?topic=GetInstanceInverseReferencesByIterator&lang=CS64)
 		///
 		///	Returns a handle to the owlInstances referring this instance
 		/// </summary>
@@ -8576,7 +8576,7 @@ namespace RDF
 		public static extern Int64 GetInstanceInverseReferencesByIterator(Int64 owlInstance, Int64 referencingOwlInstance);
 
 		/// <summary>
-		///		GetInstanceReferencesByIterator                         (https://rdf.bg/gkdoc/CS64/GetInstanceReferencesByIterator.html)
+		///		GetInstanceReferencesByIterator                         (https://rdf.bg/gkdoc/index.html?topic=GetInstanceReferencesByIterator&lang=CS64)
 		///
 		///	Returns a handle to the owlInstance referred by this instance
 		/// </summary>
@@ -8584,7 +8584,7 @@ namespace RDF
 		public static extern Int64 GetInstanceReferencesByIterator(Int64 owlInstance, Int64 referencedOwlInstance);
 
 		/// <summary>
-		///		ConsolidateInstanceTree                                 (https://rdf.bg/gkdoc/CS64/ConsolidateInstanceTree.html)
+		///		ConsolidateInstanceTree                                 (https://rdf.bg/gkdoc/index.html?topic=ConsolidateInstanceTree&lang=CS64)
 		///
 		///	All technically unnecessary structures within the tree referenced by the owlInstance will be removed.
 		///	These structures could be relevant for semantical representation, such semantic meaning is lost. The resulting
@@ -8594,7 +8594,7 @@ namespace RDF
 		public static extern Int64 ConsolidateInstanceTree(Int64 owlInstance);
 
 		/// <summary>
-		///		SetNameOfInstance                                       (https://rdf.bg/gkdoc/CS64/SetNameOfInstance.html)
+		///		SetNameOfInstance                                       (https://rdf.bg/gkdoc/index.html?topic=SetNameOfInstance&lang=CS64)
 		///
 		///	Sets or updates the name of the instance, it returns 0 on success.
 		///
@@ -8615,7 +8615,7 @@ namespace RDF
 		public static extern Int64 SetNameOfInstance(Int64 owlInstance, byte[] name);
 
 		/// <summary>
-		///		SetNameOfInstanceW                                      (https://rdf.bg/gkdoc/CS64/SetNameOfInstanceW.html)
+		///		SetNameOfInstanceW                                      (https://rdf.bg/gkdoc/index.html?topic=SetNameOfInstanceW&lang=CS64)
 		///
 		///	Sets or updates the name of the instance, it returns 0 on success.
 		///
@@ -8636,7 +8636,7 @@ namespace RDF
 		public static extern Int64 SetNameOfInstanceW(Int64 owlInstance, byte[] name);
 
 		/// <summary>
-		///		SetNameOfInstanceEx                                     (https://rdf.bg/gkdoc/CS64/SetNameOfInstanceEx.html)
+		///		SetNameOfInstanceEx                                     (https://rdf.bg/gkdoc/index.html?topic=SetNameOfInstanceEx&lang=CS64)
 		///
 		///	Sets or updates the name of the instance, it returns 0 on success.
 		///
@@ -8660,7 +8660,7 @@ namespace RDF
 		public static extern Int64 SetNameOfInstanceEx(Int64 model, Int64 owlInstance, byte[] name);
 
 		/// <summary>
-		///		SetNameOfInstanceWEx                                    (https://rdf.bg/gkdoc/CS64/SetNameOfInstanceWEx.html)
+		///		SetNameOfInstanceWEx                                    (https://rdf.bg/gkdoc/index.html?topic=SetNameOfInstanceWEx&lang=CS64)
 		///
 		///	Sets or updates the name of the instance, it returns 0 on success.
 		///
@@ -8684,7 +8684,7 @@ namespace RDF
 		public static extern Int64 SetNameOfInstanceWEx(Int64 model, Int64 owlInstance, byte[] name);
 
 		/// <summary>
-		///		GetNameOfInstance                                       (https://rdf.bg/gkdoc/CS64/GetNameOfInstance.html)
+		///		GetNameOfInstance                                       (https://rdf.bg/gkdoc/index.html?topic=GetNameOfInstance&lang=CS64)
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
@@ -8699,7 +8699,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfInstanceW                                      (https://rdf.bg/gkdoc/CS64/GetNameOfInstanceW.html)
+		///		GetNameOfInstanceW                                      (https://rdf.bg/gkdoc/index.html?topic=GetNameOfInstanceW&lang=CS64)
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
@@ -8714,7 +8714,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfInstanceEx                                     (https://rdf.bg/gkdoc/CS64/GetNameOfInstanceEx.html)
+		///		GetNameOfInstanceEx                                     (https://rdf.bg/gkdoc/index.html?topic=GetNameOfInstanceEx&lang=CS64)
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
@@ -8729,7 +8729,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetNameOfInstanceWEx                                    (https://rdf.bg/gkdoc/CS64/GetNameOfInstanceWEx.html)
+		///		GetNameOfInstanceWEx                                    (https://rdf.bg/gkdoc/index.html?topic=GetNameOfInstanceWEx&lang=CS64)
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
@@ -8744,7 +8744,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetDatatypeProperty                                     (https://rdf.bg/gkdoc/CS64/SetDatatypeProperty.html)
+		///		SetDatatypeProperty                                     (https://rdf.bg/gkdoc/index.html?topic=SetDatatypeProperty&lang=CS64)
 		///
 		///	This function sets the value(s) of a certain datatypeTypeProperty of an instance, class or model.
 		///	The value of card gives the actual card of the values list.
@@ -8856,7 +8856,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetDatatypePropertyEx                                   (https://rdf.bg/gkdoc/CS64/SetDatatypePropertyEx.html)
+		///		SetDatatypePropertyEx                                   (https://rdf.bg/gkdoc/index.html?topic=SetDatatypePropertyEx&lang=CS64)
 		///
 		///	This function sets the value(s) of a certain datatypeTypeProperty
 		///	in the context of an instance.
@@ -8897,7 +8897,7 @@ namespace RDF
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		/// <summary>
-		///		GetDatatypeProperty                                     (https://rdf.bg/gkdoc/CS64/GetDatatypeProperty.html)
+		///		GetDatatypeProperty                                     (https://rdf.bg/gkdoc/index.html?topic=GetDatatypeProperty&lang=CS64)
 		///
 		///	This function gets the value(s) of a certain datatypeTypeProperty of an instance, class or model.
 		///	The value of card gives the actual card of the values list.
@@ -9012,7 +9012,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetDatatypePropertyEx                                   (https://rdf.bg/gkdoc/CS64/GetDatatypePropertyEx.html)
+		///		GetDatatypePropertyEx                                   (https://rdf.bg/gkdoc/index.html?topic=GetDatatypePropertyEx&lang=CS64)
 		///
 		///	This function gets the value(s) of a certain datatypeTypeProperty
 		///	in the context of an instance.
@@ -9029,7 +9029,7 @@ namespace RDF
 		public static extern Int64 GetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
-		///		SetObjectProperty                                       (https://rdf.bg/gkdoc/CS64/SetObjectProperty.html)
+		///		SetObjectProperty                                       (https://rdf.bg/gkdoc/index.html?topic=SetObjectProperty&lang=CS64)
 		///
 		///	This function sets the value(s) of a certain objectTypeProperty of an instance, class or model.
 		///	A value can be OwlInstance, OwlClass, RdfProperty, OwlObjectProperty or OwlDatatypeProperty.
@@ -9062,7 +9062,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetObjectPropertyEx                                     (https://rdf.bg/gkdoc/CS64/SetObjectPropertyEx.html)
+		///		SetObjectPropertyEx                                     (https://rdf.bg/gkdoc/index.html?topic=SetObjectPropertyEx&lang=CS64)
 		///
 		///	This function sets the value(s) of a certain objectTypeProperty
 		///	in the context of an instance.
@@ -9084,7 +9084,7 @@ namespace RDF
 		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		/// <summary>
-		///		GetObjectProperty                                       (https://rdf.bg/gkdoc/CS64/GetObjectProperty.html)
+		///		GetObjectProperty                                       (https://rdf.bg/gkdoc/index.html?topic=GetObjectProperty&lang=CS64)
 		///
 		///	This function gets the value(s) of a certain property of an instance, class or model.
 		///	The value of card gives the actual card of the values list.
@@ -9115,7 +9115,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetObjectPropertyEx                                     (https://rdf.bg/gkdoc/CS64/GetObjectPropertyEx.html)
+		///		GetObjectPropertyEx                                     (https://rdf.bg/gkdoc/index.html?topic=GetObjectPropertyEx&lang=CS64)
 		///
 		///	This function gets the value(s) of a certain property
 		///	in the context of an instance.
@@ -9131,7 +9131,7 @@ namespace RDF
 		public static extern Int64 GetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
-		///		CreateInstanceInContextStructure                        (https://rdf.bg/gkdoc/CS64/CreateInstanceInContextStructure.html)
+		///		CreateInstanceInContextStructure                        (https://rdf.bg/gkdoc/index.html?topic=CreateInstanceInContextStructure&lang=CS64)
 		///
 		///	InstanceInContext structures give you more detailed information about
 		///	individual parts of the geometry of a certain instance visualized.
@@ -9143,7 +9143,7 @@ namespace RDF
 		public static extern Int64 CreateInstanceInContextStructure(Int64 owlInstance);
 
 		/// <summary>
-		///		DestroyInstanceInContextStructure                       (https://rdf.bg/gkdoc/CS64/DestroyInstanceInContextStructure.html)
+		///		DestroyInstanceInContextStructure                       (https://rdf.bg/gkdoc/index.html?topic=DestroyInstanceInContextStructure&lang=CS64)
 		///
 		///	InstanceInContext structures are updated dynamically and therefore even while the cost
 		///	in performance and memory is limited it is advised to destroy structures as soon
@@ -9153,28 +9153,28 @@ namespace RDF
 		public static extern void DestroyInstanceInContextStructure(Int64 owlInstanceInContext);
 
 		/// <summary>
-		///		InstanceInContextChild                                  (https://rdf.bg/gkdoc/CS64/InstanceInContextChild.html)
+		///		InstanceInContextChild                                  (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextChild&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "InstanceInContextChild")]
 		public static extern Int64 InstanceInContextChild(Int64 owlInstanceInContext);
 
 		/// <summary>
-		///		InstanceInContextNext                                   (https://rdf.bg/gkdoc/CS64/InstanceInContextNext.html)
+		///		InstanceInContextNext                                   (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextNext&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "InstanceInContextNext")]
 		public static extern Int64 InstanceInContextNext(Int64 owlInstanceInContext);
 
 		/// <summary>
-		///		InstanceInContextIsUpdated                              (https://rdf.bg/gkdoc/CS64/InstanceInContextIsUpdated.html)
+		///		InstanceInContextIsUpdated                              (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextIsUpdated&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "InstanceInContextIsUpdated")]
 		public static extern Int64 InstanceInContextIsUpdated(Int64 owlInstanceInContext);
 
 		/// <summary>
-		///		RemoveInstance                                          (https://rdf.bg/gkdoc/CS64/RemoveInstance.html)
+		///		RemoveInstance                                          (https://rdf.bg/gkdoc/index.html?topic=RemoveInstance&lang=CS64)
 		///
 		///	This function removes an instance from the internal structure.
 		///	In case copies are created by the host this function checks if all
@@ -9185,7 +9185,7 @@ namespace RDF
 		public static extern Int64 RemoveInstance(Int64 owlInstance);
 
 		/// <summary>
-		///		RemoveInstanceRecursively                               (https://rdf.bg/gkdoc/CS64/RemoveInstanceRecursively.html)
+		///		RemoveInstanceRecursively                               (https://rdf.bg/gkdoc/index.html?topic=RemoveInstanceRecursively&lang=CS64)
 		///
 		///	This function removes an instance recursively from the internal structure.
 		///	In case checkInverseRelations is non-zero only instances that are not referenced
@@ -9197,7 +9197,7 @@ namespace RDF
 		public static extern Int64 RemoveInstanceRecursively(Int64 owlInstance);
 
 		/// <summary>
-		///		RemoveInstances                                         (https://rdf.bg/gkdoc/CS64/RemoveInstances.html)
+		///		RemoveInstances                                         (https://rdf.bg/gkdoc/index.html?topic=RemoveInstances&lang=CS64)
 		///
 		///	This function removes all available instances for the given model 
 		///	from the internal structure.
@@ -9207,7 +9207,7 @@ namespace RDF
 		public static extern Int64 RemoveInstances(Int64 model);
 
 		/// <summary>
-		///		IsInstance                                              (https://rdf.bg/gkdoc/CS64/IsInstance.html)
+		///		IsInstance                                              (https://rdf.bg/gkdoc/index.html?topic=IsInstance&lang=CS64)
 		///
 		///	Returns OwlInstance if the argument rdfsResource is an actual active instance in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the instance is inactive or removed or the session is closed.
@@ -9217,7 +9217,7 @@ namespace RDF
 		public static extern Int64 IsInstance(Int64 rdfsResource);
 
 		/// <summary>
-		///		IsKindOfClass                                           (https://rdf.bg/gkdoc/CS64/IsKindOfClass.html)
+		///		IsKindOfClass                                           (https://rdf.bg/gkdoc/index.html?topic=IsKindOfClass&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -9236,7 +9236,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		IsInstanceOfClass                                       (https://rdf.bg/gkdoc/CS64/IsInstanceOfClass.html)
+		///		IsInstanceOfClass                                       (https://rdf.bg/gkdoc/index.html?topic=IsInstanceOfClass&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -9251,7 +9251,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		IsInstanceOfClassExact                                  (https://rdf.bg/gkdoc/CS64/IsInstanceOfClassExact.html)
+		///		IsInstanceOfClassExact                                  (https://rdf.bg/gkdoc/index.html?topic=IsInstanceOfClassExact&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -9270,7 +9270,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		CalculateInstance                                       (https://rdf.bg/gkdoc/CS64/CalculateInstance.html)
+		///		CalculateInstance                                       (https://rdf.bg/gkdoc/index.html?topic=CalculateInstance&lang=CS64)
 		///
 		///	This function prepares the content to be ready so the buffers can be filled.
 		///	It returns the minimum size the buffers should be. This is only the case
@@ -9309,7 +9309,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		UpdateInstance                                          (https://rdf.bg/gkdoc/CS64/UpdateInstance.html)
+		///		UpdateInstance                                          (https://rdf.bg/gkdoc/index.html?topic=UpdateInstance&lang=CS64)
 		///
 		///	This function prepares the content to be ready without filling the buffers
 		///	as done within CalculateInstance(). CalculateInstance calls this function as a start.
@@ -9321,7 +9321,7 @@ namespace RDF
 		public static extern Int64 UpdateInstance(Int64 owlInstance);
 
 		/// <summary>
-		///		IsUpToDate                                              (https://rdf.bg/gkdoc/CS64/IsUpToDate.html)
+		///		IsUpToDate                                              (https://rdf.bg/gkdoc/index.html?topic=IsUpToDate&lang=CS64)
 		///
 		///	This function returns if an instance has geometry derived and if this
 		///	geometry is still up-to-date. It could return false if geometry has never been updated
@@ -9333,7 +9333,7 @@ namespace RDF
 		public static extern bool IsUpToDate(Int64 owlInstance);
 
 		/// <summary>
-		///		SetPropertyDerived                                      (https://rdf.bg/gkdoc/CS64/SetPropertyDerived.html)
+		///		SetPropertyDerived                                      (https://rdf.bg/gkdoc/index.html?topic=SetPropertyDerived&lang=CS64)
 		///
 		///	This function sets if the property of an instance, class or model is derived.
 		/// </summary>
@@ -9341,7 +9341,7 @@ namespace RDF
 		public static extern void SetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty, [param: MarshalAs(UnmanagedType.U1)] bool derived);
 
 		/// <summary>
-		///		GetPropertyDerived                                      (https://rdf.bg/gkdoc/CS64/GetPropertyDerived.html)
+		///		GetPropertyDerived                                      (https://rdf.bg/gkdoc/index.html?topic=GetPropertyDerived&lang=CS64)
 		///
 		///	This function returns true if instance, class or model has the property set as derived.
 		/// </summary>
@@ -9350,7 +9350,7 @@ namespace RDF
 		public static extern bool GetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty);
 
 		/// <summary>
-		///		GetClassModificationMark                                (https://rdf.bg/gkdoc/CS64/GetClassModificationMark.html)
+		///		GetClassModificationMark                                (https://rdf.bg/gkdoc/index.html?topic=GetClassModificationMark&lang=CS64)
 		///
 		///	This function returns value that indicated class modification time but it is not the time.
 		///	If a class or any of its parents have been modified the value will increase.
@@ -9360,7 +9360,7 @@ namespace RDF
 		public static extern Int64 GetClassModificationMark(Int64 owlClass);
 
 		/// <summary>
-		///		UpdateClassModificationMark                             (https://rdf.bg/gkdoc/CS64/UpdateClassModificationMark.html)
+		///		UpdateClassModificationMark                             (https://rdf.bg/gkdoc/index.html?topic=UpdateClassModificationMark&lang=CS64)
 		///
 		///	This function informs class it has been changed externally.
 		///	Application may want to call it when it changed its class external reference data. 
@@ -9369,7 +9369,7 @@ namespace RDF
 		public static extern void UpdateClassModificationMark(Int64 owlClass);
 
 		/// <summary>
-		///		InferenceInstance                                       (https://rdf.bg/gkdoc/CS64/InferenceInstance.html)
+		///		InferenceInstance                                       (https://rdf.bg/gkdoc/index.html?topic=InferenceInstance&lang=CS64)
 		///
 		///	This function fills in values that are implicitly known but not given by the user. This function
 		///	can also be used to identify default values of properties if not given.
@@ -9378,7 +9378,7 @@ namespace RDF
 		public static extern Int64 InferenceInstance(Int64 owlInstance);
 
 		/// <summary>
-		///		UpdateInstanceVertexBuffer                              (https://rdf.bg/gkdoc/CS64/UpdateInstanceVertexBuffer.html)
+		///		UpdateInstanceVertexBuffer                              (https://rdf.bg/gkdoc/index.html?topic=UpdateInstanceVertexBuffer&lang=CS64)
 		///
 		///	This function should be preceded by the function CalculateInstances(),
 		///	the only allowed other API functions in between are UpdateIndexBuffer()
@@ -9402,7 +9402,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, [Out] double[] vertexBuffer);
 
 		/// <summary>
-		///		UpdateInstanceVertexBufferTrimmed                       (https://rdf.bg/gkdoc/CS64/UpdateInstanceVertexBufferTrimmed.html)
+		///		UpdateInstanceVertexBufferTrimmed                       (https://rdf.bg/gkdoc/index.html?topic=UpdateInstanceVertexBufferTrimmed&lang=CS64)
 		///
 		///	This function is an alternative for UpdateInstanceVertexBuffer(),
 		///	in case the vertex buffer should be divided over a set of arrays
@@ -9422,7 +9422,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, [Out] double[] vertexBuffer, Int64 offset, Int64 size);
 
 		/// <summary>
-		///		UpdateInstanceIndexBuffer                               (https://rdf.bg/gkdoc/CS64/UpdateInstanceIndexBuffer.html)
+		///		UpdateInstanceIndexBuffer                               (https://rdf.bg/gkdoc/index.html?topic=UpdateInstanceIndexBuffer&lang=CS64)
 		///
 		///	This function should be preceded by the function CalculateInstances(),
 		///	the only allowed other API functions in between are UpdateVertexBuffer()
@@ -9446,7 +9446,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceIndexBuffer(Int64 owlInstance, Int64[] indexBuffer);
 
 		/// <summary>
-		///		UpdateInstanceIndexBufferTrimmed                        (https://rdf.bg/gkdoc/CS64/UpdateInstanceIndexBufferTrimmed.html)
+		///		UpdateInstanceIndexBufferTrimmed                        (https://rdf.bg/gkdoc/index.html?topic=UpdateInstanceIndexBufferTrimmed&lang=CS64)
 		///
 		///	This function is an alternative for UpdateInstanceIndexBuffer(),
 		///	in case the index buffer should be divided over a set of arrays
@@ -9466,7 +9466,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceIndexBufferTrimmed(Int64 owlInstance, Int64[] indexBuffer, Int64 offset, Int64 size);
 
 		/// <summary>
-		///		UpdateInstanceTransformationBuffer                      (https://rdf.bg/gkdoc/CS64/UpdateInstanceTransformationBuffer.html)
+		///		UpdateInstanceTransformationBuffer                      (https://rdf.bg/gkdoc/index.html?topic=UpdateInstanceTransformationBuffer&lang=CS64)
 		///
 		///	This function should be preceded by the function CalculateInstances(),
 		///	the only allowed other API functions in between are UpdateVertexBuffer()
@@ -9484,7 +9484,7 @@ namespace RDF
 		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, [Out] double[] transformationBuffer);
 
 		/// <summary>
-		///		ClearedInstanceExternalBuffers                          (https://rdf.bg/gkdoc/CS64/ClearedInstanceExternalBuffers.html)
+		///		ClearedInstanceExternalBuffers                          (https://rdf.bg/gkdoc/index.html?topic=ClearedInstanceExternalBuffers&lang=CS64)
 		///
 		///	This function tells the engine that all buffers have no memory of earlier filling 
 		///	for a certain instance.
@@ -9496,7 +9496,7 @@ namespace RDF
 		public static extern void ClearedInstanceExternalBuffers(Int64 owlInstance);
 
 		/// <summary>
-		///		ClearedExternalBuffers                                  (https://rdf.bg/gkdoc/CS64/ClearedExternalBuffers.html)
+		///		ClearedExternalBuffers                                  (https://rdf.bg/gkdoc/index.html?topic=ClearedExternalBuffers&lang=CS64)
 		///
 		///	This function tells the engine that all buffers have no memory of earlier filling.
 		///	This means that even when buffer content didn't changed it will be updated when
@@ -9507,7 +9507,7 @@ namespace RDF
 		public static extern void ClearedExternalBuffers(Int64 model);
 
 		/// <summary>
-		///		GetConceptualFaceCnt                                    (https://rdf.bg/gkdoc/CS64/GetConceptualFaceCnt.html)
+		///		GetConceptualFaceCnt                                    (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceCnt&lang=CS64)
 		///
 		///	This function returns the number of conceptual faces for a certain instance.
 		/// </summary>
@@ -9515,7 +9515,7 @@ namespace RDF
 		public static extern Int64 GetConceptualFaceCnt(Int64 owlInstance);
 
 		/// <summary>
-		///		GetConceptualFaceDiscriminator                          (https://rdf.bg/gkdoc/CS64/GetConceptualFaceDiscriminator.html)
+		///		GetConceptualFaceDiscriminator                          (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceDiscriminator&lang=CS64)
 		///
 		///	This function returns a unique name for the conceptualFace.
 		///	The name will be the same for each recalculation of the geometry.
@@ -9529,7 +9529,7 @@ namespace RDF
 		public static extern IntPtr GetConceptualFaceDiscriminator(Int64 owlInstance, Int64 index, out IntPtr name);
 
 		/// <summary>
-		///		GetConceptualFaceDiscriminatorW                         (https://rdf.bg/gkdoc/CS64/GetConceptualFaceDiscriminatorW.html)
+		///		GetConceptualFaceDiscriminatorW                         (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceDiscriminatorW&lang=CS64)
 		///
 		///	This function returns a unique name for the conceptualFace.
 		///	The name will be the same for each recalculation of the geometry.
@@ -9543,7 +9543,7 @@ namespace RDF
 		public static extern IntPtr GetConceptualFaceDiscriminatorW(Int64 owlInstance, Int64 index, out IntPtr name);
 
 		/// <summary>
-		///		GetConceptualFace                                       (https://rdf.bg/gkdoc/CS64/GetConceptualFace.html)
+		///		GetConceptualFace                                       (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFace&lang=CS64)
 		///
 		///	This function returns a handle to the conceptual face. Be aware that different
 		///	instances can return the same handles (however with possible different startIndices and noIndicesTriangles).
@@ -9656,7 +9656,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetConceptualFaceMatrix                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceMatrix.html)
+		///		GetConceptualFaceMatrix                                 (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceMatrix&lang=CS64)
 		///
 		///	This function returns the transformation matrix of the conceptual face.
 		///
@@ -9671,7 +9671,7 @@ namespace RDF
 		public static extern double[] GetConceptualFaceMatrix(Int64 owlInstance, Int64 index, [Out] double[] matrix);
 
 		/// <summary>
-		///		GetConceptualFaceMaterial                               (https://rdf.bg/gkdoc/CS64/GetConceptualFaceMaterial.html)
+		///		GetConceptualFaceMaterial                               (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceMaterial&lang=CS64)
 		///
 		///	This function returns the material instance relevant for this
 		///	conceptual face.
@@ -9680,7 +9680,7 @@ namespace RDF
 		public static extern Int64 GetConceptualFaceMaterial(Int64 conceptualFace);
 
 		/// <summary>
-		///		GetConceptualFaceOriginCnt                              (https://rdf.bg/gkdoc/CS64/GetConceptualFaceOriginCnt.html)
+		///		GetConceptualFaceOriginCnt                              (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceOriginCnt&lang=CS64)
 		///
 		///	This function returns the number of instances that are the source primitive/concept
 		///	for this conceptual face.
@@ -9689,7 +9689,7 @@ namespace RDF
 		public static extern Int64 GetConceptualFaceOriginCnt(Int64 conceptualFace);
 
 		/// <summary>
-		///		GetConceptualFaceOrigin                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceOrigin.html)
+		///		GetConceptualFaceOrigin                                 (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceOrigin&lang=CS64)
 		///
 		///	This function returns a handle to the instance that is the source primitive/concept
 		///	for this conceptual face.
@@ -9698,14 +9698,14 @@ namespace RDF
 		public static extern Int64 GetConceptualFaceOrigin(Int64 conceptualFace, Int64 index);
 
 		/// <summary>
-		///		GetConceptualFaceOriginEx                               (https://rdf.bg/gkdoc/CS64/GetConceptualFaceOriginEx.html)
+		///		GetConceptualFaceOriginEx                               (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceOriginEx&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetConceptualFaceOriginEx")]
 		public static extern void GetConceptualFaceOriginEx(Int64 conceptualFace, Int64 index, out Int64 originatingOwlInstance, out Int64 originatingConceptualFace);
 
 		/// <summary>
-		///		GetConceptualFaceXYZ2UV                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceXYZ2UV.html)
+		///		GetConceptualFaceXYZ2UV                                 (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceXYZ2UV&lang=CS64)
 		///
 		///	This function returns UV coordinates for a specific conceptualFace given its real world coordinates.
 		///	The UV coordinates are expected to be both (inclusive) between 0. and 1., i.e. [0..1].
@@ -9715,7 +9715,7 @@ namespace RDF
 		public static extern bool GetConceptualFaceXYZ2UV(Int64 owlInstance, Int64 index, out double u, out double v, double x, double y, double z);
 
 		/// <summary>
-		///		GetConceptualFaceUV2XYZ                                 (https://rdf.bg/gkdoc/CS64/GetConceptualFaceUV2XYZ.html)
+		///		GetConceptualFaceUV2XYZ                                 (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceUV2XYZ&lang=CS64)
 		///
 		///	This function returns real world coordinates for a specific conceptualFace given its UV coordinates.
 		///	The UV coordinates are expected to be both (inclusive) between 0. and 1., i.e. [0..1].
@@ -9741,7 +9741,7 @@ namespace RDF
 		public static extern bool GetConceptualFaceUV2XYZ(Int64 owlInstance, Int64 index, out double x, out double y, out double z, out double Nx, out double Ny, out double Nz, double u, double v);
 
 		/// <summary>
-		///		GetFaceCnt                                              (https://rdf.bg/gkdoc/CS64/GetFaceCnt.html)
+		///		GetFaceCnt                                              (https://rdf.bg/gkdoc/index.html?topic=GetFaceCnt&lang=CS64)
 		///
 		///	This function returns the number of faces for a certain instance.
 		/// </summary>
@@ -9749,7 +9749,7 @@ namespace RDF
 		public static extern Int64 GetFaceCnt(Int64 owlInstance);
 
 		/// <summary>
-		///		GetFace                                                 (https://rdf.bg/gkdoc/CS64/GetFace.html)
+		///		GetFace                                                 (https://rdf.bg/gkdoc/index.html?topic=GetFace&lang=CS64)
 		///
 		///	This function gets the individual faces including the meta data, i.e. the number of openings within this specific face.
 		///	This call is for very dedicated use, it would be more common to iterate over the individual conceptual faces.
@@ -9758,7 +9758,7 @@ namespace RDF
 		public static extern void GetFace(Int64 owlInstance, Int64 index, out Int64 startIndex, out Int64 noOpenings);
 
 		/// <summary>
-		///		GetDependingPropertyCnt                                 (https://rdf.bg/gkdoc/CS64/GetDependingPropertyCnt.html)
+		///		GetDependingPropertyCnt                                 (https://rdf.bg/gkdoc/index.html?topic=GetDependingPropertyCnt&lang=CS64)
 		///
 		///	This function returns the number of properties that are of influence on the
 		///	location and form of the conceptualFace.
@@ -9769,7 +9769,7 @@ namespace RDF
 		public static extern Int64 GetDependingPropertyCnt(Int64 baseOwlInstance, Int64 conceptualFace);
 
 		/// <summary>
-		///		GetDependingProperty                                    (https://rdf.bg/gkdoc/CS64/GetDependingProperty.html)
+		///		GetDependingProperty                                    (https://rdf.bg/gkdoc/index.html?topic=GetDependingProperty&lang=CS64)
 		///
 		///	This function returns a handle to the property that is the 'index'-th property
 		///	of influence on the form. It also returns the handle to instance this property
@@ -9784,7 +9784,7 @@ namespace RDF
 		public static extern void GetDependingProperty(Int64 baseOwlInstance, Int64 conceptualFace, Int64 index, out Int64 owlInstance, out Int64 owlDatatypeProperty);
 
 		/// <summary>
-		///		SetFormat                                               (https://rdf.bg/gkdoc/CS64/SetFormat.html)
+		///		SetFormat                                               (https://rdf.bg/gkdoc/index.html?topic=SetFormat&lang=CS64)
 		///
 		///	This function sets the type of export format, by setting a mask
 		///		bit 0 & 1:
@@ -9933,7 +9933,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetFormat                                               (https://rdf.bg/gkdoc/CS64/GetFormat.html)
+		///		GetFormat                                               (https://rdf.bg/gkdoc/index.html?topic=GetFormat&lang=CS64)
 		///
 		///	Returns the current format given a mask.
 		/// </summary>
@@ -9946,7 +9946,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexDataOffset                                     (https://rdf.bg/gkdoc/CS64/GetVertexDataOffset.html)
+		///		GetVertexDataOffset                                     (https://rdf.bg/gkdoc/index.html?topic=GetVertexDataOffset&lang=CS64)
 		///
 		///	Returns offset of the required data in a vertex elements array with the specified format settings
 		///	requiredData is one of the control vertex data bits (FORMAT_VERTEX...) or 0 to get count of all elements in vertex buffer
@@ -9963,7 +9963,7 @@ namespace RDF
 		public static extern Int32 GetVertexDataOffset(Int64 requiredData, Int64 setting);
 
 		/// <summary>
-		///		SetBehavior                                             (https://rdf.bg/gkdoc/CS64/SetBehavior.html)
+		///		SetBehavior                                             (https://rdf.bg/gkdoc/index.html?topic=SetBehavior&lang=CS64)
 		///
 		///	This function sets the type of behavior, by setting a mask
 		///
@@ -9983,7 +9983,7 @@ namespace RDF
 		public static extern void SetBehavior(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
-		///		GetBehavior                                             (https://rdf.bg/gkdoc/CS64/GetBehavior.html)
+		///		GetBehavior                                             (https://rdf.bg/gkdoc/index.html?topic=GetBehavior&lang=CS64)
 		///
 		///	Returns the current behavior given a mask.
 		/// </summary>
@@ -9991,7 +9991,7 @@ namespace RDF
 		public static extern UInt64 GetBehavior(Int64 model, UInt64 mask);
 
 		/// <summary>
-		///		SetVertexBufferTransformation                           (https://rdf.bg/gkdoc/CS64/SetVertexBufferTransformation.html)
+		///		SetVertexBufferTransformation                           (https://rdf.bg/gkdoc/index.html?topic=SetVertexBufferTransformation&lang=CS64)
 		///
 		///	Sets the transformation for a Vertex Buffer.
 		///	The transformation will always be calculated in 64 bit, even if the vertex element size is 32 bit.
@@ -10004,7 +10004,7 @@ namespace RDF
 		public static extern void SetVertexBufferTransformation(Int64 model, double[] matrix);
 
 		/// <summary>
-		///		GetVertexBufferTransformation                           (https://rdf.bg/gkdoc/CS64/GetVertexBufferTransformation.html)
+		///		GetVertexBufferTransformation                           (https://rdf.bg/gkdoc/index.html?topic=GetVertexBufferTransformation&lang=CS64)
 		///
 		///	Gets the transformation for a Vertex Buffer.
 		/// </summary>
@@ -10015,7 +10015,7 @@ namespace RDF
 		public static extern void GetVertexBufferTransformation(Int64 model, [Out] double[] matrix);
 
 		/// <summary>
-		///		SetIndexBufferOffset                                    (https://rdf.bg/gkdoc/CS64/SetIndexBufferOffset.html)
+		///		SetIndexBufferOffset                                    (https://rdf.bg/gkdoc/index.html?topic=SetIndexBufferOffset&lang=CS64)
 		///
 		///	Sets the offset for an Index Buffer.
 		///	It is important call this function before updating the vertex buffer. 
@@ -10024,7 +10024,7 @@ namespace RDF
 		public static extern void SetIndexBufferOffset(Int64 model, Int64 offset);
 
 		/// <summary>
-		///		GetIndexBufferOffset                                    (https://rdf.bg/gkdoc/CS64/GetIndexBufferOffset.html)
+		///		GetIndexBufferOffset                                    (https://rdf.bg/gkdoc/index.html?topic=GetIndexBufferOffset&lang=CS64)
 		///
 		///	Gets the current offset for an Index Buffer.
 		/// </summary>
@@ -10032,7 +10032,7 @@ namespace RDF
 		public static extern Int64 GetIndexBufferOffset(Int64 model);
 
 		/// <summary>
-		///		SetVertexBufferOffset                                   (https://rdf.bg/gkdoc/CS64/SetVertexBufferOffset.html)
+		///		SetVertexBufferOffset                                   (https://rdf.bg/gkdoc/index.html?topic=SetVertexBufferOffset&lang=CS64)
 		///
 		///	Sets the offset for a Vertex Buffer.
 		///	The offset will always be calculated in 64 bit, even if the vertex element size is 32 bit.
@@ -10064,7 +10064,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexBufferOffset                                   (https://rdf.bg/gkdoc/CS64/GetVertexBufferOffset.html)
+		///		GetVertexBufferOffset                                   (https://rdf.bg/gkdoc/index.html?topic=GetVertexBufferOffset&lang=CS64)
 		///
 		///	Gets the offset for a Vertex Buffer.
 		/// </summary>
@@ -10082,7 +10082,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetDefaultColor                                         (https://rdf.bg/gkdoc/CS64/SetDefaultColor.html)
+		///		SetDefaultColor                                         (https://rdf.bg/gkdoc/index.html?topic=SetDefaultColor&lang=CS64)
 		///
 		///	Set the default values for the colors defined as argument.
 		/// </summary>
@@ -10090,7 +10090,7 @@ namespace RDF
 		public static extern void SetDefaultColor(Int64 model, UInt32 ambient, UInt32 diffuse, UInt32 emissive, UInt32 specular);
 
 		/// <summary>
-		///		GetDefaultColor                                         (https://rdf.bg/gkdoc/CS64/GetDefaultColor.html)
+		///		GetDefaultColor                                         (https://rdf.bg/gkdoc/index.html?topic=GetDefaultColor&lang=CS64)
 		///
 		///	Retrieve the default values for the colors defined as argument.
 		/// </summary>
@@ -10098,7 +10098,7 @@ namespace RDF
 		public static extern void GetDefaultColor(Int64 model, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
 		/// <summary>
-		///		CheckConsistency                                        (https://rdf.bg/gkdoc/CS64/CheckConsistency.html)
+		///		CheckConsistency                                        (https://rdf.bg/gkdoc/index.html?topic=CheckConsistency&lang=CS64)
 		///
 		///	This function returns information about the consistency of each instance.
 		///
@@ -10136,7 +10136,7 @@ namespace RDF
 		public static extern UInt64 CheckConsistency(Int64 model, UInt64 mask);
 
 		/// <summary>
-		///		CheckInstanceConsistency                                (https://rdf.bg/gkdoc/CS64/CheckInstanceConsistency.html)
+		///		CheckInstanceConsistency                                (https://rdf.bg/gkdoc/index.html?topic=CheckInstanceConsistency&lang=CS64)
 		///
 		///	This function returns information about the consistency of the instance and indirectly referenced instances.
 		///
@@ -10174,7 +10174,7 @@ namespace RDF
 		public static extern UInt64 CheckInstanceConsistency(Int64 owlInstance, UInt64 mask);
 
 		/// <summary>
-		///		IsDuplicate                                             (https://rdf.bg/gkdoc/CS64/IsDuplicate.html)
+		///		IsDuplicate                                             (https://rdf.bg/gkdoc/index.html?topic=IsDuplicate&lang=CS64)
 		///
 		///	Checks if two geometry representations are (almost) similar except for a transformation matrix and a given epsilon.
 		///	The parameter duplicateMatrix is optional and can be left to zero.
@@ -10192,7 +10192,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		GetPerimeter                                            (https://rdf.bg/gkdoc/CS64/GetPerimeter.html)
+		///		GetPerimeter                                            (https://rdf.bg/gkdoc/index.html?topic=GetPerimeter&lang=CS64)
 		///
 		///	This function calculates the perimeter of an instance.
 		///
@@ -10205,7 +10205,7 @@ namespace RDF
 		public static extern double GetPerimeter(Int64 owlInstance);
 
 		/// <summary>
-		///		GetArea                                                 (https://rdf.bg/gkdoc/CS64/GetArea.html)
+		///		GetArea                                                 (https://rdf.bg/gkdoc/index.html?topic=GetArea&lang=CS64)
 		///
 		///	This function calculates the area of an instance.
 		///	For performance reasons it is beneficial to call it with vertex and index buffer when
@@ -10247,7 +10247,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVolume                                               (https://rdf.bg/gkdoc/CS64/GetVolume.html)
+		///		GetVolume                                               (https://rdf.bg/gkdoc/index.html?topic=GetVolume&lang=CS64)
 		///
 		///	This function calculates the volume of an instance.
 		///	For performance reasons it is beneficial to call it with vertex and index buffer when
@@ -10289,7 +10289,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetCenter                                               (https://rdf.bg/gkdoc/CS64/GetCenter.html)
+		///		GetCenter                                               (https://rdf.bg/gkdoc/index.html?topic=GetCenter&lang=CS64)
 		///
 		///	This function calculates the center of an instance.
 		///	For performance reasons it is beneficial to call it with vertex and index buffer when
@@ -10346,7 +10346,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetCentroid                                             (https://rdf.bg/gkdoc/CS64/GetCentroid.html)
+		///		GetCentroid                                             (https://rdf.bg/gkdoc/index.html?topic=GetCentroid&lang=CS64)
 		///
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetCentroid")]
@@ -10385,7 +10385,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetConceptualFacePerimeter                              (https://rdf.bg/gkdoc/CS64/GetConceptualFacePerimeter.html)
+		///		GetConceptualFacePerimeter                              (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFacePerimeter&lang=CS64)
 		///
 		///	This function returns the perimeter of a given Conceptual Face.
 		/// </summary>
@@ -10393,7 +10393,7 @@ namespace RDF
 		public static extern double GetConceptualFacePerimeter(Int64 conceptualFace);
 
 		/// <summary>
-		///		GetConceptualFaceArea                                   (https://rdf.bg/gkdoc/CS64/GetConceptualFaceArea.html)
+		///		GetConceptualFaceArea                                   (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceArea&lang=CS64)
 		///
 		///	This function returns the area of a given Conceptual Face. The attributes vertex buffer
 		///	and index buffer are optional but will improve performance if defined.
@@ -10419,7 +10419,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetBoundingBoxReference                                 (https://rdf.bg/gkdoc/CS64/SetBoundingBoxReference.html)
+		///		SetBoundingBoxReference                                 (https://rdf.bg/gkdoc/index.html?topic=SetBoundingBoxReference&lang=CS64)
 		///
 		///	This function passes addresses from the hosting application. This enables
 		///	the engine to update these values without extra need for API calls. This is
@@ -10437,7 +10437,7 @@ namespace RDF
 		public static extern void SetBoundingBoxReference(Int64 owlInstance, [Out] double[] transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
 		/// <summary>
-		///		GetBoundingBox                                          (https://rdf.bg/gkdoc/CS64/GetBoundingBox.html)
+		///		GetBoundingBox                                          (https://rdf.bg/gkdoc/index.html?topic=GetBoundingBox&lang=CS64)
 		///
 		///	When the transformationMatrix is given, it will fill an array of 12 double values.
 		///	When the transformationMatrix is left empty and both startVector and endVector are
@@ -10466,7 +10466,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetRelativeTransformation                               (https://rdf.bg/gkdoc/CS64/GetRelativeTransformation.html)
+		///		GetRelativeTransformation                               (https://rdf.bg/gkdoc/index.html?topic=GetRelativeTransformation&lang=CS64)
 		///
 		///	This function returns the relative transformation matrix between two instances, i.e. in practice
 		///	this means the matrices connected to the Transformation instances in the path in between.
@@ -10481,7 +10481,7 @@ namespace RDF
 		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, [Out] double[] transformationMatrix);
 
 		/// <summary>
-		///		GetDistance                                             (https://rdf.bg/gkdoc/CS64/GetDistance.html)
+		///		GetDistance                                             (https://rdf.bg/gkdoc/index.html?topic=GetDistance&lang=CS64)
 		///
 		///	This function returns the shortest distance between two instances.
 		/// </summary>
@@ -10507,7 +10507,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetColorOfComponent                                     (https://rdf.bg/gkdoc/CS64/SetColorOfComponent.html)
+		///		SetColorOfComponent                                     (https://rdf.bg/gkdoc/index.html?topic=SetColorOfComponent&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10527,7 +10527,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetColorOfComponent                                     (https://rdf.bg/gkdoc/CS64/GetColorOfComponent.html)
+		///		GetColorOfComponent                                     (https://rdf.bg/gkdoc/index.html?topic=GetColorOfComponent&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10556,7 +10556,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetColor                                                (https://rdf.bg/gkdoc/CS64/SetColor.html)
+		///		SetColor                                                (https://rdf.bg/gkdoc/index.html?topic=SetColor&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10634,7 +10634,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetColor                                                (https://rdf.bg/gkdoc/CS64/GetColor.html)
+		///		GetColor                                                (https://rdf.bg/gkdoc/index.html?topic=GetColor&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10667,7 +10667,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		SetMaterialColor                                        (https://rdf.bg/gkdoc/CS64/SetMaterialColor.html)
+		///		SetMaterialColor                                        (https://rdf.bg/gkdoc/index.html?topic=SetMaterialColor&lang=CS64)
 		///
 		///	This function defines the color definition of any material instance.
 		/// </summary>
@@ -10690,7 +10690,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColor                                        (https://rdf.bg/gkdoc/CS64/GetMaterialColor.html)
+		///		GetMaterialColor                                        (https://rdf.bg/gkdoc/index.html?topic=GetMaterialColor&lang=CS64)
 		///
 		///	This function returns the color definition of any material instance. It will return default material
 		///	in case the material does not have that specific color component defined.
@@ -10717,7 +10717,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColorAmbient                                 (https://rdf.bg/gkdoc/CS64/GetMaterialColorAmbient.html)
+		///		GetMaterialColorAmbient                                 (https://rdf.bg/gkdoc/index.html?topic=GetMaterialColorAmbient&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10729,7 +10729,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColorDiffuse                                 (https://rdf.bg/gkdoc/CS64/GetMaterialColorDiffuse.html)
+		///		GetMaterialColorDiffuse                                 (https://rdf.bg/gkdoc/index.html?topic=GetMaterialColorDiffuse&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10741,7 +10741,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColorEmissive                                (https://rdf.bg/gkdoc/CS64/GetMaterialColorEmissive.html)
+		///		GetMaterialColorEmissive                                (https://rdf.bg/gkdoc/index.html?topic=GetMaterialColorEmissive&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10753,7 +10753,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetMaterialColorSpecular                                (https://rdf.bg/gkdoc/CS64/GetMaterialColorSpecular.html)
+		///		GetMaterialColorSpecular                                (https://rdf.bg/gkdoc/index.html?topic=GetMaterialColorSpecular&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10765,7 +10765,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexColor                                          (https://rdf.bg/gkdoc/CS64/GetVertexColor.html)
+		///		GetVertexColor                                          (https://rdf.bg/gkdoc/index.html?topic=GetVertexColor&lang=CS64)
 		///
 		///	Returns vertex color
 		///	requiredColor is one of the control vertex data bits applied to colors (FORMAT_VERTEX_COLOR...) 
@@ -10868,7 +10868,7 @@ namespace RDF
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, IntPtr emissive, IntPtr specular);
 
 		/// <summary>
-		///		GetVertexColorAmbient                                   (https://rdf.bg/gkdoc/CS64/GetVertexColorAmbient.html)
+		///		GetVertexColorAmbient                                   (https://rdf.bg/gkdoc/index.html?topic=GetVertexColorAmbient&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10887,7 +10887,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexColorDiffuse                                   (https://rdf.bg/gkdoc/CS64/GetVertexColorDiffuse.html)
+		///		GetVertexColorDiffuse                                   (https://rdf.bg/gkdoc/index.html?topic=GetVertexColorDiffuse&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10906,7 +10906,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexColorEmissive                                  (https://rdf.bg/gkdoc/CS64/GetVertexColorEmissive.html)
+		///		GetVertexColorEmissive                                  (https://rdf.bg/gkdoc/index.html?topic=GetVertexColorEmissive&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10925,7 +10925,7 @@ namespace RDF
 		}
 
 		/// <summary>
-		///		GetVertexColorSpecular                                  (https://rdf.bg/gkdoc/CS64/GetVertexColorSpecular.html)
+		///		GetVertexColorSpecular                                  (https://rdf.bg/gkdoc/index.html?topic=GetVertexColorSpecular&lang=CS64)
 		///
 		///	...
 		/// </summary>
@@ -10948,7 +10948,7 @@ namespace RDF
 		//
 
 		/// <summary>
-		///		GetConceptualFaceEx                                     (https://rdf.bg/gkdoc/CS64/GetConceptualFaceEx___.html)
+		///		GetConceptualFaceEx                                     (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceEx___&lang=CS64)
 		///
 		///	Please rename GetConceptualFaceEx into GetConceptualFace.
 		/// </summary>
@@ -11049,7 +11049,7 @@ namespace RDF
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
 		/// <summary>
-		///		GetTriangles                                            (https://rdf.bg/gkdoc/CS64/GetTriangles___.html)
+		///		GetTriangles                                            (https://rdf.bg/gkdoc/index.html?topic=GetTriangles___&lang=CS64)
 		///
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant triangles when
 		///	SetFormat() is setting bit 8 and unsetting with bit 9, 10, 12 and 13 
@@ -11058,7 +11058,7 @@ namespace RDF
 		public static extern void GetTriangles(Int64 owlInstance, out Int64 startIndex, out Int64 noTriangles, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
-		///		GetLines                                                (https://rdf.bg/gkdoc/CS64/GetLines___.html)
+		///		GetLines                                                (https://rdf.bg/gkdoc/index.html?topic=GetLines___&lang=CS64)
 		///
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant lines when
 		///	SetFormat() is setting bit 9 and unsetting with bit 8, 10, 12 and 13 
@@ -11067,7 +11067,7 @@ namespace RDF
 		public static extern void GetLines(Int64 owlInstance, out Int64 startIndex, out Int64 noLines, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
-		///		GetPoints                                               (https://rdf.bg/gkdoc/CS64/GetPoints___.html)
+		///		GetPoints                                               (https://rdf.bg/gkdoc/index.html?topic=GetPoints___&lang=CS64)
 		///
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant points when
 		///	SetFormat() is setting bit 10 and unsetting with bit 8, 9, 12 and 13 
@@ -11076,7 +11076,7 @@ namespace RDF
 		public static extern void GetPoints(Int64 owlInstance, out Int64 startIndex, out Int64 noPoints, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
-		///		GetPropertyRestrictionsConsolidated                     (https://rdf.bg/gkdoc/CS64/GetPropertyRestrictionsConsolidated___.html)
+		///		GetPropertyRestrictionsConsolidated                     (https://rdf.bg/gkdoc/index.html?topic=GetPropertyRestrictionsConsolidated___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetClassPropertyAggregatedCardinalityRestriction instead,
 		/// </summary>
@@ -11087,7 +11087,7 @@ namespace RDF
 		public static extern void GetPropertyRestrictionsConsolidated(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
-		///		IsGeometryType                                          (https://rdf.bg/gkdoc/CS64/IsGeometryType___.html)
+		///		IsGeometryType                                          (https://rdf.bg/gkdoc/index.html?topic=IsGeometryType___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetGeometryClass instead, rename the function name
 		///	and interpret non-zero as true and zero as false.
@@ -11097,7 +11097,7 @@ namespace RDF
 		public static extern bool IsGeometryType(Int64 owlClass);
 
 		/// <summary>
-		///		SetObjectTypeProperty                                   (https://rdf.bg/gkdoc/CS64/SetObjectTypeProperty___.html)
+		///		SetObjectTypeProperty                                   (https://rdf.bg/gkdoc/index.html?topic=SetObjectTypeProperty___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call SetObjectProperty instead, just rename the function name.
 		/// </summary>
@@ -11108,7 +11108,7 @@ namespace RDF
 		public static extern Int64 SetObjectTypeProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		/// <summary>
-		///		GetObjectTypeProperty                                   (https://rdf.bg/gkdoc/CS64/GetObjectTypeProperty___.html)
+		///		GetObjectTypeProperty                                   (https://rdf.bg/gkdoc/index.html?topic=GetObjectTypeProperty___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetObjectProperty instead, just rename the function name.
 		/// </summary>
@@ -11116,7 +11116,7 @@ namespace RDF
 		public static extern Int64 GetObjectTypeProperty(Int64 owlInstance, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
-		///		SetDataTypeProperty                                     (https://rdf.bg/gkdoc/CS64/SetDataTypeProperty___.html)
+		///		SetDataTypeProperty                                     (https://rdf.bg/gkdoc/index.html?topic=SetDataTypeProperty___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call SetDatatypeProperty instead, just rename the function name.
 		/// </summary>
@@ -11145,7 +11145,7 @@ namespace RDF
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		/// <summary>
-		///		GetDataTypeProperty                                     (https://rdf.bg/gkdoc/CS64/GetDataTypeProperty___.html)
+		///		GetDataTypeProperty                                     (https://rdf.bg/gkdoc/index.html?topic=GetDataTypeProperty___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetDatatypeProperty instead, just rename the function name.
 		/// </summary>
@@ -11153,7 +11153,7 @@ namespace RDF
 		public static extern Int64 GetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
-		///		InstanceCopyCreated                                     (https://rdf.bg/gkdoc/CS64/InstanceCopyCreated___.html)
+		///		InstanceCopyCreated                                     (https://rdf.bg/gkdoc/index.html?topic=InstanceCopyCreated___&lang=CS64)
 		///
 		///	This call is deprecated as the Copy concept is also deprecated and will be removed by end of 2022.
 		/// </summary>
@@ -11161,7 +11161,7 @@ namespace RDF
 		public static extern void InstanceCopyCreated(Int64 owlInstance);
 
 		/// <summary>
-		///		GetPropertyByNameAndType                                (https://rdf.bg/gkdoc/CS64/GetPropertyByNameAndType___.html)
+		///		GetPropertyByNameAndType                                (https://rdf.bg/gkdoc/index.html?topic=GetPropertyByNameAndType___&lang=CS64)
 		///
 		///	This call is deprecated and will be removed by end of 2022.
 		///	Please use the call GetPropertyByName(Ex)/GetPropertyByNameW(Ex) + GetPropertyType(Ex) instead, just rename the function name.
@@ -11173,7 +11173,7 @@ namespace RDF
 		public static extern Int64 GetPropertyByNameAndType(Int64 model, byte[] name, Int64 rdfPropertyType);
 
 		/// <summary>
-		///		GetParentsByIterator                                    (https://rdf.bg/gkdoc/CS64/GetParentsByIterator___.html)
+		///		GetParentsByIterator                                    (https://rdf.bg/gkdoc/index.html?topic=GetParentsByIterator___&lang=CS64)
 		///
 		///	Returns the next parent of the class or property.
 		///	If input parent is zero, the handle will point to the first relevant parent.
