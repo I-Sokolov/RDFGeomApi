@@ -213,7 +213,7 @@ namespace RDF
 		__COUNT_EXCEED				= 4						//	validation was finished because of reach of issue's numbers limit
 	};
 
-	class IFCEngine
+	public class IFCEngine
 	{
 		public const int sdaiTYPE			 = 0;			//	C++ API generator specific
 
@@ -6379,7 +6379,7 @@ namespace RDF
 		}
     }
 
-	class Engine
+	public class Engine
 	{
 		public const Int64 OBJECTPROPERTY_TYPE             = 1;
 		public const Int64 DATATYPEPROPERTY_TYPE_BOOLEAN   = 2;
