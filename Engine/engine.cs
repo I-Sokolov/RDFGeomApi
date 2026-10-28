@@ -248,7 +248,11 @@ namespace RDF
 		public const int_t sdaiEXPRESSSTRING = sdaiUNICODE + 1;
 		public const int_t engiGLOBALID      = sdaiEXPRESSSTRING + 1;
 
-		public const string ifcenginedll = @"ifcengine.dll";
+#if LINUX
+		public const string libifcengine = @"libifcengine.so";		//	Linux shared library
+#else
+		public const string libifcengine = @"ifcengine.dll";		//	Windows DLL
+#endif
 
 		//
 		//  Instance Header API Calls
@@ -259,10 +263,10 @@ namespace RDF
 		///
 		///	This call is an aggregate of several SetSPFFHeaderItem calls. In several cases the header can be set easily with this call. In case an argument is zero, this argument will not be updated, i.e. it will not be filled with 0.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "SetSPFFHeader")]
+		[DllImport(libifcengine, EntryPoint = "SetSPFFHeader")]
 		public static extern void SetSPFFHeader(int_t model, string description, string implementationLevel, string name, string timeStamp, string author, string organization, string preprocessorVersion, string originatingSystem, string authorization, string fileSchema);
 
-		[DllImport(ifcenginedll, EntryPoint = "SetSPFFHeader")]
+		[DllImport(libifcengine, EntryPoint = "SetSPFFHeader")]
 		public static extern void SetSPFFHeader(int_t model, byte[] description, byte[] implementationLevel, byte[] name, byte[] timeStamp, byte[] author, byte[] organization, byte[] preprocessorVersion, byte[] originatingSystem, byte[] authorization, byte[] fileSchema);
 
 		/// <summary>
@@ -270,10 +274,10 @@ namespace RDF
 		///
 		///	This call can be used to write a specific header item, the source code example is larger to show and explain how this call can be used.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "SetSPFFHeaderItem")]
+		[DllImport(libifcengine, EntryPoint = "SetSPFFHeaderItem")]
 		public static extern int_t SetSPFFHeaderItem(int_t model, int_t itemIndex, int_t itemSubIndex, int_t valueType, string value);
 
-		[DllImport(ifcenginedll, EntryPoint = "SetSPFFHeaderItem")]
+		[DllImport(libifcengine, EntryPoint = "SetSPFFHeaderItem")]
 		public static extern int_t SetSPFFHeaderItem(int_t model, int_t itemIndex, int_t itemSubIndex, int_t valueType, byte[] value);
 
 		/// <summary>
@@ -281,7 +285,7 @@ namespace RDF
 		///
 		///	This call can be used to read a specific header item, the source code example is larger to show and explain how this call can be used.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetSPFFHeaderItem")]
+		[DllImport(libifcengine, EntryPoint = "GetSPFFHeaderItem")]
 		public static extern int_t GetSPFFHeaderItem(int_t model, int_t itemIndex, int_t itemSubIndex, int_t valueType, out IntPtr value);
 
 		/// <summary>
@@ -289,7 +293,7 @@ namespace RDF
 		///
 		///	Returns an current date and time according to ISO 8601 without time zone, i.e. formatted as '2099-12-31T23:59:59'.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetDateTime")]
+		[DllImport(libifcengine, EntryPoint = "GetDateTime")]
 		public static extern IntPtr GetDateTime(int_t model, out IntPtr dateTimeStamp);
 
 		public static string GetDateTime(int_t model)
@@ -304,7 +308,7 @@ namespace RDF
 		///
 		///	Returns an current date and time according to ISO 8601 without time zone, i.e. formatted as '2099-12-31T23:59:59'.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetDateTimeW")]
+		[DllImport(libifcengine, EntryPoint = "GetDateTimeW")]
 		public static extern IntPtr GetDateTimeW(int_t model, out IntPtr dateTimeStamp);
 
 		public static string GetDateTimeW(int_t model)
@@ -319,7 +323,7 @@ namespace RDF
 		///
 		///	Returns an identifier for the current instance of this library including date stamp and revision number.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetLibraryIdentifier")]
+		[DllImport(libifcengine, EntryPoint = "GetLibraryIdentifier")]
 		public static extern IntPtr GetLibraryIdentifier(out IntPtr libraryIdentifier);
 
 		public static string GetLibraryIdentifier()
@@ -334,7 +338,7 @@ namespace RDF
 		///
 		///	Returns an identifier for the current instance of this library including date stamp and revision number.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetLibraryIdentifierW")]
+		[DllImport(libifcengine, EntryPoint = "GetLibraryIdentifierW")]
 		public static extern IntPtr GetLibraryIdentifierW(out IntPtr libraryIdentifier);
 
 		public static string GetLibraryIdentifierW()
@@ -349,7 +353,7 @@ namespace RDF
 		///
 		///	Returns the value as defined by SCHEMA in the loaded EXPRESS schema.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetSchemaName")]
+		[DllImport(libifcengine, EntryPoint = "GetSchemaName")]
 		public static extern IntPtr GetSchemaName(int_t model, out IntPtr schemaName);
 
 		public static string GetSchemaName(int_t model)
@@ -364,7 +368,7 @@ namespace RDF
 		///
 		///	Returns the value as defined by SCHEMA in the loaded EXPRESS schema.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetSchemaNameW")]
+		[DllImport(libifcengine, EntryPoint = "GetSchemaNameW")]
 		public static extern IntPtr GetSchemaNameW(int_t model, out IntPtr schemaName);
 
 		public static string GetSchemaNameW(int_t model)
@@ -379,7 +383,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSetMappingSupport")]
+		[DllImport(libifcengine, EntryPoint = "engiSetMappingSupport")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiSetMappingSupport(int_t entity, [param: MarshalAs(UnmanagedType.U1)] bool enable);
 
@@ -388,7 +392,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetMappingSupport")]
+		[DllImport(libifcengine, EntryPoint = "engiGetMappingSupport")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiGetMappingSupport(int_t entity);
 
@@ -409,16 +413,16 @@ namespace RDF
 		///	Attributes repository and fileName will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBN")]
 		public static extern int_t sdaiCreateModelBN(int_t repository, string fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBN")]
 		public static extern int_t sdaiCreateModelBN(int_t repository, string fileName, byte[] schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBN")]
 		public static extern int_t sdaiCreateModelBN(int_t repository, byte[] fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBN")]
 		public static extern int_t sdaiCreateModelBN(int_t repository, byte[] fileName, byte[] schemaName);
 
 		public static int_t sdaiCreateModelBN(int_t repository, string schemaName)
@@ -600,16 +604,16 @@ namespace RDF
 		///	Attributes repository and fileName will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBNUnicode")]
 		public static extern int_t sdaiCreateModelBNUnicode(int_t repository, string fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBNUnicode")]
 		public static extern int_t sdaiCreateModelBNUnicode(int_t repository, string fileName, byte[] schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBNUnicode")]
 		public static extern int_t sdaiCreateModelBNUnicode(int_t repository, byte[] fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateModelBNUnicode")]
 		public static extern int_t sdaiCreateModelBNUnicode(int_t repository, byte[] fileName, byte[] schemaName);
 
 		public static int_t sdaiCreateModelBNUnicode(int_t repository, string schemaName)
@@ -791,16 +795,16 @@ namespace RDF
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBN")]
 		public static extern int_t sdaiOpenModelBN(int_t repository, string fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBN")]
 		public static extern int_t sdaiOpenModelBN(int_t repository, string fileName, byte[] schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBN")]
 		public static extern int_t sdaiOpenModelBN(int_t repository, byte[] fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBN")]
 		public static extern int_t sdaiOpenModelBN(int_t repository, byte[] fileName, byte[] schemaName);
 
 		/// <summary>
@@ -810,16 +814,16 @@ namespace RDF
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBNUnicode")]
 		public static extern int_t sdaiOpenModelBNUnicode(int_t repository, string fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBNUnicode")]
 		public static extern int_t sdaiOpenModelBNUnicode(int_t repository, string fileName, byte[] schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBNUnicode")]
 		public static extern int_t sdaiOpenModelBNUnicode(int_t repository, byte[] fileName, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiOpenModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiOpenModelBNUnicode")]
 		public static extern int_t sdaiOpenModelBNUnicode(int_t repository, byte[] fileName, byte[] schemaName);
 
 		/// <summary>
@@ -829,10 +833,10 @@ namespace RDF
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiOpenModelByStream")]
+		[DllImport(libifcengine, EntryPoint = "engiOpenModelByStream")]
 		public static extern int_t engiOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiOpenModelByStream")]
+		[DllImport(libifcengine, EntryPoint = "engiOpenModelByStream")]
 		public static extern int_t engiOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, byte[] schemaName);
 
 		/// <summary>
@@ -842,10 +846,10 @@ namespace RDF
 		///	Attribute repository will be ignored, they are their because of backward compatibility.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiOpenModelByArray")]
+		[DllImport(libifcengine, EntryPoint = "engiOpenModelByArray")]
 		public static extern int_t engiOpenModelByArray(int_t repository, byte[] content, int_t size, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiOpenModelByArray")]
+		[DllImport(libifcengine, EntryPoint = "engiOpenModelByArray")]
 		public static extern int_t engiOpenModelByArray(int_t repository, byte[] content, int_t size, byte[] schemaName);
 
 		/// <summary>
@@ -857,10 +861,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelBN")]
 		public static extern int_t sdaiSaveModelBN(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelBN")]
 		public static extern int_t sdaiSaveModelBN(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -872,10 +876,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelBNUnicode")]
 		public static extern int_t sdaiSaveModelBNUnicode(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelBNUnicode")]
 		public static extern int_t sdaiSaveModelBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -887,7 +891,7 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - callback function not recognized
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveModelByStream")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveModelByStream")]
 		public static extern int_t engiSaveModelByStream(int_t model, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, int_t size);
 
 		/// <summary>
@@ -899,7 +903,7 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - content or size could not be set
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveModelByArray")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveModelByArray")]
 		public static extern int_t engiSaveModelByArray(int_t model, byte[] content, out int_t size);
 
 		/// <summary>
@@ -911,10 +915,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsXmlBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsXmlBN")]
 		public static extern int_t sdaiSaveModelAsXmlBN(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsXmlBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsXmlBN")]
 		public static extern int_t sdaiSaveModelAsXmlBN(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -926,10 +930,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsXmlBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsXmlBNUnicode")]
 		public static extern int_t sdaiSaveModelAsXmlBNUnicode(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsXmlBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsXmlBNUnicode")]
 		public static extern int_t sdaiSaveModelAsXmlBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -941,10 +945,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsSimpleXmlBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsSimpleXmlBN")]
 		public static extern int_t sdaiSaveModelAsSimpleXmlBN(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsSimpleXmlBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsSimpleXmlBN")]
 		public static extern int_t sdaiSaveModelAsSimpleXmlBN(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -956,10 +960,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsSimpleXmlBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsSimpleXmlBNUnicode")]
 		public static extern int_t sdaiSaveModelAsSimpleXmlBNUnicode(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsSimpleXmlBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsSimpleXmlBNUnicode")]
 		public static extern int_t sdaiSaveModelAsSimpleXmlBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -971,10 +975,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsJsonBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsJsonBN")]
 		public static extern int_t sdaiSaveModelAsJsonBN(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsJsonBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsJsonBN")]
 		public static extern int_t sdaiSaveModelAsJsonBN(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -986,10 +990,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsJsonBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsJsonBNUnicode")]
 		public static extern int_t sdaiSaveModelAsJsonBNUnicode(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiSaveModelAsJsonBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiSaveModelAsJsonBNUnicode")]
 		public static extern int_t sdaiSaveModelAsJsonBNUnicode(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -1001,10 +1005,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveSchemaBN")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveSchemaBN")]
 		public static extern int_t engiSaveSchemaBN(int_t model, string filePath);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveSchemaBN")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveSchemaBN")]
 		public static extern int_t engiSaveSchemaBN(int_t model, byte[] filePath);
 
 		/// <summary>
@@ -1016,10 +1020,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as a model handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveSchemaBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveSchemaBNUnicode")]
 		public static extern int_t engiSaveSchemaBNUnicode(int_t model, string filePath);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiSaveSchemaBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "engiSaveSchemaBNUnicode")]
 		public static extern int_t engiSaveSchemaBNUnicode(int_t model, byte[] filePath);
 
 		/// <summary>
@@ -1033,7 +1037,7 @@ namespace RDF
 		///	If the model is closed successfully the return value will be 0, in case of non-zero value:
 		///		1 - model is NULL or not recognized as a model handle
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCloseModel")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCloseModel")]
 		public static extern int_t sdaiCloseModel(int_t model);
 
 		/// <summary>
@@ -1041,7 +1045,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setPrecisionDoubleExport")]
+		[DllImport(libifcengine, EntryPoint = "setPrecisionDoubleExport")]
 		public static extern void setPrecisionDoubleExport(int_t model, int_t precisionCap, int_t precisionRound, [param: MarshalAs(UnmanagedType.U1)] bool clean);
 
 		//
@@ -1057,7 +1061,7 @@ namespace RDF
 		///	The declaration can be ENTITY, TYPE ENUM, TYPE SELECT, or defined TYPE.
 		///	Use engiGetDeclarationFromIterator to access the further information.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetNextTypeDeclarationIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetNextTypeDeclarationIterator")]
 		public static extern int_t engiGetNextTypeDeclarationIterator(int_t model, int_t iterator);
 
 		/// <summary>
@@ -1068,7 +1072,7 @@ namespace RDF
 		///	Use engiGetDeclarationType to access the further information.
 		///	Use engiGetNextTypeDeclarationIterator to iterate declarations.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetTypeDeclarationFromIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetTypeDeclarationFromIterator")]
 		public static extern int_t engiGetTypeDeclarationFromIterator(int_t model, int_t iterator);
 
 		/// <summary>
@@ -1079,7 +1083,7 @@ namespace RDF
 		///	If prev is the last declaration it returns NULL.
 		///	Use engiGetDeclarationType to access the further information.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetSchemaScriptDeclarationByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetSchemaScriptDeclarationByIterator")]
 		public static extern int_t engiGetSchemaScriptDeclarationByIterator(int_t model, int_t prev);
 
 		/// <summary>
@@ -1096,7 +1100,7 @@ namespace RDF
 		///
 		///	Use engiGetTypeDeclarationFromIterator or engiGetSchemaScriptDeclarationByIterator to obtain declaration handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetDeclarationType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetDeclarationType")]
 		public static extern enum_express_declaration engiGetDeclarationType(int_t declaration);
 
 		/// <summary>
@@ -1105,7 +1109,7 @@ namespace RDF
 		///	This call returns a name of the enumeration element with the given index (zero based).
 		///	It returns NULL if the index out of range.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEnumerationElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEnumerationElement")]
 		public static extern IntPtr engiGetEnumerationElement(int_t enumeration, int_t index);
 
 		/// <summary>
@@ -1114,7 +1118,7 @@ namespace RDF
 		///	This call returns a declaration handle of the select element with the given index (zero based).
 		///	It returns 0 if the index out of range.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetSelectElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetSelectElement")]
 		public static extern int_t engiGetSelectElement(int_t select, int_t index);
 
 		/// <summary>
@@ -1122,7 +1126,7 @@ namespace RDF
 		///
 		///	This call returns a simple type for defined type handle and can inquire referenced type, if any.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetDefinedType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetDefinedType")]
 		public static extern enum_express_data_type engiGetDefinedType(int_t definedType, out int_t referencedDeclaration, out int_t aggregationDefinition);
 
 		/// <summary>
@@ -1130,7 +1134,7 @@ namespace RDF
 		///
 		///	This call returns name and body text for entity local (where) rule, schema rule, function or procedure.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetScriptText")]
+		[DllImport(libifcengine, EntryPoint = "engiGetScriptText")]
 		public static extern void engiGetScriptText(int_t declaration, out IntPtr label, out IntPtr text);
 
 		public static void engiGetScriptText(int_t declaration, out string label, out string text)
@@ -1150,16 +1154,16 @@ namespace RDF
 		///	This function can evaluate EXPRESS expression for entity where rule or derived attribute,
 		///	valueType, value and return type work similary to sdaiGetAttr.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiEvaluateScriptExpression")]
+		[DllImport(libifcengine, EntryPoint = "engiEvaluateScriptExpression")]
 		public static extern int_t engiEvaluateScriptExpression(int_t model, int_t instance, int_t expression, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiEvaluateScriptExpression")]
+		[DllImport(libifcengine, EntryPoint = "engiEvaluateScriptExpression")]
 		public static extern int_t engiEvaluateScriptExpression(int_t model, int_t instance, int_t expression, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiEvaluateScriptExpression")]
+		[DllImport(libifcengine, EntryPoint = "engiEvaluateScriptExpression")]
 		public static extern int_t engiEvaluateScriptExpression(int_t model, int_t instance, int_t expression, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiEvaluateScriptExpression")]
+		[DllImport(libifcengine, EntryPoint = "engiEvaluateScriptExpression")]
 		public static extern int_t engiEvaluateScriptExpression(int_t model, int_t instance, int_t expression, int_t valueType, out IntPtr value);
 
 		public static int_t engiEvaluateScriptExpression(int_t model, int_t instance, int_t expression, int_t valueType, out string value)
@@ -1184,10 +1188,10 @@ namespace RDF
 		///
 		///	This call retrieves a handle to an entity based on a given entity name.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetEntity")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetEntity")]
 		public static extern int_t sdaiGetEntity(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetEntity")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetEntity")]
 		public static extern int_t sdaiGetEntity(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -1195,7 +1199,7 @@ namespace RDF
 		///
 		///	This call retrieves a handle to an entity composed of the supplied simple entity types.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetComplexEntity")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetComplexEntity")]
 		public static extern int_t sdaiGetComplexEntity(int_t model, int_t entityList);
 
 		/// <summary>
@@ -1203,7 +1207,7 @@ namespace RDF
 		///
 		///	This call retrieves a handle to an entity composed of the supplied simple entity types.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetComplexEntityBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetComplexEntityBN")]
 		public static extern int_t sdaiGetComplexEntityBN(int_t model, int_t nameNumber, out IntPtr nameVector);
 
 		/// <summary>
@@ -1211,7 +1215,7 @@ namespace RDF
 		///
 		///	This call retrieves a model based on a given entity handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityModel")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityModel")]
 		public static extern int_t engiGetEntityModel(int_t entity);
 
 		/// <summary>
@@ -1222,7 +1226,7 @@ namespace RDF
 		///	The position is 0-based.
 		///	Returns -1 if the attribute has no slot to store value (inverse, pure derived or irrelevant attribute) or when 'entity' is a complex entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributePosition")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributePosition")]
 		public static extern int_t engiGetEntityAttributePosition(int_t entity, int_t attribute, [param: MarshalAs(UnmanagedType.U1)] bool forSimpleInstance);
 
 		/// <summary>
@@ -1230,7 +1234,7 @@ namespace RDF
 		///
 		///	Returns the total number of entities within the loaded schema.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityCount")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityCount")]
 		public static extern int_t engiGetEntityCount(int_t model);
 
 		/// <summary>
@@ -1238,7 +1242,7 @@ namespace RDF
 		///
 		///	This call returns a specific entity based on an index, the index needs to be 0 or higher but lower then the number of entities in the loaded schema.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityElement")]
 		public static extern int_t engiGetEntityElement(int_t model, int_t index);
 
 		/// <summary>
@@ -1246,7 +1250,7 @@ namespace RDF
 		///
 		///	This call retrieves an aggregation that contains all instances of the entity given.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetEntityExtent")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetEntityExtent")]
 		public static extern int_t sdaiGetEntityExtent(int_t model, int_t entity);
 
 		/// <summary>
@@ -1263,10 +1267,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetEntityExtentBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetEntityExtentBN")]
 		public static extern int_t sdaiGetEntityExtentBN(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetEntityExtentBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetEntityExtentBN")]
 		public static extern int_t sdaiGetEntityExtentBN(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -1274,7 +1278,7 @@ namespace RDF
 		///
 		///	This call can be used to get the name of the given entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityNameEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityNameEx")]
 		public static extern IntPtr engiGetEntityNameEx(int_t entity, int_t valueType, out IntPtr entityName, [param: MarshalAs(UnmanagedType.U1)] bool displayName);
 
 		/// <summary>
@@ -1282,7 +1286,7 @@ namespace RDF
 		///
 		///	This call can be used to get the name of the given entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityName")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityName")]
 		public static extern IntPtr engiGetEntityName(int_t entity, int_t valueType, out IntPtr entityName);
 
 		public static string engiGetEntityName(int_t entity)
@@ -1297,7 +1301,7 @@ namespace RDF
 		///
 		///	This call returns the number of arguments, this includes the arguments of its (nested) parents and inverse arguments.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityNoAttributes")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityNoAttributes")]
 		public static extern int_t engiGetEntityNoAttributes(int_t entity);
 
 		/// <summary>
@@ -1305,7 +1309,7 @@ namespace RDF
 		///
 		///	This call returns the number of attributes, inclusion of parents and inverse depends on includeParent and includeInverse values.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityNoAttributesEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityNoAttributesEx")]
 		public static extern int_t engiGetEntityNoAttributesEx(int_t entity, [param: MarshalAs(UnmanagedType.U1)] bool includeParent, [param: MarshalAs(UnmanagedType.U1)] bool includeInverse);
 
 		/// <summary>
@@ -1313,7 +1317,7 @@ namespace RDF
 		///
 		///	Returns the first parent entity, for example the parent of IfcObject is IfcObjectDefinition, of IfcObjectDefinition is IfcRoot and of IfcRoot is 0.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityParent")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityParent")]
 		public static extern int_t engiGetEntityParent(int_t entity);
 
 		/// <summary>
@@ -1321,7 +1325,7 @@ namespace RDF
 		///
 		///	Returns number of parent entities.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityNoParents")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityNoParents")]
 		public static extern int_t engiGetEntityNoParents(int_t entity);
 
 		/// <summary>
@@ -1329,7 +1333,7 @@ namespace RDF
 		///
 		///	Returns the N-th parent of entity or NULL if index exceeds number of parents.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityParentEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityParentEx")]
 		public static extern int_t engiGetEntityParentEx(int_t entity, int_t index);
 
 		/// <summary>
@@ -1338,7 +1342,7 @@ namespace RDF
 		///	Checks if the entity is a supertype of another entity.
 		///	An entity is supertype of itself.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsParentOf")]
+		[DllImport(libifcengine, EntryPoint = "engiIsParentOf")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsParentOf(int_t superType, int_t subType);
 
@@ -1349,7 +1353,7 @@ namespace RDF
 		///	If entity is NULL it checks declaration in defining entity (the most common supertype where the attribute is first declared), 
 		///	otherwise it also checks the actual redeclaration for specified entity. 
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDerived")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDerived")]
 		public static extern int_t engiGetAttrDerived(int_t entity, int_t attribute);
 
 		/// <summary>
@@ -1366,10 +1370,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDerivedBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDerivedBN")]
 		public static extern int_t engiGetAttrDerivedBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDerivedBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDerivedBN")]
 		public static extern int_t engiGetAttrDerivedBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -1377,7 +1381,7 @@ namespace RDF
 		///
 		///	This call can be used to check if an attribute is an inverse relation
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrInverse")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrInverse")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrInverse(int_t attribute);
 
@@ -1394,11 +1398,11 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrInverseBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrInverseBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrInverseBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrInverseBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrInverseBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrInverseBN(int_t entity, byte[] attributeName);
 
@@ -1407,7 +1411,7 @@ namespace RDF
 		///
 		///	This call can be used to check if an attribute is optional.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrOptional")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrOptional")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrOptional(int_t attribute);
 
@@ -1424,11 +1428,11 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrOptionalBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrOptionalBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrOptionalBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrOptionalBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrOptionalBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrOptionalBN(int_t entity, byte[] attributeName);
 
@@ -1438,7 +1442,7 @@ namespace RDF
 		///	Iterates actual attribute redeclarations for given entity.
 		///	sdaiGetAttrDefinition and other functions returns the first definition in the most common supertype. This function allow to explore redeclarations by subtypes.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrRedeclarationByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrRedeclarationByIterator")]
 		public static extern int_t engiGetAttrRedeclarationByIterator(int_t entity, int_t attribute, int_t prevRedeclaration);
 
 		/// <summary>
@@ -1446,7 +1450,7 @@ namespace RDF
 		///
 		///	This call can be used to get the domain of an attribute.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomainName")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomainName")]
 		public static extern IntPtr engiGetAttrDomainName(int_t attribute, out IntPtr domainName);
 
 		public static string engiGetAttrDomainName(int_t attribute)
@@ -1473,10 +1477,10 @@ namespace RDF
 		///				domainName
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomainNameBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomainNameBN")]
 		public static extern IntPtr engiGetAttrDomainNameBN(int_t entity, string attributeName, out IntPtr domainName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomainNameBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomainNameBN")]
 		public static extern IntPtr engiGetAttrDomainNameBN(int_t entity, byte[] attributeName, out IntPtr domainName);
 
 		public static string engiGetAttrDomainNameBN(int_t entity, string attributeName)
@@ -1498,7 +1502,7 @@ namespace RDF
 		///
 		///	This call can be used to check if an entity is abstract.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsEntityAbstract")]
+		[DllImport(libifcengine, EntryPoint = "engiIsEntityAbstract")]
 		public static extern int_t engiIsEntityAbstract(int_t entity);
 
 		/// <summary>
@@ -1514,10 +1518,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsEntityAbstractBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsEntityAbstractBN")]
 		public static extern int_t engiIsEntityAbstractBN(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiIsEntityAbstractBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsEntityAbstractBN")]
 		public static extern int_t engiIsEntityAbstractBN(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -1525,7 +1529,7 @@ namespace RDF
 		///
 		///	Allows to retrieve enumeration values of an attribute by index.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEnumerationValue")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEnumerationValue")]
 		public static extern IntPtr engiGetEnumerationValue(int_t attribute, int_t index, int_t valueType, out IntPtr enumerationValue);
 
 		public static string engiGetEnumerationValue(int_t attribute, int_t index)
@@ -1544,7 +1548,7 @@ namespace RDF
 		///	Returns first attribute if prev is NULL.
 		///	Returns NULL when prev is the last attribute.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeByIterator")]
 		public static extern int_t engiGetEntityAttributeByIterator(int_t entity, int_t prev);
 
 		/// <summary>
@@ -1552,7 +1556,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggregationDefinition")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggregationDefinition")]
 		public static extern void engiGetAggregationDefinition(int_t aggregationDefinition, out enum_express_aggr aggregationType, out int_t cardinalityMin, out int_t cardinalityMax, [param: MarshalAs(UnmanagedType.U1)] out bool optional, [param: MarshalAs(UnmanagedType.U1)] out bool unique, out int_t nextAggregationLevel);
 
 		/// <summary>
@@ -1563,7 +1567,7 @@ namespace RDF
 		///	Returns first rule if prev is NULL.
 		///	Returns NULL when prev is the last rule.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityUniqueRuleByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityUniqueRuleByIterator")]
 		public static extern int_t engiGetEntityUniqueRuleByIterator(int_t entity, int_t prev, out IntPtr label);
 
 		public static int_t engiGetEntityUniqueRuleByIterator(int_t entity, int_t prev, out string label)
@@ -1583,10 +1587,10 @@ namespace RDF
 		///	Returns first attribute name if prev is NULL.
 		///	Returns NULL when prev is the name of the last attribute.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityUniqueRuleAttributeByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityUniqueRuleAttributeByIterator")]
 		public static extern IntPtr engiGetEntityUniqueRuleAttributeByIterator(int_t rule, string prev, out IntPtr domain);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityUniqueRuleAttributeByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityUniqueRuleAttributeByIterator")]
 		public static extern IntPtr engiGetEntityUniqueRuleAttributeByIterator(int_t rule, byte[] prev, out IntPtr domain);
 
 		public static string engiGetEntityUniqueRuleAttributeByIterator(int_t rule, string prev, out string domain)
@@ -1611,7 +1615,7 @@ namespace RDF
 		///	Returns NULL when prev is the last rule.
 		///	Use engiGetScriptText to get further information.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityWhereRuleByIterator")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityWhereRuleByIterator")]
 		public static extern int_t engiGetEntityWhereRuleByIterator(int_t declaration, int_t prev, out IntPtr label);
 
 		public static int_t engiGetEntityWhereRuleByIterator(int_t declaration, int_t prev, out string label)
@@ -1633,7 +1637,7 @@ namespace RDF
 		///
 		///	This call can be used to get the used type within this ADB type.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBType")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBType")]
 		public static extern int_t sdaiGetADBType(int_t ADB);
 
 		/// <summary>
@@ -1641,7 +1645,7 @@ namespace RDF
 		///
 		///	This call can be used to get the path of an ADB type.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBTypePath")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBTypePath")]
 		public static extern IntPtr sdaiGetADBTypePath(int_t ADB, int_t typeNameNumber);
 
 		/// <summary>
@@ -1738,16 +1742,16 @@ namespace RDF
 		///
 		///	(Non-standard extensions) sdaiGetADBValue: sdaiADB is allowed and will success when sdaiGetADBTypePath is not NULL, returning ABD value has type path element removed.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBValue")]
 		public static extern int_t sdaiGetADBValue(int_t ADB, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBValue")]
 		public static extern int_t sdaiGetADBValue(int_t ADB, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBValue")]
 		public static extern int_t sdaiGetADBValue(int_t ADB, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBValue")]
 		public static extern int_t sdaiGetADBValue(int_t ADB, int_t valueType, out IntPtr value);
 
 		public static int_t sdaiGetADBValue(int_t ADB, int_t valueType, out string value)
@@ -1844,22 +1848,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBValue")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBValue")]
 		public static extern void sdaiPutADBValue(int_t ADB, int_t valueType, byte[] value);
 
 		public static void sdaiPutADBValue(int_t ADB, int_t valueType, string value)
@@ -1880,7 +1884,7 @@ namespace RDF
 		///
 		///	Creates an empty ADB (Attribute Data Block).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateEmptyADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateEmptyADB")]
 		public static extern int_t sdaiCreateEmptyADB();
 
 		/// <summary>
@@ -1888,7 +1892,7 @@ namespace RDF
 		///
 		///	Deletes an ADB (Attribute Data Block).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiDeleteADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiDeleteADB")]
 		public static extern void sdaiDeleteADB(int_t ADB);
 
 		/// <summary>
@@ -1985,16 +1989,16 @@ namespace RDF
 		///
 		///	(Non-standard extensions) sdaiGetADBValue: sdaiADB is allowed and will success when sdaiGetADBTypePath is not NULL, returning ABD value has type path element removed.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIndex")]
 		public static extern int_t sdaiGetAggrByIndex(int_t aggregate, int_t index, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIndex")]
 		public static extern int_t sdaiGetAggrByIndex(int_t aggregate, int_t index, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIndex")]
 		public static extern int_t sdaiGetAggrByIndex(int_t aggregate, int_t index, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIndex")]
 		public static extern int_t sdaiGetAggrByIndex(int_t aggregate, int_t index, int_t valueType, out IntPtr value);
 
 		public static int_t sdaiGetAggrByIndex(int_t aggregate, int_t index, int_t valueType, out string value)
@@ -2091,22 +2095,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIndex")]
 		public static extern void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, byte[] value);
 
 		public static void sdaiPutAggrByIndex(int_t aggregate, int_t index, int_t valueType, string value)
@@ -2127,7 +2131,7 @@ namespace RDF
 		///
 		///	This call returns the type used within an aggregation according to the instance (independent of the schema definition)
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrType")]
 		public static extern void engiGetAggrType(int_t aggregate, out int_t aggregateType);
 
 		/// <summary>
@@ -2135,7 +2139,7 @@ namespace RDF
 		///
 		///	This call returns the type used within an aggregation according to the instance (independent of the schema definition)
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrTypex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrTypex")]
 		public static extern void engiGetAggrTypex(int_t aggregate, out int_t aggregateType);
 
 		/// <summary>
@@ -2232,16 +2236,16 @@ namespace RDF
 		///
 		///	(Non-standard extensions) sdaiGetADBValue: sdaiADB is allowed and will success when sdaiGetADBTypePath is not NULL, returning ABD value has type path element removed.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttr")]
 		public static extern int_t sdaiGetAttr(int_t instance, int_t attribute, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttr")]
 		public static extern int_t sdaiGetAttr(int_t instance, int_t attribute, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttr")]
 		public static extern int_t sdaiGetAttr(int_t instance, int_t attribute, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttr")]
 		public static extern int_t sdaiGetAttr(int_t instance, int_t attribute, int_t valueType, out IntPtr value);
 
 		public static int_t sdaiGetAttr(int_t instance, int_t attribute, int_t valueType, out string value)
@@ -2368,28 +2372,28 @@ namespace RDF
 		///				value
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, string attributeName, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, string attributeName, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, string attributeName, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, string attributeName, int_t valueType, out IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, byte[] attributeName, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, byte[] attributeName, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, byte[] attributeName, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBN")]
 		public static extern int_t sdaiGetAttrBN(int_t instance, byte[] attributeName, int_t valueType, out IntPtr value);
 
 		public static int_t sdaiGetAttrBN(int_t instance, string attributeName, int_t valueType, out string value)
@@ -2414,10 +2418,10 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBNUnicode")]
 		public static extern int_t sdaiGetAttrBNUnicode(int_t instance, string attributeName, byte[] buffer, int_t bufferLength);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrBNUnicode")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrBNUnicode")]
 		public static extern int_t sdaiGetAttrBNUnicode(int_t instance, byte[] attributeName, byte[] buffer, int_t bufferLength);
 
 		/// <summary>
@@ -2442,10 +2446,10 @@ namespace RDF
 		///			);
 		///		return	rValue;
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetStringAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetStringAttrBN")]
 		public static extern IntPtr sdaiGetStringAttrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetStringAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetStringAttrBN")]
 		public static extern IntPtr sdaiGetStringAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -2470,10 +2474,10 @@ namespace RDF
 		///			);
 		///		return	inst;
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetInstanceAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetInstanceAttrBN")]
 		public static extern int_t sdaiGetInstanceAttrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetInstanceAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetInstanceAttrBN")]
 		public static extern int_t sdaiGetInstanceAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -2498,10 +2502,10 @@ namespace RDF
 		///			);
 		///		return	aggr;
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggregationAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggregationAttrBN")]
 		public static extern int_t sdaiGetAggregationAttrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggregationAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggregationAttrBN")]
 		public static extern int_t sdaiGetAggregationAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -2509,10 +2513,10 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrDefinition")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrDefinition")]
 		public static extern int_t sdaiGetAttrDefinition(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAttrDefinition")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAttrDefinition")]
 		public static extern int_t sdaiGetAttrDefinition(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -2522,7 +2526,7 @@ namespace RDF
 		///	'attribute' may by a base declaration received by sdaiGetAttrDefinition, engiGetEntityAttributeByIterator, etc. or redeclaration by engiGetAttrRedeclarationByIterator.
 		///	'definingEntity' is the entity which declares or re-decelerates the attribute.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrTraits")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrTraits")]
 		public static extern void engiGetAttrTraits(int_t attribute, out IntPtr name, out int_t definingEntity, [param: MarshalAs(UnmanagedType.U1)] out bool isExplicit, [param: MarshalAs(UnmanagedType.U1)] out bool isInverse, out enum_express_data_type attrType, out int_t domainEntity, out int_t aggregationDefinition, [param: MarshalAs(UnmanagedType.U1)] out bool isOptional);
 
 		public static void engiGetAttrTraits(int_t attribute, out string name, out int_t definingEntity, [param: MarshalAs(UnmanagedType.U1)] out bool isExplicit, [param: MarshalAs(UnmanagedType.U1)] out bool isInverse, out enum_express_data_type attrType, out int_t domainEntity, out int_t aggregationDefinition, [param: MarshalAs(UnmanagedType.U1)] out bool isOptional)
@@ -2537,7 +2541,7 @@ namespace RDF
 		///
 		///	This call can be used to get the name of the given attribute.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrName")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrName")]
 		public static extern IntPtr engiGetAttrNamePtr(int_t attribute, int_t valueType, out IntPtr attributeName);
 
 		public static string engiGetAttrName(int_t attribute, int_t valueType, out IntPtr attributeName)
@@ -2558,7 +2562,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDefiningEntity")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDefiningEntity")]
 		public static extern int_t engiGetAttrDefiningEntity(int_t attribute);
 
 		/// <summary>
@@ -2566,7 +2570,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrExplicit")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrExplicit")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrExplicit(int_t attribute);
 
@@ -2575,11 +2579,11 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrExplicitBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrExplicitBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrExplicitBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiIsAttrExplicitBN")]
+		[DllImport(libifcengine, EntryPoint = "engiIsAttrExplicitBN")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsAttrExplicitBN(int_t entity, byte[] attributeName);
 
@@ -2588,7 +2592,7 @@ namespace RDF
 		///
 		///	Returns the model based on an instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetInstanceModel")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetInstanceModel")]
 		public static extern int_t sdaiGetInstanceModel(int_t instance);
 
 		/// <summary>
@@ -2596,7 +2600,7 @@ namespace RDF
 		///
 		///	Returns the entity based on an instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetInstanceType")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetInstanceType")]
 		public static extern int_t sdaiGetInstanceType(int_t instance);
 
 		/// <summary>
@@ -2604,7 +2608,7 @@ namespace RDF
 		///
 		///	Returns the number of elements within an aggregation.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetMemberCount")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetMemberCount")]
 		public static extern int_t sdaiGetMemberCount(int_t aggregate);
 
 		/// <summary>
@@ -2612,7 +2616,7 @@ namespace RDF
 		///
 		///	This call checks if an instance is a type of a certain given entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsKindOf")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsKindOf")]
 		public static extern int_t sdaiIsKindOf(int_t instance, int_t entity);
 
 		/// <summary>
@@ -2632,10 +2636,10 @@ namespace RDF
 		///						entityName
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsKindOfBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsKindOfBN")]
 		public static extern int_t sdaiIsKindOfBN(int_t instance, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsKindOfBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsKindOfBN")]
 		public static extern int_t sdaiIsKindOfBN(int_t instance, byte[] entityName);
 
 		/// <summary>
@@ -2653,7 +2657,7 @@ namespace RDF
 		///
 		///	It works for explicit and inverse attributes
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrType")]
 		public static extern int_t engiGetAttrType(int_t attribute);
 
 		/// <summary>
@@ -2669,10 +2673,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrTypeBN")]
 		public static extern int_t engiGetAttrTypeBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrTypeBN")]
 		public static extern int_t engiGetAttrTypeBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -2680,7 +2684,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetExpressAttrType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetExpressAttrType")]
 		public static extern enum_express_data_type engiGetExpressAttrType(int_t attribute);
 
 		/// <summary>
@@ -2688,7 +2692,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrAggregation")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrAggregation")]
 		public static extern int_t engiGetAttrAggregation(int_t attribute);
 
 		/// <summary>
@@ -2699,7 +2703,7 @@ namespace RDF
 		///	It may be primitive type, sdaiAGGR or sdaiADB.
 		///	Returns 0 for $ and *.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceAttrType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceAttrType")]
 		public static extern int_t engiGetInstanceAttrType(int_t instance, int_t attribute);
 
 		/// <summary>
@@ -2718,10 +2722,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceAttrTypeBN")]
 		public static extern int_t engiGetInstanceAttrTypeBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceAttrTypeBN")]
 		public static extern int_t engiGetInstanceAttrTypeBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -2729,7 +2733,7 @@ namespace RDF
 		///
 		///	This call checks if an instance is an exact instance of a given entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsInstanceOf")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsInstanceOf")]
 		public static extern int_t sdaiIsInstanceOf(int_t instance, int_t entity);
 
 		/// <summary>
@@ -2750,10 +2754,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsInstanceOfBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsInstanceOfBN")]
 		public static extern int_t sdaiIsInstanceOfBN(int_t instance, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsInstanceOfBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsInstanceOfBN")]
 		public static extern int_t sdaiIsInstanceOfBN(int_t instance, byte[] entityName);
 
 		/// <summary>
@@ -2761,7 +2765,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsEqual")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsEqual")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsEqual(int_t instanceI, int_t instanceII);
 
@@ -2770,7 +2774,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiValidateAttribute")]
+		[DllImport(libifcengine, EntryPoint = "sdaiValidateAttribute")]
 		public static extern int_t sdaiValidateAttribute(int_t instance, int_t attribute);
 
 		/// <summary>
@@ -2787,10 +2791,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiValidateAttributeBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiValidateAttributeBN")]
 		public static extern int_t sdaiValidateAttributeBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiValidateAttributeBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiValidateAttributeBN")]
 		public static extern int_t sdaiValidateAttributeBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -2798,7 +2802,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceClassInfo")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceClassInfo")]
 		public static extern IntPtr engiGetInstanceClassInfo(int_t instance);
 
 		/// <summary>
@@ -2806,7 +2810,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceClassInfoUC")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceClassInfoUC")]
 		public static extern IntPtr engiGetInstanceClassInfoUC(int_t instance);
 
 		/// <summary>
@@ -2814,7 +2818,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceMetaInfo")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceMetaInfo")]
 		public static extern int_t engiGetInstanceMetaInfo(int_t instance, out int_t localId, out IntPtr entityName, out IntPtr entityNameUC);
 
 		/// <summary>
@@ -2823,7 +2827,7 @@ namespace RDF
 		///	The function returns the identifiers of all the entity instances in the defined domain
 		///	that reference the specified entity instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiFindInstanceUsers")]
+		[DllImport(libifcengine, EntryPoint = "sdaiFindInstanceUsers")]
 		public static extern int_t sdaiFindInstanceUsers(int_t instance, int_t domain, int_t resultList);
 
 		/// <summary>
@@ -2832,7 +2836,7 @@ namespace RDF
 		///	The function returns the identifiers of all the entity instances in the defined domain
 		///	that reference the specified entity instance by the specified attribute (role).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiFindInstanceUsedIn")]
+		[DllImport(libifcengine, EntryPoint = "sdaiFindInstanceUsedIn")]
 		public static extern int_t sdaiFindInstanceUsedIn(int_t instance, int_t role, int_t domain, int_t resultList);
 
 		/// <summary>
@@ -2854,10 +2858,10 @@ namespace RDF
 		///				resultList
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiFindInstanceUsedInBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiFindInstanceUsedInBN")]
 		public static extern int_t sdaiFindInstanceUsedInBN(int_t instance, string roleName, int_t domain, int_t resultList);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiFindInstanceUsedInBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiFindInstanceUsedInBN")]
 		public static extern int_t sdaiFindInstanceUsedInBN(int_t instance, byte[] roleName, int_t domain, int_t resultList);
 
 		//
@@ -2941,22 +2945,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrepend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrepend")]
 		public static extern void sdaiPrepend(int_t aggregate, int_t valueType, byte[] value);
 
 		public static void sdaiPrepend(int_t aggregate, int_t valueType, string value)
@@ -3049,22 +3053,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAppend")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAppend")]
 		public static extern void sdaiAppend(int_t aggregate, int_t valueType, byte[] value);
 
 		public static void sdaiAppend(int_t aggregate, int_t valueType, string value)
@@ -3157,22 +3161,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiAdd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiAdd")]
 		public static extern void sdaiAdd(int_t aggregate, int_t valueType, byte[] value);
 
 		public static void sdaiAdd(int_t aggregate, int_t valueType, string value)
@@ -3265,22 +3269,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertByIndex")]
 		public static extern void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, byte[] value);
 
 		public static void sdaiInsertByIndex(int_t aggregate, int_t index, int_t valueType, string value)
@@ -3373,22 +3377,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertBefore")]
 		public static extern void sdaiInsertBefore(int_t iterator, int_t valueType, byte[] value);
 
 		public static void sdaiInsertBefore(int_t iterator, int_t valueType, string value)
@@ -3481,22 +3485,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertAfter")]
 		public static extern void sdaiInsertAfter(int_t iterator, int_t valueType, byte[] value);
 
 		public static void sdaiInsertAfter(int_t iterator, int_t valueType, string value)
@@ -3583,22 +3587,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateADB")]
 		public static extern int_t sdaiCreateADB(int_t valueType, byte[] value);
 
 		public static int_t sdaiCreateADB(int_t valueType, string value)
@@ -3623,7 +3627,7 @@ namespace RDF
 		///	the attribute argument can be empty (0) in case the aggregation is an nested aggregation for this specific instance,
 		///	preferred use would be use of sdaiCreateNestedAggr in such a case.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateAggr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateAggr")]
 		public static extern int_t sdaiCreateAggr(int_t instance, int_t attribute);
 
 		/// <summary>
@@ -3650,10 +3654,10 @@ namespace RDF
 		///					nullptr
 		///				);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateAggrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateAggrBN")]
 		public static extern int_t sdaiCreateAggrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateAggrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateAggrBN")]
 		public static extern int_t sdaiCreateAggrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -3661,7 +3665,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNPL")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNPL")]
 		public static extern int_t sdaiCreateNPL();
 
 		/// <summary>
@@ -3669,7 +3673,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiDeleteNPL")]
+		[DllImport(libifcengine, EntryPoint = "sdaiDeleteNPL")]
 		public static extern void sdaiDeleteNPL(int_t list);
 
 		/// <summary>
@@ -3677,7 +3681,7 @@ namespace RDF
 		///
 		///	This call creates an aggregation within an aggregation.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggr")]
 		public static extern int_t sdaiCreateNestedAggr(int_t aggregate);
 
 		/// <summary>
@@ -3686,7 +3690,7 @@ namespace RDF
 		///	The function creates an aggregate instance and replaces the existing member of the specified ordered aggregate instance
 		///	referenced by the specified index.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggrByIndex")]
 		public static extern int_t sdaiCreateNestedAggrByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
@@ -3695,7 +3699,7 @@ namespace RDF
 		///	The function creates an aggregate instance as a member of the specified ordered aggregate instance.
 		///	The newly created aggregate is inserted into the aggregate at the position referenced by the specified index.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrByIndex")]
 		public static extern int_t sdaiInsertNestedAggrByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
@@ -3704,7 +3708,7 @@ namespace RDF
 		///	The function creates an aggregate instance replacing the current member of the aggregate instance
 		///	referenced by the specified iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggrByItr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggrByItr")]
 		public static extern int_t sdaiCreateNestedAggrByItr(int_t iterator);
 
 		/// <summary>
@@ -3713,7 +3717,7 @@ namespace RDF
 		///	The function creates an aggregate instance as a member of a list instance.
 		///	The newly created aggregate is inserted into the list instance before the member referenced by the specified iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrBefore")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrBefore")]
 		public static extern int_t sdaiInsertNestedAggrBefore(int_t iterator);
 
 		/// <summary>
@@ -3722,7 +3726,7 @@ namespace RDF
 		///	The function creates an aggregate instance as a member of a list instance.
 		///	The newly created aggregate is inserted into the list instance after the member referenced by the specified iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrAfter")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrAfter")]
 		public static extern int_t sdaiInsertNestedAggrAfter(int_t iterator);
 
 		/// <summary>
@@ -3734,7 +3738,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggrADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggrADB")]
 		public static extern int_t sdaiCreateNestedAggrADB(int_t aggregate, int_t selaggrInstance);
 
 		/// <summary>
@@ -3745,7 +3749,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggrByIndexADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggrByIndexADB")]
 		public static extern int_t sdaiCreateNestedAggrByIndexADB(int_t aggregate, int_t index, int_t selaggrInstance);
 
 		/// <summary>
@@ -3756,7 +3760,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrByIndexADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrByIndexADB")]
 		public static extern int_t sdaiInsertNestedAggrByIndexADB(int_t aggregate, int_t index, int_t selaggrInstance);
 
 		/// <summary>
@@ -3767,7 +3771,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateNestedAggrByItrADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateNestedAggrByItrADB")]
 		public static extern int_t sdaiCreateNestedAggrByItrADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
@@ -3778,7 +3782,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrBeforeADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrBeforeADB")]
 		public static extern int_t sdaiInsertNestedAggrBeforeADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
@@ -3789,7 +3793,7 @@ namespace RDF
 		///	Input ADB is expected to have type path.
 		///	The function sets the value of the ADB with the identifier of the newly created aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiInsertNestedAggrAfterADB")]
+		[DllImport(libifcengine, EntryPoint = "sdaiInsertNestedAggrAfterADB")]
 		public static extern int_t sdaiInsertNestedAggrAfterADB(int_t iterator, int_t selaggrInstance);
 
 		/// <summary>
@@ -3797,7 +3801,7 @@ namespace RDF
 		///
 		///	The function removes the member of the specified list referenced by the specified index.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemoveByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemoveByIndex")]
 		public static extern void sdaiRemoveByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
@@ -3806,7 +3810,7 @@ namespace RDF
 		///	The function removes the current member of an aggregate instance, that is not an array, referenced by the specified iterator.
 		///	After executing the function, the iterator position set as if the sdaiNext function had been invoked before the member was removed.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemoveByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemoveByIterator")]
 		public static extern void sdaiRemoveByIterator(int_t iterator);
 
 		/// <summary>
@@ -3881,22 +3885,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiRemove")]
+		[DllImport(libifcengine, EntryPoint = "sdaiRemove")]
 		public static extern void sdaiRemove(int_t aggregate, int_t valueType, byte[] value);
 
 		public static void sdaiRemove(int_t aggregate, int_t valueType, string value)
@@ -3917,7 +3921,7 @@ namespace RDF
 		///
 		///	The function tests whether the member of the specified array referenced by the specified index position has a value.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiTestArrayByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiTestArrayByIndex")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiTestArrayByIndex(int_t aggregate, int_t index);
 
@@ -3926,7 +3930,7 @@ namespace RDF
 		///
 		///	The function tests whether the member of the specified array referenced by the specified index position has a value.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiTestArrayByItr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiTestArrayByItr")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiTestArrayByItr(int_t iterator);
 
@@ -3935,7 +3939,7 @@ namespace RDF
 		///
 		///	This call creates an instance of the given entity.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstance")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstance")]
 		public static extern int_t sdaiCreateInstance(int_t model, int_t entity);
 
 		/// <summary>
@@ -3952,10 +3956,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstanceBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstanceBN")]
 		public static extern int_t sdaiCreateInstanceBN(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstanceBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstanceBN")]
 		public static extern int_t sdaiCreateInstanceBN(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -3964,7 +3968,7 @@ namespace RDF
 		///	This call creates a new application instance of the specified type, as determined by a constructed entity type
 		///	that is made up of the supplied simple entity types, in the specified SDAI model.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateComplexInstance")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateComplexInstance")]
 		public static extern int_t sdaiCreateComplexInstance(int_t model, int_t entityList);
 
 		/// <summary>
@@ -3973,7 +3977,7 @@ namespace RDF
 		///	This call creates a new application instance of the specified type, as determined by a constructed entity type
 		///	that is made up of the supplied simple entity types, in the specified SDAI model.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateComplexInstanceBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateComplexInstanceBN")]
 		public static extern int_t sdaiCreateComplexInstanceBN(int_t model, int_t nameNumber, out IntPtr nameVector);
 
 		/// <summary>
@@ -3981,7 +3985,7 @@ namespace RDF
 		///
 		///	This call will delete an existing instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiDeleteInstance")]
+		[DllImport(libifcengine, EntryPoint = "sdaiDeleteInstance")]
 		public static extern void sdaiDeleteInstance(int_t instance);
 
 		/// <summary>
@@ -3989,10 +3993,10 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBTypePath")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBTypePath")]
 		public static extern void sdaiPutADBTypePath(int_t ADB, int_t pathCount, string path);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutADBTypePath")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutADBTypePath")]
 		public static extern void sdaiPutADBTypePath(int_t ADB, int_t pathCount, byte[] path);
 
 		/// <summary>
@@ -4072,22 +4076,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttr")]
 		public static extern void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, byte[] value);
 
 		public static void sdaiPutAttr(int_t instance, int_t attribute, int_t valueType, string value)
@@ -4193,40 +4197,40 @@ namespace RDF
 		///				value
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, byte[] value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAttrBN")]
 		public static extern void sdaiPutAttrBN(int_t instance, byte[] attributeName, int_t valueType, byte[] value);
 
 		public static void sdaiPutAttrBN(int_t instance, string attributeName, int_t valueType, string value)
@@ -4247,7 +4251,7 @@ namespace RDF
 		///
 		///	This call removes all data from a specific attribute for the given instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiUnsetAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiUnsetAttr")]
 		public static extern void sdaiUnsetAttr(int_t instance, int_t attribute);
 
 		/// <summary>
@@ -4266,10 +4270,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiUnsetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiUnsetAttrBN")]
 		public static extern void sdaiUnsetAttrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiUnsetAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiUnsetAttrBN")]
 		public static extern void sdaiUnsetAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -4277,10 +4281,10 @@ namespace RDF
 		///
 		///	This call can be used to add a comment to an instance when exporting the content. The comment is available in the exported/saved IFC file.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSetComment")]
+		[DllImport(libifcengine, EntryPoint = "engiSetComment")]
 		public static extern void engiSetComment(int_t instance, string comment);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiSetComment")]
+		[DllImport(libifcengine, EntryPoint = "engiSetComment")]
 		public static extern void engiSetComment(int_t instance, byte[] comment);
 
 		/// <summary>
@@ -4288,7 +4292,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetInstanceLocalId")]
+		[DllImport(libifcengine, EntryPoint = "engiGetInstanceLocalId")]
 		public static extern Int64 engiGetInstanceLocalId(int_t instance);
 
 		/// <summary>
@@ -4296,7 +4300,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiTestAttr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiTestAttr")]
 		public static extern int_t sdaiTestAttr(int_t instance, int_t attribute);
 
 		/// <summary>
@@ -4310,10 +4314,10 @@ namespace RDF
 		///				attributeName
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiTestAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiTestAttrBN")]
 		public static extern int_t sdaiTestAttrBN(int_t instance, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiTestAttrBN")]
+		[DllImport(libifcengine, EntryPoint = "sdaiTestAttrBN")]
 		public static extern int_t sdaiTestAttrBN(int_t instance, byte[] attributeName);
 
 		/// <summary>
@@ -4321,7 +4325,7 @@ namespace RDF
 		///
 		///	This call creates an instance at a specific given express ID, the instance is only created if the express ID was not used yet.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstanceEI")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstanceEI")]
 		public static extern int_t sdaiCreateInstanceEI(int_t model, int_t entity, Int64 expressID);
 
 		/// <summary>
@@ -4329,10 +4333,10 @@ namespace RDF
 		///
 		///	This call creates an instance at a specific given express ID, the instance is only created if the express ID was not used yet.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstanceBNEI")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstanceBNEI")]
 		public static extern int_t sdaiCreateInstanceBNEI(int_t model, string entityName, Int64 expressID);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateInstanceBNEI")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateInstanceBNEI")]
 		public static extern int_t sdaiCreateInstanceBNEI(int_t model, byte[] entityName, Int64 expressID);
 
 		/// <summary>
@@ -4342,7 +4346,7 @@ namespace RDF
 		///	The iterator is positioned as if the sdaiBeginning function had been executed such that so that no
 		///	member of the aggregate is referenced as the current member.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiCreateIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiCreateIterator")]
 		public static extern int_t sdaiCreateIterator(int_t aggregate);
 
 		/// <summary>
@@ -4350,7 +4354,7 @@ namespace RDF
 		///
 		///	This function deletes the specified iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiDeleteIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiDeleteIterator")]
 		public static extern void sdaiDeleteIterator(int_t iterator);
 
 		/// <summary>
@@ -4358,7 +4362,7 @@ namespace RDF
 		///
 		///	The function positions the iterator at the beginning of its associated aggregate instance such that there is no current member.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiBeginning")]
+		[DllImport(libifcengine, EntryPoint = "sdaiBeginning")]
 		public static extern void sdaiBeginning(int_t iterator);
 
 		/// <summary>
@@ -4366,7 +4370,7 @@ namespace RDF
 		///
 		///	This function positions the iterator to the succeeding member of the associated aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiNext")]
+		[DllImport(libifcengine, EntryPoint = "sdaiNext")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiNext(int_t iterator);
 
@@ -4379,7 +4383,7 @@ namespace RDF
 		///	If the iterator is at the beginning of the aggregate no repositioning occur.
 		///	If the iterator references the first member of the aggregate, the iterator is set at the beginning so there is no current member.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPrevious")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPrevious")]
 		public static extern int_t sdaiPrevious(int_t iterator);
 
 		/// <summary>
@@ -4387,7 +4391,7 @@ namespace RDF
 		///
 		///	This function positions the specified iterator at the end of the ordered aggregate instance members such that there is no current member.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiEnd")]
+		[DllImport(libifcengine, EntryPoint = "sdaiEnd")]
 		public static extern void sdaiEnd(int_t iterator);
 
 		/// <summary>
@@ -4464,27 +4468,27 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiIsMember")]
+		[DllImport(libifcengine, EntryPoint = "sdaiIsMember")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool sdaiIsMember(int_t aggregate, int_t valueType, byte[] value);
 
@@ -4509,7 +4513,7 @@ namespace RDF
 		///	The function returns the current value of the real precision, the string width, or the binary width
 		///	for the current member referenced by the specified iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrElementBoundByItr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrElementBoundByItr")]
 		public static extern int_t sdaiGetAggrElementBoundByItr(int_t iterator);
 
 		/// <summary>
@@ -4518,7 +4522,7 @@ namespace RDF
 		///	The function returns the current value of the real precision, the string width, or the binary width 
 		///	of the aggregate element at the specified index position in the specified ordered aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrElementBoundByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrElementBoundByIndex")]
 		public static extern int_t sdaiGetAggrElementBoundByIndex(int_t aggregate, int_t index);
 
 		/// <summary>
@@ -4526,7 +4530,7 @@ namespace RDF
 		///
 		///	The function returns the current value of the lower bound, or index, of the specified aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetLowerBound")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetLowerBound")]
 		public static extern int_t sdaiGetLowerBound(int_t aggregate);
 
 		/// <summary>
@@ -4534,7 +4538,7 @@ namespace RDF
 		///
 		///	The function returns the current value of the upper bound, or index, of the specified aggregate instance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetUpperBound")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetUpperBound")]
 		public static extern int_t sdaiGetUpperBound(int_t aggregate);
 
 		/// <summary>
@@ -4542,7 +4546,7 @@ namespace RDF
 		///
 		///	The function returns the value of the lower index of the specified array instance when it was created.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetLowerIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetLowerIndex")]
 		public static extern int_t sdaiGetLowerIndex(int_t aggregate);
 
 		/// <summary>
@@ -4550,7 +4554,7 @@ namespace RDF
 		///
 		///	The function returns the value of the upper index of the specified array instance when it was created.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetUpperIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetUpperIndex")]
 		public static extern int_t sdaiGetUpperIndex(int_t aggregate);
 
 		/// <summary>
@@ -4559,7 +4563,7 @@ namespace RDF
 		///	The function restores the unset (not assigned a value) status of the member
 		///	of the specified array at the specified index position.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiUnsetArrayByIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiUnsetArrayByIndex")]
 		public static extern void sdaiUnsetArrayByIndex(int_t array, int_t index);
 
 		/// <summary>
@@ -4568,7 +4572,7 @@ namespace RDF
 		///	The function restores the unset (not assigned a value) status of a member at the
 		///	position identified by the iterator in the array associated with the iterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiUnsetArrayByItr")]
+		[DllImport(libifcengine, EntryPoint = "sdaiUnsetArrayByItr")]
 		public static extern void sdaiUnsetArrayByItr(int_t iterator);
 
 		/// <summary>
@@ -4577,7 +4581,7 @@ namespace RDF
 		///	The function resizes the specified array instance setting the lower, or upper index,
 		///	or both, based upon the current population of the application schema.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiReindexArray")]
+		[DllImport(libifcengine, EntryPoint = "sdaiReindexArray")]
 		public static extern void sdaiReindexArray(int_t array);
 
 		/// <summary>
@@ -4586,7 +4590,7 @@ namespace RDF
 		///	The function shall resizes the specified array instance setting the lower and upper
 		///	index with the specified values.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiResetArrayIndex")]
+		[DllImport(libifcengine, EntryPoint = "sdaiResetArrayIndex")]
 		public static extern void sdaiResetArrayIndex(int_t array, int_t lower, int_t upper);
 
 		/// <summary>
@@ -4595,7 +4599,7 @@ namespace RDF
 		///	The function enables calculation of derived attributes for sdaiGetAttr(BN) and other get value functions and dynamic aggregation indexes.
 		///	Returns success flag.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiEnableDerivedAttributes")]
+		[DllImport(libifcengine, EntryPoint = "engiEnableDerivedAttributes")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiEnableDerivedAttributes(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool enable);
 
@@ -4604,7 +4608,7 @@ namespace RDF
 		///
 		///	The function evaluates and replaces all * with values, optionally can handle $ values as derived attributes.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiEvaluateAllDerivedAttributes")]
+		[DllImport(libifcengine, EntryPoint = "engiEvaluateAllDerivedAttributes")]
 		public static extern void engiEvaluateAllDerivedAttributes(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool includeNullValues);
 
 		/// <summary>
@@ -4613,7 +4617,7 @@ namespace RDF
 		///	The function checks if instances of the specified entity are complex instances.
 		///	You can use engiGetEntityParentEx to list components.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiIsComplexEntity")]
+		[DllImport(libifcengine, EntryPoint = "engiIsComplexEntity")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiIsComplexEntity(int_t entity);
 
@@ -4629,7 +4633,7 @@ namespace RDF
 		///	For example a slightly curved wall with large size will get much more precise segmentation as the segmentLength
 		///	will force the segmentation for the wall to increase.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setSegmentation")]
+		[DllImport(libifcengine, EntryPoint = "setSegmentation")]
 		public static extern void setSegmentation(int_t model, int_t segmentationParts, double segmentationLength);
 
 		/// <summary>
@@ -4641,7 +4645,7 @@ namespace RDF
 		///		segmentationParts  = 36
 		///		segmentationLength = 0.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getSegmentation")]
+		[DllImport(libifcengine, EntryPoint = "getSegmentation")]
 		public static extern void getSegmentation(int_t model, out int_t segmentationParts, out double segmentationLength);
 
 		/// <summary>
@@ -4649,7 +4653,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setEpsilon")]
+		[DllImport(libifcengine, EntryPoint = "setEpsilon")]
 		public static extern void setEpsilon(int_t model, int_t mask, double absoluteEpsilon, double relativeEpsilon);
 
 		/// <summary>
@@ -4657,7 +4661,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getEpsilon")]
+		[DllImport(libifcengine, EntryPoint = "getEpsilon")]
 		public static extern int_t getEpsilon(int_t model, int_t mask, out double absoluteEpsilon, out double relativeEpsilon);
 
 		//
@@ -4674,7 +4678,7 @@ namespace RDF
 		///		getSegmentation(model, nullptr, &segmentationLength);
 		///		setSegmentation(model, circles, segmentationLength);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "circleSegments")]
+		[DllImport(libifcengine, EntryPoint = "circleSegments")]
 		public static extern void circleSegments(int_t circles, int_t smallCircles);
 
 		/// <summary>
@@ -4687,7 +4691,7 @@ namespace RDF
 		///		getSegmentation(model, &segmentationParts, nullptr);
 		///		setSegmentation(model, segmentationParts, length);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setMaximumSegmentationLength")]
+		[DllImport(libifcengine, EntryPoint = "setMaximumSegmentationLength")]
 		public static extern void setMaximumSegmentationLength(int_t model, double length);
 
 		/// <summary>
@@ -4701,10 +4705,10 @@ namespace RDF
 		///
 		///	Optional arguments unitPrefix (for example "MILLI"), unitName (if defined) and SIUnitName (for example "METRE") can be requested.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getProjectUnitConversionFactor")]
+		[DllImport(libifcengine, EntryPoint = "getProjectUnitConversionFactor")]
 		public static extern double getProjectUnitConversionFactor(int_t model, string unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
-		[DllImport(ifcenginedll, EntryPoint = "getProjectUnitConversionFactor")]
+		[DllImport(libifcengine, EntryPoint = "getProjectUnitConversionFactor")]
 		public static extern double getProjectUnitConversionFactor(int_t model, byte[] unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
@@ -4718,10 +4722,10 @@ namespace RDF
 		///
 		///	Optional arguments unitPrefix (for example L"MILLI"), unitName (if defined) and SIUnitName (for example L"METRE") can be requested.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getProjectUnitConversionFactorW")]
+		[DllImport(libifcengine, EntryPoint = "getProjectUnitConversionFactorW")]
 		public static extern double getProjectUnitConversionFactorW(int_t model, string unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
-		[DllImport(ifcenginedll, EntryPoint = "getProjectUnitConversionFactorW")]
+		[DllImport(libifcengine, EntryPoint = "getProjectUnitConversionFactorW")]
 		public static extern double getProjectUnitConversionFactorW(int_t model, byte[] unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
@@ -4735,7 +4739,7 @@ namespace RDF
 		///
 		///	Optional arguments unitType (for example "LENGTHUNIT"), unitPrefix (for example "MILLI"), unitName (if defined) and SIUnitName (for example "METRE") can be requested.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getUnitInstanceConversionFactor")]
+		[DllImport(libifcengine, EntryPoint = "getUnitInstanceConversionFactor")]
 		public static extern double getUnitInstanceConversionFactor(int_t unitInstance, out IntPtr unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
@@ -4749,7 +4753,7 @@ namespace RDF
 		///
 		///	Optional arguments unitType (for example L"LENGTHUNIT"), unitPrefix (for example L"MILLI"), unitName (if defined) and SIUnitName (for example L"METRE") can be requested.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getUnitInstanceConversionFactorW")]
+		[DllImport(libifcengine, EntryPoint = "getUnitInstanceConversionFactorW")]
 		public static extern double getUnitInstanceConversionFactorW(int_t unitInstance, out IntPtr unitType, out IntPtr unitPrefix, out IntPtr unitName, out IntPtr SIUnitName);
 
 		/// <summary>
@@ -4788,7 +4792,7 @@ namespace RDF
 		///			if 0 this setting is applied to all BoundaryRepresentation/Mesh based geometries
 		///			if larger than 0 it is applied to BoundaryRepresentation/Mesh based geometries with vertices size smaller or equal to the given number
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setBRepProperties")]
+		[DllImport(libifcengine, EntryPoint = "setBRepProperties")]
 		public static extern void setBRepProperties(int_t model, Int64 consistencyCheck, double fraction, double epsilon, int_t maxVerticesSize);
 
 		/// <summary>
@@ -4801,7 +4805,7 @@ namespace RDF
 		///		3	cached and non-cached geometry tree structures
 		///		4	clean memory allocated within a session for ADB structures and string values (including enumerations requested as wide char).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "cleanMemory")]
+		[DllImport(libifcengine, EntryPoint = "cleanMemory")]
 		public static extern void cleanMemory(int_t model, int_t mode);
 
 		/// <summary>
@@ -4809,7 +4813,7 @@ namespace RDF
 		///
 		///	Returns the line STEP/Express ID of an instance
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalGetP21Line")]
+		[DllImport(libifcengine, EntryPoint = "internalGetP21Line")]
 		public static extern Int64 internalGetP21Line(int_t instance);
 
 		/// <summary>
@@ -4817,7 +4821,7 @@ namespace RDF
 		///
 		///	Returns an instance based on the model and STEP/Express ID (even when the instance itself might be non-existant).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalForceInstanceFromP21Line")]
+		[DllImport(libifcengine, EntryPoint = "internalForceInstanceFromP21Line")]
 		public static extern int_t internalForceInstanceFromP21Line(int_t model, Int64 P21Line);
 
 		/// <summary>
@@ -4825,7 +4829,7 @@ namespace RDF
 		///
 		///	Returns an instance based on the model and STEP/Express ID
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalGetInstanceFromP21Line")]
+		[DllImport(libifcengine, EntryPoint = "internalGetInstanceFromP21Line")]
 		public static extern int_t internalGetInstanceFromP21Line(int_t model, Int64 P21Line);
 
 		/// <summary>
@@ -4833,7 +4837,7 @@ namespace RDF
 		///
 		///	In case an XML file is loaded the XML ID values are kept in memory and can be retrieved through this API call.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalGetXMLID")]
+		[DllImport(libifcengine, EntryPoint = "internalGetXMLID")]
 		public static extern IntPtr internalGetXMLID(int_t instance, out IntPtr XMLID);
 
 		public static string internalGetXMLID(int_t instance)
@@ -4852,7 +4856,7 @@ namespace RDF
 		///		2 - char16_t*
 		///		4 - char32_t*
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setStringUnicode")]
+		[DllImport(libifcengine, EntryPoint = "setStringUnicode")]
 		public static extern int_t setStringUnicode(int_t unicode);
 
 		/// <summary>
@@ -4860,7 +4864,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getStringUnicode")]
+		[DllImport(libifcengine, EntryPoint = "getStringUnicode")]
 		public static extern int_t getStringUnicode();
 
 		/// <summary>
@@ -4870,7 +4874,7 @@ namespace RDF
 		///	if model is NULL it will set codepage for models, created after the call or for contexts when model is not known
 		///	returns 1 when successful of 0 when fails.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiSetStringEncoding")]
+		[DllImport(libifcengine, EntryPoint = "engiSetStringEncoding")]
 		public static extern int_t engiSetStringEncoding(int_t model, byte encoding);
 
 		/// <summary>
@@ -4878,7 +4882,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setFilter")]
+		[DllImport(libifcengine, EntryPoint = "setFilter")]
 		public static extern void setFilter(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
@@ -4886,7 +4890,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getFilter")]
+		[DllImport(libifcengine, EntryPoint = "getFilter")]
 		public static extern int_t getFilter(int_t model, int_t mask);
 
 		/// <summary>
@@ -4894,7 +4898,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setSerialization")]
+		[DllImport(libifcengine, EntryPoint = "setSerialization")]
 		public static extern void setSerialization(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
@@ -4902,7 +4906,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getSerialization")]
+		[DllImport(libifcengine, EntryPoint = "getSerialization")]
 		public static extern int_t getSerialization(int_t model, int_t mask);
 
 		//
@@ -4914,7 +4918,7 @@ namespace RDF
 		///
 		///	Model input parameter is irrelevant, but is required for backwards compatibility.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetEntityAndSubTypesExtent")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetEntityAndSubTypesExtent")]
 		public static extern int_t xxxxGetEntityAndSubTypesExtent(int_t model, int_t entity);
 
 		/// <summary>
@@ -4929,10 +4933,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetEntityAndSubTypesExtentBN")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetEntityAndSubTypesExtentBN")]
 		public static extern int_t xxxxGetEntityAndSubTypesExtentBN(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetEntityAndSubTypesExtentBN")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetEntityAndSubTypesExtentBN")]
 		public static extern int_t xxxxGetEntityAndSubTypesExtentBN(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -4940,7 +4944,7 @@ namespace RDF
 		///
 		///	This call returns an aggregation containing all instances.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAllInstances")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAllInstances")]
 		public static extern int_t xxxxGetAllInstances(int_t model);
 
 		/// <summary>
@@ -4950,7 +4954,7 @@ namespace RDF
 		///
 		///	note: this is independent from if there are inverse relations defining such an aggregation or parts of it.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetInstancesUsing")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetInstancesUsing")]
 		public static extern int_t xxxxGetInstancesUsing(int_t instance);
 
 		/// <summary>
@@ -4958,7 +4962,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxDeleteFromAggregation")]
+		[DllImport(libifcengine, EntryPoint = "xxxxDeleteFromAggregation")]
 		public static extern int_t xxxxDeleteFromAggregation(int_t instance, int_t aggregate, int_t elementIndex);
 
 		/// <summary>
@@ -4966,7 +4970,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAttrDefinitionByValue")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAttrDefinitionByValue")]
 		public static extern int_t xxxxGetAttrDefinitionByValue(int_t instance, out IntPtr value);
 
 		/// <summary>
@@ -4975,7 +4979,7 @@ namespace RDF
 		///	This function iterates over all available instances loaded in memory, it is the fastest way to find all instances.
 		///	Argument entity and entityName are both optional and if non-zero are filled with respectively the entity handle and entity name as char array.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "iterateOverInstances")]
+		[DllImport(libifcengine, EntryPoint = "iterateOverInstances")]
 		public static extern int_t iterateOverInstances(int_t model, int_t instance, out int_t entity, out IntPtr entityName);
 
 		/// <summary>
@@ -5072,16 +5076,16 @@ namespace RDF
 		///
 		///	(Non-standard extensions) sdaiGetADBValue: sdaiADB is allowed and will success when sdaiGetADBTypePath is not NULL, returning ABD value has type path element removed.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIterator")]
 		public static extern int_t sdaiGetAggrByIterator(int_t iterator, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIterator")]
 		public static extern int_t sdaiGetAggrByIterator(int_t iterator, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIterator")]
 		public static extern int_t sdaiGetAggrByIterator(int_t iterator, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetAggrByIterator")]
 		public static extern int_t sdaiGetAggrByIterator(int_t iterator, int_t valueType, out IntPtr value);
 
 		public static int_t sdaiGetAggrByIterator(int_t iterator, int_t valueType, out string value)
@@ -5178,22 +5182,22 @@ namespace RDF
 		///	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
 		///	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] ref bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, ref int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, ref double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, ref IntPtr value);
 
-		[DllImport(ifcenginedll, EntryPoint = "sdaiPutAggrByIterator")]
+		[DllImport(libifcengine, EntryPoint = "sdaiPutAggrByIterator")]
 		public static extern void sdaiPutAggrByIterator(int_t iterator, int_t valueType, byte[] value);
 
 		public static void sdaiPutAggrByIterator(int_t iterator, int_t valueType, string value)
@@ -5214,10 +5218,10 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalSetLink")]
+		[DllImport(libifcengine, EntryPoint = "internalSetLink")]
 		public static extern void internalSetLink(int_t instance, string attributeName, int_t linked_id);
 
-		[DllImport(ifcenginedll, EntryPoint = "internalSetLink")]
+		[DllImport(libifcengine, EntryPoint = "internalSetLink")]
 		public static extern void internalSetLink(int_t instance, byte[] attributeName, int_t linked_id);
 
 		/// <summary>
@@ -5225,7 +5229,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalAddAggrLink")]
+		[DllImport(libifcengine, EntryPoint = "internalAddAggrLink")]
 		public static extern void internalAddAggrLink(int_t aggregate, int_t linked_id);
 
 		/// <summary>
@@ -5233,7 +5237,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetNotReferedAggr")]
+		[DllImport(libifcengine, EntryPoint = "engiGetNotReferedAggr")]
 		public static extern void engiGetNotReferedAggr(int_t model, out int_t value);
 
 		/// <summary>
@@ -5241,7 +5245,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttributeAggr")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttributeAggr")]
 		public static extern void engiGetAttributeAggr(int_t instance, out int_t value);
 
 		/// <summary>
@@ -5249,7 +5253,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiErrorQuery")]
+		[DllImport(libifcengine, EntryPoint = "sdaiErrorQuery")]
 		public static extern int_t sdaiErrorQuery();
 
 		//
@@ -5261,7 +5265,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "InitializeMultiThreading")]
+		[DllImport(libifcengine, EntryPoint = "InitializeMultiThreading")]
 		public static extern int_t InitializeMultiThreading(int_t model, int_t threadCount);
 
 		/// <summary>
@@ -5269,7 +5273,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "CreateOwlModelMultiThreadingWrapper")]
+		[DllImport(libifcengine, EntryPoint = "CreateOwlModelMultiThreadingWrapper")]
 		public static extern int_t CreateOwlModelMultiThreadingWrapper(int_t model, Int64 owlModel, int_t threadIndex);
 
 		/// <summary>
@@ -5281,7 +5285,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP model handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlGetModel")]
+		[DllImport(libifcengine, EntryPoint = "owlGetModel")]
 		public static extern void owlGetModel(int_t model, out Int64 owlModel);
 
 		/// <summary>
@@ -5292,7 +5296,7 @@ namespace RDF
 		///	This call allows a user to use an existing model that will be connected. This connected model
 		///	will not be destroyed at closing of the STEP model, i.e. within sdaiCloseModel().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlConnectModel")]
+		[DllImport(libifcengine, EntryPoint = "owlConnectModel")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool owlConnectModel(int_t model, Int64 owlModel);
 
@@ -5305,7 +5309,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlGetInstance")]
+		[DllImport(libifcengine, EntryPoint = "owlGetInstance")]
 		public static extern void owlGetInstance(int_t model, int_t instance, out Int64 owlInstance);
 
 		/// <summary>
@@ -5313,7 +5317,7 @@ namespace RDF
 		///
 		///	deprecated, if you use this call, please contact us
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlMaterialInstance")]
+		[DllImport(libifcengine, EntryPoint = "owlMaterialInstance")]
 		public static extern void owlMaterialInstance(int_t instanceBase, int_t instanceContext, out Int64 owlInstance);
 
 		/// <summary>
@@ -5326,7 +5330,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlBuildInstance")]
+		[DllImport(libifcengine, EntryPoint = "owlBuildInstance")]
 		public static extern void owlBuildInstance(int_t model, int_t instance, out Int64 owlInstance);
 
 		/// <summary>
@@ -5339,7 +5343,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlBuildInstanceMT")]
+		[DllImport(libifcengine, EntryPoint = "owlBuildInstanceMT")]
 		public static extern Int64 owlBuildInstanceMT(int_t instance, int_t model);
 
 		/// <summary>
@@ -5352,7 +5356,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlBuildInstanceInContext")]
+		[DllImport(libifcengine, EntryPoint = "owlBuildInstanceInContext")]
 		public static extern void owlBuildInstanceInContext(int_t instanceBase, int_t instanceContext, out Int64 owlInstance);
 
 		/// <summary>
@@ -5365,7 +5369,7 @@ namespace RDF
 		///		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
 		///		  however most correct would be to get and use the Geometry Kernel handle.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlBuildInstanceInContextMT")]
+		[DllImport(libifcengine, EntryPoint = "owlBuildInstanceInContextMT")]
 		public static extern Int64 owlBuildInstanceInContextMT(int_t instanceBase, int_t instanceContext, int_t model);
 
 		/// <summary>
@@ -5373,7 +5377,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiInstanceUsesSegmentation")]
+		[DllImport(libifcengine, EntryPoint = "engiInstanceUsesSegmentation")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool engiInstanceUsesSegmentation(int_t instance);
 
@@ -5382,7 +5386,7 @@ namespace RDF
 		///
 		///	deprecated, if you use this call, please contact us
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlBuildInstances")]
+		[DllImport(libifcengine, EntryPoint = "owlBuildInstances")]
 		public static extern void owlBuildInstances(int_t model, int_t instance, out Int64 owlInstanceComplete, out Int64 owlInstanceSolids, out Int64 owlInstanceVoids);
 
 		/// <summary>
@@ -5390,7 +5394,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "owlGetMappedItem")]
+		[DllImport(libifcengine, EntryPoint = "owlGetMappedItem")]
 		public static extern void owlGetMappedItem(int_t model, int_t instance, out Int64 owlInstance, out double transformationMatrix);
 
 		/// <summary>
@@ -5398,7 +5402,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceDerivedPropertiesInModelling")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceDerivedPropertiesInModelling")]
 		public static extern int_t getInstanceDerivedPropertiesInModelling(int_t model, int_t instance, out double height, out double width, out double thickness);
 
 		/// <summary>
@@ -5406,7 +5410,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceDerivedBoundingBox")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceDerivedBoundingBox")]
 		public static extern int_t getInstanceDerivedBoundingBox(int_t model, int_t instance, out double Ox, out double Oy, out double Oz, out double Vx, out double Vy, out double Vz);
 
 		/// <summary>
@@ -5414,7 +5418,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceTransformationMatrix")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceTransformationMatrix")]
 		public static extern int_t getInstanceTransformationMatrix(int_t model, int_t instance, out double _11, out double _12, out double _13, out double _14, out double _21, out double _22, out double _23, out double _24, out double _31, out double _32, out double _33, out double _34, out double _41, out double _42, out double _43, out double _44);
 
 		/// <summary>
@@ -5422,7 +5426,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceDerivedTransformationMatrix")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceDerivedTransformationMatrix")]
 		public static extern int_t getInstanceDerivedTransformationMatrix(int_t model, int_t instance, out double _11, out double _12, out double _13, out double _14, out double _21, out double _22, out double _23, out double _24, out double _31, out double _32, out double _33, out double _34, out double _41, out double _42, out double _43, out double _44);
 
 		/// <summary>
@@ -5430,7 +5434,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalGetBoundingBox")]
+		[DllImport(libifcengine, EntryPoint = "internalGetBoundingBox")]
 		public static extern int_t internalGetBoundingBox(int_t model, int_t instance);
 
 		/// <summary>
@@ -5438,7 +5442,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "internalGetCenter")]
+		[DllImport(libifcengine, EntryPoint = "internalGetCenter")]
 		public static extern int_t internalGetCenter(int_t model, int_t instance);
 
 		/// <summary>
@@ -5446,7 +5450,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getRootAxis2Placement")]
+		[DllImport(libifcengine, EntryPoint = "getRootAxis2Placement")]
 		public static extern int_t getRootAxis2Placement(int_t model, [param: MarshalAs(UnmanagedType.U1)] bool exclusiveIfHasGeometry);
 
 		/// <summary>
@@ -5456,10 +5460,10 @@ namespace RDF
 		///	This is all done semantically, i.e. it can be seen as a derived call representing a small SDAI function adjust (in case of set) the
 		///	origin of a model. 
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getGlobalPlacement")]
+		[DllImport(libifcengine, EntryPoint = "getGlobalPlacement")]
 		public static extern int_t getGlobalPlacement(int_t model, out double origin);
 
-		[DllImport(ifcenginedll, EntryPoint = "getGlobalPlacement")]
+		[DllImport(libifcengine, EntryPoint = "getGlobalPlacement")]
 		public static extern int_t getGlobalPlacement(int_t model, [Out] double[] origin);
 
 		/// <summary>
@@ -5468,10 +5472,10 @@ namespace RDF
 		///	The call setGlobalPlacement allows you to adjust the placement of a model.
 		///	This is all done semantically, i.e. it can be seen as a derived call representing a small SDAI function adjust the origin of a model. 
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setGlobalPlacement")]
+		[DllImport(libifcengine, EntryPoint = "setGlobalPlacement")]
 		public static extern int_t setGlobalPlacement(int_t model, ref double origin, [param: MarshalAs(UnmanagedType.U1)] bool includeRotation);
 
-		[DllImport(ifcenginedll, EntryPoint = "setGlobalPlacement")]
+		[DllImport(libifcengine, EntryPoint = "setGlobalPlacement")]
 		public static extern int_t setGlobalPlacement(int_t model, double[] origin, [param: MarshalAs(UnmanagedType.U1)] bool includeRotation);
 
 		/// <summary>
@@ -5479,7 +5483,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getTimeStamp")]
+		[DllImport(libifcengine, EntryPoint = "getTimeStamp")]
 		public static extern int_t getTimeStamp(int_t model);
 
 		/// <summary>
@@ -5487,7 +5491,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setInstanceReference")]
+		[DllImport(libifcengine, EntryPoint = "setInstanceReference")]
 		public static extern int_t setInstanceReference(int_t instance, int_t value);
 
 		/// <summary>
@@ -5495,7 +5499,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceReference")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceReference")]
 		public static extern int_t getInstanceReference(int_t instance);
 
 		/// <summary>
@@ -5511,7 +5515,7 @@ namespace RDF
 		///		IfcLinearPlacement => in case CartesianPosition is empty the internally calculated matrix will be
 		///							  represented as an IfcAxis2Placement
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "inferenceInstance")]
+		[DllImport(libifcengine, EntryPoint = "inferenceInstance")]
 		public static extern int_t inferenceInstance(int_t instance);
 
 		/// <summary>
@@ -5519,7 +5523,7 @@ namespace RDF
 		///
 		///	...
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiValidateSchemaInstance")]
+		[DllImport(libifcengine, EntryPoint = "sdaiValidateSchemaInstance")]
 		public static extern int_t sdaiValidateSchemaInstance(int_t instance);
 
 		//
@@ -5531,16 +5535,16 @@ namespace RDF
 		///
 		///	This call is deprecated, please use engiGetAggrType, the index is irrelevant.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrUnknownElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrUnknownElement")]
 		public static extern int_t engiGetAggrUnknownElement(int_t aggregate, int_t elementIndex, out int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrUnknownElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrUnknownElement")]
 		public static extern int_t engiGetAggrUnknownElement(int_t aggregate, int_t elementIndex, out int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrUnknownElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrUnknownElement")]
 		public static extern int_t engiGetAggrUnknownElement(int_t aggregate, int_t elementIndex, out int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrUnknownElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrUnknownElement")]
 		public static extern int_t engiGetAggrUnknownElement(int_t aggregate, int_t elementIndex, out int_t valueType, out IntPtr value);
 
 		/// <summary>
@@ -5550,7 +5554,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use SdaiAttr or attribute name as primary data and engiGetEntityAttributePosition.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeByIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeByIndex")]
 		public static extern int_t engiGetEntityAttributeByIndex(int_t entity, int_t index, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
@@ -5561,7 +5565,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributeByIterator.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "iterateOverProperties")]
+		[DllImport(libifcengine, EntryPoint = "iterateOverProperties")]
 		public static extern int_t iterateOverProperties(int_t entity, int_t index);
 
 		/// <summary>
@@ -5569,10 +5573,10 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeIndex")]
 		public static extern int_t engiGetEntityAttributeIndex(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeIndex")]
 		public static extern int_t engiGetEntityAttributeIndex(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -5580,10 +5584,10 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeIndexEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeIndexEx")]
 		public static extern int_t engiGetEntityAttributeIndexEx(int_t entity, string attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityAttributeIndexEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityAttributeIndexEx")]
 		public static extern int_t engiGetEntityAttributeIndexEx(int_t entity, byte[] attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
@@ -5591,7 +5595,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributeByIterator, engiGetAttrName.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgumentName")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgumentName")]
 		public static extern IntPtr engiGetEntityArgumentName(int_t entity, int_t index, int_t valueType, out IntPtr attributeName);
 
 		/// <summary>
@@ -5599,7 +5603,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributeByIterator, engiGetAttrType.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgumentType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgumentType")]
 		public static extern void engiGetEntityArgumentType(int_t entity, int_t index, out int_t attributeType);
 
 		/// <summary>
@@ -5607,7 +5611,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiIsAttrOptional(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrOptional")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrOptional")]
 		public static extern int_t engiGetAttrOptional(int_t attribute);
 
 		/// <summary>
@@ -5623,10 +5627,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrOptionalBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrOptionalBN")]
 		public static extern int_t engiGetAttrOptionalBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrOptionalBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrOptionalBN")]
 		public static extern int_t engiGetAttrOptionalBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -5634,7 +5638,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiIsAttrInverse(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrInverse")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrInverse")]
 		public static extern int_t engiGetAttrInverse(int_t attribute);
 
 		/// <summary>
@@ -5650,10 +5654,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrInverseBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrInverseBN")]
 		public static extern int_t engiGetAttrInverseBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrInverseBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrInverseBN")]
 		public static extern int_t engiGetAttrInverseBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -5661,7 +5665,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiIsAttrInverse(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiAttrIsInverse")]
+		[DllImport(libifcengine, EntryPoint = "engiAttrIsInverse")]
 		public static extern int_t engiAttrIsInverse(int_t attribute);
 
 		/// <summary>
@@ -5669,7 +5673,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrDomainName(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomain")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomain")]
 		public static extern IntPtr engiGetAttrDomain(int_t attribute, out IntPtr domainName);
 
 		/// <summary>
@@ -5686,10 +5690,10 @@ namespace RDF
 		///				domainName
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomainBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomainBN")]
 		public static extern IntPtr engiGetAttrDomainBN(int_t entity, string attributeName, out IntPtr domainName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrDomainBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrDomainBN")]
 		public static extern IntPtr engiGetAttrDomainBN(int_t entity, byte[] attributeName, out IntPtr domainName);
 
 		/// <summary>
@@ -5697,7 +5701,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiIsEntityAbstract(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityIsAbstract")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityIsAbstract")]
 		public static extern int_t engiGetEntityIsAbstract(int_t entity);
 
 		/// <summary>
@@ -5713,10 +5717,10 @@ namespace RDF
 		///					)
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityIsAbstractBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityIsAbstractBN")]
 		public static extern int_t engiGetEntityIsAbstractBN(int_t model, string entityName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityIsAbstractBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityIsAbstractBN")]
 		public static extern int_t engiGetEntityIsAbstractBN(int_t model, byte[] entityName);
 
 		/// <summary>
@@ -5724,7 +5728,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrTraits(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttributeTraits")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttributeTraits")]
 		public static extern void engiGetAttributeTraits(int_t attribute, out IntPtr name, out int_t definingEntity, [param: MarshalAs(UnmanagedType.U1)] out bool isExplicit, [param: MarshalAs(UnmanagedType.U1)] out bool isInverse, out enum_express_data_type attrType, out int_t domainEntity, out int_t aggregationDefinition, [param: MarshalAs(UnmanagedType.U1)] out bool isOptional);
 
 		/// <summary>
@@ -5732,7 +5736,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetEntityNoAttributes(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityNoArguments")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityNoArguments")]
 		public static extern int_t engiGetEntityNoArguments(int_t entity);
 
 		/// <summary>
@@ -5740,7 +5744,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetArgumentType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetArgumentType")]
 		public static extern int_t engiGetArgumentType(int_t attribute);
 
 		/// <summary>
@@ -5748,7 +5752,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttributeType")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttributeType")]
 		public static extern int_t engiGetAttributeType(int_t attribute);
 
 		/// <summary>
@@ -5756,10 +5760,10 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgumentIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgumentIndex")]
 		public static extern int_t engiGetEntityArgumentIndex(int_t entity, string argumentName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgumentIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgumentIndex")]
 		public static extern int_t engiGetEntityArgumentIndex(int_t entity, byte[] argumentName);
 
 		/// <summary>
@@ -5767,16 +5771,16 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call sdaiGetAggrByIndex(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrElement")]
 		public static extern int_t engiGetAggrElement(int_t aggregate, int_t index, int_t valueType, [param: MarshalAs(UnmanagedType.U1)] out bool value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrElement")]
 		public static extern int_t engiGetAggrElement(int_t aggregate, int_t index, int_t valueType, out int_t value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrElement")]
 		public static extern int_t engiGetAggrElement(int_t aggregate, int_t index, int_t valueType, out double value);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAggrElement")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAggrElement")]
 		public static extern int_t engiGetAggrElement(int_t aggregate, int_t index, int_t valueType, out IntPtr value);
 
 		public static int_t engiGetAggrElement(int_t aggregate, int_t index, int_t valueType, out string value)
@@ -5801,10 +5805,10 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call sdaiGetAttrDefinition(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgument")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgument")]
 		public static extern int_t engiGetEntityArgument(int_t entity, string argumentName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetEntityArgument")]
+		[DllImport(libifcengine, EntryPoint = "engiGetEntityArgument")]
 		public static extern int_t engiGetEntityArgument(int_t entity, byte[] argumentName);
 
 		/// <summary>
@@ -5812,7 +5816,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call sdaiGetADBTypePath(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiGetADBTypePathx")]
+		[DllImport(libifcengine, EntryPoint = "sdaiGetADBTypePathx")]
 		public static extern IntPtr sdaiGetADBTypePathx(int_t ADB, int_t typeNameNumber, out IntPtr path);
 
 		public static string sdaiGetADBTypePathx(int_t ADB, int_t typeNameNumber)
@@ -5829,10 +5833,10 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiOpenModelByStream(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxOpenModelByStream")]
+		[DllImport(libifcengine, EntryPoint = "xxxxOpenModelByStream")]
 		public static extern int_t xxxxOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, string schemaName);
 
-		[DllImport(ifcenginedll, EntryPoint = "xxxxOpenModelByStream")]
+		[DllImport(libifcengine, EntryPoint = "xxxxOpenModelByStream")]
 		public static extern int_t xxxxOpenModelByStream(int_t repository, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback, byte[] schemaName);
 
 		/// <summary>
@@ -5840,7 +5844,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "sdaiplusGetAggregationType")]
+		[DllImport(libifcengine, EntryPoint = "sdaiplusGetAggregationType")]
 		public static extern int_t sdaiplusGetAggregationType(int_t instance, int_t aggregate);
 
 		/// <summary>
@@ -5848,7 +5852,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call engiGetAttrType(..) instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAttrType")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAttrType")]
 		public static extern int_t xxxxGetAttrType(int_t instance, int_t attribute, out IntPtr attributeType);
 
 		/// <summary>
@@ -5868,10 +5872,10 @@ namespace RDF
 		///				attributeType
 		///			);
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAttrTypeBN")]
 		public static extern int_t xxxxGetAttrTypeBN(int_t instance, string attributeName, out IntPtr attributeType);
 
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAttrTypeBN")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAttrTypeBN")]
 		public static extern int_t xxxxGetAttrTypeBN(int_t instance, byte[] attributeName, out IntPtr attributeType);
 
 		/// <summary>
@@ -5879,7 +5883,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call GetSPFFHeaderItem instead
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "GetSPFFHeaderItemUnicode")]
+		[DllImport(libifcengine, EntryPoint = "GetSPFFHeaderItemUnicode")]
 		public static extern int_t GetSPFFHeaderItemUnicode(int_t model, int_t itemIndex, int_t itemSubIndex, byte[] buffer, int_t bufferLength);
 
 		/// <summary>
@@ -5890,7 +5894,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use call engiGetEntityAttributePosition instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndex")]
 		public static extern int_t engiGetAttrIndex(int_t attribute);
 
 		/// <summary>
@@ -5909,10 +5913,10 @@ namespace RDF
 		///
 		///	This call is deprecated, use call engiGetEntityAttributePosition instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndexBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndexBN")]
 		public static extern int_t engiGetAttrIndexBN(int_t entity, string attributeName);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndexBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndexBN")]
 		public static extern int_t engiGetAttrIndexBN(int_t entity, byte[] attributeName);
 
 		/// <summary>
@@ -5923,7 +5927,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use call engiGetEntityAttributePosition instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndexEx")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndexEx")]
 		public static extern int_t engiGetAttrIndexEx(int_t attribute, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
@@ -5944,10 +5948,10 @@ namespace RDF
 		///
 		///	This call is deprecated, use call engiGetEntityAttributePosition instead.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndexExBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndexExBN")]
 		public static extern int_t engiGetAttrIndexExBN(int_t entity, string attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrIndexExBN")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrIndexExBN")]
 		public static extern int_t engiGetAttrIndexExBN(int_t entity, byte[] attributeName, [param: MarshalAs(UnmanagedType.U1)] bool countedWithParents, [param: MarshalAs(UnmanagedType.U1)] bool countedWithInverse);
 
 		/// <summary>
@@ -5957,7 +5961,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use SdaiAttr or attribute name as primary data and engiGetEntityAttributePosition.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrNameByIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrNameByIndex")]
 		public static extern IntPtr engiGetAttrNameByIndex(int_t entity, int_t index, int_t valueType, out IntPtr attributeName);
 
 		public static string engiGetAttrNameByIndex(int_t entity, int_t index)
@@ -5977,7 +5981,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use engiGetEntityAttributePosition, engiGetEntityAttributeByIterator, engiGetAttrType.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "engiGetAttrTypeByIndex")]
+		[DllImport(libifcengine, EntryPoint = "engiGetAttrTypeByIndex")]
 		public static extern void engiGetAttrTypeByIndex(int_t entity, int_t index, out int_t attributeType);
 
 		/// <summary>
@@ -5985,7 +5989,7 @@ namespace RDF
 		///
 		///	This call is deprecated, use SdaiAttr or attribute name as primary data and engiGetEntityAttributePosition, engiGetEntityAttributeByIterator, engiGetAttrName.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "xxxxGetAttrNameByIndex")]
+		[DllImport(libifcengine, EntryPoint = "xxxxGetAttrNameByIndex")]
 		public static extern IntPtr xxxxGetAttrNameByIndex(int_t instance, int_t index, out IntPtr name);
 
 		//
@@ -6017,7 +6021,7 @@ namespace RDF
 		///		bit 15:	(__CALL_ARGUMENT)					validateModel/validateInstance function argument should be model/instance
 		///		bit 63:	(__INTERNAL_ERROR)					unspecified error
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateSetOptions")]
+		[DllImport(libifcengine, EntryPoint = "validateSetOptions")]
 		public static extern void validateSetOptions(int_t timeLimitSeconds, int_t issueCntLimit, [param: MarshalAs(UnmanagedType.U1)] bool showEachIssueOnce, UInt64 issueTypes, UInt64 mask);
 
 		/// <summary>
@@ -6046,7 +6050,7 @@ namespace RDF
 		///		bit 15:	(__CALL_ARGUMENT)					validateModel/validateInstance function argument should be model/instance
 		///		bit 63:	(__INTERNAL_ERROR)					unspecified error
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetOptions")]
+		[DllImport(libifcengine, EntryPoint = "validateGetOptions")]
 		public static extern UInt64 validateGetOptions(out int_t timeLimitSeconds, out int_t issueCntLimit, [param: MarshalAs(UnmanagedType.U1)] out bool showEachIssueOnce, UInt64 mask);
 
 		/// <summary>
@@ -6054,7 +6058,7 @@ namespace RDF
 		///
 		///	Apply validation of a model
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateModel")]
+		[DllImport(libifcengine, EntryPoint = "validateModel")]
 		public static extern int_t validateModel(int_t model);
 
 		/// <summary>
@@ -6062,7 +6066,7 @@ namespace RDF
 		///
 		///	Apply validation of an instance
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateInstance")]
+		[DllImport(libifcengine, EntryPoint = "validateInstance")]
 		public static extern int_t validateInstance(int_t instance);
 
 		/// <summary>
@@ -6070,7 +6074,7 @@ namespace RDF
 		///
 		///	Clean validation results
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateFreeResults")]
+		[DllImport(libifcengine, EntryPoint = "validateFreeResults")]
 		public static extern void validateFreeResults(int_t results);
 
 		/// <summary>
@@ -6079,7 +6083,7 @@ namespace RDF
 		///	Get first issue from validation results.
 		///	If no issues inside validation results or validation results is NULL it will return NULL.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetFirstIssue")]
+		[DllImport(libifcengine, EntryPoint = "validateGetFirstIssue")]
 		public static extern int_t validateGetFirstIssue(int_t results);
 
 		/// <summary>
@@ -6088,7 +6092,7 @@ namespace RDF
 		///	Get next issue based on a given issue.
 		///	If no issues left or validation issue is NULL it will return NULL.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetNextIssue")]
+		[DllImport(libifcengine, EntryPoint = "validateGetNextIssue")]
 		public static extern int_t validateGetNextIssue(int_t issue);
 
 		/// <summary>
@@ -6102,7 +6106,7 @@ namespace RDF
 		///		value 3:	(__TIME_EXCEED)					validation was finished because of reach time limit
 		///		value 4:	(__COUNT_EXCEED)				validation was finished because of reach of issue's numbers limit
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetStatus")]
+		[DllImport(libifcengine, EntryPoint = "validateGetStatus")]
 		public static extern enum_validation_status validateGetStatus(int_t results);
 
 		/// <summary>
@@ -6128,7 +6132,7 @@ namespace RDF
 		///		bit 15:	(__CALL_ARGUMENT)					validateModel/validateInstance function argument should be model/instance
 		///		bit 63:	(__INTERNAL_ERROR)					unspecified error
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetIssueType")]
+		[DllImport(libifcengine, EntryPoint = "validateGetIssueType")]
 		public static extern enum_validation_type validateGetIssueType(int_t issue);
 
 		/// <summary>
@@ -6136,7 +6140,7 @@ namespace RDF
 		///
 		///	Returns the (first) instance related to the given issue.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetInstance")]
+		[DllImport(libifcengine, EntryPoint = "validateGetInstance")]
 		public static extern int_t validateGetInstance(int_t issue);
 
 		/// <summary>
@@ -6144,7 +6148,7 @@ namespace RDF
 		///
 		///	Returns the second instance related to the given issue (if relevant).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetInstanceRelated")]
+		[DllImport(libifcengine, EntryPoint = "validateGetInstanceRelated")]
 		public static extern int_t validateGetInstanceRelated(int_t issue);
 
 		/// <summary>
@@ -6152,7 +6156,7 @@ namespace RDF
 		///
 		///	Returns the entity handle related to the given issue (if relevant).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetEntity")]
+		[DllImport(libifcengine, EntryPoint = "validateGetEntity")]
 		public static extern int_t validateGetEntity(int_t issue);
 
 		/// <summary>
@@ -6160,7 +6164,7 @@ namespace RDF
 		///
 		///	Returns the attribute handle related to the given issue (if relevant).
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetAttr")]
+		[DllImport(libifcengine, EntryPoint = "validateGetAttr")]
 		public static extern int_t validateGetAttr(int_t issue);
 
 		/// <summary>
@@ -6168,7 +6172,7 @@ namespace RDF
 		///
 		///	Specifies nesting level of aggregation or 0.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetAggrLevel")]
+		[DllImport(libifcengine, EntryPoint = "validateGetAggrLevel")]
 		public static extern int_t validateGetAggrLevel(int_t issue);
 
 		/// <summary>
@@ -6176,7 +6180,7 @@ namespace RDF
 		///
 		///	Array of indices for each aggregation size is aggrLevel.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetAggrIndArray")]
+		[DllImport(libifcengine, EntryPoint = "validateGetAggrIndArray")]
 		public static extern int_t validateGetAggrIndArray(int_t issue);
 
 		/// <summary>
@@ -6184,7 +6188,7 @@ namespace RDF
 		///
 		///	Returns the issue level (i.e. severity of the issue) of the issue given as input.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetIssueLevel")]
+		[DllImport(libifcengine, EntryPoint = "validateGetIssueLevel")]
 		public static extern int_t validateGetIssueLevel(int_t issue);
 
 		/// <summary>
@@ -6192,7 +6196,7 @@ namespace RDF
 		///
 		///	Returns the description text of the issue given as input.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "validateGetDescription")]
+		[DllImport(libifcengine, EntryPoint = "validateGetDescription")]
 		public static extern IntPtr validateGetDescription(int_t issue);
 
 		public static string validateGetDescriptionString(int_t issue)
@@ -6210,7 +6214,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call CalculateInstance().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "initializeModellingInstance")]
+		[DllImport(libifcengine, EntryPoint = "initializeModellingInstance")]
 		public static extern int_t initializeModellingInstance(int_t model, out int_t noVertices, out int_t noIndices, double scale, int_t instance);
 
 		/// <summary>
@@ -6218,7 +6222,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call UpdateInstanceVertexBuffer() and UpdateInstanceIndexBuffer().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "finalizeModelling")]
+		[DllImport(libifcengine, EntryPoint = "finalizeModelling")]
 		public static extern int_t finalizeModelling(int_t model, out float vertices, out int_t indices, int_t FVF);
 
 		/// <summary>
@@ -6226,7 +6230,7 @@ namespace RDF
 		///
 		///	This call is deprecated, there is no direct/easy replacement although the functionality is present. If you still use this call please contact RDF to find a solution together.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getInstanceInModelling")]
+		[DllImport(libifcengine, EntryPoint = "getInstanceInModelling")]
 		public static extern int_t getInstanceInModelling(int_t model, int_t instance, int_t mode, out int_t startVertex, out int_t startIndex, out int_t primitiveCount);
 
 		/// <summary>
@@ -6234,7 +6238,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call SetVertexBufferOffset().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setVertexOffset")]
+		[DllImport(libifcengine, EntryPoint = "setVertexOffset")]
 		public static extern void setVertexOffset(int_t model, double x, double y, double z);
 
 		/// <summary>
@@ -6242,7 +6246,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call SetFormat().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "setFormat")]
+		[DllImport(libifcengine, EntryPoint = "setFormat")]
 		public static extern void setFormat(int_t model, int_t setting, int_t mask);
 
 		/// <summary>
@@ -6250,7 +6254,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call GetConceptualFaceCnt().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getConceptualFaceCnt")]
+		[DllImport(libifcengine, EntryPoint = "getConceptualFaceCnt")]
 		public static extern int_t getConceptualFaceCnt(int_t instance);
 
 		/// <summary>
@@ -6258,7 +6262,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call GetConceptualFaceEx().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "getConceptualFaceEx")]
+		[DllImport(libifcengine, EntryPoint = "getConceptualFaceEx")]
 		public static extern int_t getConceptualFaceEx(int_t instance, int_t index, out int_t startIndexTriangles, out int_t noIndicesTriangles, out int_t startIndexLines, out int_t noIndicesLines, out int_t startIndexPoints, out int_t noIndicesPoints, out int_t startIndexFacePolygons, out int_t noIndicesFacePolygons, out int_t startIndexConceptualFacePolygons, out int_t noIndicesConceptualFacePolygons);
 
 		/// <summary>
@@ -6266,7 +6270,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call owlBuildInstance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "createGeometryConversion")]
+		[DllImport(libifcengine, EntryPoint = "createGeometryConversion")]
 		public static extern void createGeometryConversion(int_t instance, out Int64 owlInstance);
 
 		/// <summary>
@@ -6274,7 +6278,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call owlBuildInstance.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "convertInstance")]
+		[DllImport(libifcengine, EntryPoint = "convertInstance")]
 		public static extern void convertInstance(int_t instance);
 
 		/// <summary>
@@ -6282,7 +6286,7 @@ namespace RDF
 		///
 		///	This call is deprecated, please use call CalculateInstance().
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "initializeModellingInstanceEx")]
+		[DllImport(libifcengine, EntryPoint = "initializeModellingInstanceEx")]
 		public static extern int_t initializeModellingInstanceEx(int_t model, out int_t noVertices, out int_t noIndices, double scale, int_t instance, int_t instanceList);
 
 		/// <summary>
@@ -6290,10 +6294,10 @@ namespace RDF
 		///
 		///	This call is deprecated, please contact us if you use this call.
 		/// </summary>
-		[DllImport(ifcenginedll, EntryPoint = "exportModellingAsOWL")]
+		[DllImport(libifcengine, EntryPoint = "exportModellingAsOWL")]
 		public static extern void exportModellingAsOWL(int_t model, string fileName);
 
-		[DllImport(ifcenginedll, EntryPoint = "exportModellingAsOWL")]
+		[DllImport(libifcengine, EntryPoint = "exportModellingAsOWL")]
 		public static extern void exportModellingAsOWL(int_t model, byte[] fileName);
 
 		/// <summary>
@@ -6428,7 +6432,11 @@ namespace RDF
 		public const UInt64 flagbit30 = 1073741824;     // 2^^30   0100.0000..0000.0000  0000.0000..0000.0000
 		public const UInt64 flagbit31 = 2147483648;		// 2^^31   1000.0000..0000.0000  0000.0000..0000.0000
 
-		public const string enginedll = @"ifcengine.dll";
+#if LINUX
+		public const string libengine = @"libifcengine.so";		//	Linux shared library
+#else
+		public const string libengine = @"ifcengine.dll";		//	Windows DLL
+#endif
 
 		//
 		//  Meta information API Calls
@@ -6440,7 +6448,7 @@ namespace RDF
 		///	Returns the revision number.
 		///	The timeStamp is generated by the SVN system used during development.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetRevision")]
+		[DllImport(libengine, EntryPoint = "GetRevision")]
 		public static extern Int64 GetRevision(out IntPtr timeStamp);
 
 		public static Int64 GetRevision()
@@ -6455,7 +6463,7 @@ namespace RDF
 		///	Returns the revision number.
 		///	The timeStamp is generated by the SVN system used during development.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetRevisionW")]
+		[DllImport(libengine, EntryPoint = "GetRevisionW")]
 		public static extern Int64 GetRevisionW(out IntPtr timeStamp);
 
 		public static Int64 GetRevisionW()
@@ -6472,7 +6480,7 @@ namespace RDF
 		///	Returns the number of days (including this one) that this version is still active or 0 if no protection is embedded.
 		///	In case no days are left and protection is active this call will return -1.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetProtection")]
+		[DllImport(libengine, EntryPoint = "GetProtection")]
 		public static extern Int64 GetProtection();
 
 		/// <summary>
@@ -6487,7 +6495,7 @@ namespace RDF
 		///	As an example in windows systems where Visual Studio is used:
 		///		developmentVariables = "...."
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetEnvironment")]
+		[DllImport(libengine, EntryPoint = "GetEnvironment")]
 		public static extern Int64 GetEnvironment(out IntPtr environmentVariables, out IntPtr developmentVariables);
 
 		/// <summary>
@@ -6502,7 +6510,7 @@ namespace RDF
 		///	As an example in windows systems where Visual Studio is used:
 		///		developmentVariables = "...."
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetEnvironmentW")]
+		[DllImport(libengine, EntryPoint = "GetEnvironmentW")]
 		public static extern Int64 GetEnvironmentW(out IntPtr environmentVariables, out IntPtr developmentVariables);
 
 		/// <summary>
@@ -6512,10 +6520,10 @@ namespace RDF
 		///	If the file name is not set (default) many internal control procedures are not executed
 		///	and the code will be faster.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetAssertionFile")]
+		[DllImport(libengine, EntryPoint = "SetAssertionFile")]
 		public static extern void SetAssertionFile(string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SetAssertionFile")]
+		[DllImport(libengine, EntryPoint = "SetAssertionFile")]
 		public static extern void SetAssertionFile(byte[] fileName);
 
 		/// <summary>
@@ -6525,10 +6533,10 @@ namespace RDF
 		///	If the file name is not set (default) many internal control procedures are not executed
 		///	and the code will be faster.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetAssertionFileW")]
+		[DllImport(libengine, EntryPoint = "SetAssertionFileW")]
 		public static extern void SetAssertionFileW(string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SetAssertionFileW")]
+		[DllImport(libengine, EntryPoint = "SetAssertionFileW")]
 		public static extern void SetAssertionFileW(byte[] fileName);
 
 		/// <summary>
@@ -6537,7 +6545,7 @@ namespace RDF
 		///	This function gets the file location as stored/set internally where internal assertions should be written to.
 		///	It works independent if the file location is set through SetAssertionFile() or SetAssertionFileW().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetAssertionFile")]
+		[DllImport(libengine, EntryPoint = "GetAssertionFile")]
 		public static extern IntPtr GetAssertionFile(out IntPtr fileName);
 
 		public static string GetAssertionFile()
@@ -6553,7 +6561,7 @@ namespace RDF
 		///	This function gets the file location as stored/set internally where internal assertions should be written to.
 		///	It works independent if the file location is set through SetAssertionFile() or SetAssertionFileW().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetAssertionFileW")]
+		[DllImport(libengine, EntryPoint = "GetAssertionFileW")]
 		public static extern IntPtr GetAssertionFileW(out IntPtr fileName);
 
 		public static string GetAssertionFileW()
@@ -6614,7 +6622,7 @@ namespace RDF
 		///
 		///	The return value is the size of a single character in bits, i.e. 1 byte is 8 bits, the value for a wchar_t can be 16 or 32 depending on settings and operating system
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetCharacterSerialization")]
+		[DllImport(libengine, EntryPoint = "SetCharacterSerialization")]
 		public static extern Int64 SetCharacterSerialization(Int64 model, Int64 encoding, Int64 wcharBitSizeOverride, [param: MarshalAs(UnmanagedType.U1)] bool ascii);
 
 		/// <summary>
@@ -6624,7 +6632,7 @@ namespace RDF
 		///
 		///	The returns the size of a single character in bits, i.e. 1 byte is 8 bits, this can be 8, 16 or 32 depending on settings and operating system
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetCharacterSerialization")]
+		[DllImport(libengine, EntryPoint = "GetCharacterSerialization")]
 		public static extern Int64 GetCharacterSerialization(Int64 model, out Int64 encoding, [param: MarshalAs(UnmanagedType.U1)] out bool ascii);
 
 		/// <summary>
@@ -6632,7 +6640,7 @@ namespace RDF
 		///
 		///	This call sets the modelling style.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetModellingStyle")]
+		[DllImport(libengine, EntryPoint = "SetModellingStyle")]
 		public static extern void SetModellingStyle(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
@@ -6640,7 +6648,7 @@ namespace RDF
 		///
 		///	This call gets the modelling style.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetModellingStyle")]
+		[DllImport(libengine, EntryPoint = "GetModellingStyle")]
 		public static extern UInt64 GetModellingStyle(Int64 model, UInt64 mask);
 
 		/// <summary>
@@ -6649,7 +6657,7 @@ namespace RDF
 		///	This function abort running processes for a model. It can be used when a task takes more time than
 		///	expected/available, or in case the requested results are not relevant anymore.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "AbortModel")]
+		[DllImport(libengine, EntryPoint = "AbortModel")]
 		public static extern Int64 AbortModel(Int64 model, Int64 setting);
 
 		/// <summary>
@@ -6658,7 +6666,7 @@ namespace RDF
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active models within the session (or zero if the model was not recognized).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetSessionMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetSessionMetaInfo")]
 		public static extern Int64 GetSessionMetaInfo(out Int64 allocatedBlocks, out Int64 allocatedBytes, out Int64 nonUsedBlocks, out Int64 nonUsedBytes);
 
 		/// <summary>
@@ -6667,28 +6675,28 @@ namespace RDF
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active models within the session (or zero if the model was not recognized).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, out Int64 activeClasses, out Int64 removedClasses, out Int64 activeProperties, out Int64 removedProperties, out Int64 activeInstances, out Int64 removedInstances, out Int64 inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, out Int64 activeClasses, out Int64 removedClasses, out Int64 activeProperties, out Int64 removedProperties, IntPtr activeInstances, IntPtr removedInstances, IntPtr inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, out Int64 activeClasses, out Int64 removedClasses, IntPtr activeProperties, IntPtr removedProperties, out Int64 activeInstances, out Int64 removedInstances, out Int64 inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, out Int64 activeClasses, out Int64 removedClasses, IntPtr activeProperties, IntPtr removedProperties, IntPtr activeInstances, IntPtr removedInstances, IntPtr inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, IntPtr activeClasses, IntPtr removedClasses, out Int64 activeProperties, out Int64 removedProperties, out Int64 activeInstances, out Int64 removedInstances, out Int64 inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, IntPtr activeClasses, IntPtr removedClasses, out Int64 activeProperties, out Int64 removedProperties, IntPtr activeInstances, IntPtr removedInstances, IntPtr inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, IntPtr activeClasses, IntPtr removedClasses, IntPtr activeProperties, IntPtr removedProperties, out Int64 activeInstances, out Int64 removedInstances, out Int64 inactiveInstances);
 
-		[DllImport(enginedll, EntryPoint = "GetModelMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetModelMetaInfo")]
 		public static extern Int64 GetModelMetaInfo(Int64 model, IntPtr activeClasses, IntPtr removedClasses, IntPtr activeProperties, IntPtr removedProperties, IntPtr activeInstances, IntPtr removedInstances, IntPtr inactiveInstances);
 
 		/// <summary>
@@ -6697,16 +6705,16 @@ namespace RDF
 		///	This function is meant for debugging purposes and return statistics during processing.
 		///	The return value represents the number of active instances within the model (or zero if the instance was not recognized).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetInstanceMetaInfo")]
 		public static extern Int64 GetInstanceMetaInfo(Int64 owlInstance, out Int64 allocatedBlocks, out Int64 allocatedBytes);
 
-		[DllImport(enginedll, EntryPoint = "GetInstanceMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetInstanceMetaInfo")]
 		public static extern Int64 GetInstanceMetaInfo(Int64 owlInstance, out Int64 allocatedBlocks, IntPtr allocatedBytes);
 
-		[DllImport(enginedll, EntryPoint = "GetInstanceMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetInstanceMetaInfo")]
 		public static extern Int64 GetInstanceMetaInfo(Int64 owlInstance, IntPtr allocatedBlocks, out Int64 allocatedBytes);
 
-		[DllImport(enginedll, EntryPoint = "GetInstanceMetaInfo")]
+		[DllImport(libengine, EntryPoint = "GetInstanceMetaInfo")]
 		public static extern Int64 GetInstanceMetaInfo(Int64 owlInstance, IntPtr allocatedBlocks, IntPtr allocatedBytes);
 
 		/// <summary>
@@ -6722,7 +6730,7 @@ namespace RDF
 		///		1 - found the smoothness of a curve
 		///		2 - found the smoothness of a surface
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetSmoothness")]
+		[DllImport(libengine, EntryPoint = "GetSmoothness")]
 		public static extern Int64 GetSmoothness(Int64 owlInstance, out Int64 degree);
 
 		/// <summary>
@@ -6735,7 +6743,7 @@ namespace RDF
 		///	If owlInstance is given the state is only applied on the owlInstance and all its children.
 		///	If owlInstance is zero the state is applied on all owlInstances within a model.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "AddState")]
+		[DllImport(libengine, EntryPoint = "AddState")]
 		public static extern void AddState(Int64 model, Int64 owlInstance);
 
 		/// <summary>
@@ -6743,7 +6751,7 @@ namespace RDF
 		///
 		///	Returns model for any resource, i.e. class, property, instance
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetModel")]
+		[DllImport(libengine, EntryPoint = "GetModel")]
 		public static extern Int64 GetModel(Int64 rdfsResource);
 
 		/// <summary>
@@ -6768,28 +6776,28 @@ namespace RDF
 		///	Note: use in combination with other libraries is not advised, i.e. when combined with the
 		///		  IFC generation from the IFC Engine component for example
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, out Int64 classCnt, out Int64 propertyCnt, out Int64 instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, out Int64 classCnt, out Int64 propertyCnt, IntPtr instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, out Int64 classCnt, IntPtr propertyCnt, out Int64 instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, out Int64 classCnt, IntPtr propertyCnt, IntPtr instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, IntPtr classCnt, out Int64 propertyCnt, out Int64 instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, IntPtr classCnt, out Int64 propertyCnt, IntPtr instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, IntPtr classCnt, IntPtr propertyCnt, out Int64 instanceCnt, UInt64 setting, UInt64 mask);
 
-		[DllImport(enginedll, EntryPoint = "OrderedHandles")]
+		[DllImport(libengine, EntryPoint = "OrderedHandles")]
 		public static extern void OrderedHandles(Int64 model, IntPtr classCnt, IntPtr propertyCnt, IntPtr instanceCnt, UInt64 setting, UInt64 mask);
 
 		/// <summary>
@@ -6800,7 +6808,7 @@ namespace RDF
 		///	however a number of elements earlier or further, i.e. number of elements being attribute elementSize. Be aware that as
 		///	we are talking about references the offset is depending on 32 bit/64 bit compilation.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "PeelArray")]
+		[DllImport(libengine, EntryPoint = "PeelArray")]
 		public static extern void PeelArray(ref IntPtr inValue, out IntPtr outValue, Int64 elementSize);
 
 		/// <summary>
@@ -6810,7 +6818,7 @@ namespace RDF
 		///	introduce performance effects; it is helpful for and meant for debugging on client side.
 		///	If model is zero the consistency checks are set for all open and to be created models.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetInternalCheck")]
+		[DllImport(libengine, EntryPoint = "SetInternalCheck")]
 		public static extern void SetInternalCheck(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
@@ -6820,7 +6828,7 @@ namespace RDF
 		///	called for.
 		///	When leaving mask and setting zero it will return all bits that can be set.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInternalCheck")]
+		[DllImport(libengine, EntryPoint = "GetInternalCheck")]
 		public static extern UInt64 GetInternalCheck(Int64 model, UInt64 mask);
 
 		/// <summary>
@@ -6829,7 +6837,7 @@ namespace RDF
 		///	This function returns all issues found and not retrieved by the hosting application through 
 		///	GetInternalCheckIssue()/GetInternalCheckIssueW().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInternalCheckIssueCnt")]
+		[DllImport(libengine, EntryPoint = "GetInternalCheckIssueCnt")]
 		public static extern Int64 GetInternalCheckIssueCnt(Int64 model);
 
 		/// <summary>
@@ -6840,7 +6848,7 @@ namespace RDF
 		///	will be returned through relatedOwlInstance.
 		///	Name, Description and relatedOwlInstance are optional.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInternalCheckIssue")]
+		[DllImport(libengine, EntryPoint = "GetInternalCheckIssue")]
 		public static extern void GetInternalCheckIssue(Int64 model, out IntPtr name, out IntPtr description, out Int64 relatedOwlInstance);
 
 		/// <summary>
@@ -6851,7 +6859,7 @@ namespace RDF
 		///	will be returned through relatedOwlInstance.
 		///	Name, Description and relatedOwlInstance are optional.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInternalCheckIssueW")]
+		[DllImport(libengine, EntryPoint = "GetInternalCheckIssueW")]
 		public static extern void GetInternalCheckIssueW(Int64 model, out IntPtr name, out IntPtr description, out Int64 relatedOwlInstance);
 
 		/// <summary>
@@ -6860,7 +6868,7 @@ namespace RDF
 		///	This function starts an internal validation on a resource. Any rdfsResource can be used as input.
 		///	If nothing unexpected is found the return value is 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ValidateResource")]
+		[DllImport(libengine, EntryPoint = "ValidateResource")]
 		public static extern Int64 ValidateResource(Int64 rdfsResource);
 
 		/// <summary>
@@ -6868,7 +6876,7 @@ namespace RDF
 		///
 		///	This function closes the session, after this call the geometry kernel cannot be used anymore.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CloseSession")]
+		[DllImport(libengine, EntryPoint = "CloseSession")]
 		public static extern Int64 CloseSession();
 
 		/// <summary>
@@ -6876,7 +6884,7 @@ namespace RDF
 		///
 		///		This function ..
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CleanMemory")]
+		[DllImport(libengine, EntryPoint = "CleanMemory")]
 		public static extern void CleanMemory();
 
 		/// <summary>
@@ -6884,7 +6892,7 @@ namespace RDF
 		///
 		///		This function ..
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ClearCache")]
+		[DllImport(libengine, EntryPoint = "ClearCache")]
 		public static extern void ClearCache(Int64 model);
 
 		/// <summary>
@@ -6893,7 +6901,7 @@ namespace RDF
 		///	Allocates model associated memory.
 		///	Memory is disposed when model is closed
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "AllocModelMemory")]
+		[DllImport(libengine, EntryPoint = "AllocModelMemory")]
 		public static extern Int64 AllocModelMemory(Int64 model, Int64 size);
 
 		/// <summary>
@@ -6902,7 +6910,7 @@ namespace RDF
 		///	Sets application data on model, class, property, instance
 		///	Returns 0 on error, 1 on success
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetExternalReferenceData")]
+		[DllImport(libengine, EntryPoint = "SetExternalReferenceData")]
 		public static extern Int64 SetExternalReferenceData(Int64 rdfsResource, Int64 identifier, out IntPtr data);
 
 		/// <summary>
@@ -6911,7 +6919,7 @@ namespace RDF
 		///	Gets application data from model, class, property, instance that were previously set by SetExternalReferenceData
 		///	Returns 0 on error, 1 on success
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetExternalReferenceData")]
+		[DllImport(libengine, EntryPoint = "GetExternalReferenceData")]
 		public static extern Int64 GetExternalReferenceData(Int64 rdfsResource, Int64 identifier);
 
 		/// <summary>
@@ -6921,10 +6929,10 @@ namespace RDF
 		///	During model lifetime the id is the same for given string and different for different strings
 		///	Returns 0 on error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetExternalReferenceDataId")]
+		[DllImport(libengine, EntryPoint = "GetExternalReferenceDataId")]
 		public static extern Int64 GetExternalReferenceDataId(Int64 model, string uniqueAppName);
 
-		[DllImport(enginedll, EntryPoint = "GetExternalReferenceDataId")]
+		[DllImport(libengine, EntryPoint = "GetExternalReferenceDataId")]
 		public static extern Int64 GetExternalReferenceDataId(Int64 model, byte[] uniqueAppName);
 
 		//
@@ -6944,7 +6952,7 @@ namespace RDF
 		///	References inside to other ontologies will be included.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateModel")]
+		[DllImport(libengine, EntryPoint = "CreateModel")]
 		public static extern Int64 CreateModel();
 
 		/// <summary>
@@ -6954,10 +6962,10 @@ namespace RDF
 		///	References inside to other ontologies will be included.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "OpenModel")]
+		[DllImport(libengine, EntryPoint = "OpenModel")]
 		public static extern Int64 OpenModel(string fileName);
 
-		[DllImport(enginedll, EntryPoint = "OpenModel")]
+		[DllImport(libengine, EntryPoint = "OpenModel")]
 		public static extern Int64 OpenModel(byte[] fileName);
 
 		/// <summary>
@@ -6967,10 +6975,10 @@ namespace RDF
 		///	References inside to other ontologies will be included.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "OpenModelW")]
+		[DllImport(libengine, EntryPoint = "OpenModelW")]
 		public static extern Int64 OpenModelW(string fileName);
 
-		[DllImport(enginedll, EntryPoint = "OpenModelW")]
+		[DllImport(libengine, EntryPoint = "OpenModelW")]
 		public static extern Int64 OpenModelW(byte[] fileName);
 
 		/// <summary>
@@ -6980,7 +6988,7 @@ namespace RDF
 		///	References inside to other ontologies will be included.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "OpenModelS")]
+		[DllImport(libengine, EntryPoint = "OpenModelS")]
 		public static extern Int64 OpenModelS([MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback);
 
 		/// <summary>
@@ -6990,7 +6998,7 @@ namespace RDF
 		///	References inside to other ontologies will be included.
 		///	A handle to the model will be returned, or 0 in case something went wrong.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "OpenModelA")]
+		[DllImport(libengine, EntryPoint = "OpenModelA")]
 		public static extern Int64 OpenModelA(byte[] content, Int64 size);
 
 		/// <summary>
@@ -7002,10 +7010,10 @@ namespace RDF
 		///	if it does not exist. In case the imported model is created with SaveInstanceTree() this instance is 
 		///	unique and equal to the instance used within the call SaveInstanceTree().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ImportModel")]
+		[DllImport(libengine, EntryPoint = "ImportModel")]
 		public static extern Int64 ImportModel(Int64 model, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "ImportModel")]
+		[DllImport(libengine, EntryPoint = "ImportModel")]
 		public static extern Int64 ImportModel(Int64 model, byte[] fileName);
 
 		/// <summary>
@@ -7017,10 +7025,10 @@ namespace RDF
 		///	if it does not exist. In case the imported model is created with SaveInstanceTree() this instance is 
 		///	unique and equal to the instance used within the call SaveInstanceTree().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ImportModelW")]
+		[DllImport(libengine, EntryPoint = "ImportModelW")]
 		public static extern Int64 ImportModelW(Int64 model, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "ImportModelW")]
+		[DllImport(libengine, EntryPoint = "ImportModelW")]
 		public static extern Int64 ImportModelW(Int64 model, byte[] fileName);
 
 		/// <summary>
@@ -7032,7 +7040,7 @@ namespace RDF
 		///	if it does not exist. In case the imported model is created with SaveInstanceTree() this instance is 
 		///	unique and equal to the instance used within the call SaveInstanceTree().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ImportModelS")]
+		[DllImport(libengine, EntryPoint = "ImportModelS")]
 		public static extern Int64 ImportModelS(Int64 model, [MarshalAs(UnmanagedType.FunctionPtr)] ReadCallBackFunction callback);
 
 		/// <summary>
@@ -7044,7 +7052,7 @@ namespace RDF
 		///	if it does not exist. In case the imported model is created with SaveInstanceTree() this instance is 
 		///	unique and equal to the instance used within the call SaveInstanceTree().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ImportModelA")]
+		[DllImport(libengine, EntryPoint = "ImportModelA")]
 		public static extern Int64 ImportModelA(Int64 model, byte[] content, Int64 size);
 
 		/// <summary>
@@ -7056,10 +7064,10 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTree")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTree")]
 		public static extern Int64 SaveInstanceTree(Int64 owlInstance, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTree")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTree")]
 		public static extern Int64 SaveInstanceTree(Int64 owlInstance, byte[] fileName);
 
 		/// <summary>
@@ -7071,10 +7079,10 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeW")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTreeW")]
 		public static extern Int64 SaveInstanceTreeW(Int64 owlInstance, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeW")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTreeW")]
 		public static extern Int64 SaveInstanceTreeW(Int64 owlInstance, byte[] fileName);
 
 		/// <summary>
@@ -7086,7 +7094,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - callback unknown or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeS")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTreeS")]
 		public static extern Int64 SaveInstanceTreeS(Int64 owlInstance, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
@@ -7098,7 +7106,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - content or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceTreeA")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceTreeA")]
 		public static extern Int64 SaveInstanceTreeA(Int64 owlInstance, byte[] content, out Int64 size);
 
 		/// <summary>
@@ -7110,10 +7118,10 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetwork")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetwork")]
 		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetwork")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetwork")]
 		public static extern Int64 SaveInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
@@ -7125,10 +7133,10 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - file at path location cannot be created/overwritten
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkW")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetworkW")]
 		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkW")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetworkW")]
 		public static extern Int64 SaveInstanceNetworkW(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] fileName);
 
 		/// <summary>
@@ -7140,7 +7148,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - callback unknown or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkS")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetworkS")]
 		public static extern Int64 SaveInstanceNetworkS(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
@@ -7152,7 +7160,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - content or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveInstanceNetworkA")]
+		[DllImport(libengine, EntryPoint = "SaveInstanceNetworkA")]
 		public static extern Int64 SaveInstanceNetworkA(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, byte[] content, out Int64 size);
 
 		/// <summary>
@@ -7166,10 +7174,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as an model (or class/property/instance) handle
 		///		2 - content or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveModel")]
+		[DllImport(libengine, EntryPoint = "SaveModel")]
 		public static extern Int64 SaveModel(Int64 model, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveModel")]
+		[DllImport(libengine, EntryPoint = "SaveModel")]
 		public static extern Int64 SaveModel(Int64 model, byte[] fileName);
 
 		/// <summary>
@@ -7183,10 +7191,10 @@ namespace RDF
 		///		1 - model is NULL or not recognized as an model (or class/property/instance) handle
 		///		2 - content or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveModelW")]
+		[DllImport(libengine, EntryPoint = "SaveModelW")]
 		public static extern Int64 SaveModelW(Int64 model, string fileName);
 
-		[DllImport(enginedll, EntryPoint = "SaveModelW")]
+		[DllImport(libengine, EntryPoint = "SaveModelW")]
 		public static extern Int64 SaveModelW(Int64 model, byte[] fileName);
 
 		/// <summary>
@@ -7200,7 +7208,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - callback unknown or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveModelS")]
+		[DllImport(libengine, EntryPoint = "SaveModelS")]
 		public static extern Int64 SaveModelS(Int64 model, [MarshalAs(UnmanagedType.FunctionPtr)] WriteCallBackFunction callback, Int64 size);
 
 		/// <summary>
@@ -7214,7 +7222,7 @@ namespace RDF
 		///		1 - owlInstance is NULL or not recognized as an instance handle
 		///		2 - content or size is zero
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SaveModelA")]
+		[DllImport(libengine, EntryPoint = "SaveModelA")]
 		public static extern Int64 SaveModelA(Int64 model, byte[] content, out Int64 size);
 
 		/// <summary>
@@ -7249,7 +7257,7 @@ namespace RDF
 		///		  0		do not use Base64
 		///		  1		use Base64 (only works for BIN/S and BIN/X), on other formats no effect
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetOverrideFileIO")]
+		[DllImport(libengine, EntryPoint = "SetOverrideFileIO")]
 		public static extern void SetOverrideFileIO(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
@@ -7284,7 +7292,7 @@ namespace RDF
 		///		  0		do not use Base64
 		///		  1		use Base64 (only works for BIN/S and BIN/X), on other formats no effect
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetOverrideFileIO")]
+		[DllImport(libengine, EntryPoint = "GetOverrideFileIO")]
 		public static extern UInt64 GetOverrideFileIO(Int64 model, UInt64 mask);
 
 		/// <summary>
@@ -7299,7 +7307,7 @@ namespace RDF
 		///
 		///	The return value is the handle to the copied owlInstance in the model of choice.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CopyInstanceTree")]
+		[DllImport(libengine, EntryPoint = "CopyInstanceTree")]
 		public static extern Int64 CopyInstanceTree(Int64 owlInstance, Int64 targetModel);
 
 		/// <summary>
@@ -7319,7 +7327,7 @@ namespace RDF
 		///
 		///	The return value is the handle to the copied owlInstance in the model of choice.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CopyInstanceNetwork")]
+		[DllImport(libengine, EntryPoint = "CopyInstanceNetwork")]
 		public static extern Int64 CopyInstanceNetwork(Int64 owlInstance, [param: MarshalAs(UnmanagedType.U1)] bool includeInverseRelations, Int64 targetModel);
 
 		/// <summary>
@@ -7333,10 +7341,10 @@ namespace RDF
 		///
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "EncodeBase64")]
+		[DllImport(libengine, EntryPoint = "EncodeBase64")]
 		public static extern Int64 EncodeBase64(string output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
-		[DllImport(enginedll, EntryPoint = "EncodeBase64")]
+		[DllImport(libengine, EntryPoint = "EncodeBase64")]
 		public static extern Int64 EncodeBase64(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
@@ -7350,10 +7358,10 @@ namespace RDF
 		///
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "EncodeBase64W")]
+		[DllImport(libengine, EntryPoint = "EncodeBase64W")]
 		public static extern Int64 EncodeBase64W(string output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
-		[DllImport(enginedll, EntryPoint = "EncodeBase64W")]
+		[DllImport(libengine, EntryPoint = "EncodeBase64W")]
 		public static extern Int64 EncodeBase64W(byte[] output, byte[] input, Int64 size, [param: MarshalAs(UnmanagedType.U1)] bool terminator);
 
 		/// <summary>
@@ -7365,10 +7373,10 @@ namespace RDF
 		///
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "DecodeBase64")]
+		[DllImport(libengine, EntryPoint = "DecodeBase64")]
 		public static extern Int64 DecodeBase64(byte[] output, string input, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "DecodeBase64")]
+		[DllImport(libengine, EntryPoint = "DecodeBase64")]
 		public static extern Int64 DecodeBase64(byte[] output, byte[] input, Int64 size);
 
 		/// <summary>
@@ -7380,10 +7388,10 @@ namespace RDF
 		///
 		///	If output is nullptr the length will be calculated but the string itself will not be generated.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "DecodeBase64W")]
+		[DllImport(libengine, EntryPoint = "DecodeBase64W")]
 		public static extern Int64 DecodeBase64W(byte[] output, string input, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "DecodeBase64W")]
+		[DllImport(libengine, EntryPoint = "DecodeBase64W")]
 		public static extern Int64 DecodeBase64W(byte[] output, byte[] input, Int64 size);
 
 		/// <summary>
@@ -7400,7 +7408,7 @@ namespace RDF
 		///
 		///	The return value is the targetModel or in case this value was empty the newly created model.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CopyModel")]
+		[DllImport(libengine, EntryPoint = "CopyModel")]
 		public static extern Int64 CopyModel(Int64 sourceModel, Int64 targetModel, out Int64 values, Int64 card);
 
 		/// <summary>
@@ -7411,7 +7419,7 @@ namespace RDF
 		///	model itself will be known in the kernel, however known to be disabled. Calls containing the model
 		///	reference will be protected from crashing when called.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CloseModel")]
+		[DllImport(libengine, EntryPoint = "CloseModel")]
 		public static extern Int64 CloseModel(Int64 model);
 
 		/// <summary>
@@ -7421,7 +7429,7 @@ namespace RDF
 		///	i.e. this could mean the model is already closed or the session is closed.
 		///	It could also mean it represents a handle to another resource, for example a property, instance or class.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsModel")]
+		[DllImport(libengine, EntryPoint = "IsModel")]
 		public static extern Int64 IsModel(Int64 rdfsResource);
 
 		//
@@ -7441,10 +7449,10 @@ namespace RDF
 		///	Giving the class a name is optional, if a name is not given it will receive an automatically generated name,
 		///	it's automatically generated name can change between sessions.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateClass")]
+		[DllImport(libengine, EntryPoint = "CreateClass")]
 		public static extern Int64 CreateClass(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateClass")]
+		[DllImport(libengine, EntryPoint = "CreateClass")]
 		public static extern Int64 CreateClass(Int64 model, byte[] name);
 
 		/// <summary>
@@ -7460,10 +7468,10 @@ namespace RDF
 		///	Giving the class a name is optional, if a name is not given it will receive an automatically generated name,
 		///	it's automatically generated name can change between sessions.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateClassW")]
+		[DllImport(libengine, EntryPoint = "CreateClassW")]
 		public static extern Int64 CreateClassW(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateClassW")]
+		[DllImport(libengine, EntryPoint = "CreateClassW")]
 		public static extern Int64 CreateClassW(Int64 model, byte[] name);
 
 		/// <summary>
@@ -7472,10 +7480,10 @@ namespace RDF
 		///	Returns a handle to the class as stored inside.
 		///	When there is no class with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassByName")]
+		[DllImport(libengine, EntryPoint = "GetClassByName")]
 		public static extern Int64 GetClassByName(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "GetClassByName")]
+		[DllImport(libengine, EntryPoint = "GetClassByName")]
 		public static extern Int64 GetClassByName(Int64 model, byte[] name);
 
 		/// <summary>
@@ -7484,10 +7492,10 @@ namespace RDF
 		///	Returns a handle to the class as stored inside.
 		///	When there is no class with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassByNameW")]
+		[DllImport(libengine, EntryPoint = "GetClassByNameW")]
 		public static extern Int64 GetClassByNameW(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "GetClassByNameW")]
+		[DllImport(libengine, EntryPoint = "GetClassByNameW")]
 		public static extern Int64 GetClassByNameW(Int64 model, byte[] name);
 
 		/// <summary>
@@ -7497,7 +7505,7 @@ namespace RDF
 		///	If input class is zero, the handle will point to the first relevant class.
 		///	If all classes are past (or no relevant classes are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassesByIterator")]
+		[DllImport(libengine, EntryPoint = "GetClassesByIterator")]
 		public static extern Int64 GetClassesByIterator(Int64 model, Int64 owlClass);
 
 		/// <summary>
@@ -7521,7 +7529,7 @@ namespace RDF
 		///	It will return owlClass in case:
 		///		parentOwlClass became a direct parent of owlClass and they were not related this manner before
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetClassParent")]
+		[DllImport(libengine, EntryPoint = "SetClassParent")]
 		public static extern Int64 SetClassParent(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
@@ -7548,7 +7556,7 @@ namespace RDF
 		///	This call has the same behavior as SetClassParent, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetClassParentEx")]
+		[DllImport(libengine, EntryPoint = "SetClassParentEx")]
 		public static extern Int64 SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
@@ -7568,7 +7576,7 @@ namespace RDF
 		///	It will return owlClass in case:
 		///		parentOwlClass was a direct parent of owlClass and is now removed
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UnsetClassParent")]
+		[DllImport(libengine, EntryPoint = "UnsetClassParent")]
 		public static extern Int64 UnsetClassParent(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
@@ -7591,7 +7599,7 @@ namespace RDF
 		///	This call has the same behavior as SetClassParent, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UnsetClassParentEx")]
+		[DllImport(libengine, EntryPoint = "UnsetClassParentEx")]
 		public static extern Int64 UnsetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
@@ -7600,7 +7608,7 @@ namespace RDF
 		///	Checks if the class has given ancestor
 		///	Returns 0 if not or minimal generation number (1 for direct parent)
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsClassAncestor")]
+		[DllImport(libengine, EntryPoint = "IsClassAncestor")]
 		public static extern Int64 IsClassAncestor(Int64 owlClass, Int64 ancestorOwlClass);
 
 		/// <summary>
@@ -7610,7 +7618,7 @@ namespace RDF
 		///	If input parent is zero, the handle will point to the first relevant parent.
 		///	If all parent are past (or no relevant parent are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassParentsByIterator")]
+		[DllImport(libengine, EntryPoint = "GetClassParentsByIterator")]
 		public static extern Int64 GetClassParentsByIterator(Int64 owlClass, Int64 parentOwlClass);
 
 		/// <summary>
@@ -7628,10 +7636,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfClass")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClass")]
 		public static extern Int64 SetNameOfClass(Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfClass")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClass")]
 		public static extern Int64 SetNameOfClass(Int64 owlClass, byte[] name);
 
 		/// <summary>
@@ -7649,10 +7657,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassW")]
 		public static extern Int64 SetNameOfClassW(Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassW")]
 		public static extern Int64 SetNameOfClassW(Int64 owlClass, byte[] name);
 
 		/// <summary>
@@ -7673,10 +7681,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfClass, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassEx")]
 		public static extern Int64 SetNameOfClassEx(Int64 model, Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassEx")]
 		public static extern Int64 SetNameOfClassEx(Int64 model, Int64 owlClass, byte[] name);
 
 		/// <summary>
@@ -7697,10 +7705,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfClassW, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassWEx")]
 		public static extern Int64 SetNameOfClassWEx(Int64 model, Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfClassWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfClassWEx")]
 		public static extern Int64 SetNameOfClassWEx(Int64 model, Int64 owlClass, byte[] name);
 
 		/// <summary>
@@ -7708,7 +7716,7 @@ namespace RDF
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfClass")]
+		[DllImport(libengine, EntryPoint = "GetNameOfClass")]
 		public static extern IntPtr GetNameOfClass(Int64 owlClass, out IntPtr name);
 
 		public static string GetNameOfClass(Int64 owlClass)
@@ -7723,7 +7731,7 @@ namespace RDF
 		///
 		///	Returns the name of the class, if the class does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfClassW")]
+		[DllImport(libengine, EntryPoint = "GetNameOfClassW")]
 		public static extern IntPtr GetNameOfClassW(Int64 owlClass, out IntPtr name);
 
 		public static string GetNameOfClassW(Int64 owlClass)
@@ -7741,7 +7749,7 @@ namespace RDF
 		///	This call has the same behavior as GetNameOfClass, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfClassEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfClassEx")]
 		public static extern IntPtr GetNameOfClassEx(Int64 model, Int64 owlClass, out IntPtr name);
 
 		public static string GetNameOfClassEx(Int64 model, Int64 owlClass)
@@ -7759,7 +7767,7 @@ namespace RDF
 		///	This call has the same behavior as GetNameOfClassW, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfClassWEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfClassWEx")]
 		public static extern IntPtr GetNameOfClassWEx(Int64 model, Int64 owlClass, out IntPtr name);
 
 		public static string GetNameOfClassWEx(Int64 model, Int64 owlClass)
@@ -7780,10 +7788,10 @@ namespace RDF
 		///
 		///	Note: this function does not return inherited restrictions.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyByIterator")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyByIterator")]
 		public static extern Int64 GetClassPropertyByIterator(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyByIterator")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyByIterator")]
 		public static extern Int64 GetClassPropertyByIterator(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		public static Int64 GetClassPropertyByIterator(Int64 owlClass, Int64 rdfProperty)
@@ -7805,10 +7813,10 @@ namespace RDF
 		///	This call has the same behavior as GetClassPropertyByIterator, however needs to be
 		///	used in case classes and/or properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyByIteratorEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyByIteratorEx")]
 		public static extern Int64 GetClassPropertyByIteratorEx(Int64 model, Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyByIteratorEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyByIteratorEx")]
 		public static extern Int64 GetClassPropertyByIteratorEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		public static Int64 GetClassPropertyByIteratorEx(Int64 model, Int64 owlClass, Int64 rdfProperty)
@@ -7826,7 +7834,7 @@ namespace RDF
 		///	If undefined minCard and/or maxCard will be of value -1, this means
 		///	for minCard that it is 0 and for maxCard it means infinity.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetClassPropertyCardinalityRestriction")]
+		[DllImport(libengine, EntryPoint = "SetClassPropertyCardinalityRestriction")]
 		public static extern void SetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, Int64 minCard, Int64 maxCard);
 
 		/// <summary>
@@ -7842,7 +7850,7 @@ namespace RDF
 		///	This call has the same behavior as SetClassPropertyCardinalityRestriction, however needs to be
 		///	used in case classes or properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetClassPropertyCardinalityRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "SetClassPropertyCardinalityRestrictionEx")]
 		public static extern void SetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, Int64 minCard, Int64 maxCard);
 
 		/// <summary>
@@ -7858,10 +7866,10 @@ namespace RDF
 		///	Note: this function does not return inherited restrictions. The example shows how to retrieve
 		///	this knowledge, as it is derived knowledge the call that used to be available is removed.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestriction")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyCardinalityRestriction")]
 		public static extern void GetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestriction")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyCardinalityRestriction")]
 		public static extern void GetClassPropertyCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
@@ -7880,10 +7888,10 @@ namespace RDF
 		///	Note: this function does not return inherited restrictions. The example shows how to retrieve
 		///	this knowledge, as it is derived knowledge the call that used to be available is removed.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
@@ -7894,10 +7902,10 @@ namespace RDF
 		///	If undefined minCard and/or maxCard will be of value -1, this means
 		///	for minCard that it is 0 and for maxCard it means infinity.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyAggregatedCardinalityRestriction")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestriction(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
@@ -7911,10 +7919,10 @@ namespace RDF
 		///	This call has the same behavior as GetClassPropertyAggregatedCardinalityRestriction, however needs to be
 		///	used in case classes or properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "GetClassPropertyAggregatedCardinalityRestrictionEx")]
 		public static extern void GetClassPropertyAggregatedCardinalityRestrictionEx(Int64 model, Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
@@ -7926,7 +7934,7 @@ namespace RDF
 		///	original classes available. in this case it returns the original available class
 		///	it inherits the behavior from.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetGeometryClass")]
+		[DllImport(libengine, EntryPoint = "GetGeometryClass")]
 		public static extern Int64 GetGeometryClass(Int64 owlClass);
 
 		/// <summary>
@@ -7941,7 +7949,7 @@ namespace RDF
 		///	This call has the same behavior as GetGeometryClass, however needs to be
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetGeometryClassEx")]
+		[DllImport(libengine, EntryPoint = "GetGeometryClassEx")]
 		public static extern Int64 GetGeometryClassEx(Int64 model, Int64 owlClass);
 
 		/// <summary>
@@ -7951,7 +7959,7 @@ namespace RDF
 		///	i.e. this could mean the model is already closed, the class is inactive or removed or the session is closed.
 		///	It could also mean it represents a handle to another resource, for example a property, instance or model.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsClass")]
+		[DllImport(libengine, EntryPoint = "IsClass")]
 		public static extern Int64 IsClass(Int64 rdfsResource);
 
 		//
@@ -7971,10 +7979,10 @@ namespace RDF
 		///	Giving the property a name is optional, if a name is not given it will receive an automatically generated name,
 		///	it's automatically generated name can change between sessions.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateProperty")]
+		[DllImport(libengine, EntryPoint = "CreateProperty")]
 		public static extern Int64 CreateProperty(Int64 model, Int64 rdfPropertyType, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateProperty")]
+		[DllImport(libengine, EntryPoint = "CreateProperty")]
 		public static extern Int64 CreateProperty(Int64 model, Int64 rdfPropertyType, byte[] name);
 
 		/// <summary>
@@ -7990,10 +7998,10 @@ namespace RDF
 		///	Giving the property a name is optional, if a name is not given it will receive an automatically generated name,
 		///	it's automatically generated name can change between sessions.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreatePropertyW")]
+		[DllImport(libengine, EntryPoint = "CreatePropertyW")]
 		public static extern Int64 CreatePropertyW(Int64 model, Int64 rdfPropertyType, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreatePropertyW")]
+		[DllImport(libengine, EntryPoint = "CreatePropertyW")]
 		public static extern Int64 CreatePropertyW(Int64 model, Int64 rdfPropertyType, byte[] name);
 
 		/// <summary>
@@ -8002,10 +8010,10 @@ namespace RDF
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty as stored inside.
 		///	When there is no property with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyByName")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByName")]
 		public static extern Int64 GetPropertyByName(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "GetPropertyByName")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByName")]
 		public static extern Int64 GetPropertyByName(Int64 model, byte[] name);
 
 		/// <summary>
@@ -8014,10 +8022,10 @@ namespace RDF
 		///	Returns a handle to the objectTypeProperty or dataTypeProperty as stored inside.
 		///	When there is no property with such a name the return value is 0 (note that GetModellingStyle(..) can change this behavior).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyByNameW")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByNameW")]
 		public static extern Int64 GetPropertyByNameW(Int64 model, string name);
 
-		[DllImport(enginedll, EntryPoint = "GetPropertyByNameW")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByNameW")]
 		public static extern Int64 GetPropertyByNameW(Int64 model, byte[] name);
 
 		/// <summary>
@@ -8027,7 +8035,7 @@ namespace RDF
 		///	If input property is zero, the handle will point to the first relevant property.
 		///	If all properties are past (or no relevant properties are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertiesByIterator")]
+		[DllImport(libengine, EntryPoint = "GetPropertiesByIterator")]
 		public static extern Int64 GetPropertiesByIterator(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
@@ -8037,7 +8045,7 @@ namespace RDF
 		///	be an object[property, i.e. relation.]
 		///	If property is not an object property this call has no effect.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetPropertyRangeRestriction")]
+		[DllImport(libengine, EntryPoint = "SetPropertyRangeRestriction")]
 		public static extern void SetPropertyRangeRestriction(Int64 rdfProperty, Int64 owlClass, Int64 setting);
 
 		/// <summary>
@@ -8047,7 +8055,7 @@ namespace RDF
 		///	be an object[property, i.e. relation.]
 		///	If property is not an object property this call has no effect.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetPropertyRangeRestrictionEx")]
+		[DllImport(libengine, EntryPoint = "SetPropertyRangeRestrictionEx")]
 		public static extern void SetPropertyRangeRestrictionEx(Int64 model, Int64 rdfProperty, Int64 owlClass, Int64 setting);
 
 		/// <summary>
@@ -8057,7 +8065,7 @@ namespace RDF
 		///	If input class is zero, the handle will point to the first relevant class.
 		///	If all classes are past (or no relevant classes are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetRangeRestrictionsByIterator")]
+		[DllImport(libengine, EntryPoint = "GetRangeRestrictionsByIterator")]
 		public static extern Int64 GetRangeRestrictionsByIterator(Int64 rdfProperty, Int64 owlClass);
 
 		/// <summary>
@@ -8067,7 +8075,7 @@ namespace RDF
 		///	If input class is zero, the handle will point to the first relevant class.
 		///	If all classes are past (or no relevant classes are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetRangeRestrictionsByIteratorEx")]
+		[DllImport(libengine, EntryPoint = "GetRangeRestrictionsByIteratorEx")]
 		public static extern Int64 GetRangeRestrictionsByIteratorEx(Int64 model, Int64 rdfProperty, Int64 owlClass);
 
 		/// <summary>
@@ -8077,7 +8085,7 @@ namespace RDF
 		///	If input parent is zero, the handle will point to the first relevant parent.
 		///	If all parent are past (or no relevant parent are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyParentsByIterator")]
+		[DllImport(libengine, EntryPoint = "GetPropertyParentsByIterator")]
 		public static extern Int64 GetPropertyParentsByIterator(Int64 rdfProperty, Int64 parentRdfProperty);
 
 		/// <summary>
@@ -8095,10 +8103,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfProperty")]
+		[DllImport(libengine, EntryPoint = "SetNameOfProperty")]
 		public static extern Int64 SetNameOfProperty(Int64 rdfProperty, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfProperty")]
+		[DllImport(libengine, EntryPoint = "SetNameOfProperty")]
 		public static extern Int64 SetNameOfProperty(Int64 rdfProperty, byte[] name);
 
 		/// <summary>
@@ -8116,10 +8124,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyW")]
 		public static extern Int64 SetNameOfPropertyW(Int64 rdfProperty, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyW")]
 		public static extern Int64 SetNameOfPropertyW(Int64 rdfProperty, byte[] name);
 
 		/// <summary>
@@ -8140,10 +8148,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfProperty, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyEx")]
 		public static extern Int64 SetNameOfPropertyEx(Int64 model, Int64 rdfProperty, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyEx")]
 		public static extern Int64 SetNameOfPropertyEx(Int64 model, Int64 rdfProperty, byte[] name);
 
 		/// <summary>
@@ -8164,10 +8172,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfPropertyW, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyWEx")]
 		public static extern Int64 SetNameOfPropertyWEx(Int64 model, Int64 rdfProperty, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfPropertyWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfPropertyWEx")]
 		public static extern Int64 SetNameOfPropertyWEx(Int64 model, Int64 rdfProperty, byte[] name);
 
 		/// <summary>
@@ -8175,7 +8183,7 @@ namespace RDF
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfProperty")]
+		[DllImport(libengine, EntryPoint = "GetNameOfProperty")]
 		public static extern IntPtr GetNameOfProperty(Int64 rdfProperty, out IntPtr name);
 
 		public static string GetNameOfProperty(Int64 rdfProperty)
@@ -8190,7 +8198,7 @@ namespace RDF
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfPropertyW")]
+		[DllImport(libengine, EntryPoint = "GetNameOfPropertyW")]
 		public static extern IntPtr GetNameOfPropertyW(Int64 rdfProperty, out IntPtr name);
 
 		public static string GetNameOfPropertyW(Int64 rdfProperty)
@@ -8205,7 +8213,7 @@ namespace RDF
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfPropertyEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfPropertyEx")]
 		public static extern IntPtr GetNameOfPropertyEx(Int64 model, Int64 rdfProperty, out IntPtr name);
 
 		public static string GetNameOfPropertyEx(Int64 model, Int64 rdfProperty)
@@ -8220,7 +8228,7 @@ namespace RDF
 		///
 		///	Returns the name of the property, if the property does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfPropertyWEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfPropertyWEx")]
 		public static extern IntPtr GetNameOfPropertyWEx(Int64 model, Int64 rdfProperty, out IntPtr name);
 
 		public static string GetNameOfPropertyWEx(Int64 model, Int64 rdfProperty)
@@ -8246,14 +8254,14 @@ namespace RDF
 		///	the type, normally this corresponds with the propertyType requested
 		///	to be set unless the property already has a different propertyType set before.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetPropertyType")]
+		[DllImport(libengine, EntryPoint = "SetPropertyType")]
 		public static extern Int64 SetPropertyType(Int64 rdfProperty, Int64 propertyType);
 
 		/// <summary>
 		///		SetPropertyTypeEx                                       (https://rdf.bg/gkdoc/index.html?topic=SetPropertyTypeEx&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetPropertyTypeEx")]
+		[DllImport(libengine, EntryPoint = "SetPropertyTypeEx")]
 		public static extern Int64 SetPropertyTypeEx(Int64 model, Int64 rdfProperty, Int64 propertyType);
 
 		/// <summary>
@@ -8268,7 +8276,7 @@ namespace RDF
 		///		DATATYPEPROPERTY_TYPE_INTEGER	The property is an Datatype Property of type Integer
 		///		DATATYPEPROPERTY_TYPE_DOUBLE	The property is an Datatype Property of type Double
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyType")]
+		[DllImport(libengine, EntryPoint = "GetPropertyType")]
 		public static extern Int64 GetPropertyType(Int64 rdfProperty);
 
 		/// <summary>
@@ -8277,7 +8285,7 @@ namespace RDF
 		///	This call has the same behavior as GetPropertyType, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyTypeEx")]
+		[DllImport(libengine, EntryPoint = "GetPropertyTypeEx")]
 		public static extern Int64 GetPropertyTypeEx(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
@@ -8292,7 +8300,7 @@ namespace RDF
 		///		3	an instance has a non-zero cardinality for the property to be deleted
 		///		4	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "RemoveProperty")]
+		[DllImport(libengine, EntryPoint = "RemoveProperty")]
 		public static extern Int64 RemoveProperty(Int64 rdfProperty);
 
 		/// <summary>
@@ -8309,7 +8317,7 @@ namespace RDF
 		///		3	an instance has a non-zero cardinality for the property to be deleted
 		///		4	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "RemovePropertyEx")]
+		[DllImport(libengine, EntryPoint = "RemovePropertyEx")]
 		public static extern Int64 RemovePropertyEx(Int64 model, Int64 rdfProperty);
 
 		/// <summary>
@@ -8319,7 +8327,7 @@ namespace RDF
 		///	i.e. this could mean the model is already closed, the property is inactive or removed or the session is closed.
 		///	It could also mean it represents a handle to another resource, for example a class, instance or model.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsProperty")]
+		[DllImport(libengine, EntryPoint = "IsProperty")]
 		public static extern Int64 IsProperty(Int64 rdfsResource);
 
 		//
@@ -8332,10 +8340,10 @@ namespace RDF
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateInstance")]
+		[DllImport(libengine, EntryPoint = "CreateInstance")]
 		public static extern Int64 CreateInstance(Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateInstance")]
+		[DllImport(libengine, EntryPoint = "CreateInstance")]
 		public static extern Int64 CreateInstance(Int64 owlClass, byte[] name);
 
 		public static Int64 CreateInstance(Int64 owlClass)
@@ -8350,10 +8358,10 @@ namespace RDF
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateInstanceW")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceW")]
 		public static extern Int64 CreateInstanceW(Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateInstanceW")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceW")]
 		public static extern Int64 CreateInstanceW(Int64 owlClass, byte[] name);
 
 		public static Int64 CreateInstanceW(Int64 owlClass)
@@ -8368,10 +8376,10 @@ namespace RDF
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateInstanceEx")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceEx")]
 		public static extern Int64 CreateInstanceEx(Int64 model, Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateInstanceEx")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceEx")]
 		public static extern Int64 CreateInstanceEx(Int64 model, Int64 owlClass, byte[] name);
 
 		public static Int64 CreateInstanceEx(Int64 model, Int64 owlClass)
@@ -8386,10 +8394,10 @@ namespace RDF
 		///	Returns a handle to an on the fly created instance.
 		///	If the owlClass input is zero or not a class handle 0 will be returned,
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateInstanceWEx")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceWEx")]
 		public static extern Int64 CreateInstanceWEx(Int64 model, Int64 owlClass, string name);
 
-		[DllImport(enginedll, EntryPoint = "CreateInstanceWEx")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceWEx")]
 		public static extern Int64 CreateInstanceWEx(Int64 model, Int64 owlClass, byte[] name);
 
 		public static Int64 CreateInstanceWEx(Int64 model, Int64 owlClass)
@@ -8405,7 +8413,7 @@ namespace RDF
 		///	If input instance is zero, the handle will point to the first relevant instance.
 		///	If all instances are past (or no relevant instances are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstancesByIterator")]
+		[DllImport(libengine, EntryPoint = "GetInstancesByIterator")]
 		public static extern Int64 GetInstancesByIterator(Int64 model, Int64 owlInstance);
 
 		/// <summary>
@@ -8414,7 +8422,7 @@ namespace RDF
 		///	Returns the handle to the class of which the instance is instantiated. In case the instance 
 		///	is instantiated on more than one class it will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceClass")]
+		[DllImport(libengine, EntryPoint = "GetInstanceClass")]
 		public static extern Int64 GetInstanceClass(Int64 owlInstance);
 
 		/// <summary>
@@ -8423,7 +8431,7 @@ namespace RDF
 		///	Returns the handle to the class of which the instance is instantiated. In case the instance 
 		///	is instantiated on more than one class it will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceClassEx")]
+		[DllImport(libengine, EntryPoint = "GetInstanceClassEx")]
 		public static extern Int64 GetInstanceClassEx(Int64 model, Int64 owlInstance);
 
 		/// <summary>
@@ -8431,7 +8439,7 @@ namespace RDF
 		///
 		///	Iterates over the classes the instance is instantiated from.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceClassByIterator")]
+		[DllImport(libengine, EntryPoint = "GetInstanceClassByIterator")]
 		public static extern Int64 GetInstanceClassByIterator(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8439,7 +8447,7 @@ namespace RDF
 		///
 		///	Iterates over the classes the instance is instantiated from.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceClassByIteratorEx")]
+		[DllImport(libengine, EntryPoint = "GetInstanceClassByIteratorEx")]
 		public static extern Int64 GetInstanceClassByIteratorEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8488,7 +8496,7 @@ namespace RDF
 		///	If one of the classes this instance is instantiated from or one of its parents is a geometry class,
 		///	this class is returned. In all other cases the return value is 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceGeometryClass")]
+		[DllImport(libengine, EntryPoint = "GetInstanceGeometryClass")]
 		public static extern Int64 GetInstanceGeometryClass(Int64 owlInstance);
 
 		/// <summary>
@@ -8500,14 +8508,14 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfInstance, however needs to be
 		///	used in case instance are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceGeometryClassEx")]
+		[DllImport(libengine, EntryPoint = "GetInstanceGeometryClassEx")]
 		public static extern Int64 GetInstanceGeometryClassEx(Int64 model, Int64 owlInstance);
 
 		/// <summary>
 		///		SetInstanceClass                                        (https://rdf.bg/gkdoc/index.html?topic=SetInstanceClass&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetInstanceClass")]
+		[DllImport(libengine, EntryPoint = "SetInstanceClass")]
 		public static extern Int64 SetInstanceClass(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8521,7 +8529,7 @@ namespace RDF
 		///	This call has the same behavior as SetInstanceClass, however needs to be
 		///	used in case instance or class are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetInstanceClassEx")]
+		[DllImport(libengine, EntryPoint = "SetInstanceClassEx")]
 		public static extern Int64 SetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8532,7 +8540,7 @@ namespace RDF
 		///
 		///	In case the instance dependency on classes has changed this function will return the instance given as input.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UnsetInstanceClass")]
+		[DllImport(libengine, EntryPoint = "UnsetInstanceClass")]
 		public static extern Int64 UnsetInstanceClass(Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8546,7 +8554,7 @@ namespace RDF
 		///	This call has the same behavior as UnsetInstanceClass, however needs to be
 		///	used in case instance or class are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UnsetInstanceClassEx")]
+		[DllImport(libengine, EntryPoint = "UnsetInstanceClassEx")]
 		public static extern Int64 UnsetInstanceClassEx(Int64 model, Int64 owlInstance, Int64 owlClass);
 
 		/// <summary>
@@ -8557,14 +8565,14 @@ namespace RDF
 		///	the knowledge about cardinality restrictions in the context of this instance's class
 		///	and the exact cardinality in context of its instance.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstancePropertyByIterator")]
+		[DllImport(libengine, EntryPoint = "GetInstancePropertyByIterator")]
 		public static extern Int64 GetInstancePropertyByIterator(Int64 rdfsResource, Int64 rdfProperty);
 
 		/// <summary>
 		///		GetInstancePropertyByIteratorEx                         (https://rdf.bg/gkdoc/index.html?topic=GetInstancePropertyByIteratorEx&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstancePropertyByIteratorEx")]
+		[DllImport(libengine, EntryPoint = "GetInstancePropertyByIteratorEx")]
 		public static extern Int64 GetInstancePropertyByIteratorEx(Int64 model, Int64 owlInstance, Int64 rdfProperty);
 
 		/// <summary>
@@ -8572,7 +8580,7 @@ namespace RDF
 		///
 		///	Returns a handle to the owlInstances referring this instance
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceInverseReferencesByIterator")]
+		[DllImport(libengine, EntryPoint = "GetInstanceInverseReferencesByIterator")]
 		public static extern Int64 GetInstanceInverseReferencesByIterator(Int64 owlInstance, Int64 referencingOwlInstance);
 
 		/// <summary>
@@ -8580,7 +8588,7 @@ namespace RDF
 		///
 		///	Returns a handle to the owlInstance referred by this instance
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetInstanceReferencesByIterator")]
+		[DllImport(libengine, EntryPoint = "GetInstanceReferencesByIterator")]
 		public static extern Int64 GetInstanceReferencesByIterator(Int64 owlInstance, Int64 referencedOwlInstance);
 
 		/// <summary>
@@ -8590,7 +8598,7 @@ namespace RDF
 		///	These structures could be relevant for semantical representation, such semantic meaning is lost. The resulting
 		///	geometry will however be the same.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ConsolidateInstanceTree")]
+		[DllImport(libengine, EntryPoint = "ConsolidateInstanceTree")]
 		public static extern Int64 ConsolidateInstanceTree(Int64 owlInstance);
 
 		/// <summary>
@@ -8608,10 +8616,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstance")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstance")]
 		public static extern Int64 SetNameOfInstance(Int64 owlInstance, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstance")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstance")]
 		public static extern Int64 SetNameOfInstance(Int64 owlInstance, byte[] name);
 
 		/// <summary>
@@ -8629,10 +8637,10 @@ namespace RDF
 		///		6	name is already used by an instance
 		///		7	undefined error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceW")]
 		public static extern Int64 SetNameOfInstanceW(Int64 owlInstance, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceW")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceW")]
 		public static extern Int64 SetNameOfInstanceW(Int64 owlInstance, byte[] name);
 
 		/// <summary>
@@ -8653,10 +8661,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfInstance, however needs to be
 		///	used in case instance are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceEx")]
 		public static extern Int64 SetNameOfInstanceEx(Int64 model, Int64 owlInstance, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceEx")]
 		public static extern Int64 SetNameOfInstanceEx(Int64 model, Int64 owlInstance, byte[] name);
 
 		/// <summary>
@@ -8677,10 +8685,10 @@ namespace RDF
 		///	This call has the same behavior as SetNameOfInstanceW, however needs to be
 		///	used in case instances are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceWEx")]
 		public static extern Int64 SetNameOfInstanceWEx(Int64 model, Int64 owlInstance, string name);
 
-		[DllImport(enginedll, EntryPoint = "SetNameOfInstanceWEx")]
+		[DllImport(libengine, EntryPoint = "SetNameOfInstanceWEx")]
 		public static extern Int64 SetNameOfInstanceWEx(Int64 model, Int64 owlInstance, byte[] name);
 
 		/// <summary>
@@ -8688,7 +8696,7 @@ namespace RDF
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfInstance")]
+		[DllImport(libengine, EntryPoint = "GetNameOfInstance")]
 		public static extern IntPtr GetNameOfInstance(Int64 owlInstance, out IntPtr name);
 
 		public static string GetNameOfInstance(Int64 owlInstance)
@@ -8703,7 +8711,7 @@ namespace RDF
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfInstanceW")]
+		[DllImport(libengine, EntryPoint = "GetNameOfInstanceW")]
 		public static extern IntPtr GetNameOfInstanceW(Int64 owlInstance, out IntPtr name);
 
 		public static string GetNameOfInstanceW(Int64 owlInstance)
@@ -8718,7 +8726,7 @@ namespace RDF
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfInstanceEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfInstanceEx")]
 		public static extern IntPtr GetNameOfInstanceEx(Int64 model, Int64 owlInstance, out IntPtr name);
 
 		public static string GetNameOfInstanceEx(Int64 model, Int64 owlInstance)
@@ -8733,7 +8741,7 @@ namespace RDF
 		///
 		///	Returns the name of the instance, if the instance does not exist it returns nullptr.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetNameOfInstanceWEx")]
+		[DllImport(libengine, EntryPoint = "GetNameOfInstanceWEx")]
 		public static extern IntPtr GetNameOfInstanceWEx(Int64 model, Int64 owlInstance, out IntPtr name);
 
 		public static string GetNameOfInstanceWEx(Int64 model, Int64 owlInstance)
@@ -8756,28 +8764,28 @@ namespace RDF
 		///	Note: the client application needs to make sure the cardinality of
 		///		  the property is within the boundaries.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref byte values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, byte[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref double values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, double[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, ref string values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDatatypeProperty")]
 		public static extern Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		public static Int64 SetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, [param: MarshalAs(UnmanagedType.U1)] bool value)
@@ -8872,28 +8880,28 @@ namespace RDF
 		///	Note: the client application needs to make sure the cardinality of
 		///		  the property is within the boundaries.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref byte values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, byte[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref double values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, double[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, ref string values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetDatatypePropertyEx")]
 		public static extern Int64 SetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		/// <summary>
@@ -8906,7 +8914,7 @@ namespace RDF
 		///	is given by the definition of the dataTypeProperty.
 		///	The return value always should be 0, if not something is wrong in the way this property is called.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDatatypeProperty")]
+		[DllImport(libengine, EntryPoint = "GetDatatypeProperty")]
 		public static extern Int64 GetDatatypeProperty(Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -9025,7 +9033,7 @@ namespace RDF
 		///	This call has the same behavior as GetDatatypeProperty, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDatatypePropertyEx")]
+		[DllImport(libengine, EntryPoint = "GetDatatypePropertyEx")]
 		public static extern Int64 GetDatatypePropertyEx(Int64 model, Int64 rdfsResource, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
@@ -9041,10 +9049,10 @@ namespace RDF
 		///	Note: the client application needs to make sure the cardinality of
 		///		  the property is within the boundaries.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetObjectProperty")]
+		[DllImport(libengine, EntryPoint = "SetObjectProperty")]
 		public static extern Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetObjectProperty")]
+		[DllImport(libengine, EntryPoint = "SetObjectProperty")]
 		public static extern Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		public static Int64 SetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, Int64 value)
@@ -9077,10 +9085,10 @@ namespace RDF
 		///	Note: the client application needs to make sure the cardinality of
 		///		  the property is within the boundaries.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetObjectPropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetObjectPropertyEx")]
 		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetObjectPropertyEx")]
+		[DllImport(libengine, EntryPoint = "SetObjectPropertyEx")]
 		public static extern Int64 SetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		/// <summary>
@@ -9093,7 +9101,7 @@ namespace RDF
 		///	Caller should not dispose the list
 		///	The return value always should be 0, if not something is wrong in the way this property is called.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetObjectProperty")]
+		[DllImport(libengine, EntryPoint = "GetObjectProperty")]
 		public static extern Int64 GetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		public static Int64[] GetObjectProperty(Int64 rdfsResource, Int64 owlObjectProperty)
@@ -9127,7 +9135,7 @@ namespace RDF
 		///	This call has the same behavior as GetObjectProperty, however needs to be
 		///	used in case properties are exchanged as a successive series of integers.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetObjectPropertyEx")]
+		[DllImport(libengine, EntryPoint = "GetObjectPropertyEx")]
 		public static extern Int64 GetObjectPropertyEx(Int64 model, Int64 rdfsResource, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
@@ -9139,7 +9147,7 @@ namespace RDF
 		///	InstanceInContext structures are updated dynamically when the geometry
 		///	structure is updated.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CreateInstanceInContextStructure")]
+		[DllImport(libengine, EntryPoint = "CreateInstanceInContextStructure")]
 		public static extern Int64 CreateInstanceInContextStructure(Int64 owlInstance);
 
 		/// <summary>
@@ -9149,28 +9157,28 @@ namespace RDF
 		///	in performance and memory is limited it is advised to destroy structures as soon
 		///	as they are obsolete.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "DestroyInstanceInContextStructure")]
+		[DllImport(libengine, EntryPoint = "DestroyInstanceInContextStructure")]
 		public static extern void DestroyInstanceInContextStructure(Int64 owlInstanceInContext);
 
 		/// <summary>
 		///		InstanceInContextChild                                  (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextChild&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "InstanceInContextChild")]
+		[DllImport(libengine, EntryPoint = "InstanceInContextChild")]
 		public static extern Int64 InstanceInContextChild(Int64 owlInstanceInContext);
 
 		/// <summary>
 		///		InstanceInContextNext                                   (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextNext&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "InstanceInContextNext")]
+		[DllImport(libengine, EntryPoint = "InstanceInContextNext")]
 		public static extern Int64 InstanceInContextNext(Int64 owlInstanceInContext);
 
 		/// <summary>
 		///		InstanceInContextIsUpdated                              (https://rdf.bg/gkdoc/index.html?topic=InstanceInContextIsUpdated&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "InstanceInContextIsUpdated")]
+		[DllImport(libengine, EntryPoint = "InstanceInContextIsUpdated")]
 		public static extern Int64 InstanceInContextIsUpdated(Int64 owlInstanceInContext);
 
 		/// <summary>
@@ -9181,7 +9189,7 @@ namespace RDF
 		///	copies are removed otherwise the instance will stay available.
 		///	Return value is 0 if everything went ok and positive in case of an error
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "RemoveInstance")]
+		[DllImport(libengine, EntryPoint = "RemoveInstance")]
 		public static extern Int64 RemoveInstance(Int64 owlInstance);
 
 		/// <summary>
@@ -9193,7 +9201,7 @@ namespace RDF
 		///
 		///	Return value is total number of removed instances
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "RemoveInstanceRecursively")]
+		[DllImport(libengine, EntryPoint = "RemoveInstanceRecursively")]
 		public static extern Int64 RemoveInstanceRecursively(Int64 owlInstance);
 
 		/// <summary>
@@ -9203,7 +9211,7 @@ namespace RDF
 		///	from the internal structure.
 		///	Return value is the number of removed instances.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "RemoveInstances")]
+		[DllImport(libengine, EntryPoint = "RemoveInstances")]
 		public static extern Int64 RemoveInstances(Int64 model);
 
 		/// <summary>
@@ -9213,7 +9221,7 @@ namespace RDF
 		///	i.e. this could mean the model is already closed, the instance is inactive or removed or the session is closed.
 		///	It could also mean it represents a handle to another resource, for example a class, property or model.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsInstance")]
+		[DllImport(libengine, EntryPoint = "IsInstance")]
 		public static extern Int64 IsInstance(Int64 rdfsResource);
 
 		/// <summary>
@@ -9279,28 +9287,28 @@ namespace RDF
 		///	Note: This function needs to be called directly before UpdateVertexBuffer(),
 		///		  UpdateIndexBuffer() and UpdateTransformationBuffer().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, out Int64 vertexBufferSize, out Int64 indexBufferSize, out Int64 transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, out Int64 vertexBufferSize, out Int64 indexBufferSize, IntPtr transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, out Int64 vertexBufferSize, IntPtr indexBufferSize, out Int64 transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, out Int64 vertexBufferSize, IntPtr indexBufferSize, IntPtr transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, IntPtr vertexBufferSize, out Int64 indexBufferSize, out Int64 transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, IntPtr vertexBufferSize, out Int64 indexBufferSize, IntPtr transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, IntPtr vertexBufferSize, IntPtr indexBufferSize, out Int64 transformationBufferSize);
 
-		[DllImport(enginedll, EntryPoint = "CalculateInstance")]
+		[DllImport(libengine, EntryPoint = "CalculateInstance")]
 		public static extern Int64 CalculateInstance(Int64 owlInstance, IntPtr vertexBufferSize, IntPtr indexBufferSize, IntPtr transformationBufferSize);
 
 		public static Int64 CalculateInstance(Int64 owlInstance, out Int64 vertexBufferSize, out Int64 indexBufferSize)
@@ -9317,7 +9325,7 @@ namespace RDF
 		///	For example the coordinates values of a MultiplicationMatrix will be set if the array is
 		///	defined.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstance")]
+		[DllImport(libengine, EntryPoint = "UpdateInstance")]
 		public static extern Int64 UpdateInstance(Int64 owlInstance);
 
 		/// <summary>
@@ -9328,7 +9336,7 @@ namespace RDF
 		///	or in case a property has been updated, or a (recursively) related instance has an updated property since
 		///	last calculation of geometry.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsUpToDate")]
+		[DllImport(libengine, EntryPoint = "IsUpToDate")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool IsUpToDate(Int64 owlInstance);
 
@@ -9337,7 +9345,7 @@ namespace RDF
 		///
 		///	This function sets if the property of an instance, class or model is derived.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetPropertyDerived")]
+		[DllImport(libengine, EntryPoint = "SetPropertyDerived")]
 		public static extern void SetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty, [param: MarshalAs(UnmanagedType.U1)] bool derived);
 
 		/// <summary>
@@ -9345,7 +9353,7 @@ namespace RDF
 		///
 		///	This function returns true if instance, class or model has the property set as derived.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyDerived")]
+		[DllImport(libengine, EntryPoint = "GetPropertyDerived")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetPropertyDerived(Int64 rdfsResource, Int64 rdfProperty);
 
@@ -9356,7 +9364,7 @@ namespace RDF
 		///	If a class or any of its parents have been modified the value will increase.
 		///	If a class or any of its parents have been modified later then another the value will be bigger.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetClassModificationMark")]
+		[DllImport(libengine, EntryPoint = "GetClassModificationMark")]
 		public static extern Int64 GetClassModificationMark(Int64 owlClass);
 
 		/// <summary>
@@ -9365,7 +9373,7 @@ namespace RDF
 		///	This function informs class it has been changed externally.
 		///	Application may want to call it when it changed its class external reference data. 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateClassModificationMark")]
+		[DllImport(libengine, EntryPoint = "UpdateClassModificationMark")]
 		public static extern void UpdateClassModificationMark(Int64 owlClass);
 
 		/// <summary>
@@ -9374,7 +9382,7 @@ namespace RDF
 		///	This function fills in values that are implicitly known but not given by the user. This function
 		///	can also be used to identify default values of properties if not given.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "InferenceInstance")]
+		[DllImport(libengine, EntryPoint = "InferenceInstance")]
 		public static extern Int64 InferenceInstance(Int64 owlInstance);
 
 		/// <summary>
@@ -9389,16 +9397,16 @@ namespace RDF
 		///	from previous call, even is size is changed. This can be overruled by 
 		///	the function ClearedExternalBuffers().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBuffer")]
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, out float vertexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBuffer")]
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, float[] vertexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBuffer")]
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, out double vertexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBuffer")]
 		public static extern Int64 UpdateInstanceVertexBuffer(Int64 owlInstance, [Out] double[] vertexBuffer);
 
 		/// <summary>
@@ -9409,16 +9417,16 @@ namespace RDF
 		///	this function allows to fill part of the vertex buffer given a
 		///	certain offset and size (both calculated in vertex element count).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, out float vertexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, float[] vertexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, out double vertexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceVertexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceVertexBufferTrimmed(Int64 owlInstance, [Out] double[] vertexBuffer, Int64 offset, Int64 size);
 
 		/// <summary>
@@ -9433,16 +9441,16 @@ namespace RDF
 		///	from previous call, even is size is changed. This can be overruled by 
 		///	the function ClearedExternalBuffers().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBuffer")]
 		public static extern Int64 UpdateInstanceIndexBuffer(Int64 owlInstance, out Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBuffer")]
 		public static extern Int64 UpdateInstanceIndexBuffer(Int64 owlInstance, Int32[] indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBuffer")]
 		public static extern Int64 UpdateInstanceIndexBuffer(Int64 owlInstance, out Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBuffer")]
 		public static extern Int64 UpdateInstanceIndexBuffer(Int64 owlInstance, Int64[] indexBuffer);
 
 		/// <summary>
@@ -9453,16 +9461,16 @@ namespace RDF
 		///	this function allows to fill part of the index buffer given a
 		///	certain offset and size.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceIndexBufferTrimmed(Int64 owlInstance, out Int32 indexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceIndexBufferTrimmed(Int64 owlInstance, Int32[] indexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceIndexBufferTrimmed(Int64 owlInstance, out Int64 indexBuffer, Int64 offset, Int64 size);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceIndexBufferTrimmed")]
 		public static extern Int64 UpdateInstanceIndexBufferTrimmed(Int64 owlInstance, Int64[] indexBuffer, Int64 offset, Int64 size);
 
 		/// <summary>
@@ -9477,10 +9485,10 @@ namespace RDF
 		///	from previous call, even is size is changed. This can be overruled by 
 		///	the function ClearedExternalBuffers().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceTransformationBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceTransformationBuffer")]
 		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, out double transformationBuffer);
 
-		[DllImport(enginedll, EntryPoint = "UpdateInstanceTransformationBuffer")]
+		[DllImport(libengine, EntryPoint = "UpdateInstanceTransformationBuffer")]
 		public static extern Int64 UpdateInstanceTransformationBuffer(Int64 owlInstance, [Out] double[] transformationBuffer);
 
 		/// <summary>
@@ -9492,7 +9500,7 @@ namespace RDF
 		///	functions UpdateVertexBuffer(), UpdateIndexBuffer() and/or transformationBuffer()
 		///	are called for this specific instance.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ClearedInstanceExternalBuffers")]
+		[DllImport(libengine, EntryPoint = "ClearedInstanceExternalBuffers")]
 		public static extern void ClearedInstanceExternalBuffers(Int64 owlInstance);
 
 		/// <summary>
@@ -9503,7 +9511,7 @@ namespace RDF
 		///	functions UpdateVertexBuffer(), UpdateIndexBuffer() and/or transformationBuffer()
 		///	are called.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "ClearedExternalBuffers")]
+		[DllImport(libengine, EntryPoint = "ClearedExternalBuffers")]
 		public static extern void ClearedExternalBuffers(Int64 model);
 
 		/// <summary>
@@ -9511,7 +9519,7 @@ namespace RDF
 		///
 		///	This function returns the number of conceptual faces for a certain instance.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceCnt")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceCnt")]
 		public static extern Int64 GetConceptualFaceCnt(Int64 owlInstance);
 
 		/// <summary>
@@ -9525,7 +9533,7 @@ namespace RDF
 		///	Note: This allows to keep track of conceptual faces if te number of conceptual faces changes.
 		///	For example in case of a boolean operation where the type of placement of objects is changing. 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceDiscriminator")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceDiscriminator")]
 		public static extern IntPtr GetConceptualFaceDiscriminator(Int64 owlInstance, Int64 index, out IntPtr name);
 
 		/// <summary>
@@ -9539,7 +9547,7 @@ namespace RDF
 		///	Note: This allows to keep track of conceptual faces if te number of conceptual faces changes.
 		///	For example in case of a boolean operation where the type of placement of objects is changing. 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceDiscriminatorW")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceDiscriminatorW")]
 		public static extern IntPtr GetConceptualFaceDiscriminatorW(Int64 owlInstance, Int64 index, out IntPtr name);
 
 		/// <summary>
@@ -9549,100 +9557,100 @@ namespace RDF
 		///	instances can return the same handles (however with possible different startIndices and noIndicesTriangles).
 		///	Argument index should be at least zero and smaller then return value of GetConceptualFaceCnt().
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFace")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFace")]
 		public static extern Int64 GetConceptualFace(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
 		public static Int64 GetConceptualFace(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints)
@@ -9664,10 +9672,10 @@ namespace RDF
 		///
 		///	In case matrix is not allocated by the host the matrix is outdated the moment the same call is called again.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceMatrix")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceMatrix")]
 		public static extern double[] GetConceptualFaceMatrix(Int64 owlInstance, Int64 index, out double matrix);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceMatrix")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceMatrix")]
 		public static extern double[] GetConceptualFaceMatrix(Int64 owlInstance, Int64 index, [Out] double[] matrix);
 
 		/// <summary>
@@ -9676,7 +9684,7 @@ namespace RDF
 		///	This function returns the material instance relevant for this
 		///	conceptual face.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceMaterial")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceMaterial")]
 		public static extern Int64 GetConceptualFaceMaterial(Int64 conceptualFace);
 
 		/// <summary>
@@ -9685,7 +9693,7 @@ namespace RDF
 		///	This function returns the number of instances that are the source primitive/concept
 		///	for this conceptual face.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceOriginCnt")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceOriginCnt")]
 		public static extern Int64 GetConceptualFaceOriginCnt(Int64 conceptualFace);
 
 		/// <summary>
@@ -9694,14 +9702,14 @@ namespace RDF
 		///	This function returns a handle to the instance that is the source primitive/concept
 		///	for this conceptual face.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceOrigin")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceOrigin")]
 		public static extern Int64 GetConceptualFaceOrigin(Int64 conceptualFace, Int64 index);
 
 		/// <summary>
 		///		GetConceptualFaceOriginEx                               (https://rdf.bg/gkdoc/index.html?topic=GetConceptualFaceOriginEx&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceOriginEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceOriginEx")]
 		public static extern void GetConceptualFaceOriginEx(Int64 conceptualFace, Int64 index, out Int64 originatingOwlInstance, out Int64 originatingConceptualFace);
 
 		/// <summary>
@@ -9710,7 +9718,7 @@ namespace RDF
 		///	This function returns UV coordinates for a specific conceptualFace given its real world coordinates.
 		///	The UV coordinates are expected to be both (inclusive) between 0. and 1., i.e. [0..1].
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceXYZ2UV")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceXYZ2UV")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetConceptualFaceXYZ2UV(Int64 owlInstance, Int64 index, out double u, out double v, double x, double y, double z);
 
@@ -9736,7 +9744,7 @@ namespace RDF
 		///	    GetConceptualFaceUV2XYZ(conceptualFace, &u, &v, x, y, z);
 		///	    GetConceptualFaceUV2XYZ(conceptualFace, &x, &y, &z, u, v);
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceUV2XYZ")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceUV2XYZ")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetConceptualFaceUV2XYZ(Int64 owlInstance, Int64 index, out double x, out double y, out double z, out double Nx, out double Ny, out double Nz, double u, double v);
 
@@ -9745,7 +9753,7 @@ namespace RDF
 		///
 		///	This function returns the number of faces for a certain instance.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetFaceCnt")]
+		[DllImport(libengine, EntryPoint = "GetFaceCnt")]
 		public static extern Int64 GetFaceCnt(Int64 owlInstance);
 
 		/// <summary>
@@ -9754,7 +9762,7 @@ namespace RDF
 		///	This function gets the individual faces including the meta data, i.e. the number of openings within this specific face.
 		///	This call is for very dedicated use, it would be more common to iterate over the individual conceptual faces.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetFace")]
+		[DllImport(libengine, EntryPoint = "GetFace")]
 		public static extern void GetFace(Int64 owlInstance, Int64 index, out Int64 startIndex, out Int64 noOpenings);
 
 		/// <summary>
@@ -9765,7 +9773,7 @@ namespace RDF
 		///
 		///	Note: BE AWARE, THIS FUNCTION EXPECTS A TREE, NOT A NETWORK, IN CASE OF A NETWORK THIS FUNCTION CAN LOCK THE ENGINE
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDependingPropertyCnt")]
+		[DllImport(libengine, EntryPoint = "GetDependingPropertyCnt")]
 		public static extern Int64 GetDependingPropertyCnt(Int64 baseOwlInstance, Int64 conceptualFace);
 
 		/// <summary>
@@ -9780,7 +9788,7 @@ namespace RDF
 		///		  instance will be both zero.
 		///	Note: BE AWARE, THIS FUNCTION EXPECTS A TREE, NOT A NETWORK, IN CASE OF A NETWORK THIS FUNCTION CAN LOCK THE ENGINE
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDependingProperty")]
+		[DllImport(libengine, EntryPoint = "GetDependingProperty")]
 		public static extern void GetDependingProperty(Int64 baseOwlInstance, Int64 conceptualFace, Int64 index, out Int64 owlInstance, out Int64 owlDatatypeProperty);
 
 		/// <summary>
@@ -9924,7 +9932,7 @@ namespace RDF
 		///	2nd texture tangent		T2Tx, T2Ty, T2Tz	FORMAT_VERTEX_TEXTURE2_TANGENT (bit 30)		3
 		///	2nd texture binormal	T2BNx,T2BNy,T2BNz	FORMAT_VERTEX_TEXTURE2_BINORMAL (bit 31)	3
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetFormat")]
+		[DllImport(libengine, EntryPoint = "SetFormat")]
 		public static extern UInt64 SetFormat(Int64 model, UInt64 setting, UInt64 mask);
 
 		public static UInt64 SetFormat(Int64 model)
@@ -9937,7 +9945,7 @@ namespace RDF
 		///
 		///	Returns the current format given a mask.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetFormat")]
+		[DllImport(libengine, EntryPoint = "GetFormat")]
 		public static extern UInt64 GetFormat(Int64 model, UInt64 mask);
 
 		public static UInt64 GetFormat(Int64 model)
@@ -9959,7 +9967,7 @@ namespace RDF
 		///	If you need offset in bytes multiply by size of element.
 		///	Compare to SetFormat that returns size of vertex data in bytes.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetVertexDataOffset")]
+		[DllImport(libengine, EntryPoint = "GetVertexDataOffset")]
 		public static extern Int32 GetVertexDataOffset(Int64 requiredData, Int64 setting);
 
 		/// <summary>
@@ -9979,7 +9987,7 @@ namespace RDF
 		///
 		///	Note: default setting is 0000 0000 0000 0000   0000 0000 0000 0000  -  0000 0000 0000 0000   0000 0001  0000 0000 = h0000 0000 - 0000 0100 = 256
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetBehavior")]
+		[DllImport(libengine, EntryPoint = "SetBehavior")]
 		public static extern void SetBehavior(Int64 model, UInt64 setting, UInt64 mask);
 
 		/// <summary>
@@ -9987,7 +9995,7 @@ namespace RDF
 		///
 		///	Returns the current behavior given a mask.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetBehavior")]
+		[DllImport(libengine, EntryPoint = "GetBehavior")]
 		public static extern UInt64 GetBehavior(Int64 model, UInt64 mask);
 
 		/// <summary>
@@ -9997,10 +10005,10 @@ namespace RDF
 		///	The transformation will always be calculated in 64 bit, even if the vertex element size is 32 bit.
 		///	This function can be called just before updating the vertex buffer.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetVertexBufferTransformation")]
+		[DllImport(libengine, EntryPoint = "SetVertexBufferTransformation")]
 		public static extern void SetVertexBufferTransformation(Int64 model, ref double matrix);
 
-		[DllImport(enginedll, EntryPoint = "SetVertexBufferTransformation")]
+		[DllImport(libengine, EntryPoint = "SetVertexBufferTransformation")]
 		public static extern void SetVertexBufferTransformation(Int64 model, double[] matrix);
 
 		/// <summary>
@@ -10008,10 +10016,10 @@ namespace RDF
 		///
 		///	Gets the transformation for a Vertex Buffer.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetVertexBufferTransformation")]
+		[DllImport(libengine, EntryPoint = "GetVertexBufferTransformation")]
 		public static extern void GetVertexBufferTransformation(Int64 model, out double matrix);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexBufferTransformation")]
+		[DllImport(libengine, EntryPoint = "GetVertexBufferTransformation")]
 		public static extern void GetVertexBufferTransformation(Int64 model, [Out] double[] matrix);
 
 		/// <summary>
@@ -10020,7 +10028,7 @@ namespace RDF
 		///	Sets the offset for an Index Buffer.
 		///	It is important call this function before updating the vertex buffer. 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetIndexBufferOffset")]
+		[DllImport(libengine, EntryPoint = "SetIndexBufferOffset")]
 		public static extern void SetIndexBufferOffset(Int64 model, Int64 offset);
 
 		/// <summary>
@@ -10028,7 +10036,7 @@ namespace RDF
 		///
 		///	Gets the current offset for an Index Buffer.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetIndexBufferOffset")]
+		[DllImport(libengine, EntryPoint = "GetIndexBufferOffset")]
 		public static extern Int64 GetIndexBufferOffset(Int64 model);
 
 		/// <summary>
@@ -10038,7 +10046,7 @@ namespace RDF
 		///	The offset will always be calculated in 64 bit, even if the vertex element size is 32 bit.
 		///	This function can be called just before updating the vertex buffer.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetVertexBufferOffset")]
+		[DllImport(libengine, EntryPoint = "SetVertexBufferOffset")]
 		public static extern void SetVertexBufferOffset(Int64 model, double x, double y, double z);
 
 		public static void SetVertexBufferOffset(Int64 model, ref double[] offset)
@@ -10068,7 +10076,7 @@ namespace RDF
 		///
 		///	Gets the offset for a Vertex Buffer.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetVertexBufferOffset")]
+		[DllImport(libengine, EntryPoint = "GetVertexBufferOffset")]
 		public static extern void GetVertexBufferOffset(Int64 model, out double x, out double y, out double z);
 
 		public static void GetVertexBufferOffset(Int64 model, ref double[] offset)
@@ -10086,7 +10094,7 @@ namespace RDF
 		///
 		///	Set the default values for the colors defined as argument.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetDefaultColor")]
+		[DllImport(libengine, EntryPoint = "SetDefaultColor")]
 		public static extern void SetDefaultColor(Int64 model, UInt32 ambient, UInt32 diffuse, UInt32 emissive, UInt32 specular);
 
 		/// <summary>
@@ -10094,7 +10102,7 @@ namespace RDF
 		///
 		///	Retrieve the default values for the colors defined as argument.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDefaultColor")]
+		[DllImport(libengine, EntryPoint = "GetDefaultColor")]
 		public static extern void GetDefaultColor(Int64 model, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
 		/// <summary>
@@ -10132,7 +10140,7 @@ namespace RDF
 		///	i.e. any non-zero return value in Check Consistency is an indication that something is wrong or unexpected; 
 		///	any non-zero return value in Contains is an indication that this type of geometry is expected in one of the instances; 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CheckConsistency")]
+		[DllImport(libengine, EntryPoint = "CheckConsistency")]
 		public static extern UInt64 CheckConsistency(Int64 model, UInt64 mask);
 
 		/// <summary>
@@ -10170,7 +10178,7 @@ namespace RDF
 		///	i.e. any non-zero return value in Check Consistency is an indication that something is wrong or unexpected regarding the given instance; 
 		///	any non-zero return value in Contains is an indication that this type of geometry is expected regarding the given instance; 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "CheckInstanceConsistency")]
+		[DllImport(libengine, EntryPoint = "CheckInstanceConsistency")]
 		public static extern UInt64 CheckInstanceConsistency(Int64 owlInstance, UInt64 mask);
 
 		/// <summary>
@@ -10179,11 +10187,11 @@ namespace RDF
 		///	Checks if two geometry representations are (almost) similar except for a transformation matrix and a given epsilon.
 		///	The parameter duplicateMatrix is optional and can be left to zero.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsDuplicate")]
+		[DllImport(libengine, EntryPoint = "IsDuplicate")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, out double duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, [param: MarshalAs(UnmanagedType.U1)] bool checkMaterial);
 
-		[DllImport(enginedll, EntryPoint = "IsDuplicate")]
+		[DllImport(libengine, EntryPoint = "IsDuplicate")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool IsDuplicate(Int64 originalOwlInstance, Int64 duplicateOwlInstance, [Out] double[] duplicateMatrix, double absoluteEpsilon, double relativeEpsilon, [param: MarshalAs(UnmanagedType.U1)] bool checkMaterial);
 
@@ -10201,7 +10209,7 @@ namespace RDF
 		///	Note: due to internal structure using already calculated vertex buffer/index buffer does not
 		///		  give any performance benefits, in opposite to GetVolume and GetArea
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPerimeter")]
+		[DllImport(libengine, EntryPoint = "GetPerimeter")]
 		public static extern double GetPerimeter(Int64 owlInstance);
 
 		/// <summary>
@@ -10226,19 +10234,19 @@ namespace RDF
 		///	Note: in case precision is important and vertex buffer is 32 bit it is advised to
 		///		  set vertexBuffer and indexBuffer to 0 even if arrays are existing.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetArea")]
+		[DllImport(libengine, EntryPoint = "GetArea")]
 		public static extern double GetArea(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetArea")]
+		[DllImport(libengine, EntryPoint = "GetArea")]
 		public static extern double GetArea(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetArea")]
+		[DllImport(libengine, EntryPoint = "GetArea")]
 		public static extern double GetArea(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetArea")]
+		[DllImport(libengine, EntryPoint = "GetArea")]
 		public static extern double GetArea(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetArea")]
+		[DllImport(libengine, EntryPoint = "GetArea")]
 		public static extern double GetArea(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer);
 
 		public static double GetArea(Int64 owlInstance)
@@ -10268,19 +10276,19 @@ namespace RDF
 		///	Note: in case precision is important and vertex buffer is 32 bit it is advised to
 		///		  set vertexBuffer and indexBuffer to 0 even if arrays are existing.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetVolume")]
+		[DllImport(libengine, EntryPoint = "GetVolume")]
 		public static extern double GetVolume(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetVolume")]
+		[DllImport(libengine, EntryPoint = "GetVolume")]
 		public static extern double GetVolume(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetVolume")]
+		[DllImport(libengine, EntryPoint = "GetVolume")]
 		public static extern double GetVolume(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetVolume")]
+		[DllImport(libengine, EntryPoint = "GetVolume")]
 		public static extern double GetVolume(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetVolume")]
+		[DllImport(libengine, EntryPoint = "GetVolume")]
 		public static extern double GetVolume(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer);
 
 		public static double GetVolume(Int64 owlInstance)
@@ -10310,34 +10318,34 @@ namespace RDF
 		///	Note: in case precision is important and vertex array is 32 bit it is advised to
 		///		  set vertexBuffer and indexBuffer to 0 even if arrays are existing.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, out double center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, [Out] double[] center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, out double center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, [Out] double[] center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, out double center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, [Out] double[] center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, out double center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, [Out] double[] center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, out double center);
 
-		[DllImport(enginedll, EntryPoint = "GetCenter")]
+		[DllImport(libengine, EntryPoint = "GetCenter")]
 		public static extern void GetCenter(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, [Out] double[] center);
 
 		public static void GetCenter(Int64 owlInstance, out double center)
@@ -10349,34 +10357,34 @@ namespace RDF
 		///		GetCentroid                                             (https://rdf.bg/gkdoc/index.html?topic=GetCentroid&lang=CS64)
 		///
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, out double centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int32 indexBuffer, [Out] double[] centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, out double centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref float vertexBuffer, ref Int64 indexBuffer, [Out] double[] centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, out double centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int32 indexBuffer, [Out] double[] centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, out double centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, ref double vertexBuffer, ref Int64 indexBuffer, [Out] double[] centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, out double centroid);
 
-		[DllImport(enginedll, EntryPoint = "GetCentroid")]
+		[DllImport(libengine, EntryPoint = "GetCentroid")]
 		public static extern double GetCentroid(Int64 owlInstance, IntPtr vertexBuffer, IntPtr indexBuffer, [Out] double[] centroid);
 
 		public static double GetCentroid(Int64 owlInstance, out double centroid)
@@ -10389,7 +10397,7 @@ namespace RDF
 		///
 		///	This function returns the perimeter of a given Conceptual Face.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFacePerimeter")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFacePerimeter")]
 		public static extern double GetConceptualFacePerimeter(Int64 conceptualFace);
 
 		/// <summary>
@@ -10398,19 +10406,19 @@ namespace RDF
 		///	This function returns the area of a given Conceptual Face. The attributes vertex buffer
 		///	and index buffer are optional but will improve performance if defined.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceArea")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceArea")]
 		public static extern double GetConceptualFaceArea(Int64 conceptualFace, ref float vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceArea")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceArea")]
 		public static extern double GetConceptualFaceArea(Int64 conceptualFace, ref float vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceArea")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceArea")]
 		public static extern double GetConceptualFaceArea(Int64 conceptualFace, ref double vertexBuffer, ref Int32 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceArea")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceArea")]
 		public static extern double GetConceptualFaceArea(Int64 conceptualFace, ref double vertexBuffer, ref Int64 indexBuffer);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceArea")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceArea")]
 		public static extern double GetConceptualFaceArea(Int64 conceptualFace, IntPtr vertexBuffer, IntPtr indexBuffer);
 
 		public static double GetConceptualFaceArea(Int64 conceptualFace)
@@ -10430,10 +10438,10 @@ namespace RDF
 		///	The startVector is the leftundernear vector and the endVector is the 
 		///	rightupperfar vector, in all cases values are doubles (64 bit).
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetBoundingBoxReference")]
+		[DllImport(libengine, EntryPoint = "SetBoundingBoxReference")]
 		public static extern void SetBoundingBoxReference(Int64 owlInstance, out double transformationMatrix, out double startVector, out double endVector);
 
-		[DllImport(enginedll, EntryPoint = "SetBoundingBoxReference")]
+		[DllImport(libengine, EntryPoint = "SetBoundingBoxReference")]
 		public static extern void SetBoundingBoxReference(Int64 owlInstance, [Out] double[] transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
 		/// <summary>
@@ -10443,19 +10451,19 @@ namespace RDF
 		///	When the transformationMatrix is left empty and both startVector and endVector are
 		///	given the bounding box without transformation is calculated and returned.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
+		[DllImport(libengine, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetBoundingBox(Int64 owlInstance, out double transformationMatrix, out double startVector, out double endVector);
 
-		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
+		[DllImport(libengine, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, out double startVector, out double endVector);
 
-		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
+		[DllImport(libengine, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetBoundingBox(Int64 owlInstance, [Out] double[] transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
-		[DllImport(enginedll, EntryPoint = "GetBoundingBox")]
+		[DllImport(libengine, EntryPoint = "GetBoundingBox")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool GetBoundingBox(Int64 owlInstance, IntPtr transformationMatrix, [Out] double[] startVector, [Out] double[] endVector);
 
@@ -10474,10 +10482,10 @@ namespace RDF
 		///	otherwise the identity matrix is returned.
 		///	owlInstanceHead is allowed to be not defined, i.e. zero.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetRelativeTransformation")]
+		[DllImport(libengine, EntryPoint = "GetRelativeTransformation")]
 		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, out double transformationMatrix);
 
-		[DllImport(enginedll, EntryPoint = "GetRelativeTransformation")]
+		[DllImport(libengine, EntryPoint = "GetRelativeTransformation")]
 		public static extern void GetRelativeTransformation(Int64 owlInstanceHead, Int64 owlInstanceTail, [Out] double[] transformationMatrix);
 
 		/// <summary>
@@ -10485,10 +10493,10 @@ namespace RDF
 		///
 		///	This function returns the shortest distance between two instances.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDistance")]
+		[DllImport(libengine, EntryPoint = "GetDistance")]
 		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, out double pointFirstInstance, out double pointSecondInstance, [param: MarshalAs(UnmanagedType.U1)] bool allowCalculateInstance);
 
-		[DllImport(enginedll, EntryPoint = "GetDistance")]
+		[DllImport(libengine, EntryPoint = "GetDistance")]
 		public static extern double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, IntPtr pointFirstInstance, IntPtr pointSecondInstance, [param: MarshalAs(UnmanagedType.U1)] bool allowCalculateInstance);
 
 		public static double GetDistance(Int64 firstOwlInstance, Int64 secondOwlInstance, out double pointFirstInstance, out double pointSecondInstance)
@@ -10771,100 +10779,100 @@ namespace RDF
 		///	requiredColor is one of the control vertex data bits applied to colors (FORMAT_VERTEX_COLOR...) 
 		///	If vertex format does provide required color, the model default color will be used
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref float vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, out UInt32 diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, out UInt32 ambient, IntPtr diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, out UInt32 diffuse, IntPtr emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, out UInt32 emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, out UInt32 emissive, IntPtr specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, IntPtr emissive, out UInt32 specular);
 
-		[DllImport(enginedll, EntryPoint = "GetVertexColor")]
+		[DllImport(libengine, EntryPoint = "GetVertexColor")]
 		public static extern void GetVertexColor(Int64 model, ref double vertexBuffer, Int64 vertexIndex, Int64 setting, IntPtr ambient, IntPtr diffuse, IntPtr emissive, IntPtr specular);
 
 		/// <summary>
@@ -10952,100 +10960,100 @@ namespace RDF
 		///
 		///	Please rename GetConceptualFaceEx into GetConceptualFace.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, out Int64 startIndexTriangles, out Int64 noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, out Int64 startIndexLines, out Int64 noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, out Int64 startIndexPoints, out Int64 noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, out Int64 startIndexFacePolygons, out Int64 noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, out Int64 startIndexConceptualFacePolygons, out Int64 noIndicesConceptualFacePolygons);
 
-		[DllImport(enginedll, EntryPoint = "GetConceptualFaceEx")]
+		[DllImport(libengine, EntryPoint = "GetConceptualFaceEx")]
 		public static extern Int64 GetConceptualFaceEx(Int64 owlInstance, Int64 index, IntPtr startIndexTriangles, IntPtr noIndicesTriangles, IntPtr startIndexLines, IntPtr noIndicesLines, IntPtr startIndexPoints, IntPtr noIndicesPoints, IntPtr startIndexFacePolygons, IntPtr noIndicesFacePolygons, IntPtr startIndexConceptualFacePolygons, IntPtr noIndicesConceptualFacePolygons);
 
 		/// <summary>
@@ -11054,7 +11062,7 @@ namespace RDF
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant triangles when
 		///	SetFormat() is setting bit 8 and unsetting with bit 9, 10, 12 and 13 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetTriangles")]
+		[DllImport(libengine, EntryPoint = "GetTriangles")]
 		public static extern void GetTriangles(Int64 owlInstance, out Int64 startIndex, out Int64 noTriangles, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
@@ -11063,7 +11071,7 @@ namespace RDF
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant lines when
 		///	SetFormat() is setting bit 9 and unsetting with bit 8, 10, 12 and 13 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetLines")]
+		[DllImport(libengine, EntryPoint = "GetLines")]
 		public static extern void GetLines(Int64 owlInstance, out Int64 startIndex, out Int64 noLines, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
@@ -11072,7 +11080,7 @@ namespace RDF
 		///	This call is deprecated as it became trivial and will be removed by end of 2022. The result from CalculateInstance exclusively exists of the relevant points when
 		///	SetFormat() is setting bit 10 and unsetting with bit 8, 9, 12 and 13 
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPoints")]
+		[DllImport(libengine, EntryPoint = "GetPoints")]
 		public static extern void GetPoints(Int64 owlInstance, out Int64 startIndex, out Int64 noPoints, out Int64 startVertex, out Int64 firstNotUsedVertex);
 
 		/// <summary>
@@ -11080,10 +11088,10 @@ namespace RDF
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetClassPropertyAggregatedCardinalityRestriction instead,
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyRestrictionsConsolidated")]
+		[DllImport(libengine, EntryPoint = "GetPropertyRestrictionsConsolidated")]
 		public static extern void GetPropertyRestrictionsConsolidated(Int64 owlClass, Int64 rdfProperty, out Int64 minCard, out Int64 maxCard);
 
-		[DllImport(enginedll, EntryPoint = "GetPropertyRestrictionsConsolidated")]
+		[DllImport(libengine, EntryPoint = "GetPropertyRestrictionsConsolidated")]
 		public static extern void GetPropertyRestrictionsConsolidated(Int64 owlClass, Int64 rdfProperty, IntPtr minCard, IntPtr maxCard);
 
 		/// <summary>
@@ -11092,7 +11100,7 @@ namespace RDF
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetGeometryClass instead, rename the function name
 		///	and interpret non-zero as true and zero as false.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "IsGeometryType")]
+		[DllImport(libengine, EntryPoint = "IsGeometryType")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		public static extern bool IsGeometryType(Int64 owlClass);
 
@@ -11101,10 +11109,10 @@ namespace RDF
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call SetObjectProperty instead, just rename the function name.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetObjectTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetObjectTypeProperty")]
 		public static extern Int64 SetObjectTypeProperty(Int64 owlInstance, Int64 owlObjectProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetObjectTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetObjectTypeProperty")]
 		public static extern Int64 SetObjectTypeProperty(Int64 owlInstance, Int64 owlObjectProperty, Int64[] values, Int64 card);
 
 		/// <summary>
@@ -11112,7 +11120,7 @@ namespace RDF
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetObjectProperty instead, just rename the function name.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetObjectTypeProperty")]
+		[DllImport(libengine, EntryPoint = "GetObjectTypeProperty")]
 		public static extern Int64 GetObjectTypeProperty(Int64 owlInstance, Int64 owlObjectProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
@@ -11120,28 +11128,28 @@ namespace RDF
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call SetDatatypeProperty instead, just rename the function name.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref byte values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, byte[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref Int64 values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, Int64[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref double values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, double[] values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, ref string values, Int64 card);
 
-		[DllImport(enginedll, EntryPoint = "SetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "SetDataTypeProperty")]
 		public static extern Int64 SetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, string[] values, Int64 card);
 
 		/// <summary>
@@ -11149,7 +11157,7 @@ namespace RDF
 		///
 		///	This call is deprecated and will be removed by end of 2022. Please use the call GetDatatypeProperty instead, just rename the function name.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetDataTypeProperty")]
+		[DllImport(libengine, EntryPoint = "GetDataTypeProperty")]
 		public static extern Int64 GetDataTypeProperty(Int64 owlInstance, Int64 owlDatatypeProperty, out IntPtr values, out Int64 card);
 
 		/// <summary>
@@ -11157,7 +11165,7 @@ namespace RDF
 		///
 		///	This call is deprecated as the Copy concept is also deprecated and will be removed by end of 2022.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "InstanceCopyCreated")]
+		[DllImport(libengine, EntryPoint = "InstanceCopyCreated")]
 		public static extern void InstanceCopyCreated(Int64 owlInstance);
 
 		/// <summary>
@@ -11166,10 +11174,10 @@ namespace RDF
 		///	This call is deprecated and will be removed by end of 2022.
 		///	Please use the call GetPropertyByName(Ex)/GetPropertyByNameW(Ex) + GetPropertyType(Ex) instead, just rename the function name.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetPropertyByNameAndType")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByNameAndType")]
 		public static extern Int64 GetPropertyByNameAndType(Int64 model, string name, Int64 rdfPropertyType);
 
-		[DllImport(enginedll, EntryPoint = "GetPropertyByNameAndType")]
+		[DllImport(libengine, EntryPoint = "GetPropertyByNameAndType")]
 		public static extern Int64 GetPropertyByNameAndType(Int64 model, byte[] name, Int64 rdfPropertyType);
 
 		/// <summary>
@@ -11179,7 +11187,7 @@ namespace RDF
 		///	If input parent is zero, the handle will point to the first relevant parent.
 		///	If all parent are past (or no relevant parent are found), the function will return 0.
 		/// </summary>
-		[DllImport(enginedll, EntryPoint = "GetParentsByIterator")]
+		[DllImport(libengine, EntryPoint = "GetParentsByIterator")]
 		public static extern Int64 GetParentsByIterator(Int64 owlClassOrRdfProperty, Int64 parentOwlClassOrRdfProperty);
 	}
 }
